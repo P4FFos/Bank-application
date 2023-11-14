@@ -1,5 +1,10 @@
 test
 
+<<<<<<< danyloTestBranchFile.txt
 
 
-4545
+=======
+bananas and kiwis
+
+CONFLICT?
+>>>>>>> danyloTestBranchFile.txt
