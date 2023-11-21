@@ -56,6 +56,15 @@ public class Bank {
         Account account = findAccountById(accountId);
         return account.getBalance();
     }
+    public String getTransactionHistory(String accountId) throws AccountNotFoundException{
+        Account account = findAccountById(accountId);
+        String transactions = "";
+
+        for(Transaction transaction: account.getTransactionHistory()){
+            transactions = String.format("%s%n%s", transactions, transaction.toString());
+        }
+        return transactions;
+    }
     // TODO: Decide on if operations should be done all from bank class.
     public void transfer(String accountId, String targetAccountId, double amount, String message, String date) throws AccountNotFoundException {
         Account account = findAccountById(accountId);
@@ -111,6 +120,8 @@ public class Bank {
         System.out.println("MB has: " + piggyBank.getBalance("881023"));
         piggyBank.transfer("881023", "890101", 100, "money from MB", "2023-11-21");
         System.out.println("JD has: " + piggyBank.getBalance("890101"));
-
+        piggyBank.withdraw("881023", 500, "2023-11-21");
+        System.out.println("MB has now: " + piggyBank.getBalance("881023"));
+        System.out.println("MB transactions history: " + piggyBank.getTransactionHistory("881023"));
     }
 }
