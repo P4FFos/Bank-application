@@ -18,4 +18,7 @@ public class Transaction {
         this.message = "";
         this.date = date;
     }
+    public String toString(){
+        return String.format("%s, %.2f, %s, %s", accountId, value, message, date);
+    }
 }
