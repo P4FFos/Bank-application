@@ -1,4 +1,9 @@
-package src;
+package src.customers;
+
+import src.utils.Account;
+import src.exceptions.AccountNotFoundException;
+import src.Bank;
+import src.utils.ContactCard;
 
 import java.util.HashMap;
 
@@ -38,12 +43,6 @@ public class CustomerPrivate extends Customer{
     public void createAccount(String accountId){
         Account account = new Account(accountId, 0.0);
         accounts.put(accountId, account);
-    }
-    public void transfer(Bank bank, String targetAccountId, double amount, String message, String date) throws AccountNotFoundException {
-        if(accounts.containsKey(targetAccountId)){
-            Account account = accounts.get(targetAccountId);
-            account.transfer(bank, targetAccountId, amount, message, date);
-        }
     }
     public boolean equals(Object otherObject){
         boolean isEqual = false;

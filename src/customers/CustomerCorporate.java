@@ -1,4 +1,6 @@
-package src;
+package src.customers;
+
+import src.utils.ContactCard;
 
 public class CustomerCorporate extends Customer {
     public CustomerCorporate(String userId, String password, ContactCard contactCard) {
