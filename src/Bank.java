@@ -22,18 +22,13 @@ public class Bank {
     public void removeEmployee(){}
     public void createAccount(Customer customer, String accountId){
         if(customer instanceof CustomerPrivate){
-            Account account = new Account(accountId, 0.0);
-
-            for(Customer listObj: customers){
-                String listObjSSN = ((CustomerPrivate) listObj).getSSN();
-                String SSN = ((CustomerPrivate) customer).getSSN();
-
-                if(listObjSSN.equals(SSN)){
-                    ((CustomerPrivate) listObj).createAccount(accountId);
+            for(Customer customerObj: customers){
+                CustomerPrivate customerObjPrivate = ((CustomerPrivate) customerObj);
+                if(customerObjPrivate.equals(customer)){
+                    customerObjPrivate.createAccount(accountId);
                 }
             }
         }
-
     }
     public Account findAccountById(String accountId) throws AccountNotFoundException {
         for(Customer customer: customers){
@@ -44,6 +39,29 @@ public class Bank {
             }
         }
         throw new AccountNotFoundException("Account with ID " + accountId + " not found.");
+    }
+    public void deposit(String accountId, double amount, String message, String date) throws AccountNotFoundException {
+        Account account = findAccountById(accountId);
+        account.deposit(amount, message, date);
+    }
+    public void deposit(String accountId, double amount, String date) throws AccountNotFoundException {
+        Account account = findAccountById(accountId);
+        account.deposit(amount, date);
+    }
+    public void withdraw(String accountId, double amount, String date) throws AccountNotFoundException {
+        Account account = findAccountById(accountId);
+        account.withdraw(amount, date);
+    }
+    public double getBalance(String accountId) throws AccountNotFoundException {
+        Account account = findAccountById(accountId);
+        return account.getBalance();
+    }
+    // TODO: Decide on if operations should be done all from bank class.
+    public void transfer(String accountId, String targetAccountId, double amount, String message, String date) throws AccountNotFoundException {
+        Account account = findAccountById(accountId);
+        Account targetAccount = findAccountById(targetAccountId);
+        account.withdraw(amount, date);
+        targetAccount.deposit(amount, message, date);
     }
 
     public static void main(String[] args) throws AccountNotFoundException {
@@ -89,11 +107,10 @@ public class Bank {
         emp1.createCustomerPrivate(piggyBank, customer2);
         emp1.createAccount(piggyBank, customer2, "890101");
 
-        customer1.deposit("881023", 1000, "2023-11-20");
-        System.out.println("MB has: " + customer1.getBalance("881023"));
-        customer1.transfer(piggyBank, "890101", 100, "money from MB", "2023-11-21");
-        System.out.println("JD has: " + customer2.getBalance("890101"));
-
+        piggyBank.deposit("881023", 1000, "2023-11-20");
+        System.out.println("MB has: " + piggyBank.getBalance("881023"));
+        piggyBank.transfer("881023", "890101", 100, "money from MB", "2023-11-21");
+        System.out.println("JD has: " + piggyBank.getBalance("890101"));
 
     }
 }

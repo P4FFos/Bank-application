@@ -41,7 +41,10 @@ public class Account {
         Transaction deposit = new Transaction(accountId, amount, date);
         transactions.add(deposit);
     }
-
+    
+    /* TODO: Decide what to do.
+        Should all operations go through Bank class or to use aggregation in each method?
+        - Aggregation feels clunky.*/
     public void transfer(Bank bank, String targetAccountId, double amount, String message, String date) throws AccountNotFoundException {
         if(balance >= amount){
             this.withdraw(amount, date);

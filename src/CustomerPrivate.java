@@ -45,4 +45,15 @@ public class CustomerPrivate extends Customer{
             account.transfer(bank, targetAccountId, amount, message, date);
         }
     }
+    public boolean equals(Object otherObject){
+        boolean isEqual = false;
+        if(otherObject == this){
+            isEqual = true;
+        }else if(otherObject == null){
+            isEqual = false;
+        }else if(otherObject instanceof CustomerPrivate otherCustomerPrivate) {
+            isEqual = this.socialSecurityNumber.equals(otherCustomerPrivate.getSSN());
+        }
+        return isEqual;
+    }
 }
