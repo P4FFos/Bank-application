@@ -10,20 +10,21 @@ import src.utils.ContactCard;
 import src.utils.Transaction;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Bank {
     private ContactCard contactInfo;
-    private ArrayList<Customer> customers;
+    private HashMap<String, Customer> customers;
     private ArrayList<BankEmployee> employees;
 
     public Bank(){
         //this.contactInfo = contactInfo;
-        customers = new ArrayList<>();
+        customers = new HashMap<>();
         employees = new ArrayList<>();
     }
 
     public void createCustomerPrivate(Customer customer){
-        customers.add(customer);
+        customers.put(customer.getUserId(), customer);
     }
     public void getCustomerPrivate(Customer customer){}
     public void removeCustomerPrivate(Customer customer){}
@@ -32,14 +33,8 @@ public class Bank {
     }
     public void removeEmployee(){}
     public void createAccount(Customer customer, String accountId){
-        if(customer instanceof CustomerPrivate){
-            for(Customer customerObj: customers){
-                CustomerPrivate customerObjPrivate = ((CustomerPrivate) customerObj);
-                if(customerObjPrivate.equals(customer)){
-                    customerObjPrivate.createAccount(accountId);
-                }
-            }
-        }
+        String userId = customer.getUserId();
+        customer.
     }
     public Account findAccountById(String accountId) throws AccountNotFoundException {
         for(Customer customer: customers){
