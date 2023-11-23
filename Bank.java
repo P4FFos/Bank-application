@@ -44,4 +44,23 @@ public class Bank {
 
     }
 
+    public void deposit(String accountId, double amount, String date) {
+
+    }
+
+    public void withdraw(String accountId, double amount, String date) {
+
+    }
+
+    public void transfer(String accountId, String targetAccountId, double amount, String date) {
+
+    }
+
+    public String getTransactionHistory(String accountId) {
+        return "";
+    }
+
+    public double getBalance() {
+        return 0.0;
+    }
 }
