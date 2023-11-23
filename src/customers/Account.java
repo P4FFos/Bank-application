@@ -33,7 +33,7 @@ public class Account {
 
     public void withdraw(Date date, double amount) throws Exception {
         if (balance >= amount) {
-            balance = balance - amount;
+            balance -= amount;
             Transaction withdraw = new Transaction(amount, date);
             transactions.add(withdraw);
         } else {
@@ -41,11 +41,19 @@ public class Account {
         }
     }
 
-    public void outgoingTransaction(String receiverAccountId, double amount, String date) {
-
+    public void outgoingTransaction(String receiverAccountId, double amount, Date date) throws Exception {
+        if (balance >= amount) {
+            balance -= amount;
+            Transaction outgoing = new Transaction(receiverAccountId, amount, date);
+            transactions.add(outgoing);
+        } else {
+            throw new Exception("");
+        }
     }
 
-    public void incomingTransaction(double amount, String date) {
-
+    public void incomingTransaction(double amount, Date date) {
+        balance += amount;
+        Transaction incoming = new Transaction(amount, date);
+        transactions.add(incoming);
     }
 }
