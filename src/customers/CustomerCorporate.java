@@ -7,9 +7,7 @@ public class CustomerCorporate extends Customer {
         super(userId, password, contactCardCorporate);
     }
 
-    // equals method to check if two Corporate Customers
-    // are equal by same user ID
-    public boolean equals(CustomerCorporate anotherObject) {
+    public boolean isEqual(CustomerCorporate anotherObject) {
         boolean isEqual = false;
         if (anotherObject == this) {
             isEqual = true;
