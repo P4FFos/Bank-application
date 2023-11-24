@@ -21,9 +21,6 @@ public abstract class Customer extends User {
             }
         }
         return null;
-
-//        return accounts.get(accountId);
-
     }
 
 }

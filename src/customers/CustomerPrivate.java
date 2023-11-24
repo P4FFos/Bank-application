@@ -7,10 +7,7 @@ public class CustomerPrivate extends Customer {
         super(userId, password, contactCardCorporate);
     }
 
-
-    // equals method to check if two Private Customers
-    // are equal by same user ID
-    public boolean equals(CustomerPrivate anotherObject) {
+    public boolean isEqual(CustomerPrivate anotherObject) {
         boolean isEqual = false;
         if (anotherObject == this) {
             isEqual = true;
