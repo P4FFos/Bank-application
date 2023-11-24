@@ -1,4 +1,7 @@
 package src.exceptions;
 
-public class DuplicateIdException {
+public class DuplicateIdException extends Exception {
+    public DuplicateIdException(String message) {
+        super(message);
+    }
 }
