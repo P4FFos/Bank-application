@@ -4,15 +4,18 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Account {
+    // attributes for account class
     final String accountId;
     private double balance;
     private ArrayList<Transaction> transactions;
 
+    // constructor for the account class
     Account(String accountId, double balance) {
         this.accountId = accountId;
         this.balance = balance;
     }
 
+    // get methods to receive accountId and Balance
     public String getAccountId() {
         return accountId;
     }
@@ -21,10 +24,12 @@ public class Account {
         return balance;
     }
 
+    // method to get history of transactions
     public ArrayList<Transaction> getHistory() {
         return transactions;
     }
 
+    // deposit and withdraw methods
     public void deposit(String receiverAccountId, Date date, double amount) {
         balance += amount;
         Transaction deposit = new Transaction(receiverAccountId, amount, date);
@@ -41,6 +46,7 @@ public class Account {
         }
     }
 
+    // outgoing and incoming transactions methods
     public void outgoingTransaction(String receiverAccountId, double amount, Date date) throws Exception {
         if (balance >= amount) {
             balance -= amount;
