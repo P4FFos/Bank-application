@@ -1,3 +1,5 @@
+package src;
+
 import src.customers.Account;
 import src.customers.Customer;
 import src.customers.Transaction;
