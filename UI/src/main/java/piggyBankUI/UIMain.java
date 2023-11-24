@@ -10,6 +10,10 @@ public class UIMain extends Application {
 
     @Override
     public void start(Stage stage) {
+        //LATER
+        //Initialize Bank
+        //Read mock data from json
+
         try {
             Parent root = FXMLLoader.load(getClass().getResource("StartScene.fxml"));
             Scene scene = new Scene(root);

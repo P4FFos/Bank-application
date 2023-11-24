@@ -25,7 +25,6 @@ public class EmployeeStartController {
     public void showEmployeeStart(ActionEvent event){
         employeeStart.setVisible(true);
         customerCard.setVisible(false);
-
     }
 
     public void showCustomerCard(ActionEvent event){
