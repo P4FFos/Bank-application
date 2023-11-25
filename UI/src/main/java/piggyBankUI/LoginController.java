@@ -38,9 +38,10 @@ public class LoginController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("EmployeeStart.fxml"));
             root = loader.load();
 
+            //Placeholder logic. Connect appropriately with backend when ready.
             username = usernameTextField.getText();
             EmployeeStartController employeeStartController = loader.getController();
-            employeeStartController.displayName(username);
+            employeeStartController.displayUser("Emp123", username);
             employeeStartController.showEmployeeStart();
 
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
