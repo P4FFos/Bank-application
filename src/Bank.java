@@ -119,4 +119,25 @@ public class Bank {
         Account account = getAccountById(accountId);
         return account.getBalance();
     }
+
+    public boolean verifyLogin(String userId, String password) {
+        boolean correctLogin = false;
+        boolean correctUserId = false;
+        boolean correctPassword = false;
+        //if password connected to userId = input password: correct
+        if (customers.containsKey(userId)) {
+            correctUserId = true;
+            Customer customer = customers.get(userId);
+            if (customer.getPassword().equals(password)) {
+                correctPassword = true;
+            } else {
+                System.out.println("Invalid password. Please try again.");
+            }
+        } else {
+            System.out.println("Invalid username. Please try again");
+        }
+        correctLogin = correctUserId && correctPassword;
+        return correctLogin;
+        //when correctLogin is true, login action can be completed - connect to existing UI component
+    }
 }
