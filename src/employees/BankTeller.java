@@ -1,8 +1,8 @@
 package src.employees;
 
 import src.Bank;
-import src.utils.ContactCardPrivate;
 import src.customers.CustomerPrivate;
+import src.utils.ContactCardPrivate;
 import src.customers.Account;
 
 public class BankTeller extends BankEmployee {
