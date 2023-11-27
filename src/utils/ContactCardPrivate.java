@@ -1,22 +1,11 @@
 package src.utils;
 
 public class ContactCardPrivate extends ContactCard{
-    private String firstName;
-    private String surname;
     private final String SSN;
 
-    public ContactCardPrivate(String firstName, String surname, String SSN,String email,String phoneNumber, String streetAddress, String zipCode, String city){
-        super(name, email, phoneNumber, streetAddress, zipCode, city);
-        this.firstName = firstName;
-        this.surname = surname;
+    public ContactCardPrivate(String SSN,String email,String phoneNumber, String streetAddress, int zipCode, String city){
+        super(email, phoneNumber, streetAddress, zipCode, city);
         this.SSN = SSN;
-    }
-
-    public String getFirstName(){
-        return firstName;
-    }
-    public String getSurname(){
-        return surname;
     }
     public String getSSN(){
         return SSN;
