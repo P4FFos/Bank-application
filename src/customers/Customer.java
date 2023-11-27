@@ -15,15 +15,7 @@ public abstract class Customer extends User {
     }
 
     public Account getAccount(String accountId) {
-        for (Account account : accounts) {
-            if (account.getAccountId().equals(accountId)) {
-                return account;
-            }
-        }
-        return null;
-
-//        return accounts.get(accountId);
-
+        return accounts.get(accountId);
     }
 
 }
