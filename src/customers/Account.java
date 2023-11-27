@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Account {
     // attributes for account class
-    final String accountId;
+    private final String accountId;
     private double balance;
     private ArrayList<Transaction> transactions;
 
