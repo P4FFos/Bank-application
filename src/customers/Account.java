@@ -5,12 +5,12 @@ import java.util.Date;
 
 public class Account {
     // attributes for account class
-    final String accountId;
+    private final String accountId;
     private double balance;
     private ArrayList<Transaction> transactions;
 
     // constructor for the account class
-    Account(String accountId, double balance) {
+    public Account(String accountId, double balance) {
         this.accountId = accountId;
         this.balance = balance;
     }
@@ -25,7 +25,7 @@ public class Account {
     }
 
     // method to get history of transactions
-    public ArrayList<Transaction> getHistory() {
+    public ArrayList<Transaction> getTransactionHistory() {
         return transactions;
     }
 

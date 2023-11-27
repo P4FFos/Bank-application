@@ -3,7 +3,7 @@ package src.customers;
 import src.utils.ContactCard;
 
 public class CustomerPrivate extends Customer {
-    CustomerPrivate(String userId, String password, ContactCard contactCardCorporate) {
+    public CustomerPrivate(String userId, String password, ContactCard contactCardCorporate) {
         super(userId, password, contactCardCorporate);
     }
 
