@@ -14,10 +14,10 @@ public class ContactCardCorporate extends ContactCard{
         this.city = city;
     }
     public String getName(){
-        this.name = name;
+        return name;
     }
     public void setName(){
-        this.name = newName;
+        this.name = Newname;
     }
     
     public String getOrgNumber(){
