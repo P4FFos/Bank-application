@@ -5,6 +5,7 @@ public class ContactCardCorporate extends ContactCard{
     private String name;
 
     public ContactCardCorporate(String name,String orgNumber,String  email, String phoneNumber,String streetAddress,String zipCode,String city){
+       super(name, email, phonenumber, streetAdress,zipCode,city);
         this.name = name;
         this.orgNumber = orgNumber;
         this.email = email;
