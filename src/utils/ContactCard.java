@@ -8,14 +8,14 @@ public class ContactCard {
     private int zipCode;
     private String city;
 
-    public ContactCard(String name, String email, String phoneNumber, String streetAddress, int zipCode, String city) {
-        this.name = name;
+    public ContactCard(String email, String phoneNumber, String streetAddress, int zipCode, String city) {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.streetAddress = streetAddress;
         this.zipCode = zipCode;
         this.city = city;
     }
+
 
     public String getEmail() {
         return email;

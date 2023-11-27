@@ -6,10 +6,9 @@ import src.ContactCard;
 =======
 >>>>>>> 82561ad3e6f96aabab37c323cfb313fa499b93ca
 public class ContactCardPrivate extends ContactCard{
-    private String firstName;
-    private String surname;
     private final String SSN;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     public ContactCardPrivate(firstName, surname, SSN, email, phoneNumber, streetAddress, zipCode, city){
 =======
@@ -21,19 +20,11 @@ public class ContactCardPrivate extends ContactCard{
 >>>>>>> 7bf1c8347cd3a771532ded4e90535b456820970f
         this.firstName = firstName;
         this.surname = surname;
+=======
+    public ContactCardPrivate(String SSN,String email,String phoneNumber, String streetAddress, int zipCode, String city){
+        super(email, phoneNumber, streetAddress, zipCode, city);
+>>>>>>> 117530c168f5743824c28c073355aabbea542e17
         this.SSN = SSN;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.streetAddress = streetAddress;
-        this.zipCode = zipCode;
-        this.city = city;
-    }
-
-    public String getFirstName(){
-        return firstName;
-    }
-    public String getSurname(){
-        return surname;
     }
     public String getSSN(){
         return SSN;

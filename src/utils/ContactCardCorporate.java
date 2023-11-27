@@ -1,14 +1,19 @@
 package src.utils;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import src.ContactCard;
 
 =======
 >>>>>>> 82561ad3e6f96aabab37c323cfb313fa499b93ca
 public class ContactCardCorporate extends ContactCard{
+=======
+public class ContactCardCorporate extends ContactCard {
+>>>>>>> 117530c168f5743824c28c073355aabbea542e17
     private final String orgNumber;
-    private String name;
+   
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     public ContactCardCorporate(name, orgNumber, email, phoneNumber, streetAddress, zipCode, city){
 =======
@@ -19,13 +24,13 @@ public class ContactCardCorporate extends ContactCard{
        super(name, email, phonenumber, streetAdress,zipCode,city);
 >>>>>>> 7bf1c8347cd3a771532ded4e90535b456820970f
         this.name = name;
+=======
+    public ContactCardCorporate(String orgNumber, String email, String phoneNumber, String streetAddress, int zipCode, String city) {
+        super(email, phoneNumber, streetAddress, zipCode, city);
+>>>>>>> 117530c168f5743824c28c073355aabbea542e17
         this.orgNumber = orgNumber;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.streetAddress = streetAddress;
-        this.zipCode = zipCode;
-        this.city = city;
     }
+<<<<<<< HEAD
     public String getName(){
 <<<<<<< HEAD
         this.name = name;
@@ -42,7 +47,10 @@ public class ContactCardCorporate extends ContactCard{
     
 >>>>>>> 82561ad3e6f96aabab37c323cfb313fa499b93ca
     public String getOrgNumber(){
+=======
+    public String getOrgNumber() {
+>>>>>>> 117530c168f5743824c28c073355aabbea542e17
         return orgNumber;
     }
-    
+
 }
