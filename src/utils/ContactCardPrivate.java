@@ -6,6 +6,7 @@ public class ContactCardPrivate extends ContactCard{
     private final String SSN;
 
     public ContactCardPrivate(String firstName, String surname, String SSN,String email,String phoneNumber, String streetAddress, String zipCode, String city){
+        super(name, email, phoneNumber, streetAddress, zipCode, city)
         this.firstName = firstName;
         this.surname = surname;
         this.SSN = SSN;
