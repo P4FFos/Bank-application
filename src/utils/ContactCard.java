@@ -9,7 +9,6 @@ public class ContactCard {
     private String city;
 
     public ContactCard(String name, String email, String phoneNumber, String streetAddress, int zipCode, String city) {
-
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
