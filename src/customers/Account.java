@@ -25,7 +25,7 @@ public class Account {
     }
 
     // method to get history of transactions
-    public ArrayList<Transaction> getTransactionsHistory() {
+    public ArrayList<Transaction> getTransactionHistory() {
         return transactions;
     }
 
