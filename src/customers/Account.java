@@ -10,7 +10,7 @@ public class Account {
     private ArrayList<Transaction> transactions;
 
     // constructor for the account class
-    Account(String accountId, double balance) {
+    public Account(String accountId, double balance) {
         this.accountId = accountId;
         this.balance = balance;
     }
@@ -25,7 +25,7 @@ public class Account {
     }
 
     // method to get history of transactions
-    public ArrayList<Transaction> getHistory() {
+    public ArrayList<Transaction> getTransactionsHistory() {
         return transactions;
     }
 
