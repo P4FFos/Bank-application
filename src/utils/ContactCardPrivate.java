@@ -10,11 +10,6 @@ public class ContactCardPrivate extends ContactCard{
         this.firstName = firstName;
         this.surname = surname;
         this.SSN = SSN;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.streetAddress = streetAddress;
-        this.zipCode = zipCode;
-        this.city = city;
     }
 
     public String getFirstName(){
