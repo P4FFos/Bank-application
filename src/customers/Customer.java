@@ -7,7 +7,7 @@ import java.util.HashMap;
 public abstract class Customer extends User {
     private HashMap<String, Account> accounts;
 
-    Customer(String userId, String password, ContactCard contactCard) {
+    public Customer(String userId, String password, ContactCard contactCard) {
         super(userId, password, contactCard);
         this.accounts = new HashMap<>();
         userId = getUserId();
