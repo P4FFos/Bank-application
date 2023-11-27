@@ -30,9 +30,9 @@ public class Account {
     }
 
     // deposit and withdraw methods
-    public void deposit(String receiverAccountId, Date date, double amount) {
+    public void deposit(String senderAccountId, Date date, double amount) {
         balance += amount;
-        Transaction deposit = new Transaction(receiverAccountId, amount, date);
+        Transaction deposit = new Transaction(senderAccountId, amount, date);
         transactions.add(deposit);
     }
 
@@ -44,22 +44,5 @@ public class Account {
         } else {
             throw new Exception("");
         }
-    }
-
-    // outgoing and incoming transactions methods
-    public void outgoingTransaction(String receiverAccountId, double amount, Date date) throws Exception {
-        if (balance >= amount) {
-            balance -= amount;
-            Transaction outgoing = new Transaction(receiverAccountId, amount, date);
-            transactions.add(outgoing);
-        } else {
-            throw new Exception("");
-        }
-    }
-
-    public void incomingTransaction(double amount, Date date) {
-        balance += amount;
-        Transaction incoming = new Transaction(amount, date);
-        transactions.add(incoming);
     }
 }
