@@ -1,7 +1,6 @@
 package src.customers;
 
 import src.utils.ContactCard;
-
 import java.util.HashMap;
 
 public abstract class Customer extends User {
@@ -14,8 +13,12 @@ public abstract class Customer extends User {
         contactCard = getContactInfo();
     }
 
-    public Account getAccount(String accountId) {
-        return accounts.get(accountId);
+    public Account getAccount(String accountId) throws Exception {
+        if (accountId.equals(null)) {
+            throw new Exception("");
+        } else {
+            return accounts.get(accountId);
+        }
     }
 
 }
