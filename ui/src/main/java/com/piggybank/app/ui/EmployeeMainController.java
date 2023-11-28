@@ -1,22 +1,28 @@
 package com.piggybank.app.ui;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
-public class EmployeeMainController {
+public class EmployeeMainController implements Initializable {
     @FXML
     private Button employeeStartButton;
     @FXML
@@ -41,6 +47,8 @@ public class EmployeeMainController {
     private AnchorPane employeeStart;
     @FXML
     private AnchorPane customerCard;
+    @FXML
+    private ListView<String> accountsListView; //will be list of accounts
 
     private Parent root;
     private Stage stage;
@@ -49,6 +57,22 @@ public class EmployeeMainController {
     private Map<String, String> customers = new HashMap<>();
     private String customerID;
     private String customerName;
+
+    String[] accounts = {"paycheck", "savings", "travel", "emergency"};
+    String currentAccount;
+
+
+    public void initialize(URL arg0, ResourceBundle arg1){
+
+        accountsListView.getItems().addAll(accounts);
+        accountsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
+            @Override
+            public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2){
+                currentAccount = accountsListView.getSelectionModel().getSelectedItem();
+                System.out.println(currentAccount);
+            }
+        });
+    }
 
     public void displayUser(String id, String name){
         userIdLabel.setText(id);
