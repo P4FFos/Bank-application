@@ -17,29 +17,36 @@ public class Account {
 
     // get methods to receive accountId and Balance
     public String getAccountId() {
-        return accountId;
+        return this.accountId;
     }
 
     public double getBalance() {
-        return balance;
+        return this.balance;
     }
 
     // method to get history of transactions
     public ArrayList<Transaction> getTransactionHistory() {
-        return transactions;
+        //TODO: add a for loop to check
+        return this.transactions;
     }
 
     // deposit and withdraw methods
-    public void deposit(String senderAccountId, Date date, double amount) {
+    public void deposit(String senderAccountId, double amount, String message, Date date) {
         balance += amount;
-        Transaction deposit = new Transaction(senderAccountId, amount, date);
-        transactions.add(deposit);
+        if (message.isBlank()) {
+            Transaction withdraw = new Transaction("", senderAccountId, amount, "", date);
+            transactions.add(withdraw);
+        } else {
+            Transaction withdraw = new Transaction("", "", amount, message, date);
+            transactions.add(withdraw);
+        }
     }
 
-    public void withdraw(Date date, double amount) throws Exception {
+    public void withdraw(double amount, Date date) throws Exception {
         if (balance >= amount) {
             balance -= amount;
-            Transaction withdraw = new Transaction(amount, date);
+
+            Transaction withdraw = new Transaction("", "", amount, "", date);
             transactions.add(withdraw);
         } else {
             throw new Exception("");

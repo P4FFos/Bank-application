@@ -9,16 +9,21 @@ public abstract class Customer extends User {
     public Customer(String userId, String password, ContactCard contactCard) {
         super(userId, password, contactCard);
         this.accounts = new HashMap<>();
-        userId = getUserId();
-        contactCard = getContactInfo();
     }
 
     public Account getAccount(String accountId) throws Exception {
-        if (accountId.equals(null)) {
+        if (accountId.isBlank()) {
             throw new Exception("");
         } else {
             return accounts.get(accountId);
         }
+    }
+
+    //TODO new methods - need to fill logic:
+    public void addAccount() {
+    }
+
+    public void removeAccount() {
     }
 
 }

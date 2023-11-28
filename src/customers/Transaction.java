@@ -4,64 +4,36 @@ import java.util.Date;
 
 public class Transaction {
     // attributes for Transaction class
-    private double amount;
-    private Date date;
+    private String receiverAccountId;
     private String senderAccountId;
+    private double amount;
     private String message;
+    private Date date;
 
-    // Constructor for transactions that require senderAccountId
-    public Transaction(String senderAccountId, double amount, Date date) {
-//        if (amount <= 0 || senderAccountId.isBlank()) {
-//            throw new Exception("");
-//        } else {
-//            this.senderAccountId = senderAccountId;
-//            this.amount = amount;
-//            this.date = date;
-//        }
-        this.senderAccountId = senderAccountId;
-        this.amount = amount;
-        this.date = date;
+    public Transaction(String receiverAccountId, String senderAccountId, double amount, String message, Date date) {
+        if (receiverAccountId.isBlank() && senderAccountId.isBlank()) {
+            this.amount = amount;
+            this.message = message;
+        } else if (message.isBlank()) {
+            this.receiverAccountId = receiverAccountId;
+            this.senderAccountId = senderAccountId;
+            this.amount = amount;
+        } else if (receiverAccountId.isBlank() && message.isBlank()) {
+            this.amount = amount;
+            this.senderAccountId = senderAccountId;
+        } else if (receiverAccountId.isBlank()) {
+            this.senderAccountId = senderAccountId;
+            this.message = message;
+            this.amount = amount;
+        } else {
+            this.receiverAccountId = receiverAccountId;
+            this.senderAccountId = senderAccountId;
+            this.amount = amount;
+            this.message = message;
+        }
     }
 
-    // Constructor for usual transactions
-    public Transaction(double amount, Date date) {
-//        if (amount <= 0) {
-//            throw new Exception("");
-//        } else {
-//            this.amount = amount;
-//            this.date = date;
-//        }
-        this.amount = amount;
-        this.date = date;
-    }
+    //TODO: add a toString method, check if withdrawal or deposit or transfer
+    //if receiverAccount/senderAccount is empty ... etc
 
-    // Constructor for transactions that require message
-    public Transaction(double amount, String message, Date date) {
-//        if (amount <= 0 || message.isBlank()) {
-//            throw new Exception("");
-//        } else {
-//            this.amount = amount;
-//            this.message = message;
-//            this.date = date;
-//        }
-        this.amount = amount;
-        this.message = message;
-        this.date = date;
-    }
-
-    // Constructor for transactions that require message and senderAccountId
-    public Transaction(String senderAccountId, double amount, String message, Date date) {
-//        if (amount <= 0 || message.isBlank() || senderAccountId.isBlank()) {
-//            throw new Exception("");
-//        } else {
-//            this.senderAccountId = senderAccountId;
-//            this.amount = amount;
-//            this.message = message;
-//            this.date = date;
-//        }
-        this.senderAccountId = senderAccountId;
-        this.amount = amount;
-        this.message = message;
-        this.date = date;
-    }
 }
