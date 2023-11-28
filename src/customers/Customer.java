@@ -18,5 +18,8 @@ public abstract class Customer extends User {
         return accounts.get(accountId);
     }
 
+    public Object getPassword() {
+
+    }
 }
 
