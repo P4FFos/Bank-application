@@ -60,6 +60,10 @@ public class EmployeeMainController {
         customerCard.setVisible(false);
 
         //Placeholder below. Will search through backend hashmap of customers when ready.
+        fillCustomers();
+    }
+
+    public void fillCustomers(){
         customers.put("010101-1234", "Anna Andersson");
         customers.put("020202-2345", "Babben Borg");
         customers.put("030303-3456", "Charles Choco");
