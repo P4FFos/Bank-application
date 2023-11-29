@@ -28,8 +28,6 @@ public class LoginController {
     private String username;
 
 
-    Account
-
     public void login(ActionEvent event) throws IOException {
 
         if(passwordField.getText().length() < 4){ //Replace with logic for password validation
