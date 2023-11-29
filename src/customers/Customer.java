@@ -1,6 +1,7 @@
 package src.customers;
 
 import src.utils.ContactCard;
+
 import java.util.HashMap;
 
 public abstract class Customer extends User {
@@ -23,11 +24,20 @@ public abstract class Customer extends User {
         }
     }
 
-    //TODO new methods - need to fill logic:
-    public void addAccount() {
+    public void addAccount(String accountId, Account account) throws Exception {
+        if (accounts.containsKey(accountId)) {
+            throw new Exception("");
+        } else {
+            this.accounts.put(accountId, account);
+        }
     }
 
-    public void removeAccount() {
+    public void removeAccount(String accountId, Account account) throws Exception {
+        if (!accounts.containsKey(accountId)) {
+            throw new Exception("");
+        } else {
+            this.accounts.remove(accountId, account);
+        }
     }
 
 }
