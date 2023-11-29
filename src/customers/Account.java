@@ -37,7 +37,7 @@ public class Account {
             Transaction withdraw = new Transaction("", senderAccountId, amount, "", date);
             transactions.add(withdraw);
         } else {
-            Transaction withdraw = new Transaction("", "", amount, message, date);
+            Transaction withdraw = new Transaction("", senderAccountId, amount, message, date);
             transactions.add(withdraw);
         }
     }
