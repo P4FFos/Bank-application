@@ -12,7 +12,7 @@ public class Account {
     // constructor for the account class
     public Account(String accountId, double balance) {
         this.accountId = accountId;
-        this.balance = balance;
+        this.balance = 0.0;
     }
 
     // get methods to receive accountId and Balance
