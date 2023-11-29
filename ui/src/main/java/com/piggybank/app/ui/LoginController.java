@@ -27,6 +27,9 @@ public class LoginController {
     private Parent root;
     private String username;
 
+
+    Account
+
     public void login(ActionEvent event) throws IOException {
 
         if(passwordField.getText().length() < 4){ //Replace with logic for password validation
@@ -48,6 +51,8 @@ public class LoginController {
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+
+
         }
     }
 

@@ -32,6 +32,8 @@ public class EmployeeMainController implements Initializable {
     @FXML
     private Button logoutButton;
     @FXML
+    private Button selectAccountButton;
+    @FXML
     private Label searchMsg;
     @FXML
     private Label customerIdLabel;
@@ -49,29 +51,39 @@ public class EmployeeMainController implements Initializable {
     private AnchorPane customerCard;
     @FXML
     private ListView<String> accountsListView; //will be list of accounts
+    @FXML
+    private ListView<String> accountHistoryListView; //will be list of the current account's transactions
 
     private Parent root;
     private Stage stage;
     private Scene scene;
 
+    //---------------------PLACEHOLDER STUFF-------------------------------
     private Map<String, String> customers = new HashMap<>();
     private String customerID;
     private String customerName;
 
-    String[] accounts = {"paycheck", "savings", "travel", "emergency"};
-    String currentAccount;
-
+    private String[] accounts = {"main_account", "savings", "emergency", "travel"};
+    String currentAccount = "";
+    //-----------------------------------------------------------------------
 
     public void initialize(URL arg0, ResourceBundle arg1){
+        fillAccounts();
+    }
 
+    public void fillAccounts(){
         accountsListView.getItems().addAll(accounts);
         accountsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
             @Override
             public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2){
                 currentAccount = accountsListView.getSelectionModel().getSelectedItem();
-                System.out.println(currentAccount);
+                System.out.println("Current account: " + currentAccount);
             }
         });
+    }
+
+    public void showAccount(ActionEvent event){
+        accountHistoryListView.getItems().add(currentAccount);
     }
 
     public void displayUser(String id, String name){
@@ -79,9 +91,13 @@ public class EmployeeMainController implements Initializable {
         userNameLabel.setText(name);
     }
 
-    public void showEmployeeStart(){
+    public void showEmployeeStart(){ //HÄR VAR JAG!
         employeeStart.setVisible(true);
         customerCard.setVisible(false);
+
+        customerSearchTextField.setPromptText("Enter customerID/SSN");
+        customerID = "";
+        customerName = "";
 
         //Placeholder below. Will search through backend hashmap of customers when ready.
         fillCustomers();
@@ -132,5 +148,4 @@ public class EmployeeMainController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
 }
