@@ -1,9 +1,10 @@
 package src.customers;
 
-import src.utils.ContactCard;
+import src.utils.ContactCardCorporate;
 
 public class CustomerCorporate extends Customer {
-    public CustomerCorporate(String userId, String password, ContactCard contactCardCorporate) {
+    // Constructor for CorporateCustomer class
+    public CustomerCorporate(String userId, String password, ContactCardCorporate contactCardCorporate) {
         super(userId, password, contactCardCorporate);
     }
 
@@ -15,10 +16,12 @@ public class CustomerCorporate extends Customer {
             isEqual = true;
         } else if (anotherObject == null) {
             isEqual = false;
-        } else {
+        } else if (anotherObject instanceof CustomerCorporate) {
             CustomerCorporate anotherCustomer = (CustomerCorporate) anotherObject;
             boolean sameUserID = this.userId.equals(anotherCustomer.getUserId());
+            isEqual = sameUserID;
         }
         return isEqual;
     }
+
 }
