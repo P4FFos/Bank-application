@@ -9,17 +9,18 @@ public class Account {
     private double balance;
     private ArrayList<Transaction> transactions;
 
-    // constructor for the account class
-    public Account(String accountId, double balance) {
+    // constructor for the account class, with initialised balance = 0
+    public Account(String accountId) {
         this.accountId = accountId;
         this.balance = 0.0;
     }
 
-    // get methods to receive accountId and Balance
+    // get method to receive accountId
     public String getAccountId() {
         return this.accountId;
     }
 
+    // get method to receive balance
     public double getBalance() {
         return this.balance;
     }
@@ -30,7 +31,8 @@ public class Account {
         return this.transactions;
     }
 
-    // deposit and withdraw methods
+    // deposit methods, checks is the message is blank:
+    // fill in message field with empty string
     public void deposit(String senderAccountId, double amount, String message, Date date) {
         balance += amount;
         if (message.isBlank()) {
@@ -42,6 +44,9 @@ public class Account {
         }
     }
 
+    // withdraw method, checks if balance is bigger or equal to the amount to be sent:
+    // if bigger -> create new transaction and add it to the list
+    // if lower -> throw exception
     public void withdraw(double amount, Date date) throws Exception {
         if (balance >= amount) {
             balance -= amount;

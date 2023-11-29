@@ -3,6 +3,7 @@ package src.customers;
 import src.utils.ContactCardCorporate;
 
 public class CustomerCorporate extends Customer {
+    // Constructor for CorporateCustomer class
     public CustomerCorporate(String userId, String password, ContactCardCorporate contactCardCorporate) {
         super(userId, password, contactCardCorporate);
     }

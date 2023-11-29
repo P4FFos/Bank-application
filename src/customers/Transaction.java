@@ -10,30 +10,59 @@ public class Transaction {
     private String message;
     private Date date;
 
+    // Constructor for Transaction class
     public Transaction(String receiverAccountId, String senderAccountId, double amount, String message, Date date) {
-        if (receiverAccountId.isBlank() && senderAccountId.isBlank()) {
-            this.amount = amount;
-            this.message = message;
-        } else if (message.isBlank()) {
-            this.receiverAccountId = receiverAccountId;
-            this.senderAccountId = senderAccountId;
-            this.amount = amount;
-        } else if (receiverAccountId.isBlank() && message.isBlank()) {
-            this.amount = amount;
-            this.senderAccountId = senderAccountId;
-        } else if (receiverAccountId.isBlank()) {
-            this.senderAccountId = senderAccountId;
-            this.message = message;
-            this.amount = amount;
-        } else {
-            this.receiverAccountId = receiverAccountId;
-            this.senderAccountId = senderAccountId;
-            this.amount = amount;
-            this.message = message;
-        }
+//        if (receiverAccountId.isBlank() && senderAccountId.isBlank()) {
+//            this.amount = amount;
+//            this.message = message;
+//        } else if (message.isBlank()) {
+//            this.receiverAccountId = receiverAccountId;
+//            this.senderAccountId = senderAccountId;
+//            this.amount = amount;
+//        } else if (receiverAccountId.isBlank() && message.isBlank()) {
+//            this.amount = amount;
+//            this.senderAccountId = senderAccountId;
+//        } else if (receiverAccountId.isBlank()) {
+//            this.senderAccountId = senderAccountId;
+//            this.message = message;
+//            this.amount = amount;
+//        } else {
+//        this.receiverAccountId = receiverAccountId;
+//        this.senderAccountId = senderAccountId;
+//        this.amount = amount;
+//        this.message = message;
+//        }
+
+        this.receiverAccountId = receiverAccountId;
+        this.senderAccountId = senderAccountId;
+        this.amount = amount;
+        this.message = message;
     }
 
-    //TODO: add a toString method, check if withdrawal or deposit or transfer
-    //if receiverAccount/senderAccount is empty ... etc
+    // toString method, which checks and assign different formats:
+    // if receiverAccID and senderAccID fields are Blank
+    // if message field is Blank
+    // if receiverAccID and message fields are Blank
+    // if receiverAccID is Blank
+    public String toString(String receiverAccountId, String senderAccountId, double amount, String message, Date date) {
+        if (receiverAccountId.isBlank() && senderAccountId.isBlank()) {
+            return String.format("%s, %s, %s , %s", "Transaction - " + "Amount:" + amount +
+                    " Message: " + message + " Date: " + date);
+        } else if (message.isBlank()) {
+            return String.format("%s, %s, %s , %s , %s", "Transaction - " + "Receiver Account ID: "
+                    + receiverAccountId + " Sender Account ID: " + senderAccountId
+                    + "Amount:" + amount + " Date: " + date);
 
+        } else if (receiverAccountId.isBlank() && message.isBlank()) {
+            return String.format("%s, %s, %s, %s ", "Transaction - " + "Sender Account ID: "
+                    + senderAccountId + "Amount: " + amount + " Date: " + date);
+        } else if (receiverAccountId.isBlank()) {
+            return String.format("%s, %s, %s , %s , %s", "Transaction - " + "Sender Account ID: "
+                    + senderAccountId + "Amount: " + amount + " Message: " + message + " Date: " + date);
+        } else {
+            return String.format("%s, %s, %s , %s , %s, %s", "Transaction - " + "Receiver Account ID: "
+                    + receiverAccountId + " Sender Account ID: " + senderAccountId
+                    + "Amount:" + amount + " Message: " + message + " Date: " + date);
+        }
+    }
 }
