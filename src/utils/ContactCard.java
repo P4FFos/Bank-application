@@ -62,4 +62,7 @@ public class ContactCard {
     }
 }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 82561ad3e6f96aabab37c323cfb313fa499b93ca

@@ -2,26 +2,26 @@ package src;
 
 import src.customers.Account;
 import src.customers.Customer;
+import src.customers.CustomerCorporate;
+import src.customers.CustomerPrivate;
 import src.customers.Transaction;
 import src.employees.BankEmployee;
+import src.employees.BankTeller;
 import src.exceptions.AccountNotFoundException;
 import src.exceptions.DuplicateIdException;
+import src.exceptions.UserNotFoundException;
 import src.utils.ContactCard;
+import src.utils.ContactCardCorporate;
+import src.utils.ContactCardPrivate;
 
 import java.util.HashMap;
 
 public class Bank {
-    private ContactCard contactInfo;
+    private ContactCardCorporate contactInfo;
     private HashMap<String, Customer> customers;
     private HashMap<String, BankEmployee> employees;
 
-    //2 constructors if we can create a bank object without specifying its contact info upon creation:
-    public Bank() {
-        this.customers = new HashMap<String, Customer>();
-        this.employees = new HashMap<String, BankEmployee>();
-    }
-
-    public Bank(ContactCard contactInfo) {
+    public Bank(ContactCardCorporate contactInfo) {
         this.contactInfo = contactInfo;
         this.customers = new HashMap<String, Customer>();
         this.employees = new HashMap<String, BankEmployee>();
@@ -30,25 +30,52 @@ public class Bank {
     //create methods for updating the bank's contact card info (via forwarding from ContactCard once those methods are in place)
     //public void updateAddress(String newAddress){} ...etc
 
+    //get bank information:
     public ContactCard getBankInfo() {
         return this.contactInfo;
     }
 
-    public void addCustomer(String userId, Customer customer) throws DuplicateIdException {
-        if (customers.containsKey(userId)) {
-            throw new DuplicateIdException("An account already exists with this number.");
-        }
-        this.customers.put(userId, customer);
-    }
+	// create new private customer:
+	public Customer createCustomerPrivate(String userId, String password, ContactCardPrivate contactCard) {
+		CustomerPrivate newCustomer = new CustomerPrivate(userId, password, contactCard);
+		return newCustomer;
+	}
 
-    public void removeCustomer(String employeeID, String customerID) throws AccountNotFoundException {
-        if (!customers.containsKey(customerID)) {
-            throw new AccountNotFoundException("Account not found.");
-        } else {
-            this.customers.remove(customerID);
-        }
-    }
+	// create new corporate customer:
+	public Customer createCustomerCorporate(String userId, String password, ContactCardCorporate contactCard) {
+		CustomerCorporate newCustomer = new CustomerCorporate(userId, password, contactCard);
+		return newCustomer;
+	}
 
+	// add new customer to bank:
+	public void addCustomer(String userId, Customer customer) throws DuplicateIdException{
+		if (customers.containsKey(userId)) // check if customer exists
+			throw new DuplicateIdException("An account already exists with this number.");
+		this.customers.put(userId, customer);
+	}
+
+   // remove customer from bank:
+	public void removeCustomer(String employeeID, String customerID) throws UserNotFoundException {
+		if (!customers.containsKey(customerID)) // check if customer exists
+			throw new UserNotFoundException("Account not found.");
+		this.customers.remove(customerID);
+	}
+
+	// create new account for customer:
+	public Account createAccount(String accountNumber){
+		Account newAccount = new Account(accountNumber);
+		return newAccount;
+	}
+	
+	// add account to customer:
+	public void addAccount(String userID, Account newAccount) throws AccountNotFoundException {
+		if (!customers.containsKey(userID)) // check if customer exists 
+			throw new AccountNotFoundException("Account not found.");
+		Customer customer = customers.get(userID);
+		customer.addAccount(newAccount);
+	}
+
+    //retrieve customer information:
     public Customer getCustomer(String userId) throws AccountNotFoundException {
         if (!customers.containsKey(userId)) {
             throw new AccountNotFoundException("Account not found.");
@@ -57,6 +84,7 @@ public class Bank {
         }
     }
 
+    //add new employee to bank:
     public void createEmployee(String userId, BankEmployee employee) throws DuplicateIdException {
         if(employees.containsKey(userId)) {
             throw new DuplicateIdException("An account already exists with this number.");
@@ -65,6 +93,7 @@ public class Bank {
         }
     }
 
+    //remove employee from bank:
     public void removeEmployee(String employeeId) throws AccountNotFoundException {
         if(!employees.containsKey(employeeId)) {
             throw new AccountNotFoundException("Account not found.");
@@ -120,11 +149,10 @@ public class Bank {
         return account.getBalance();
     }
 
-    public boolean verifyLogin(String userId, String password) {
-        boolean correctLogin = false;
+    //verify customer login information:
+    public boolean verifyCustomer(String userId, String password) {
         boolean correctUserId = false;
         boolean correctPassword = false;
-        //if password connected to userId = input password: correct
         if (customers.containsKey(userId)) {
             correctUserId = true;
             Customer customer = customers.get(userId);
@@ -136,8 +164,24 @@ public class Bank {
         } else {
             System.out.println("Invalid username. Please try again");
         }
-        correctLogin = correctUserId && correctPassword;
-        return correctLogin;
-        //when correctLogin is true, login action can be completed - connect to existing UI component
+        return correctUserId && correctPassword;
+    }
+
+    //verify employee login information:
+    public boolean verifyEmployee(String userId, String password) {
+        boolean correctUserId = false;
+        boolean correctPassword = false;
+        if (employees.containsKey(userId)) {
+            correctUserId = true;
+            BankEmployee employee = employees.get(userId);
+            if (employee.getPassword().equals(password)) {
+                correctPassword = true;
+            } else {
+                System.out.println("Invalid password. Please try again.");
+            }
+        } else {
+            System.out.println("Invalid username. Please try again");
+        }
+        return correctUserId && correctPassword;
     }
 }
