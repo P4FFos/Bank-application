@@ -9,6 +9,7 @@ public abstract class User {
     public User(String userId, String password, ContactCard contactInfo) {
         this.userId = userId;
         this.password = password;
+        //change this: check for password length: min 8 characters, 1 uppercase, 1 number
         this.contactInfo = contactInfo;
     }
 
@@ -22,6 +23,10 @@ public abstract class User {
 
     public void resetPassword(String newPassword) {
         this.password = newPassword;
+    }
+
+    public String getPassword() {
+        return this.password;
     }
 
     //create methods for updating contact info (via forwarding from ContactCard once those methods are in place)
