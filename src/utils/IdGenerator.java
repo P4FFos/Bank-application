@@ -10,5 +10,7 @@ public class IdGenerator {
     public void customerIDGenerator() throws Exception {
         String customerId = String.format("%06d", lastFoundId);
         customerId = lastFoundId + 1;
+
+        // create lastFoundID method in bank
     }
 }
