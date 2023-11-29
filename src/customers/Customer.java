@@ -24,6 +24,7 @@ public abstract class Customer extends User {
         }
     }
 
+    // addCustomer method
     public void addAccount(String accountId, Account account) throws Exception {
         if (accounts.containsKey(accountId)) {
             throw new Exception("");
@@ -32,6 +33,7 @@ public abstract class Customer extends User {
         }
     }
 
+    // removeCustomer method
     public void removeAccount(String accountId, Account account) throws Exception {
         if (!accounts.containsKey(accountId)) {
             throw new Exception("");
