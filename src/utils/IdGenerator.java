@@ -1,8 +1,10 @@
 package src.utils;
 
 public class IdGenerator {
-	private final static int MIN_EMPLOYEE_ID_LENGTH = 1;
+	private final static int MIN_EMPLOYEE_ID_LENGTH = 2;
 	private final static int MAX_EMPLOYEE_ID_LENGTH = 6;
+	private final static int MAX_EMPLOYEE_ID = 99999;
+	
 	public static String generateEmployeeID(String lastEmployeeID) throws Exception{
 		boolean isEmployeeIDValid = false;
 		boolean isEmployeeIDStartValid = lastEmployeeID.startsWith("e");
@@ -13,7 +15,7 @@ public class IdGenerator {
 			throw new Exception("Invalid employee ID");
 		int nextID = Integer.parseInt(lastEmployeeID.substring(1));
 		nextID++;
-		if(nextID > 99999) // if the next employee ID is out of range
+		if(nextID > MAX_EMPLOYEE_ID) // if the next employee ID is out of range
 			throw new Exception("Employee ID out of range");
 		return "e" + nextID;
 	}
