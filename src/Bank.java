@@ -15,6 +15,7 @@ import src.utils.ContactCardCorporate;
 import src.utils.ContactCardPrivate;
 
 import java.util.HashMap;
+import java.util.Date;
 
 public class Bank {
     private ContactCardCorporate contactInfo;
@@ -68,9 +69,9 @@ public class Bank {
 	}
 	
 	// add account to customer:
-	public void addAccount(String userID, Account newAccount) throws AccountNotFoundException {
+	public void addAccount(String userID, String accountId, Account newAccount) throws UserNotFoundException {
 		if (!customers.containsKey(userID)) // check if customer exists 
-			throw new AccountNotFoundException("Account not found.");
+			throw new UserNotFoundException("User not found.");
 		Customer customer = customers.get(userID);
 		customer.addAccount(newAccount);
 	}
@@ -106,31 +107,22 @@ public class Bank {
 
     }
 
-    public void deposit(String accountId, double amount, String message, String date) throws AccountNotFoundException{
+    public void deposit(String senderId, String accountId, double amount, String message, Date date) throws AccountNotFoundException{
         Account account = getAccountById(accountId);
-        account.deposit(amount, message, date);
+        account.deposit(senderId, amount, message, date);
     }
 
-    public void deposit(String accountId, double amount, String date) throws AccountNotFoundException{
-        Account account = getAccountById(accountId);
-        account.deposit(amount, date);
-    }
-
-    public void withdraw(String accountId, double amount, String message, String date) throws AccountNotFoundException{
-        Account account = getAccountById(accountId);
-        account.withdraw(amount, message, date);
-    }
-
-    public void withdraw(String accountId, double amount, String date) throws AccountNotFoundException{
+    //Withdraw
+    public void withdraw(String accountId, double amount, String message, Date date) throws Exception {
         Account account = getAccountById(accountId);
         account.withdraw(amount, date);
     }
 
-    public void transfer(String accountId, String targetAccountId, double amount, String message, String date) throws AccountNotFoundException {
+    public void transfer(String accountId, String targetAccountId, double amount, String message, Date date) throws AccountNotFoundException {
         Account account = getAccountById(accountId);
         Account targetAccount = getAccountById(targetAccountId);
 
-        account.withdraw(amount, message, date);
+        account.withdraw(amount, date);
         targetAccount.deposit(amount, message, date);
     }
 
