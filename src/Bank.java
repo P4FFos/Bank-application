@@ -16,7 +16,6 @@ import src.utils.ContactCardPrivate;
 
 import java.util.HashMap;
 import java.util.Date;
-import java.util.Map;
 
 public class Bank {
     private ContactCardCorporate contactInfo;
@@ -106,12 +105,12 @@ public class Bank {
 
     /* iterates through HashMap of customers to find the owner of specified account,
     so it can be used in other methods in the class */
-    public Account getAccountById(String accountId) throws AccountNotFoundException {
-        for (Map.Entry<String, Customer> customer : customers.entrySet()) {
-            HashMap<String, Account> customerAccounts = customer.getValue().getAccountHashMap();
-            boolean accountExists = customer.getValue().checkIfAccountExists(accountId);
-            if(accountExists)
-                return customerAccounts.get(accountId);
+    public Account getAccountById(String accountId) throws Exception {
+        for (Customer customer : customers.values()) {
+            boolean accountExists = customer.checkIfAccountExists(accountId);
+            if(accountExists) {
+                return customer.getAccount(accountId);
+            }
         }
         throw new AccountNotFoundException("Account was not found.");
     }
