@@ -30,6 +30,7 @@ public class LoginController {
 
     public void login(ActionEvent event) throws IOException {
 
+
         if(passwordField.getText().length() < 4){ //Replace with logic for password validation
             passwordValid = false;
             System.out.println("Password must be at least 4 characters long.");

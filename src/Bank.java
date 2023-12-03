@@ -73,7 +73,7 @@ public class Bank {
         }
     }
 
-    public Account getAccountById(String accountId) throws AccountNotFoundException {
+    /*public Account getAccountById(String accountId) throws AccountNotFoundException {
 
     }
 
@@ -118,7 +118,7 @@ public class Bank {
     public double getBalance(String accountId) throws AccountNotFoundException {
         Account account = getAccountById(accountId);
         return account.getBalance();
-    }
+    }*/
 
     //verify customer login information:
     public boolean verifyCustomer(String userId, String password) {
