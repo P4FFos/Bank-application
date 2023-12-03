@@ -10,15 +10,14 @@ import src.utils.ContactCard;
 import src.utils.ContactCardCorporate;*/
 
 public class UIMain extends Application {
-    /* Uncomment when methods in backend src are functioning
-    private Bank bank;
-    */
+    //private Bank bank;
+
     @Override
     public void start(Stage stage) {
         /*LATER
         Initialize Bank
         Read mock data from json
-        ------------------------------------
+        ------------------------------------------------------
         ContactCardCorporate contactCardBank = new ContactCardCorporate("123412", "email@email.com", "0734567811", "Street No1", 90210, "Beverly Hills");
         bank = new Bank(contactCardBank);
          src/Bank: createEmployee() must be amended before I can use it here. Would be better to name it "addEmployee" and have it create

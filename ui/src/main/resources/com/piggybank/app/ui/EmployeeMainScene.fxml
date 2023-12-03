@@ -105,7 +105,7 @@
             </Label>
             <Button fx:id="saveNewCustomerButton" layoutX="226.0" layoutY="468.0" mnemonicParsing="false" onAction="#addNewCustomer" text="SAVE" />
             <CheckBox layoutX="359.0" layoutY="84.0" mnemonicParsing="false" text="Corporate Customer" />
-            <AnchorPane fx:id="customerCreatedMsg" layoutX="359.0" layoutY="196.0" prefHeight="94.0" prefWidth="200.0" visible="false">
+            <AnchorPane fx:id="customerCreatedMsg" layoutX="359.0" layoutY="196.0" prefHeight="94.0" prefWidth="200.0">
                <children>
                   <Label fx:id="newCustomerUserID" layoutX="13.0" layoutY="42.0" prefHeight="28.0" prefWidth="169.0" text="userID">
                      <font>
