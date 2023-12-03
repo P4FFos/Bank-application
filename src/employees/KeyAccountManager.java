@@ -3,14 +3,14 @@ package src.employees;
 import src.Bank;
 import src.customers.Account;
 import src.customers.CustomerCorporate;
-import src.ContactCardCorporate;
+import src.utils.ContactCardCorporate;
 
 public class KeyAccountManager extends BankEmployee{
 	public KeyAccountManager (String userId, String password, ContactCardCorporate contactCard){
 		super(userId, password, contactCard);
 	}
 
-	public void createCustomerCorporate(String userId, String password, ContactCardCorporate contactCard){
+	/*public void createCustomerCorporate(String userId, String password, ContactCardCorporate contactCard){
 		CustomerCorporate newCustomer = new CustomerCorporate(userId, password, contactCard);
 		Bank.addCustomer(newCustomer);
 	}
@@ -26,5 +26,5 @@ public class KeyAccountManager extends BankEmployee{
 
 	public void removeAccountCorporate(String userId, String accountNumber){
 		Bank.getCustomer(userId).removeAccount(accountNumber);
-	}
+	}*/
 }

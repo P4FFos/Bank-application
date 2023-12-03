@@ -23,6 +23,24 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class EmployeeMainController implements Initializable {
+    //.....................FXML ELEMENTS...........................
+
+    @FXML
+    private AnchorPane employeeStart;
+
+    //---------------HEADER MENU------------------------------------
+
+    @FXML
+    private Label userIdLabel;
+    @FXML
+    private Label userNameLabel;
+    @FXML
+    private Button logoutButton;
+
+    //---------------LEFT MENU------------------------------------
+
+    @FXML
+    private Label searchMsg;
     @FXML
     private Button employeeStartButton;
     @FXML
@@ -30,87 +48,76 @@ public class EmployeeMainController implements Initializable {
     @FXML
     private Button searchCustomer;
     @FXML
-    private Button logoutButton;
+    private Button addCustomerButton;
     @FXML
-    private Button selectAccountButton;
+    private TextField customerSearchTextField;
+
+    //---------------CUSTOMER CARD------------------------------------
+
     @FXML
-    private Label searchMsg;
+    private AnchorPane customerCard;
     @FXML
     private Label customerIdLabel;
     @FXML
     private Label customerNameLabel;
     @FXML
-    private Label userIdLabel;
-    @FXML
-    private Label userNameLabel;
-    @FXML
-    private TextField customerSearchTextField;
-    @FXML
-    private AnchorPane employeeStart;
-    @FXML
-    private AnchorPane customerCard;
+    private Button selectAccountButton;
     @FXML
     private ListView<String> accountsListView; //will be list of accounts
     @FXML
     private ListView<String> accountHistoryListView; //will be list of the current account's transactions
+
+    //---------------CUSTOMER CREATION---------------------------------
+
+    @FXML
+    private AnchorPane customerCreationPane;
+
+    //.................................................................
 
     private Parent root;
     private Stage stage;
     private Scene scene;
 
     //---------------------PLACEHOLDER STUFF-------------------------------
+
     private Map<String, String> customers = new HashMap<>();
     private String customerID;
     private String customerName;
-
     private String[] accounts = {"main_account", "savings", "emergency", "travel"};
-    String currentAccount = "";
-    //-----------------------------------------------------------------------
+    private String currentAccount = "";
 
-    public void initialize(URL arg0, ResourceBundle arg1){
-        fillAccounts();
-    }
+    //----------------------------METHODS----------------------------------
 
-    public void fillAccounts(){
-        accountsListView.getItems().addAll(accounts);
-        accountsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
-            @Override
-            public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2){
-                currentAccount = accountsListView.getSelectionModel().getSelectedItem();
-                System.out.println("Current account: " + currentAccount);
-            }
-        });
-    }
+    public void showEmployeeStart(){
+        employeeStart.setVisible(true);
+        customerCard.setVisible(false);
+        customerCreationPane.setVisible(false);
+        customerSearchTextField.setPromptText("Enter customerID/SSN"); //Resets TextField
+        customerID = ""; //Resets TextField
+        customerName = ""; //Resets TextField
 
-    public void showAccount(ActionEvent event){
-        accountHistoryListView.getItems().add(currentAccount);
-    }
-
+        fillCustomers(); //Placeholder mock customer data. Will search through backend hashmap of customers when backend is ready.
+    } //Shows employeeStart AnchorPane in content area of EmployeeMainScene
     public void displayUser(String id, String name){
         userIdLabel.setText(id);
         userNameLabel.setText(name);
-    }
-
-    public void showEmployeeStart(){ //HÄR VAR JAG!
-        employeeStart.setVisible(true);
-        customerCard.setVisible(false);
-
-        customerSearchTextField.setPromptText("Enter customerID/SSN");
-        customerID = "";
-        customerName = "";
-
-        //Placeholder below. Will search through backend hashmap of customers when ready.
-        fillCustomers();
-    }
-
+    } //Shows employee's user id and name in header menu
+    public void logout(ActionEvent event) throws IOException {
+        //Later: add alert with options to save before logging out, cancelling logout and logging out without saving
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginScene.fxml"));
+        root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    } //Logs out employee and switches to StartScene
     public void fillCustomers(){
         customers.put("010101-1234", "Anna Andersson");
         customers.put("020202-2345", "Babben Borg");
         customers.put("030303-3456", "Charles Choco");
         customers.put("040404-4567", "David Dancer");
         customers.put("050505-5678", "Eve Ericson");
-    }
-
+    } // Fills String[] customers with some mock customers
     public void searchCustomer(ActionEvent event){
         //Placeholder logic.
         if(customers.containsKey(customerSearchTextField.getText())){
@@ -122,30 +129,42 @@ public class EmployeeMainController implements Initializable {
             searchMsg.setText("Not found.");
         }
     }
-    public void showEmployeeStart(ActionEvent event){
-        employeeStart.setVisible(true);
+
+    public void showCustomerCreation(){
+        employeeStart.setVisible(false);
         customerCard.setVisible(false);
+        customerCreationPane.setVisible(true);
+    } //Shows customerCreationPane AnchorPane in content area of EmployeeMainScene
+    public void addNewCustomer(ActionEvent event){
+        //HEJ HEJ
     }
 
-    public void showCustomerCard(ActionEvent event){
+    public void showCustomerCard(){
+        //Implement check to see if there is an active customer, user must otherwise enter ssn/customerId in search field
         customerCard.setVisible(true);
         employeeStart.setVisible(false);
-    }
-
+        customerCreationPane.setVisible(false);
+    } //Shows customerCard AnchorPane in content area of EmployeeMainScene when clicking customerCardButton
     public void showCustomerCard(String id, String name){
+        //When backend is eady, use Customer currentCustomer instead of id and name
         customerIdLabel.setText(id);
         customerNameLabel.setText(name);
         customerCard.setVisible(true);
         employeeStart.setVisible(false);
-    }
+        customerCreationPane.setVisible(false);
+    } //Shows customerCard AnchorPane in content area of EmployeeMainScene when doing a customer search
+    public void initialize(URL arg0, ResourceBundle arg1){
+        accountsListView.getItems().addAll(accounts);
+        accountsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
+            @Override
+            public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2){
+                currentAccount = accountsListView.getSelectionModel().getSelectedItem();
+                System.out.println("Current account: " + currentAccount);
+            }
+        });
+    } //Initializes accountsListView with elements in accounts, selection sets currentAccount
+    public void showAccount(){
+        accountHistoryListView.getItems().add(currentAccount);
+    } //Just a test to fill the ListView that will show transaction history from selecting an account in accountsListView
 
-    public void logout(ActionEvent event) throws IOException {
-        //Later: add alert with options to save before logging out, cancelling logout and logging out without saving
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginScene.fxml"));
-        root = loader.load();
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 }
