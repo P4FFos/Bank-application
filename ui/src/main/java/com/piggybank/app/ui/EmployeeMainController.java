@@ -30,6 +30,8 @@ public class EmployeeMainController implements Initializable {
     @FXML
     private Button searchCustomer;
     @FXML
+    private Button addCustomerButton;
+    @FXML
     private Button logoutButton;
     @FXML
     private Button selectAccountButton;
@@ -49,6 +51,8 @@ public class EmployeeMainController implements Initializable {
     private AnchorPane employeeStart;
     @FXML
     private AnchorPane customerCard;
+    @FXML
+    private AnchorPane customerCreationPane;
     @FXML
     private ListView<String> accountsListView; //will be list of accounts
     @FXML
@@ -94,6 +98,7 @@ public class EmployeeMainController implements Initializable {
     public void showEmployeeStart(){ //HÄR VAR JAG!
         employeeStart.setVisible(true);
         customerCard.setVisible(false);
+        customerCreationPane.setVisible(false);
 
         customerSearchTextField.setPromptText("Enter customerID/SSN");
         customerID = "";
@@ -103,12 +108,22 @@ public class EmployeeMainController implements Initializable {
         fillCustomers();
     }
 
+    public void showCustomerCreation(ActionEvent event){
+        employeeStart.setVisible(false);
+        customerCard.setVisible(false);
+        customerCreationPane.setVisible(true);
+    }
+
     public void fillCustomers(){
         customers.put("010101-1234", "Anna Andersson");
         customers.put("020202-2345", "Babben Borg");
         customers.put("030303-3456", "Charles Choco");
         customers.put("040404-4567", "David Dancer");
         customers.put("050505-5678", "Eve Ericson");
+    }
+
+    public void addNewCustomer(ActionEvent event){
+        //HEJ HEJ
     }
 
     public void searchCustomer(ActionEvent event){
@@ -125,11 +140,13 @@ public class EmployeeMainController implements Initializable {
     public void showEmployeeStart(ActionEvent event){
         employeeStart.setVisible(true);
         customerCard.setVisible(false);
+        customerCreationPane.setVisible(false);
     }
 
     public void showCustomerCard(ActionEvent event){
         customerCard.setVisible(true);
         employeeStart.setVisible(false);
+        customerCreationPane.setVisible(false);
     }
 
     public void showCustomerCard(String id, String name){
@@ -137,7 +154,10 @@ public class EmployeeMainController implements Initializable {
         customerNameLabel.setText(name);
         customerCard.setVisible(true);
         employeeStart.setVisible(false);
+        customerCreationPane.setVisible(false);
     }
+
+
 
     public void logout(ActionEvent event) throws IOException {
         //Later: add alert with options to save before logging out, cancelling logout and logging out without saving

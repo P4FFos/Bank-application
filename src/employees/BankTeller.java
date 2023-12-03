@@ -10,7 +10,7 @@ public class BankTeller extends BankEmployee {
 		super(userId, password, contactCard);
 	}
 
-	public void createCustomerPrivate(String userId, String password, ContactCardPrivate contactCard){
+	/*public void createCustomerPrivate(String userId, String password, ContactCardPrivate contactCard){
 		CustomerPrivate newCustomer = new CustomerPrivate(userId, password, contactCard);
 		Bank.addCustomer(newCustomer);
 	}
@@ -26,5 +26,5 @@ public class BankTeller extends BankEmployee {
 
 	public void removeAccountPrivate(String userId, String accountNumber){
 		Bank.getCustomer(userId).removeAccount(accountNumber);
-	}
+	}*/
 }
