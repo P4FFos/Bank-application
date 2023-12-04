@@ -2,6 +2,7 @@ package src.customers;
 
 import java.util.ArrayList;
 import java.util.Date;
+import src.utils.TruncationUtil;
 
 public class Account {
     // attributes for account class
@@ -22,7 +23,7 @@ public class Account {
 
     // get method to receive balance
     public double getBalance() {
-        return this.balance;
+        return TruncationUtil.truncate(this.balance);
     }
 
     // method to get history of transactions
@@ -34,7 +35,7 @@ public class Account {
     // deposit methods, checks is the message is blank:
     // fill in message field with empty string
     public void deposit(String senderAccountId, double amount, String message, Date date) {
-        balance += amount;
+        balance += TruncationUtil.truncate(amount);
         if (message.isBlank()) {
             Transaction withdraw = new Transaction("", senderAccountId, amount, "", date);
             transactions.add(withdraw);
@@ -49,8 +50,7 @@ public class Account {
     // if lower -> throw exception
     public void withdraw(double amount, Date date) throws Exception {
         if (balance >= amount) {
-            balance -= amount;
-
+            balance -= TruncationUtil.truncate(amount);
             Transaction withdraw = new Transaction("", "", amount, "", date);
             transactions.add(withdraw);
         } else {
