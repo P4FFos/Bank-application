@@ -27,9 +27,9 @@ public class Account {
     }
 
     // method to get history of transactions
-    public ArrayList<Transaction> getTransactionHistory() {
+    public String getTransactionHistory() {
         //TODO: add a for loop to check
-        return this.transactions;
+        return "";
     }
 
     // deposit methods, checks is the message is blank:

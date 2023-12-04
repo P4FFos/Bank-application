@@ -15,6 +15,7 @@ import src.utils.ContactCardCorporate;
 import src.utils.ContactCardPrivate;
 
 import java.util.HashMap;
+import java.util.Date;
 
 public class Bank {
     private ContactCardCorporate contactInfo;
@@ -68,9 +69,9 @@ public class Bank {
 	}
 	
 	// add account to customer:
-	public void addAccount(String userID, Account newAccount) throws AccountNotFoundException {
+	public void addAccount(String userID, String accountId, Account newAccount) throws AccountNotFoundException {
 		if (!customers.containsKey(userID)) // check if customer exists 
-			throw new AccountNotFoundException("Account not found.");
+            throw new AccountNotFoundException("Account not found.");
 		Customer customer = customers.get(userID);
 		customer.addAccount(newAccount);
 	}
@@ -102,49 +103,56 @@ public class Bank {
         }
     }
 
-    public Account getAccountById(String accountId) throws AccountNotFoundException {
-
+    /* iterates through HashMap of customers to find the owner of specified account,
+    so it can be used in other methods in the class */
+    public Account getAccountById(String accountId) throws Exception {
+        for (Customer customer : customers.values()) {
+            boolean accountExists = customer.checkIfAccountExists(accountId);
+            if(accountExists) {
+                return customer.getAccount(accountId);
+            }
+        }
+        throw new AccountNotFoundException("Account was not found.");
     }
 
-    public void deposit(String accountId, double amount, String message, String date) throws AccountNotFoundException{
+    // deposits money into specified account
+    public void deposit(String senderId, String accountId, double amount, String message, Date date) throws Exception {
         Account account = getAccountById(accountId);
-        account.deposit(amount, message, date);
+        account.deposit(senderId, amount, message, date);
     }
 
-    public void deposit(String accountId, double amount, String date) throws AccountNotFoundException{
-        Account account = getAccountById(accountId);
-        account.deposit(amount, date);
-    }
-
-    public void withdraw(String accountId, double amount, String message, String date) throws AccountNotFoundException{
-        Account account = getAccountById(accountId);
-        account.withdraw(amount, message, date);
-    }
-
-    public void withdraw(String accountId, double amount, String date) throws AccountNotFoundException{
+    // withdraw money from specified account
+    public void withdraw(String accountId, double amount, String message, Date date) throws Exception {
         Account account = getAccountById(accountId);
         account.withdraw(amount, date);
     }
 
-    public void transfer(String accountId, String targetAccountId, double amount, String message, String date) throws AccountNotFoundException {
+    // transfer money between accounts; the actual account and a target account
+    public void transfer(String accountId, String targetAccountId, double amount, String message, Date date) throws Exception {
         Account account = getAccountById(accountId);
         Account targetAccount = getAccountById(targetAccountId);
 
-        account.withdraw(amount, message, date);
-        targetAccount.deposit(amount, message, date);
+        account.withdraw(amount, date);
+        targetAccount.deposit(accountId, amount, message, date);
     }
 
-    public String getTransactionHistory(String accountId) throws AccountNotFoundException {
+    // returns a string of all transactions in specified account
+    public String getTransactionHistory(String accountId) throws Exception {
         Account account = getAccountById(accountId);
+        return account.getTransactionHistory();
+
+        /* To be used in Account class:
         String transactions = "";
 
         for(Transaction transaction: account.getTransactionHistory()) {
             transactions = String.format("%s%n%s", transactions, transaction.toString());
         }
         return transactions;
+        */
     }
 
-    public double getBalance(String accountId) throws AccountNotFoundException {
+    // returns the balance of the specified account
+    public double getBalance(String accountId) throws Exception {
         Account account = getAccountById(accountId);
         return account.getBalance();
     }
