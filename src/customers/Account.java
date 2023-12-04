@@ -3,16 +3,27 @@ package src.customers;
 import java.util.ArrayList;
 import java.util.Date;
 
+import src.utils.TruncationUtil;
+
 public class Account {
     // attributes for account class
+    private String accountName;
     private final String accountId;
     private double balance;
     private ArrayList<Transaction> transactions;
 
     // constructor for the account class, with initialised balance = 0
-    public Account(String accountId) {
+    public Account(String accountId, String accountName) {
+        transactions = new ArrayList<>();
+        this.accountName = accountName;
         this.accountId = accountId;
         this.balance = 0.0;
+		this.transactions = new ArrayList<Transaction>();
+    }
+
+    // get method to receive accountName
+    public String getAccountName() {
+        return this.accountName;
     }
 
     // get method to receive accountId
@@ -22,19 +33,23 @@ public class Account {
 
     // get method to receive balance
     public double getBalance() {
-        return this.balance;
+        return TruncationUtil.truncate(this.balance);
     }
 
     // method to get history of transactions
-    public ArrayList<Transaction> getTransactionHistory() {
-        //TODO: add a for loop to check
-        return this.transactions;
+    public String getTransactionHistory() {
+		String resultString = "";
+		for (Transaction transaction : transactions) {
+			resultString += transaction.toString() + "\n";
+		}
+		resultString = resultString.substring(0, resultString.length() - 2);
+		return resultString;
     }
 
     // deposit methods, checks is the message is blank:
     // fill in message field with empty string
     public void deposit(String senderAccountId, double amount, String message, Date date) {
-        balance += amount;
+        balance += TruncationUtil.truncate(amount);
         if (message.isBlank()) {
             Transaction withdraw = new Transaction("", senderAccountId, amount, "", date);
             transactions.add(withdraw);
@@ -49,8 +64,7 @@ public class Account {
     // if lower -> throw exception
     public void withdraw(double amount, Date date) throws Exception {
         if (balance >= amount) {
-            balance -= amount;
-
+            balance -= TruncationUtil.truncate(amount);
             Transaction withdraw = new Transaction("", "", amount, "", date);
             transactions.add(withdraw);
         } else {
