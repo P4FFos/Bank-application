@@ -10,11 +10,11 @@ public class IdGenerator {
 	private final static int MAX_EMPLOYEE_ID = 99999;
 
     public static String generateCustomerID(String lastCustomerID) throws Exception {
-        boolean isEmployeeIDValid = false;
-        boolean isEmployeeIDLengthValid = lastCustomerID.length() >= MIN_CUSTOMER_ID_LENGTH || lastCustomerID.length() <= MAX_CUSTOMER_ID_LENGTH;
-        boolean isEmployeeIDNumbersValid = lastCustomerID.matches("[0-9]+");
-        isEmployeeIDValid = isEmployeeIDLengthValid && isEmployeeIDNumbersValid;
-        if (!isEmployeeIDValid) {
+        boolean isCustomerIDValid = false;
+        boolean isCustomerIDLengthValid = lastCustomerID.length() >= MIN_CUSTOMER_ID_LENGTH || lastCustomerID.length() <= MAX_CUSTOMER_ID_LENGTH;
+        boolean isCustomerIDNumbersValid = lastCustomerID.matches("[0-9]+");
+        isCustomerIDValid = isCustomerIDLengthValid && isCustomerIDNumbersValid;
+        if (!isCustomerIDValid) {
             throw new Exception("Invalid customer ID");
         } else {
             int nextID = Integer.parseInt(lastCustomerID);
