@@ -46,23 +46,18 @@ public class Transaction {
     // if receiverAccID is Blank
     public String toString(String receiverAccountId, String senderAccountId, double amount, String message, Date date) {
         if (receiverAccountId.isBlank() && senderAccountId.isBlank()) {
-            return String.format("%s, %s, %s , %s", "Transaction - " + "Amount:" + amount +
-                    " Message: " + message + " Date: " + date);
+            return String.format("Transaction - Amount: %.2f, Message: %s, Date: %s", amount, message, date);
         } else if (message.isBlank()) {
-            return String.format("%s, %s, %s , %s , %s", "Transaction - " + "Receiver Account ID: "
-                    + receiverAccountId + " Sender Account ID: " + senderAccountId
-                    + "Amount:" + amount + " Date: " + date);
-
+            return String.format("Transaction - Receiver Account ID: %s, Sender Account ID: %s, Amount: %.2f, Date: %s"
+                    , receiverAccountId, senderAccountId, amount, date);
         } else if (receiverAccountId.isBlank() && message.isBlank()) {
-            return String.format("%s, %s, %s, %s ", "Transaction - " + "Sender Account ID: "
-                    + senderAccountId + "Amount: " + amount + " Date: " + date);
+            return String.format("Transaction - Sender Account ID: %s, Amount: %.2f, Date: %s", senderAccountId, amount, date);
         } else if (receiverAccountId.isBlank()) {
-            return String.format("%s, %s, %s , %s , %s", "Transaction - " + "Sender Account ID: "
-                    + senderAccountId + "Amount: " + amount + " Message: " + message + " Date: " + date);
+            return String.format("Transaction - Sender Account ID: %s, Amount: %.2f, Message: %s, Date: %s"
+                    , senderAccountId, amount, message, date);
         } else {
-            return String.format("%s, %s, %s , %s , %s, %s", "Transaction - " + "Receiver Account ID: "
-                    + receiverAccountId + " Sender Account ID: " + senderAccountId
-                    + "Amount:" + amount + " Message: " + message + " Date: " + date);
+            return String.format("Transaction - Receiver Account ID: %s, Sender Account ID: %s, Amount: %.2f, Message: %s, Date: %s"
+                    , receiverAccountId, senderAccountId, amount, message, date);
         }
     }
 }
