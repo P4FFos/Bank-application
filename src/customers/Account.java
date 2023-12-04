@@ -13,6 +13,7 @@ public class Account {
     public Account(String accountId) {
         this.accountId = accountId;
         this.balance = 0.0;
+		this.transactions = new ArrayList<Transaction>();
     }
 
     // get method to receive accountId
@@ -26,9 +27,13 @@ public class Account {
     }
 
     // method to get history of transactions
-    public ArrayList<Transaction> getTransactionHistory() {
-        //TODO: add a for loop to check
-        return this.transactions;
+    public String getTransactionHistory() {
+		String resultString = "";
+		for (Transaction transaction : transactions) {
+			resultString += transaction.toString() + "\n";
+		}
+		resultString = resultString.substring(0, resultString.length() - 2);
+		return resultString;
     }
 
     // deposit methods, checks is the message is blank:

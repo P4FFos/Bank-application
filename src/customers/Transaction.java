@@ -44,25 +44,17 @@ public class Transaction {
     // if message field is Blank
     // if receiverAccID and message fields are Blank
     // if receiverAccID is Blank
-    public String toString(String receiverAccountId, String senderAccountId, double amount, String message, Date date) {
+    public String toString() {
         if (receiverAccountId.isBlank() && senderAccountId.isBlank()) {
-            return String.format("%s, %s, %s , %s", "Transaction - " + "Amount:" + amount +
-                    " Message: " + message + " Date: " + date);
+            return "Transaction - " + "Amount: " + amount + " Message: " + message + " Date: " + date;
         } else if (message.isBlank()) {
-            return String.format("%s, %s, %s , %s , %s", "Transaction - " + "Receiver Account ID: "
-                    + receiverAccountId + " Sender Account ID: " + senderAccountId
-                    + "Amount:" + amount + " Date: " + date);
-
+            return "Transaction - " + " Receiver Account ID: " + receiverAccountId + " Sender Account ID: " + senderAccountId + " Amount: " + amount + " Date: " + date;
         } else if (receiverAccountId.isBlank() && message.isBlank()) {
-            return String.format("%s, %s, %s, %s ", "Transaction - " + "Sender Account ID: "
-                    + senderAccountId + "Amount: " + amount + " Date: " + date);
+            return "Transaction - " + " Sender Account ID: " + senderAccountId + " Amount: " + amount + " Date: " + date;
         } else if (receiverAccountId.isBlank()) {
-            return String.format("%s, %s, %s , %s , %s", "Transaction - " + "Sender Account ID: "
-                    + senderAccountId + "Amount: " + amount + " Message: " + message + " Date: " + date);
+            return "Transaction - " + " Sender Account ID: " + senderAccountId + " Amount: " + amount + " Message: " + message + " Date: " + date;
         } else {
-            return String.format("%s, %s, %s , %s , %s, %s", "Transaction - " + "Receiver Account ID: "
-                    + receiverAccountId + " Sender Account ID: " + senderAccountId
-                    + "Amount:" + amount + " Message: " + message + " Date: " + date);
+            return "Transaction - " + " Receiver Account ID: " + receiverAccountId + " Sender Account ID: " + senderAccountId + " Amount: " + amount + " Message: " + message + " Date: " + date;
         }
     }
 }
