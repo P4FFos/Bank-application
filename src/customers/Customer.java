@@ -24,6 +24,9 @@ public abstract class Customer extends User {
         }
     }
 
+    // checks if account exist in HashMap and returns boolean value
+    public boolean checkIfAccountExists(String accountId) {return accounts.containsKey(accountId);}
+
     // addCustomer method
     public void addAccount(String accountId, Account account) throws Exception {
         if (accounts.containsKey(accountId)) {
