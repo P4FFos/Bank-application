@@ -44,7 +44,7 @@ public class Transaction {
     // if message field is Blank
     // if receiverAccID and message fields are Blank
     // if receiverAccID is Blank
-    public String toString(String receiverAccountId, String senderAccountId, double amount, String message, Date date) {
+    public String toString() {
         if (receiverAccountId.isBlank() && senderAccountId.isBlank()) {
             return String.format("Transaction - Amount: %.2f, Message: %s, Date: %s", amount, message, date);
         } else if (message.isBlank()) {
