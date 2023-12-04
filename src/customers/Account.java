@@ -2,19 +2,28 @@ package src.customers;
 
 import java.util.ArrayList;
 import java.util.Date;
+
 import src.utils.TruncationUtil;
 
 public class Account {
     // attributes for account class
+    private String accountName;
     private final String accountId;
     private double balance;
     private ArrayList<Transaction> transactions;
 
     // constructor for the account class, with initialised balance = 0
-    public Account(String accountId) {
+    public Account(String accountId, String accountName) {
+        transactions = new ArrayList<>();
+        this.accountName = accountName;
         this.accountId = accountId;
         this.balance = 0.0;
 		this.transactions = new ArrayList<Transaction>();
+    }
+
+    // get method to receive accountName
+    public String getAccountName() {
+        return this.accountName;
     }
 
     // get method to receive accountId

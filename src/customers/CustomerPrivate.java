@@ -1,11 +1,13 @@
 package src.customers;
 
-import src.utils.ContactCardPrivate;
+import src.utils.ContactCard;
 
 public class CustomerPrivate extends Customer {
+    // TODO: add attributes from contact card private
+
     // Constructor for CustomerPrivate class
-    public CustomerPrivate(String userId, String password, ContactCardPrivate contactCardCorporate) {
-        super(userId, password, contactCardCorporate);
+    public CustomerPrivate(String userId, String password, ContactCard contactCard) {
+        super(userId, password, contactCard);
     }
 
     // equals method to check if two Private Customers
