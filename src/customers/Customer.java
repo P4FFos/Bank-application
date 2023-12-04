@@ -15,34 +15,23 @@ public abstract class Customer extends User {
     }
 
     // getAccount method to receive account by ID
-    // checks if account ID is blank
-    public Account getAccount(String accountId) throws Exception {
-        if (accountId.isBlank()) {
-            throw new Exception("");
-        } else {
-            return accounts.get(accountId);
-        }
+    public Account getAccount(String accountId) {
+        return accounts.get(accountId);
     }
 
     // checks if account exist in HashMap and returns boolean value
-    public boolean checkIfAccountExists(String accountId) {return accounts.containsKey(accountId);}
+    public boolean checkIfAccountExists(String accountId) {
+        return accounts.containsKey(accountId);
+    }
 
     // addCustomer method
-    public void addAccount(String accountId, Account account) throws Exception {
-        if (accounts.containsKey(accountId)) {
-            throw new Exception("");
-        } else {
-            this.accounts.put(accountId, account);
-        }
+    public void addAccount(Account account) {
+        this.accounts.put(account.getAccountId(), account);
     }
 
     // removeCustomer method
-    public void removeAccount(String accountId, Account account) throws Exception {
-        if (!accounts.containsKey(accountId)) {
-            throw new Exception("");
-        } else {
-            this.accounts.remove(accountId, account);
-        }
+    public void removeAccount(Account account) {
+        this.accounts.remove(account.getAccountId());
     }
 
 }

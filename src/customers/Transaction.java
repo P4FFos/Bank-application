@@ -12,27 +12,6 @@ public class Transaction {
 
     // Constructor for Transaction class
     public Transaction(String receiverAccountId, String senderAccountId, double amount, String message, Date date) {
-//        if (receiverAccountId.isBlank() && senderAccountId.isBlank()) {
-//            this.amount = amount;
-//            this.message = message;
-//        } else if (message.isBlank()) {
-//            this.receiverAccountId = receiverAccountId;
-//            this.senderAccountId = senderAccountId;
-//            this.amount = amount;
-//        } else if (receiverAccountId.isBlank() && message.isBlank()) {
-//            this.amount = amount;
-//            this.senderAccountId = senderAccountId;
-//        } else if (receiverAccountId.isBlank()) {
-//            this.senderAccountId = senderAccountId;
-//            this.message = message;
-//            this.amount = amount;
-//        } else {
-//        this.receiverAccountId = receiverAccountId;
-//        this.senderAccountId = senderAccountId;
-//        this.amount = amount;
-//        this.message = message;
-//        }
-
         this.receiverAccountId = receiverAccountId;
         this.senderAccountId = senderAccountId;
         this.amount = amount;
@@ -44,7 +23,7 @@ public class Transaction {
     // if message field is Blank
     // if receiverAccID and message fields are Blank
     // if receiverAccID is Blank
-    public String toString(String receiverAccountId, String senderAccountId, double amount, String message, Date date) {
+    public String toString() {
         if (receiverAccountId.isBlank() && senderAccountId.isBlank()) {
             return String.format("Transaction - Amount: %.2f, Message: %s, Date: %s", amount, message, date);
         } else if (message.isBlank()) {
