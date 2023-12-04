@@ -9,18 +9,18 @@ public class IdGenerator {
 	private final static int MAX_EMPLOYEE_ID_LENGTH = 6;
 	private final static int MAX_EMPLOYEE_ID = 99999;
 
-    public static String generateCustomerID(String lastEmployeeID) throws Exception {
+    public static String generateCustomerID(String lastCustomerID) throws Exception {
         boolean isEmployeeIDValid = false;
-        boolean isEmployeeIDLengthValid = lastEmployeeID.length() >= MIN_CUSTOMER_ID_LENGTH || lastEmployeeID.length() <= MAX_CUSTOMER_ID_LENGTH;
-        boolean isEmployeeIDNumbersValid = lastEmployeeID.matches("[0-9]+");
+        boolean isEmployeeIDLengthValid = lastCustomerID.length() >= MIN_CUSTOMER_ID_LENGTH || lastCustomerID.length() <= MAX_CUSTOMER_ID_LENGTH;
+        boolean isEmployeeIDNumbersValid = lastCustomerID.matches("[0-9]+");
         isEmployeeIDValid = isEmployeeIDLengthValid && isEmployeeIDNumbersValid;
         if (!isEmployeeIDValid) {
-            throw new Exception("Invalid employee ID");
+            throw new Exception("Invalid customer ID");
         } else {
-            int nextID = Integer.parseInt(lastEmployeeID);
+            int nextID = Integer.parseInt(lastCustomerID);
             nextID++;
             if (nextID > MAX_CUSTOMER_ID) {
-                throw new Exception("Employee ID out of range");
+                throw new Exception("Customer ID out of range");
             } else {
                 return Integer.toString(nextID);
             }
