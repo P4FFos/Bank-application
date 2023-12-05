@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoginController {
+    //.....................FXML ELEMENTS...........................
     @FXML
     private TextField usernameTextField;
     @FXML
@@ -21,14 +22,17 @@ public class LoginController {
     @FXML
     private Button loginButton;
 
+    //..............................................................
+
     private boolean passwordValid;
     private Stage stage;
     private Scene scene;
     private Parent root;
     private String username;
 
-    public void login(ActionEvent event) throws IOException {
+    //..........................METHODS.............................
 
+    public void login(ActionEvent event) throws IOException {
         if(passwordField.getText().length() < 4){ //Replace with logic for password validation
             passwordValid = false;
             System.out.println("Password must be at least 4 characters long.");
@@ -48,8 +52,8 @@ public class LoginController {
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+
         }
     }
-
 
 }

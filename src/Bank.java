@@ -2,24 +2,23 @@ package src;
 
 import src.customers.Account;
 import src.customers.Customer;
+import src.customers.CustomerCorporate;
+import src.customers.CustomerPrivate;
 import src.customers.Transaction;
 import src.employees.BankEmployee;
+import src.employees.BankTeller;
 import src.exceptions.AccountNotFoundException;
 import src.exceptions.DuplicateIdException;
+import src.exceptions.UserNotFoundException;
 import src.utils.ContactCard;
 
 import java.util.HashMap;
+import java.util.Date;
 
 public class Bank {
     private ContactCard contactInfo;
     private HashMap<String, Customer> customers;
     private HashMap<String, BankEmployee> employees;
-
-    //2 constructors if we can create a bank object without specifying its contact info upon creation:
-    public Bank() {
-        this.customers = new HashMap<String, Customer>();
-        this.employees = new HashMap<String, BankEmployee>();
-    }
 
     public Bank(ContactCard contactInfo) {
         this.contactInfo = contactInfo;
@@ -30,101 +29,113 @@ public class Bank {
     //create methods for updating the bank's contact card info (via forwarding from ContactCard once those methods are in place)
     //public void updateAddress(String newAddress){} ...etc
 
+    //get bank information:
     public ContactCard getBankInfo() {
         return this.contactInfo;
     }
 
-    public void addCustomer(String userId, Customer customer) throws DuplicateIdException {
-        if (customers.containsKey(userId)) {
-            throw new DuplicateIdException("An account already exists with this number.");
+	// create new private customer and add it to the bank's hashmap:
+	public void createCustomerPrivate(String SSN, String firstName, String lastName, String userId, String password, ContactCard contactCard) {
+		CustomerPrivate newCustomer = new CustomerPrivate(SSN, firstName, lastName, userId, password, contactCard);
+        this.customers.put(userId, newCustomer);
+    }
+
+	// create new corporate customer and add it to the bank's hashmap:
+	public void createCustomerCorporate(String orgNumber, String companyName, String userId, String password, ContactCard contactCard) {
+		CustomerCorporate newCustomer = new CustomerCorporate(orgNumber, companyName, userId, password, contactCard);
+        this.customers.put(userId, newCustomer);
+	}
+
+   // remove customer from bank:
+	public void removeCustomer(String employeeID, String customerID) {
+		this.customers.remove(customerID);
+	}
+
+	// create new account for customer:
+	public Account createAccount(String accountNumber){
+		Account newAccount = new Account(accountNumber);
+		return newAccount;
+	}
+	
+	// add account to customer:
+	public void addAccount(String userID, String accountId, Account newAccount) {
+		Customer customer = customers.get(userID);
+		customer.addAccount(newAccount);
+	}
+
+    //retrieve customer information:
+    public Customer getCustomer(String userId) {
+        return this.customers.get(userId);
+    }
+
+    //add new employee to bank:
+    public void createEmployee(String userId, BankEmployee employee) {
+        this.employees.put(userId, employee);
+    }
+
+    //remove employee from bank:
+    public void removeEmployee(String employeeId) {
+        this.employees.remove(employeeId);
+    }
+
+    /* iterates through HashMap of customers to find the owner of specified account,
+    so it can be used in other methods in the class */
+    public Account getAccountById(String accountId) throws Exception {
+        for (Customer customer : customers.values()) {
+            boolean accountExists = customer.checkIfAccountExists(accountId);
+            if(accountExists) {
+                return customer.getAccount(accountId);
+            }
         }
-        this.customers.put(userId, customer);
+        throw new AccountNotFoundException("Account was not found.");
     }
 
-    public void removeCustomer(String employeeID, String customerID) throws AccountNotFoundException {
-        if (!customers.containsKey(customerID)) {
-            throw new AccountNotFoundException("Account not found.");
-        } else {
-            this.customers.remove(customerID);
-        }
-    }
-
-    public Customer getCustomer(String userId) throws AccountNotFoundException {
-        if (!customers.containsKey(userId)) {
-            throw new AccountNotFoundException("Account not found.");
-        } else {
-            return this.customers.get(userId);
-        }
-    }
-
-    public void createEmployee(String userId, BankEmployee employee) throws DuplicateIdException {
-        if(employees.containsKey(userId)) {
-            throw new DuplicateIdException("An account already exists with this number.");
-        } else {
-            this.employees.put(userId, employee);
-        }
-    }
-
-    public void removeEmployee(String employeeId) throws AccountNotFoundException {
-        if(!employees.containsKey(employeeId)) {
-            throw new AccountNotFoundException("Account not found.");
-        } else {
-            this.employees.remove(employeeId);
-        }
-    }
-
-    public Account getAccountById(String accountId) throws AccountNotFoundException {
-
-    }
-
-    public void deposit(String accountId, double amount, String message, String date) throws AccountNotFoundException{
+    // deposits money into specified account
+    public void deposit(String senderId, String accountId, double amount, String message, Date date) throws Exception {
         Account account = getAccountById(accountId);
-        account.deposit(amount, message, date);
+        account.deposit(senderId, amount, message, date);
     }
 
-    public void deposit(String accountId, double amount, String date) throws AccountNotFoundException{
-        Account account = getAccountById(accountId);
-        account.deposit(amount, date);
-    }
-
-    public void withdraw(String accountId, double amount, String message, String date) throws AccountNotFoundException{
-        Account account = getAccountById(accountId);
-        account.withdraw(amount, message, date);
-    }
-
-    public void withdraw(String accountId, double amount, String date) throws AccountNotFoundException{
+    // withdraw money from specified account
+    public void withdraw(String accountId, double amount, String message, Date date) throws Exception {
         Account account = getAccountById(accountId);
         account.withdraw(amount, date);
     }
 
-    public void transfer(String accountId, String targetAccountId, double amount, String message, String date) throws AccountNotFoundException {
+    // transfer money between accounts; the actual account and a target account
+    public void transfer(String accountId, String targetAccountId, double amount, String message, Date date) throws Exception {
         Account account = getAccountById(accountId);
         Account targetAccount = getAccountById(targetAccountId);
 
-        account.withdraw(amount, message, date);
-        targetAccount.deposit(amount, message, date);
+        account.withdraw(amount, date);
+        targetAccount.deposit(accountId, amount, message, date);
     }
 
-    public String getTransactionHistory(String accountId) throws AccountNotFoundException {
+    // returns a string of all transactions in specified account
+    public String getTransactionHistory(String accountId) throws Exception {
         Account account = getAccountById(accountId);
+        return account.getTransactionHistory();
+
+        /* To be used in Account class:
         String transactions = "";
 
         for(Transaction transaction: account.getTransactionHistory()) {
             transactions = String.format("%s%n%s", transactions, transaction.toString());
         }
         return transactions;
+        */
     }
 
-    public double getBalance(String accountId) throws AccountNotFoundException {
+    // returns the balance of the specified account
+    public double getBalance(String accountId) throws Exception {
         Account account = getAccountById(accountId);
         return account.getBalance();
     }
 
-    public boolean verifyLogin(String userId, String password) {
-        boolean correctLogin = false;
+    //verify customer login information:
+    public boolean verifyCustomer(String userId, String password) {
         boolean correctUserId = false;
         boolean correctPassword = false;
-        //if password connected to userId = input password: correct
         if (customers.containsKey(userId)) {
             correctUserId = true;
             Customer customer = customers.get(userId);
@@ -136,8 +147,24 @@ public class Bank {
         } else {
             System.out.println("Invalid username. Please try again");
         }
-        correctLogin = correctUserId && correctPassword;
-        return correctLogin;
-        //when correctLogin is true, login action can be completed - connect to existing UI component
+        return correctUserId && correctPassword;
+    }
+
+    //verify employee login information:
+    public boolean verifyEmployee(String userId, String password) {
+        boolean correctUserId = false;
+        boolean correctPassword = false;
+        if (employees.containsKey(userId)) {
+            correctUserId = true;
+            BankEmployee employee = employees.get(userId);
+            if (employee.getPassword().equals(password)) {
+                correctPassword = true;
+            } else {
+                System.out.println("Invalid password. Please try again.");
+            }
+        } else {
+            System.out.println("Invalid username. Please try again");
+        }
+        return correctUserId && correctPassword;
     }
 }
