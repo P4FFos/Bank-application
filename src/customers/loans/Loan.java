@@ -8,11 +8,9 @@ import src.utils.TruncationUtil;
 public class Loan {
     // Calendar type attribute for initialLoanDate
     // two attributes for loanAmount and interestRate
-    // constant attribute to convert time in month into milliseconds
     private Calendar initialLoanDate;
     private double loanAmount;
     private double interestRate;
-    private final static double MONTH_IN_MILLISECONDS = 1000.0 * 60 * 60 * 24 * 30;
 
     // Constructor for Loan class
     public Loan(Calendar initialLoanDate, double loanAmount, double interestRate) {
@@ -35,18 +33,19 @@ public class Loan {
     }
 
     // getLoanAmountWithInterest method which:
-    // creates reference of type Date and assign it to new object
-    // counts time elapsed after loan was taken (Subtracts initialLoanDate from currentDate )
-    // convert timeInMilliseconds into timeInMonth
-    // counts truncated totalLoanAmountWithInterest by adding amount of interestRate to the loanAmount
     public double getLoanAmountWithInterest() {
-        Date currentDate = new Date();
+        Calendar currentMonth = Calendar.getInstance();
+        Calendar initialMonth = getInitialLoanDate();
 
-        long timeInMilliseconds = currentDate.getTime() - getInitialLoanDate().getTime().getTime();
-        double timeInMonths = timeInMilliseconds / MONTH_IN_MILLISECONDS;
+        int monthDifference = (currentMonth.get(Calendar.YEAR) - initialMonth.get(Calendar.YEAR)) * 12 + currentMonth.get(Calendar.MONTH) - initialMonth.get(Calendar.MONTH);
 
-        double amountOfLoanInterest = (getLoanAmount() * ((getInterestRate() / 100) * timeInMonths));
-        double totalLoanAmountWithInterest = TruncationUtil.truncate(getLoanAmount() + amountOfLoanInterest);
-        return totalLoanAmountWithInterest;
+        double totalLoanAmountWithInterest = getLoanAmount();
+
+        for (long i = 1; i < monthDifference; i++) {
+            double interestLoanAmount = totalLoanAmountWithInterest * (getInterestRate() / 100);
+            totalLoanAmountWithInterest += interestLoanAmount;
+        }
+
+        return TruncationUtil.truncate(totalLoanAmountWithInterest);
     }
 }
