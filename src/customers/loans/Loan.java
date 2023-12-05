@@ -6,18 +6,27 @@ import src.utils.TruncationUtil;
 public class Loan {
     // Calendar type attribute for initialLoanDate
     // two attributes for loanAmount and interestRate
+
+	final double INTEREST_RATE = 5;
+
+	private int loanId;
     private Calendar initialLoanDate;
     private double loanAmount;
     private double interestRate;
 
     // Constructor for Loan class
-    public Loan(Calendar initialLoanDate, double loanAmount, double interestRate) {
+    public Loan(int loanId, Calendar initialLoanDate, double loanAmount) {
+		this.loanId = loanId;
         this.initialLoanDate = initialLoanDate;
         this.loanAmount = loanAmount;
-        this.interestRate = interestRate;
+        this.interestRate = INTEREST_RATE;
     }
 
-    // get methods to get initialLoanDate, loanAmount and interestRate
+    // get methods to get loanId, initialLoanDate and loanAmount
+	public int getLoanId() {
+		return this.loanId;
+	}
+
     public Calendar getInitialLoanDate() {
         return this.initialLoanDate;
     }
