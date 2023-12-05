@@ -3,8 +3,15 @@ package src.customers;
 import src.utils.ContactCard;
 
 public class CustomerCorporate extends Customer {
-    public CustomerCorporate(String userId, String password, ContactCard contactCardCorporate) {
-        super(userId, password, contactCardCorporate);
+    // TODO: add attributes from contact card corporate
+    private final String orgNumber;
+    private String companyName;
+
+    // Constructor for CorporateCustomer class
+    public CustomerCorporate(String orgNumber, String companyName, String userId, String password, ContactCard contactCard) {
+        super(userId, password, contactCard);
+        this.orgNumber = orgNumber;
+        this.companyName = companyName;
     }
 
     // equals method to check if two Corporate Customers
@@ -15,10 +22,12 @@ public class CustomerCorporate extends Customer {
             isEqual = true;
         } else if (anotherObject == null) {
             isEqual = false;
-        } else {
+        } else if (anotherObject instanceof CustomerCorporate) {
             CustomerCorporate anotherCustomer = (CustomerCorporate) anotherObject;
             boolean sameUserID = this.userId.equals(anotherCustomer.getUserId());
+            isEqual = sameUserID;
         }
         return isEqual;
     }
+
 }
