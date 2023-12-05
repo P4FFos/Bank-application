@@ -1,8 +1,11 @@
 package src.customers;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
+import src.customers.loans.Loan;
 import src.utils.TruncationUtil;
 
 public class Account {
@@ -11,10 +14,12 @@ public class Account {
     private final String accountId;
     private double balance;
     private ArrayList<Transaction> transactions;
+	private HashMap<Integer, Loan> loans;
 
     // constructor for the account class, with initialised balance = 0
     public Account(String accountId, String accountName) {
-        transactions = new ArrayList<>();
+        this.transactions = new ArrayList<>();
+		this.loans = new HashMap<>();
         this.accountName = accountName;
         this.accountId = accountId;
         this.balance = 0.0;
@@ -71,4 +76,17 @@ public class Account {
             throw new Exception("");
         }
     }
+
+	public void addLoan(int loanId, Calendar loanDate, double loanAmount) {
+		Loan loan = new Loan(loanId, loanDate, loanAmount);
+		loans.put(loan.getLoanId(), loan);
+	}
+
+	public Loan getLoan(int loanId) {
+		return loans.get(loanId);
+	}
+
+	public void removeLoan(int loanId) {
+		loans.remove(loanId);
+	}
 }
