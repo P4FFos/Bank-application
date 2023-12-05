@@ -1,7 +1,6 @@
 package src.customers;
 
 import src.utils.ContactCard;
-
 import java.util.HashMap;
 
 public abstract class Customer extends User {

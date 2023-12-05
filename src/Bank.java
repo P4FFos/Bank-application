@@ -11,18 +11,16 @@ import src.exceptions.AccountNotFoundException;
 import src.exceptions.DuplicateIdException;
 import src.exceptions.UserNotFoundException;
 import src.utils.ContactCard;
-import src.utils.ContactCardCorporate;
-import src.utils.ContactCardPrivate;
 
 import java.util.HashMap;
 import java.util.Date;
 
 public class Bank {
-    private ContactCardCorporate contactInfo;
+    private ContactCard contactInfo;
     private HashMap<String, Customer> customers;
     private HashMap<String, BankEmployee> employees;
 
-    public Bank(ContactCardCorporate contactInfo) {
+    public Bank(ContactCard contactInfo) {
         this.contactInfo = contactInfo;
         this.customers = new HashMap<String, Customer>();
         this.employees = new HashMap<String, BankEmployee>();
@@ -37,14 +35,14 @@ public class Bank {
     }
 
 	// create new private customer:
-	public Customer createCustomerPrivate(String userId, String password, ContactCardPrivate contactCard) {
-		CustomerPrivate newCustomer = new CustomerPrivate(userId, password, contactCard);
+	public Customer createCustomerPrivate(String SSN, String firstName, String lastName, String userId, String password, ContactCard contactCard) {
+		CustomerPrivate newCustomer = new CustomerPrivate(SSN, firstName, lastName, userId, password, contactCard);
 		return newCustomer;
 	}
 
 	// create new corporate customer:
-	public Customer createCustomerCorporate(String userId, String password, ContactCardCorporate contactCard) {
-		CustomerCorporate newCustomer = new CustomerCorporate(userId, password, contactCard);
+	public Customer createCustomerCorporate(String orgNumber, String companyName, String userId, String password, ContactCard contactCard) {
+		CustomerCorporate newCustomer = new CustomerCorporate(orgNumber, companyName, userId, password, contactCard);
 		return newCustomer;
 	}
 
