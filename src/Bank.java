@@ -34,23 +34,16 @@ public class Bank {
         return this.contactInfo;
     }
 
-	// create new private customer:
-	public Customer createCustomerPrivate(String SSN, String firstName, String lastName, String userId, String password, ContactCard contactCard) {
+	// create new private customer and add it to the bank's hashmap:
+	public void createCustomerPrivate(String SSN, String firstName, String lastName, String userId, String password, ContactCard contactCard) {
 		CustomerPrivate newCustomer = new CustomerPrivate(SSN, firstName, lastName, userId, password, contactCard);
-		return newCustomer;
-	}
+        this.customers.put(userId, newCustomer);
+    }
 
-	// create new corporate customer:
-	public Customer createCustomerCorporate(String orgNumber, String companyName, String userId, String password, ContactCard contactCard) {
+	// create new corporate customer and add it to the bank's hashmap:
+	public void createCustomerCorporate(String orgNumber, String companyName, String userId, String password, ContactCard contactCard) {
 		CustomerCorporate newCustomer = new CustomerCorporate(orgNumber, companyName, userId, password, contactCard);
-		return newCustomer;
-	}
-
-	// add new customer to bank:
-	public void addCustomer(String userId, Customer customer) throws DuplicateIdException{
-		if (customers.containsKey(userId)) // check if customer exists
-			throw new DuplicateIdException("An account already exists with this number.");
-		this.customers.put(userId, customer);
+        this.customers.put(userId, newCustomer);
 	}
 
    // remove customer from bank:
