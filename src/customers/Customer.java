@@ -38,19 +38,17 @@ public abstract class Customer extends User {
 
     // getLoan method
     public Loan getLoan(String accountId, int loanId) {
-        return loans.containsKey(loanId);
+        return getAccount(accountId).getLoan(loanId);
     }
 
     // addLoan method
-    public void addLoan(Loan loan, String accountId, int loanId, Calendar initialLoanDate, double loanAmount) {
-        Loan loan = new Loan(accountId, loanId, initialLoanDate, loanAmount);
-        loans.put(loan.getLoanId(), loan);
-
+    public void addLoan(String accountId, int loanId, Calendar initialLoanDate, double loanAmount) {
+        getAccount(accountId).addLoan(loanId, initialLoanDate, loanAmount);
     }
 
     // removeLoan method
     public void removeLoan(String accountId, int loanId) {
-        loans.remove(loan.getLoanId());
+        getAccount(accountId).removeLoan(loanId);
     }
 }
 
