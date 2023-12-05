@@ -3,10 +3,10 @@ package src.customers;
 import src.utils.ContactCard;
 
 public class CustomerPrivate extends Customer {
-    // TODO: add attributes from contact card private
     private final String SSN;
     private String firstName;
     private String lastName;
+
     // Constructor for CustomerPrivate class
     public CustomerPrivate(String SSN, String firstName, String lastName, String userId, String password, ContactCard contactCard) {
         super(userId, password, contactCard);
