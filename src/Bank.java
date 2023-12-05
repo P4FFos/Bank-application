@@ -34,29 +34,20 @@ public class Bank {
         return this.contactInfo;
     }
 
-	// create new private customer:
-	public Customer createCustomerPrivate(String SSN, String firstName, String lastName, String userId, String password, ContactCard contactCard) {
+	// create new private customer and add it to the bank's hashmap:
+	public void createCustomerPrivate(String SSN, String firstName, String lastName, String userId, String password, ContactCard contactCard) {
 		CustomerPrivate newCustomer = new CustomerPrivate(SSN, firstName, lastName, userId, password, contactCard);
-		return newCustomer;
-	}
+        this.customers.put(userId, newCustomer);
+    }
 
-	// create new corporate customer:
-	public Customer createCustomerCorporate(String orgNumber, String companyName, String userId, String password, ContactCard contactCard) {
+	// create new corporate customer and add it to the bank's hashmap:
+	public void createCustomerCorporate(String orgNumber, String companyName, String userId, String password, ContactCard contactCard) {
 		CustomerCorporate newCustomer = new CustomerCorporate(orgNumber, companyName, userId, password, contactCard);
-		return newCustomer;
-	}
-
-	// add new customer to bank:
-	public void addCustomer(String userId, Customer customer) throws DuplicateIdException{
-		if (customers.containsKey(userId)) // check if customer exists
-			throw new DuplicateIdException("An account already exists with this number.");
-		this.customers.put(userId, customer);
+        this.customers.put(userId, newCustomer);
 	}
 
    // remove customer from bank:
-	public void removeCustomer(String employeeID, String customerID) throws UserNotFoundException {
-		if (!customers.containsKey(customerID)) // check if customer exists
-			throw new UserNotFoundException("Account not found.");
+	public void removeCustomer(String employeeID, String customerID) {
 		this.customers.remove(customerID);
 	}
 
@@ -67,38 +58,24 @@ public class Bank {
 	}
 	
 	// add account to customer:
-	public void addAccount(String userID, String accountId, Account newAccount) throws AccountNotFoundException {
-		if (!customers.containsKey(userID)) // check if customer exists 
-            throw new AccountNotFoundException("Account not found.");
+	public void addAccount(String userID, String accountId, Account newAccount) {
 		Customer customer = customers.get(userID);
 		customer.addAccount(newAccount);
 	}
 
     //retrieve customer information:
-    public Customer getCustomer(String userId) throws AccountNotFoundException {
-        if (!customers.containsKey(userId)) {
-            throw new AccountNotFoundException("Account not found.");
-        } else {
-            return this.customers.get(userId);
-        }
+    public Customer getCustomer(String userId) {
+        return this.customers.get(userId);
     }
 
     //add new employee to bank:
-    public void createEmployee(String userId, BankEmployee employee) throws DuplicateIdException {
-        if(employees.containsKey(userId)) {
-            throw new DuplicateIdException("An account already exists with this number.");
-        } else {
-            this.employees.put(userId, employee);
-        }
+    public void createEmployee(String userId, BankEmployee employee) {
+        this.employees.put(userId, employee);
     }
 
     //remove employee from bank:
-    public void removeEmployee(String employeeId) throws AccountNotFoundException {
-        if(!employees.containsKey(employeeId)) {
-            throw new AccountNotFoundException("Account not found.");
-        } else {
-            this.employees.remove(employeeId);
-        }
+    public void removeEmployee(String employeeId) {
+        this.employees.remove(employeeId);
     }
 
     /* iterates through HashMap of customers to find the owner of specified account,
