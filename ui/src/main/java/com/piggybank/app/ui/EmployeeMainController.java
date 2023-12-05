@@ -9,10 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -61,9 +58,13 @@ public class EmployeeMainController implements Initializable {
     @FXML
     private Label customerNameLabel;
     @FXML
+    private Label accountIdLabel;
+    @FXML
+    private Label accountBalanceLabel;
+    @FXML
     private Button selectAccountButton;
     @FXML
-    private ListView<String> accountsListView; //will be list of accounts
+    private ListView<String> accountsListView; //will be list of current customer's accounts
     @FXML
     private ListView<String> accountHistoryListView; //will be list of the current account's transactions
 
@@ -71,6 +72,39 @@ public class EmployeeMainController implements Initializable {
 
     @FXML
     private AnchorPane customerCreationPane;
+    @FXML
+    private AnchorPane customerCreationMsg;
+    @FXML
+    private Button saveNewCustomerButton;
+    @FXML
+    private CheckBox privateCustomerCheckBox;
+    @FXML
+    private CheckBox corporateCustomerCheckBox;
+    @FXML
+    private Label newCustomerUserId;
+    @FXML
+    private TextField firstNameField;
+    @FXML
+    private TextField lastNameField;
+    @FXML
+    private TextField ssnField;
+    @FXML
+    private TextField companyNameField;
+    @FXML
+    private TextField orgNumField;
+    @FXML
+    private TextField streetField;
+    @FXML
+    private TextField zipField;
+    @FXML
+    private TextField cityField;
+    @FXML
+    private TextField phoneField;
+    @FXML
+    private TextField emailField;
+    @FXML
+    private TextField passwordField;
+
 
     //.................................................................
 
@@ -104,7 +138,7 @@ public class EmployeeMainController implements Initializable {
     } //Shows employee's user id and name in header menu
     public void logout(ActionEvent event) throws IOException {
         //Later: add alert with options to save before logging out, cancelling logout and logging out without saving
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("StartScene.fxml"));
         root = loader.load();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -134,9 +168,18 @@ public class EmployeeMainController implements Initializable {
         employeeStart.setVisible(false);
         customerCard.setVisible(false);
         customerCreationPane.setVisible(true);
+        privateCustomerCheckBox.isSelected();
     } //Shows customerCreationPane AnchorPane in content area of EmployeeMainScene
     public void addNewCustomer(ActionEvent event){
         //HEJ HEJ
+    }
+
+    public void toggleCreatePrivateCustomer(){
+
+    }
+
+    public void toggleCreateCorporateCustomer(){
+
     }
 
     public void showCustomerCard(){
@@ -164,6 +207,8 @@ public class EmployeeMainController implements Initializable {
         });
     } //Initializes accountsListView with elements in accounts, selection sets currentAccount
     public void showAccount(){
+        accountIdLabel.setText("0123");
+        accountBalanceLabel.setText("25530.12");
         accountHistoryListView.getItems().add(currentAccount);
     } //Just a test to fill the ListView that will show transaction history from selecting an account in accountsListView
 

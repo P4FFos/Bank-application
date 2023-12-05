@@ -56,20 +56,18 @@
                </font>
             </Label>
             <Label fx:id="customerIdLabel" layoutX="14.0" layoutY="84.0" text="111111-1111" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="80.0" />
-            <ListView fx:id="accountsListView" layoutX="20.0" layoutY="149.0" prefHeight="100.0" prefWidth="450.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="149.0" />
+            <ListView fx:id="accountsListView" layoutX="20.0" layoutY="149.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="149.0" />
             <Label layoutX="14.0" layoutY="123.0" text="Accounts" AnchorPane.leftAnchor="20.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="showAccountButton" layoutX="653.0" layoutY="186.0" mnemonicParsing="false" text="Transfer funds" />
             <ListView fx:id="accountHistoryListView" layoutX="20.0" layoutY="318.0" prefHeight="200.0" prefWidth="450.0" AnchorPane.leftAnchor="20.0" />
             <Label layoutX="20.0" layoutY="292.0" text="Account History (for now only showing selected account)" AnchorPane.leftAnchor="20.0">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Button layoutX="653.0" layoutY="149.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="New account" />
             <CheckBox layoutX="480.0" layoutY="352.0" mnemonicParsing="false" text="IN" />
             <CheckBox layoutX="479.0" layoutY="382.0" mnemonicParsing="false" text="OUT" />
             <Label layoutX="478.0" layoutY="318.0" text="SHOW">
@@ -77,37 +75,41 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button fx:id="selectAccountButton" layoutX="477.0" layoutY="150.0" mnemonicParsing="false" onAction="#showAccount" text="Select" />
+            <Button fx:id="selectAccountButton" layoutX="168.0" layoutY="249.0" mnemonicParsing="false" onAction="#showAccount" text="Select" />
+            <Label layoutX="230.0" layoutY="149.0" text="Account ID: " />
+            <Label fx:id="accountIdLabel" layoutX="296.0" layoutY="149.0" text="..." />
+            <Label layoutX="230.0" layoutY="175.0" text="Balance: " />
+            <Label fx:id="accountBalanceLabel" layoutX="280.0" layoutY="175.0" text="..." />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="customerCreationPane" layoutX="336.0" layoutY="204.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
          <children>
             <Label layoutX="30.0" layoutY="93.0" text="First Name" />
             <Label layoutX="30.0" layoutY="129.0" text="Last Name" />
-            <Label layoutX="30.0" layoutY="180.0" text="Street Address" />
-            <Label layoutX="30.0" layoutY="212.0" text="Zip" />
-            <Label layoutX="33.0" layoutY="249.0" text="City" />
-            <Label layoutX="24.0" layoutY="296.0" text="Phone" />
-            <Label layoutX="29.0" layoutY="333.0" text="Email" />
-            <TextField fx:id="firstNameField" layoutX="121.0" layoutY="89.0" />
-            <TextField fx:id="lastNameField" layoutX="121.0" layoutY="125.0" />
-            <TextField fx:id="streetField" layoutX="121.0" layoutY="176.0" />
-            <TextField fx:id="zipField" layoutX="121.0" layoutY="216.0" />
-            <TextField fx:id="cityField" layoutX="121.0" layoutY="253.0" />
-            <TextField fx:id="phoneField" layoutX="121.0" layoutY="292.0" />
-            <TextField fx:id="emailField" layoutX="121.0" layoutY="337.0" />
-            <Label layoutX="29.0" layoutY="428.0" text="Password" />
-            <TextField fx:id="passwordField" layoutX="121.0" layoutY="416.0" />
+            <Label layoutX="389.0" layoutY="119.0" text="Street Address" />
+            <Label layoutX="389.0" layoutY="151.0" text="Zip" />
+            <Label layoutX="392.0" layoutY="188.0" text="City" />
+            <Label layoutX="383.0" layoutY="235.0" text="Phone" />
+            <Label layoutX="388.0" layoutY="272.0" text="Email" />
+            <TextField fx:id="firstNameField" layoutX="170.0" layoutY="89.0" />
+            <TextField fx:id="lastNameField" layoutX="170.0" layoutY="123.0" />
+            <TextField fx:id="streetField" layoutX="480.0" layoutY="115.0" />
+            <TextField fx:id="zipField" layoutX="480.0" layoutY="155.0" />
+            <TextField fx:id="cityField" layoutX="480.0" layoutY="192.0" />
+            <TextField fx:id="phoneField" layoutX="480.0" layoutY="231.0" />
+            <TextField fx:id="emailField" layoutX="480.0" layoutY="276.0" />
+            <Label layoutX="389.0" layoutY="335.0" text="Password" />
+            <TextField fx:id="passwordField" layoutX="481.0" layoutY="323.0" />
             <Label layoutX="27.0" layoutY="14.0" text="Create Customer">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Button fx:id="saveNewCustomerButton" layoutX="226.0" layoutY="468.0" mnemonicParsing="false" onAction="#addNewCustomer" text="SAVE" />
-            <CheckBox layoutX="359.0" layoutY="84.0" mnemonicParsing="false" text="Corporate Customer" />
-            <AnchorPane fx:id="customerCreatedMsg" layoutX="359.0" layoutY="196.0" prefHeight="94.0" prefWidth="200.0">
+            <Button fx:id="saveNewCustomerButton" layoutX="592.0" layoutY="383.0" mnemonicParsing="false" onAction="#addNewCustomer" text="SAVE" />
+            <CheckBox fx:id="corporateCustomerCheckBox" layoutX="30.0" layoutY="209.0" mnemonicParsing="false" onAction="#toggleCreateCorporateCustomer" text="Corporate" />
+            <AnchorPane fx:id="customerCreationMsg" layoutX="64.0" layoutY="383.0" prefHeight="94.0" prefWidth="200.0" visible="false">
                <children>
-                  <Label fx:id="newCustomerUserID" layoutX="13.0" layoutY="42.0" prefHeight="28.0" prefWidth="169.0" text="userID">
+                  <Label fx:id="newCustomerUserId" layoutX="13.0" layoutY="42.0" prefHeight="28.0" prefWidth="169.0" text="userID">
                      <font>
                         <Font size="23.0" />
                      </font>
@@ -115,6 +117,18 @@
                   <Label layoutX="13.0" layoutY="14.0" text="Customer created with User ID:" />
                </children>
             </AnchorPane>
+            <CheckBox fx:id="privateCustomerCheckBox" layoutX="29.0" layoutY="49.0" mnemonicParsing="false" onAction="#toggleCreatePrivateCustomer" text="Private" />
+            <Label layoutX="386.0" layoutY="67.0" text="Contact Information">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="27.0" layoutY="160.0" text="Social Security Number" />
+            <TextField fx:id="ssnField" layoutX="170.0" layoutY="156.0" />
+            <Label layoutX="30.0" layoutY="246.0" text="Company Name" />
+            <Label layoutX="30.0" layoutY="282.0" text="Org. Number" />
+            <TextField fx:id="companyNameField" layoutX="170.0" layoutY="242.0" />
+            <TextField fx:id="orgNumField" layoutX="170.0" layoutY="276.0" />
          </children>
       </AnchorPane>
    </children>
