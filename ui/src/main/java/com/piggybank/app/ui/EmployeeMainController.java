@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class EmployeeMainController implements Initializable {
+public class EmployeeMainController{
     //.....................FXML ELEMENTS...........................
 
     @FXML
@@ -51,22 +51,7 @@ public class EmployeeMainController implements Initializable {
 
     //---------------CUSTOMER CARD------------------------------------
 
-    @FXML
-    private AnchorPane customerCard;
-    @FXML
-    private Label customerIdLabel;
-    @FXML
-    private Label customerNameLabel;
-    @FXML
-    private Label accountIdLabel;
-    @FXML
-    private Label accountBalanceLabel;
-    @FXML
-    private Button selectAccountButton;
-    @FXML
-    private ListView<String> accountsListView; //will be list of current customer's accounts
-    @FXML
-    private ListView<String> accountHistoryListView; //will be list of the current account's transactions
+
 
     //---------------CUSTOMER CREATION---------------------------------
 
@@ -117,8 +102,6 @@ public class EmployeeMainController implements Initializable {
     private Map<String, String> customers = new HashMap<>();
     private String customerID;
     private String customerName;
-    private String[] accounts = {"main_account", "savings", "emergency", "travel"};
-    private String currentAccount = "";
 
     //----------------------------METHODS----------------------------------
 
@@ -131,7 +114,7 @@ public class EmployeeMainController implements Initializable {
         customerName = ""; //Resets TextField
 
         fillCustomers(); //Placeholder mock customer data. Will search through backend hashmap of customers when backend is ready.
-    } //Shows employeeStart AnchorPane in content area of EmployeeMainScene
+    } //
     public void displayUser(String id, String name){
         userIdLabel.setText(id);
         userNameLabel.setText(name);
@@ -145,6 +128,7 @@ public class EmployeeMainController implements Initializable {
         stage.setScene(scene);
         stage.show();
     } //Logs out employee and switches to StartScene
+
     public void fillCustomers(){
         customers.put("010101-1234", "Anna Andersson");
         customers.put("020202-2345", "Babben Borg");
@@ -170,6 +154,7 @@ public class EmployeeMainController implements Initializable {
         customerCreationPane.setVisible(true);
         privateCustomerCheckBox.isSelected();
     } //Shows customerCreationPane AnchorPane in content area of EmployeeMainScene
+
     public void addNewCustomer(ActionEvent event){
         //HEJ HEJ
     }
@@ -196,20 +181,4 @@ public class EmployeeMainController implements Initializable {
         employeeStart.setVisible(false);
         customerCreationPane.setVisible(false);
     } //Shows customerCard AnchorPane in content area of EmployeeMainScene when doing a customer search
-    public void initialize(URL arg0, ResourceBundle arg1){
-        accountsListView.getItems().addAll(accounts);
-        accountsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
-            @Override
-            public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2){
-                currentAccount = accountsListView.getSelectionModel().getSelectedItem();
-                System.out.println("Current account: " + currentAccount);
-            }
-        });
-    } //Initializes accountsListView with elements in accounts, selection sets currentAccount
-    public void showAccount(){
-        accountIdLabel.setText("0123");
-        accountBalanceLabel.setText("25530.12");
-        accountHistoryListView.getItems().add(currentAccount);
-    } //Just a test to fill the ListView that will show transaction history from selecting an account in accountsListView
-
 }
