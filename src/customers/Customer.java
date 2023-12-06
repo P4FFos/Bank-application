@@ -1,6 +1,9 @@
 package src.customers;
 
+import src.customers.loans.Loan;
 import src.utils.ContactCard;
+
+import java.util.Calendar;
 import java.util.HashMap;
 
 public abstract class Customer extends User {
@@ -33,5 +36,19 @@ public abstract class Customer extends User {
         this.accounts.remove(account.getAccountId());
     }
 
+    // getLoan method
+    public Loan getLoan(String accountId, int loanId) {
+        return getAccount(accountId).getLoan(loanId);
+    }
+
+    // addLoan method
+    public void addLoan(String accountId, int loanId, Calendar initialLoanDate, double loanAmount) {
+        getAccount(accountId).addLoan(loanId, initialLoanDate, loanAmount);
+    }
+
+    // removeLoan method
+    public void removeLoan(String accountId, int loanId) {
+        getAccount(accountId).removeLoan(loanId);
+    }
 }
 

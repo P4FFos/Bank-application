@@ -10,7 +10,7 @@ public class IdGenerator {
         nextID++;
 
         if (nextID > MAX_CUSTOMER_ID) {
-            throw new Exception("Employee ID out of range");
+            throw new Exception("Customer ID out of range");
         } else {
             return Integer.toString(nextID);
         }

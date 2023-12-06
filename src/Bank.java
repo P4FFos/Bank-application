@@ -5,6 +5,7 @@ import src.customers.Customer;
 import src.customers.CustomerCorporate;
 import src.customers.CustomerPrivate;
 import src.customers.Transaction;
+import src.customers.loans.Loan;
 import src.employees.BankEmployee;
 import src.employees.BankTeller;
 import src.exceptions.AccountNotFoundException;
@@ -12,6 +13,7 @@ import src.exceptions.DuplicateIdException;
 import src.exceptions.UserNotFoundException;
 import src.utils.ContactCard;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Date;
 
@@ -34,34 +36,34 @@ public class Bank {
         return this.contactInfo;
     }
 
-	// create new private customer and add it to the bank's hashmap:
-	public void createCustomerPrivate(String SSN, String firstName, String lastName, String userId, String password, ContactCard contactCard) {
-		CustomerPrivate newCustomer = new CustomerPrivate(SSN, firstName, lastName, userId, password, contactCard);
+    // create new private customer and add it to the bank's hashmap:
+    public void createCustomerPrivate(String SSN, String firstName, String lastName, String userId, String password, ContactCard contactCard) {
+        CustomerPrivate newCustomer = new CustomerPrivate(SSN, firstName, lastName, userId, password, contactCard);
         this.customers.put(userId, newCustomer);
     }
 
-	// create new corporate customer and add it to the bank's hashmap:
-	public void createCustomerCorporate(String orgNumber, String companyName, String userId, String password, ContactCard contactCard) {
-		CustomerCorporate newCustomer = new CustomerCorporate(orgNumber, companyName, userId, password, contactCard);
+    // create new corporate customer and add it to the bank's hashmap:
+    public void createCustomerCorporate(String orgNumber, String companyName, String userId, String password, ContactCard contactCard) {
+        CustomerCorporate newCustomer = new CustomerCorporate(orgNumber, companyName, userId, password, contactCard);
         this.customers.put(userId, newCustomer);
-	}
+    }
 
-   // remove customer from bank:
-	public void removeCustomer(String employeeID, String customerID) {
-		this.customers.remove(customerID);
-	}
+    // remove customer from bank:
+    public void removeCustomer(String employeeID, String customerID) {
+        this.customers.remove(customerID);
+    }
 
-	// create new account for customer:
-	public Account createAccount(String accountNumber){
-		Account newAccount = new Account(accountNumber);
-		return newAccount;
-	}
-	
-	// add account to customer:
-	public void addAccount(String userID, String accountId, Account newAccount) {
-		Customer customer = customers.get(userID);
-		customer.addAccount(newAccount);
-	}
+    // create new account for customer:
+    public Account createAccount(String accountNumber) {
+        Account newAccount = new Account(accountNumber);
+        return newAccount;
+    }
+
+    // add account to customer:
+    public void addAccount(String userID, String accountId, Account newAccount) {
+        Customer customer = customers.get(userID);
+        customer.addAccount(newAccount);
+    }
 
     //retrieve customer information:
     public Customer getCustomer(String userId) {
@@ -83,7 +85,7 @@ public class Bank {
     public Account getAccountById(String accountId) throws Exception {
         for (Customer customer : customers.values()) {
             boolean accountExists = customer.checkIfAccountExists(accountId);
-            if(accountExists) {
+            if (accountExists) {
                 return customer.getAccount(accountId);
             }
         }
@@ -166,5 +168,23 @@ public class Bank {
             System.out.println("Invalid username. Please try again");
         }
         return correctUserId && correctPassword;
+    }
+
+    // getLoan method
+    public Loan getLoan(String userId, String accountId, int loanId) {
+        Customer customer = customers.get(userId);
+        return customer.getLoan(accountId, loanId);
+    }
+
+    // addLoan method
+    public void addLoan(String userId, String accountId, int loanId, Calendar loanDate, double amount) {
+        Customer customer = customers.get(userId);
+        customer.addLoan(accountId, loanId, loanDate, amount);
+    }
+
+    // removeLoan method
+    public void removeLoan(String userId, String accountId, int loanId) {
+        Customer customer = customers.get(userId);
+        customer.removeLoan(accountId, loanId);
     }
 }
