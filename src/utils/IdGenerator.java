@@ -1,18 +1,17 @@
 package src.utils;
 
 public class IdGenerator {
-    private final static int MAX_CUSTOMER_ID = 999999;
-
+    private final static int MAX_CUSTOMER_ID = 99999;
     private final static int MAX_EMPLOYEE_ID = 99999;
 
     public static String generateCustomerID(String lastCustomerID) throws Exception {
-        int nextID = Integer.parseInt(lastCustomerID);
-        nextID++;
+        int nextID = Integer.parseInt(lastCustomerID.substring(1));
 
         if (nextID > MAX_CUSTOMER_ID) {
             throw new Exception("Customer ID out of range");
         } else {
-            return Integer.toString(nextID);
+            nextID++;
+            return "c" + nextID;
         }
     }
 
