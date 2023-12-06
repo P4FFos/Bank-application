@@ -39,7 +39,7 @@ public class LoginController {
         } else {
             passwordValid = true;
             System.out.println("Successfully logged in!");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("EmployeeMainScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("EmployeeMainNavScene.fxml"));
             root = loader.load();
 
             //Placeholder logic. Connect appropriately with backend when ready.
