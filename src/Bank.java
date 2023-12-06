@@ -140,37 +140,37 @@ public class Bank {
     }
 
     //verify customer login information:
-    public boolean verifyCustomer(String userId, String password) {
+    public boolean verifyCustomer(String userId, String password) throws Exception {
         boolean correctUserId = false;
         boolean correctPassword = false;
-        if (customers.containsKey(userId)) {
+        if (!customers.containsKey(userId)) {
+            throw new Exception("Invalid user ID or password. Please try again.");
+        } else {
             correctUserId = true;
             Customer customer = customers.get(userId);
-            if (customer.getPassword().equals(password)) {
-                correctPassword = true;
+            if (!customer.getPassword().equals(password)) {
+                throw new Exception("Invalid user ID or password. Please try again.");
             } else {
-                System.out.println("Invalid password. Please try again.");
+                correctPassword = true;
             }
-        } else {
-            System.out.println("Invalid username. Please try again");
+            return correctUserId && correctPassword;
         }
-        return correctUserId && correctPassword;
     }
 
     //verify employee login information:
-    public boolean verifyEmployee(String userId, String password) {
+    public boolean verifyEmployee(String userId, String password) throws Exception {
         boolean correctUserId = false;
         boolean correctPassword = false;
-        if (employees.containsKey(userId)) {
+        if (!employees.containsKey(userId)) {
+            throw new Exception("Invalid user ID or password. Please try again.");
+        } else {
             correctUserId = true;
             BankEmployee employee = employees.get(userId);
-            if (employee.getPassword().equals(password)) {
-                correctPassword = true;
+            if (!employee.getPassword().equals(password)) {
+                throw new Exception("Invalid user ID or password. Please try again.");
             } else {
-                System.out.println("Invalid password. Please try again.");
+                correctPassword = true;
             }
-        } else {
-            System.out.println("Invalid username. Please try again");
         }
         return correctUserId && correctPassword;
     }
