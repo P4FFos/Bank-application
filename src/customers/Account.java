@@ -42,13 +42,15 @@ public class Account {
     }
 
     // method to get history of transactions
-    public String getTransactionHistory() {
+    public ArrayList<Transaction> getTransactionHistory() {
+        // Remove and only return ArrayList transactions, from here:
 		String resultString = "";
 		for (Transaction transaction : transactions) {
 			resultString += transaction.toString() + "\n";
 		}
 		resultString = resultString.substring(0, resultString.length() - 2);
-		return resultString;
+        // to here.
+		return transactions;
     }
 
     // deposit methods, checks is the message is blank:

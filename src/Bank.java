@@ -13,6 +13,7 @@ import src.exceptions.DuplicateIdException;
 import src.exceptions.UserNotFoundException;
 import src.utils.ContactCard;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Date;
@@ -24,8 +25,14 @@ public class Bank {
 
     public Bank(ContactCard contactInfo) {
         this.contactInfo = contactInfo;
-        this.customers = new HashMap<String, Customer>();
-        this.employees = new HashMap<String, BankEmployee>();
+        customers = new HashMap<String, Customer>();
+        employees = new HashMap<String, BankEmployee>();
+    }
+
+    public Bank() {
+        contactInfo = null;
+        customers = new HashMap<>();
+        employees = new HashMap<>();
     }
 
     //create methods for updating the bank's contact card info (via forwarding from ContactCard once those methods are in place)
@@ -54,8 +61,8 @@ public class Bank {
     }
 
     // create new account for customer:
-    public Account createAccount(String accountNumber) {
-        Account newAccount = new Account(accountNumber);
+    public Account createAccount(String accountNumber, String accountName) {
+        Account newAccount = new Account(accountNumber, accountName);
         return newAccount;
     }
 
@@ -89,7 +96,14 @@ public class Bank {
                 return customer.getAccount(accountId);
             }
         }
-        throw new AccountNotFoundException("Account was not found.");
+        throw new AccountNotFoundException("Account ID " + accountId + " was not found.");
+    }
+
+    public Customer getCustomerByIdOrSSN(String inputString) throws Exception {
+        /* Checks for 10 characters, if it is then SSN,
+        otherwise if it is 6 characters then it is a userId
+        */
+        // add return
     }
 
     // deposits money into specified account
@@ -114,18 +128,9 @@ public class Bank {
     }
 
     // returns a string of all transactions in specified account
-    public String getTransactionHistory(String accountId) throws Exception {
+    public ArrayList<Transaction> getTransactionHistory(String accountId) throws Exception {
         Account account = getAccountById(accountId);
         return account.getTransactionHistory();
-
-        /* To be used in Account class:
-        String transactions = "";
-
-        for(Transaction transaction: account.getTransactionHistory()) {
-            transactions = String.format("%s%n%s", transactions, transaction.toString());
-        }
-        return transactions;
-        */
     }
 
     // returns the balance of the specified account
