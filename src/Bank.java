@@ -173,18 +173,21 @@ public class Bank {
     // getLoan method
     public Loan getLoan(String userId, String accountId, int loanId) {
         Customer customer = customers.get(userId);
-        return customer.getLoan(accountId, loanId);
+		Account account = customer.getAccount(accountId);
+		return account.getLoan(loanId);
     }
 
     // addLoan method
     public void addLoan(String userId, String accountId, int loanId, Calendar loanDate, double amount) {
         Customer customer = customers.get(userId);
-        customer.addLoan(accountId, loanId, loanDate, amount);
+		Account account = customer.getAccount(accountId);
+		account.addLoan(loanId, loanDate, amount);
     }
 
     // removeLoan method
     public void removeLoan(String userId, String accountId, int loanId) {
         Customer customer = customers.get(userId);
-        customer.removeLoan(accountId, loanId);
+		Account account = customer.getAccount(accountId);
+		account.removeLoan(loanId);
     }
 }

@@ -35,20 +35,5 @@ public abstract class Customer extends User {
     public void removeAccount(Account account) {
         this.accounts.remove(account.getAccountId());
     }
-
-    // getLoan method
-    public Loan getLoan(String accountId, int loanId) {
-        return getAccount(accountId).getLoan(loanId);
-    }
-
-    // addLoan method
-    public void addLoan(String accountId, int loanId, Calendar initialLoanDate, double loanAmount) {
-        getAccount(accountId).addLoan(loanId, initialLoanDate, loanAmount);
-    }
-
-    // removeLoan method
-    public void removeLoan(String accountId, int loanId) {
-        getAccount(accountId).removeLoan(loanId);
-    }
 }
 
