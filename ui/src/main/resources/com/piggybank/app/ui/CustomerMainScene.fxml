@@ -4,9 +4,11 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -94,7 +96,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="infoAnchorPane" layoutX="180.0" layoutY="75.0" prefHeight="75.0" prefWidth="459.0" visible="false">
+      <AnchorPane fx:id="infoAnchorPane" layoutX="180.0" layoutY="75.0" prefHeight="75.0" prefWidth="459.0">
          <children>
             <Label fx:id="infoNameLabel" layoutX="10.0" layoutY="20.0" text="Firstname Lastname">
                <font>
@@ -198,12 +200,117 @@
                   </CheckBox>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="transferAnchorPane" layoutY="85.0" prefHeight="282.0" prefWidth="468.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="transferAnchorPane" layoutY="85.0" prefHeight="282.0" prefWidth="468.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label fx:id="transferNewTransferLabel" layoutX="10.0" layoutY="10.0" text="MAKE A NEW TRANSFER">
+                     <font>
+                        <Font name="Kodchasan Regular" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="transferFromAccountLabel" layoutX="20.0" layoutY="40.0" text="From Account">
+                     <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="transferFromHintLabel" layoutX="22.0" layoutY="50.0" text="CHOOSE BETWEEN YOUR ACCOUNTS FROM THE LIST BELOW" textFill="#807c7c">
+                     <font>
+                        <Font name="Kodchasan ExtraLight" size="5.0" />
+                     </font>
+                  </Label>
+                  <ListView fx:id="transferAccountListView" layoutX="20.0" layoutY="60.0" prefHeight="43.0" prefWidth="163.0" />
+                  <Button fx:id="transferSelectButton" layoutX="118.0" layoutY="104.0" mnemonicParsing="false" text="SELECT ACCOUNT">
+                     <font>
+                        <Font name="Kodchasan Regular" size="6.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="transferToAccountLabel" layoutX="20.0" layoutY="125.0" text="To Account">
+                     <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="transferEnterRecieverAccountTextField" alignment="CENTER_RIGHT" layoutX="20.0" layoutY="145.0" prefHeight="15.0" prefWidth="160.0" promptText="e.g. 9010101234">
+                     <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                     </font>
+                  </TextField>
+                  <Label fx:id="transferRecieverHintLabel" layoutX="22.0" layoutY="135.0" text="ENTER RECIEVER ACCOUNT (10 digits)" textFill="#807c7c">
+                     <font>
+                        <Font name="Kodchasan ExtraLight" size="5.0" />
+                     </font>
+                  </Label>
+                  <CheckBox layoutX="240.0" layoutY="166.0" mnemonicParsing="false" text="I understand that it is my responsibility &#10;to verify that the information is correct." underline="true">
+                     <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                     </font>
+                  </CheckBox>
+                  <Label layoutX="240.0" layoutY="40.0" text="Amount To Transfer">
+                     <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="transferEnterAmountTextField" alignment="CENTER_RIGHT" layoutX="240.0" layoutY="85.0" prefHeight="15.0" prefWidth="133.0" promptText="e.g. 500.00">
+                     <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="transferButton" layoutX="240.0" layoutY="190.0" mnemonicParsing="false" prefHeight="5.0" prefWidth="160.0" text="COMPLETE TRANSFER">
+                     <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                     </font>
+                  </Button>
+                  <Separator layoutX="210.0" layoutY="46.0" opacity="0.3" orientation="VERTICAL" prefHeight="121.0" prefWidth="1.0" />
+                  <Label fx:id="sekLabel" layoutX="375.0" layoutY="85.0" text="SEK">
+                     <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="transferAmountHintLabel" layoutX="242.0" layoutY="50.0" prefHeight="16.0" prefWidth="155.0" text="SELECT DEFAULT AMOUNT OR SPECIFY IN FIELD BELOW" textFill="#807c7c">
+                     <font>
+                        <Font name="Kodchasan ExtraLight" size="5.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="firstAmountCheckBox" layoutX="240.0" layoutY="68.0" mnemonicParsing="false" text="100">
+                     <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="secondAmountCheckBox1" layoutX="280.0" layoutY="68.0" mnemonicParsing="false" text="200">
+                     <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="thirdAmountCheckBox" layoutX="320.0" layoutY="68.0" mnemonicParsing="false" text="500">
+                     <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="fourthAmountCheckBox1" layoutX="358.0" layoutY="68.0" mnemonicParsing="false" text="1.000">
+                     <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                     </font>
+                  </CheckBox>
+                  <PasswordField layoutX="240.0" layoutY="145.0" prefHeight="15.0" prefWidth="159.0" promptText="******">
+                     <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                     </font>
+                  </PasswordField>
+                  <Label fx:id="transferToAccountLabel1" layoutX="240.0" layoutY="125.0" text="Enter Password">
+                     <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="transferPasswordHintLabel" layoutX="242.0" layoutY="135.0" text="ENTER YOUR ACCOUNT PASSWORD (4-6 DIGITS)" textFill="#807c7c">
+                     <font>
+                        <Font name="Kodchasan ExtraLight" size="5.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="10.0" layoutY="28.0" opacity="0.5" prefHeight="5.0" prefWidth="430.0" />
+               </children></AnchorPane>
             <AnchorPane fx:id="loansAnchorPane" prefHeight="282.0" prefWidth="468.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <AnchorPane fx:id="supportAnchorPane" prefHeight="282.0" prefWidth="468.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="faqAnchorPane" layoutX="180.0" layoutY="75.0" prefHeight="320.0" prefWidth="465.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
+      <AnchorPane fx:id="faqAnchorPane" layoutX="180.0" layoutY="75.0" prefHeight="320.0" prefWidth="465.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
          <children>
             <Label fx:id="faqHeaderLabel" layoutX="10.0" layoutY="20.0" text="Piggy Bank FAQ">
                <font>
