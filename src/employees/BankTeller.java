@@ -1,9 +1,9 @@
 package src.employees;
 
-import src.utils.ContactCardPrivate;
+import src.utils.ContactCard;
 
 public class BankTeller extends BankEmployee {
-	public BankTeller (String userId, String password, ContactCardPrivate contactCard){
+	public BankTeller (String userId, String password, ContactCard contactCard){
 		super(userId, password, contactCard);
 	}
 }
