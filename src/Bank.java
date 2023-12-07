@@ -7,10 +7,7 @@ import src.customers.CustomerPrivate;
 import src.customers.Transaction;
 import src.customers.loans.Loan;
 import src.employees.BankEmployee;
-import src.employees.BankTeller;
 import src.exceptions.AccountNotFoundException;
-import src.exceptions.DuplicateIdException;
-import src.exceptions.UserNotFoundException;
 import src.utils.ContactCard;
 import src.utils.IdGenerator;
 
@@ -83,14 +80,9 @@ public class Bank {
         this.customers.remove(customerID);
     }
 
-    // create new account for customer:
-    public Account createAccount(String accountNumber, String accountName) {
-        Account newAccount = new Account(accountNumber, accountName);
-        return newAccount;
-    }
 
-    // add account to customer:
-    public void addAccount(String userID, String accountName) throws Exception {
+    // creates a new account for customer:
+    public void createAccount(String userID, String accountName) throws Exception {
         Customer customer = customers.get(userID);
 
         //Generates accountId
