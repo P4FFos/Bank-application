@@ -5,7 +5,8 @@ import src.utils.TruncationUtil;
 
 public class Credit {
     // Calendar type attribute for initialCreditDate
-    // two attributes for creditAmount and interestRate
+
+	// attributes: 
 
 	final double INTEREST_RATE = 5;
 
@@ -18,8 +19,8 @@ public class Credit {
         this.creditAmount = creditAmount;
     }
 
-    // get methods to get initialCreditDate and creditAmount
-	
+    // get methods to get initialCreditDate and creditAmount and interestRate
+
     public Calendar getInitialCreditDate() {
         return this.initialCreditDate;
     }

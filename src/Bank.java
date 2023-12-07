@@ -175,21 +175,21 @@ public class Bank {
         return correctUserId && correctPassword;
     }
 
-    // getLoan method
+    // getCredit method
     public Credit getCredit(String userId, String accountId) {
         Customer customer = customers.get(userId);
 		Account account = customer.getAccount(accountId);
 		return account.getCredit();
     }
 
-    // addLoan method
+    // addCredit method
     public void addCredit(String userId, String accountId, Calendar initialCreditDate, double amount) throws Exception{
         Customer customer = customers.get(userId);
 		Account account = customer.getAccount(accountId);
 		account.addCredit(initialCreditDate, amount);
     }
 
-    // removeLoan method
+    // removeCredit method
     public void removeCredit(String userId, String accountId) throws Exception{
         Customer customer = customers.get(userId);
 		Account account = customer.getAccount(accountId);
