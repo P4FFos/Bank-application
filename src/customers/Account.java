@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
-import src.customers.loans.Loan;
+import src.customers.debts.Credit;
 import src.utils.TruncationUtil;
 
 public class Account {
@@ -14,16 +14,16 @@ public class Account {
     private final String accountId;
     private double balance;
     private ArrayList<Transaction> transactions;
-	private HashMap<Integer, Loan> loans;
+	private Credit credit;
 
     // constructor for the account class, with initialised balance = 0
     public Account(String accountId, String accountName) {
         this.transactions = new ArrayList<>();
-		this.loans = new HashMap<>();
         this.accountName = accountName;
         this.accountId = accountId;
         this.balance = 0.0;
 		this.transactions = new ArrayList<Transaction>();
+		this.credit = null;
     }
 
     // get method to receive accountName
@@ -79,16 +79,24 @@ public class Account {
         }
     }
 
-	public void addLoan(int loanId, Calendar loanDate, double loanAmount) {
-		Loan loan = new Loan(loanId, loanDate, loanAmount);
-		loans.put(loan.getLoanId(), loan);
+	public void addCredit(Calendar initialCreditDate, double creditAmount) throws Exception{
+		if(this.credit != null) {
+			throw new Exception("Credit already exists");
+		}
+		this.credit = new Credit(initialCreditDate, creditAmount);
 	}
 
-	public Loan getLoan(int loanId) {
-		return loans.get(loanId);
+	public Credit getCredit() {
+		return this.credit;
 	}
 
-	public void removeLoan(int loanId) {
-		loans.remove(loanId);
+	public void removeCredit() throws Exception{
+		if(this.credit == null){
+			throw new Exception("Credit does not exist");
+		}
+		if(this.credit.getCreditAmountWithInterest() > balance){
+			throw new Exception("Not enough money to pay off credit");
+		}
+		this.credit = null;
 	}
 }

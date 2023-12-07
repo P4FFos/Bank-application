@@ -5,7 +5,7 @@ import src.customers.Customer;
 import src.customers.CustomerCorporate;
 import src.customers.CustomerPrivate;
 import src.customers.Transaction;
-import src.customers.loans.Loan;
+import src.customers.debts.Credit;
 import src.employees.BankEmployee;
 import src.employees.BankTeller;
 import src.exceptions.AccountNotFoundException;
@@ -175,24 +175,24 @@ public class Bank {
         return correctUserId && correctPassword;
     }
 
-    // getLoan method
-    public Loan getLoan(String userId, String accountId, int loanId) {
+    // getCredit method
+    public Credit getCredit(String userId, String accountId) {
         Customer customer = customers.get(userId);
 		Account account = customer.getAccount(accountId);
-		return account.getLoan(loanId);
+		return account.getCredit();
     }
 
-    // addLoan method
-    public void addLoan(String userId, String accountId, int loanId, Calendar loanDate, double amount) {
+    // addCredit method
+    public void addCredit(String userId, String accountId, Calendar initialCreditDate, double amount) throws Exception{
         Customer customer = customers.get(userId);
 		Account account = customer.getAccount(accountId);
-		account.addLoan(loanId, loanDate, amount);
+		account.addCredit(initialCreditDate, amount);
     }
 
-    // removeLoan method
-    public void removeLoan(String userId, String accountId, int loanId) {
+    // removeCredit method
+    public void removeCredit(String userId, String accountId) throws Exception{
         Customer customer = customers.get(userId);
 		Account account = customer.getAccount(accountId);
-		account.removeLoan(loanId);
+		account.removeCredit();
     }
 }
