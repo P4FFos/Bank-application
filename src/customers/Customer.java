@@ -1,9 +1,7 @@
 package src.customers;
 
-import src.customers.loans.Loan;
 import src.utils.ContactCard;
 
-import java.util.Calendar;
 import java.util.HashMap;
 
 public abstract class Customer extends User {
