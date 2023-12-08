@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class LoginController {
+public class EmpLoginController {
     //.....................FXML ELEMENTS...........................
     @FXML
     private TextField usernameTextField;
@@ -39,20 +39,19 @@ public class LoginController {
         } else {
             passwordValid = true;
             System.out.println("Successfully logged in!");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("EmployeeMainNavScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
             root = loader.load();
 
             //Placeholder logic. Connect appropriately with backend when ready.
             username = usernameTextField.getText();
-            EmployeeMainController employeeStartController = loader.getController();
-            employeeStartController.displayUser("Emp123", username);
-            employeeStartController.showEmployeeStart();
+            EmpMainController controller = loader.getController();
+            controller.initializeEmpoyeeSection("Emp123", username);
+            controller.fillcustomers();
 
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-
         }
     }
 
