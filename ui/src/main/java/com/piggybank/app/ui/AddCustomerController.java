@@ -1,4 +1,4 @@
 package com.piggybank.app.ui;
 
-public class AddCustomerController extends EmployeeMainController{
+public class AddCustomerController extends EmpMainController {
 }
