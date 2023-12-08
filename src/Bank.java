@@ -7,36 +7,46 @@ import src.customers.CustomerPrivate;
 import src.customers.Transaction;
 import src.customers.debts.Credit;
 import src.employees.BankEmployee;
-import src.employees.BankTeller;
 import src.exceptions.AccountNotFoundException;
-import src.exceptions.DuplicateIdException;
-import src.exceptions.UserNotFoundException;
 import src.utils.ContactCard;
+import src.utils.IdGenerator;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Date;
+import java.util.*;
 
 public class Bank {
     private ContactCard contactInfo;
     private HashMap<String, Customer> customers;
     private HashMap<String, BankEmployee> employees;
+    private String employeeIdCounter;
+    private String customerIdCounter;
+    private String accountIdCounter;
+
 
     public Bank(ContactCard contactInfo) {
         this.contactInfo = contactInfo;
         customers = new HashMap<String, Customer>();
         employees = new HashMap<String, BankEmployee>();
+        employeeIdCounter = "e00000";
+        customerIdCounter = "c00000";
+        accountIdCounter = "a000000000";
     }
 
+    // To simplify instantiation the Bank class
     public Bank() {
         contactInfo = null;
         customers = new HashMap<>();
         employees = new HashMap<>();
+        employeeIdCounter = "e00000";
+        customerIdCounter = "c00000";
+        accountIdCounter = "a000000000";
     }
 
     //create methods for updating the bank's contact card info (via forwarding from ContactCard once those methods are in place)
     //public void updateAddress(String newAddress){} ...etc
+
+    public void setEmployeeIdCounter(String employeeId) {employeeIdCounter = employeeId;};
+    public void setCustomerIdCounter(String customerId) {customerIdCounter = customerId;};
+    public void setAccountIdCounter(String accountId) {accountIdCounter = accountId;};
 
     //get bank information:
     public ContactCard getBankInfo() {
@@ -44,7 +54,17 @@ public class Bank {
     }
 
     // create new private customer and add it to the bank's hashmap:
-    public void createCustomerPrivate(String SSN, String firstName, String lastName, String userId, String password, ContactCard contactCard) {
+    public void createCustomerPrivate(String SSN, String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
+        // Generates a new ID for a customer, then updates customerIdCounter
+        String userId = IdGenerator.generateCustomerID(customerIdCounter);
+        setCustomerIdCounter(userId);
+
+        CustomerPrivate newCustomer = new CustomerPrivate(SSN, firstName, lastName, userId, password, contactCard);
+        this.customers.put(userId, newCustomer);
+    }
+
+    // A placeholder method for createCustomerPrivate. IdGenerator needs updated logic (check generateAccountId) /Marcus
+    public void createCustomerPrivate(String userId, String SSN, String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
         CustomerPrivate newCustomer = new CustomerPrivate(SSN, firstName, lastName, userId, password, contactCard);
         this.customers.put(userId, newCustomer);
     }
@@ -60,15 +80,16 @@ public class Bank {
         this.customers.remove(customerID);
     }
 
-    // create new account for customer:
-    public Account createAccount(String accountNumber, String accountName) {
-        Account newAccount = new Account(accountNumber, accountName);
-        return newAccount;
-    }
 
-    // add account to customer:
-    public void addAccount(String userID, String accountId, Account newAccount) {
+    // creates a new account for customer:
+    public void createAccount(String userID, String accountName) throws Exception {
         Customer customer = customers.get(userID);
+
+        //Generates accountId
+        String accountId = IdGenerator.generateAccountId(accountIdCounter);
+        setAccountIdCounter(accountId);
+
+        Account newAccount = new Account(accountId, accountName);
         customer.addAccount(newAccount);
     }
 
@@ -99,11 +120,27 @@ public class Bank {
         throw new AccountNotFoundException("Account ID " + accountId + " was not found.");
     }
 
+    //
     public Customer getCustomerByIdOrSSN(String inputString) throws Exception {
         /* Checks for 10 characters, if it is then SSN,
         otherwise if it is 6 characters then it is a userId
         */
-        // add return
+
+        /* Loops over the HashMap of customers if string is 10 characters,
+         return Customer if it is a match */
+        if(inputString.length() == 10) {
+            for(Customer customer : customers.values()) {
+                if(customer instanceof CustomerPrivate privateCustomer) {
+                    if(privateCustomer.getSSN().equals(inputString)) {
+                        return customer;
+                    }
+                }
+            }
+        // If a string has length 6 it is a userId, return Customer based on Id
+        } else if (inputString.length() == 6) {
+            return  customers.get(inputString);
+        }
+        throw new NoSuchElementException("Customer not found by ID or SSN.");
     }
 
     // deposits money into specified account

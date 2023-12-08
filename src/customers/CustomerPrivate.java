@@ -15,6 +15,10 @@ public class CustomerPrivate extends Customer {
         this.SSN = SSN;
     }
 
+    public String getSSN() {
+        return SSN;
+    }
+
     // equals method to check if two Private Customers
     // are equal by same user ID
     public boolean equals(CustomerPrivate anotherObject) {
