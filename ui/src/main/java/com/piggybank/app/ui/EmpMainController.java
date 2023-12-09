@@ -129,6 +129,10 @@ public class EmpMainController {
     public void goToCustomerCreation(ActionEvent event) throws IOException { //newCustomerButton
         loader = new FXMLLoader(getClass().getResource("AddCustomer.fxml"));
         root = loader.load();
+
+        AddCustomerController controller = loader.getController();
+        controller.initialiseAddCustomer();
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
