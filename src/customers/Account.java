@@ -1,8 +1,11 @@
 package src.customers;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
+import src.customers.debts.Credit;
 import src.utils.TruncationUtil;
 
 public class Account {
@@ -11,14 +14,16 @@ public class Account {
     private final String accountId;
     private double balance;
     private ArrayList<Transaction> transactions;
+	private Credit credit;
 
     // constructor for the account class, with initialised balance = 0
     public Account(String accountId, String accountName) {
-        transactions = new ArrayList<>();
+        this.transactions = new ArrayList<>();
         this.accountName = accountName;
         this.accountId = accountId;
         this.balance = 0.0;
 		this.transactions = new ArrayList<Transaction>();
+		this.credit = null;
     }
 
     // get method to receive accountName
@@ -37,13 +42,15 @@ public class Account {
     }
 
     // method to get history of transactions
-    public String getTransactionHistory() {
+    public ArrayList<Transaction> getTransactionHistory() {
+        // Remove and only return ArrayList transactions, from here:
 		String resultString = "";
 		for (Transaction transaction : transactions) {
 			resultString += transaction.toString() + "\n";
 		}
 		resultString = resultString.substring(0, resultString.length() - 2);
-		return resultString;
+        // to here.
+		return transactions;
     }
 
     // deposit methods, checks is the message is blank:
@@ -71,4 +78,25 @@ public class Account {
             throw new Exception("");
         }
     }
+
+	public void addCredit(Calendar initialCreditDate, double creditAmount) throws Exception{
+		if(this.credit != null) {
+			throw new Exception("Credit already exists");
+		}
+		this.credit = new Credit(initialCreditDate, creditAmount);
+	}
+
+	public Credit getCredit() {
+		return this.credit;
+	}
+
+	public void removeCredit() throws Exception{
+		if(this.credit == null){
+			throw new Exception("Credit does not exist");
+		}
+		if(this.credit.getCreditAmountWithInterest() > balance){
+			throw new Exception("Not enough money to pay off credit");
+		}
+		this.credit = null;
+	}
 }

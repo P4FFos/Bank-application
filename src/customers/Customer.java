@@ -1,6 +1,7 @@
 package src.customers;
 
 import src.utils.ContactCard;
+
 import java.util.HashMap;
 
 public abstract class Customer extends User {
@@ -32,6 +33,5 @@ public abstract class Customer extends User {
     public void removeAccount(Account account) {
         this.accounts.remove(account.getAccountId());
     }
-
 }
 
