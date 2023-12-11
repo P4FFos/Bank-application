@@ -1,15 +1,15 @@
-package src;
+package com.piggybank.app.backend;
 
-import src.customers.Account;
-import src.customers.Customer;
-import src.customers.CustomerCorporate;
-import src.customers.CustomerPrivate;
-import src.customers.Transaction;
-import src.customers.debts.Credit;
-import src.employees.Employee;
-import src.exceptions.AccountNotFoundException;
-import src.utils.ContactCard;
-import src.utils.IdGenerator;
+import com.piggybank.app.backend.customers.Account;
+import com.piggybank.app.backend.customers.CustomerCorporate;
+import com.piggybank.app.backend.customers.CustomerPrivate;
+import com.piggybank.app.backend.customers.debts.Credit;
+import com.piggybank.app.backend.exceptions.AccountNotFoundException;
+import com.piggybank.app.backend.customers.Customer;
+import com.piggybank.app.backend.customers.Transaction;
+import com.piggybank.app.backend.employees.Employee;
+import com.piggybank.app.backend.utils.ContactCard;
+import com.piggybank.app.backend.utils.IdGenerator;
 
 import java.util.*;
 

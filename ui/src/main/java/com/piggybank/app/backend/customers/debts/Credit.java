@@ -1,9 +1,9 @@
-package src.customers.debts;
+package com.piggybank.app.backend.customers.debts;
 
 import java.util.Calendar;
 
-import src.customers.Account;
-import src.utils.TruncationUtil;
+import com.piggybank.app.backend.customers.Account;
+import com.piggybank.app.backend.utils.TruncationUtil;
 
 public class Credit extends Account {
 

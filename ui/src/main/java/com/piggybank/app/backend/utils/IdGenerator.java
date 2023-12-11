@@ -1,4 +1,4 @@
-package src.utils;
+package com.piggybank.app.backend.utils;
 
 public class IdGenerator {
     private final static int MAX_CUSTOMER_ID = 999;

@@ -1,6 +1,6 @@
-package src.customers;
+package com.piggybank.app.backend.customers;
 
-import src.utils.ContactCard;
+import com.piggybank.app.backend.utils.ContactCard;
 
 public abstract class User {
     // user attributes
