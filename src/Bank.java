@@ -70,7 +70,7 @@ public class Bank {
     }
 
     // create new corporate customer and add it to the bank's hashmap:
-    public void createCustomerCorporate(String orgNumber, String companyName, String userId, String password, ContactCard contactCard) {
+    public void createCustomerCorporate(String orgNumber, String companyName, String userId, String password, ContactCard contactCard) throws Exception {
         CustomerCorporate newCustomer = new CustomerCorporate(orgNumber, companyName, userId, password, contactCard);
         this.customers.put(userId, newCustomer);
     }

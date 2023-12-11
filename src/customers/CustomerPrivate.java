@@ -8,7 +8,7 @@ public class CustomerPrivate extends Customer {
     private String lastName;
 
     // Constructor for CustomerPrivate class
-    public CustomerPrivate(String SSN, String firstName, String lastName, String userId, String password, ContactCard contactCard) {
+    public CustomerPrivate(String SSN, String firstName, String lastName, String userId, String password, ContactCard contactCard) throws Exception {
         super(userId, password, contactCard);
         this.firstName = firstName;
         this.lastName = lastName;
