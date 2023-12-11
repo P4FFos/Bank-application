@@ -83,7 +83,7 @@ public class Account {
 		if(this.credit != null) {
 			throw new Exception("Credit already exists");
 		}
-		this.credit = new Credit(initialCreditDate, creditAmount);
+		this.credit = new Credit(accountId, accountName, initialCreditDate, creditAmount);
 	}
 
 	public Credit getCredit() {

@@ -1,26 +1,25 @@
 package src.customers.debts;
 
 import java.util.Calendar;
+
+import src.customers.Account;
 import src.utils.TruncationUtil;
 
-public class Credit {
-    // Calendar type attribute for initialCreditDate
+public class Credit extends Account {
 
-	// attributes: 
-
-	final double INTEREST_RATE = 5;
-
+    // attributes:
+    final double INTEREST_RATE = 5;
     private Calendar initialCreditDate;
     private double creditAmount;
 
     // Constructor for Credit class
-    public Credit(Calendar initialCreditDate, double creditAmount) {
+    public Credit(String accountId, String accountName, Calendar initialCreditDate, double creditAmount) {
+        super(accountId, accountName);
         this.initialCreditDate = initialCreditDate;
         this.creditAmount = creditAmount;
     }
 
     // get methods to get initialCreditDate and creditAmount and interestRate
-
     public Calendar getInitialCreditDate() {
         return this.initialCreditDate;
     }
