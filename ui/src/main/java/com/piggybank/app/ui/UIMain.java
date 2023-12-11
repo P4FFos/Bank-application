@@ -10,9 +10,6 @@ import src.employees.BankEmployee;
 import src.employees.BankTeller;
 import src.utils.ContactCard;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class UIMain extends Application {
     public static Bank bank;
     public static Bank getBank(){

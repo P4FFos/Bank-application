@@ -69,15 +69,17 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 
     //--------------- METHODS CONNECTED TO FXML ELEMENTS -------------------------
     public void setCurrentAccount(ActionEvent event){
-
+        //get selection from accountsListView, set this account as current account and
+        //load transactionsListView with the transaction list of current account
     }
 
     public void addAccount(ActionEvent event){
-
+        //create an account, set initial balance to 0. add to customer's account list.
+        //reload accountsListView
     }
 
     public void makeTransaction(ActionEvent event){
-
+        //wait until ui is built for this
     }
 
 

@@ -10,9 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import src.Bank;
-
-import java.io.IOException;
 
 public class EmpLoginController {
     //.....................FXML ELEMENTS...........................
@@ -54,7 +51,6 @@ public class EmpLoginController {
             stage.setScene(scene);
             stage.show();
         }
-
 
     }
 }
