@@ -1,8 +1,8 @@
-package src;
+package com.piggybank.app.backend;
 
 import java.util.Date;
 
-import src.utils.ContactCard;
+import com.piggybank.app.backend.utils.ContactCard;
 
 public class BackendMain {
     public static void main(String[] args) throws Exception {

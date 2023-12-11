@@ -1,4 +1,4 @@
-package src.utils;
+package com.piggybank.app.backend.utils;
 
 public class TruncationUtil {
     public static double truncate(double value) {

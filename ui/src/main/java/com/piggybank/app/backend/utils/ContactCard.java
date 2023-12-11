@@ -1,4 +1,4 @@
-package src.utils;
+package com.piggybank.app.backend.utils;
 
 public class ContactCard {
     private String name;

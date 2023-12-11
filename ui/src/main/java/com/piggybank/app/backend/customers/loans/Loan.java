@@ -1,6 +1,6 @@
-package src.customers.loans;
+package com.piggybank.app.backend.customers.loans;
 
-import src.customers.Account;
+import com.piggybank.app.backend.customers.Account;
 public class Loan extends Account {
     //loan type where we can give out larger amounts of money (such as mortgages)
 

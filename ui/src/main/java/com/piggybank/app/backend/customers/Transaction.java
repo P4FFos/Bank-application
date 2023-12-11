@@ -1,4 +1,4 @@
-package src.customers;
+package com.piggybank.app.backend.customers;
 
 import java.util.Date;
 
