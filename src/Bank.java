@@ -6,7 +6,7 @@ import src.customers.CustomerCorporate;
 import src.customers.CustomerPrivate;
 import src.customers.Transaction;
 import src.customers.debts.Credit;
-import src.employees.BankEmployee;
+import src.employees.Employee;
 import src.exceptions.AccountNotFoundException;
 import src.utils.ContactCard;
 import src.utils.IdGenerator;
@@ -16,7 +16,7 @@ import java.util.*;
 public class Bank {
     private ContactCard contactInfo;
     private HashMap<String, Customer> customers;
-    private HashMap<String, BankEmployee> employees;
+    private HashMap<String, Employee> employees;
     private String employeeIdCounter;
     private String customerIdCounter;
     private String accountIdCounter;
@@ -25,7 +25,7 @@ public class Bank {
     public Bank(ContactCard contactInfo) {
         this.contactInfo = contactInfo;
         customers = new HashMap<String, Customer>();
-        employees = new HashMap<String, BankEmployee>();
+        employees = new HashMap<String, Employee>();
         employeeIdCounter = "e00000";
         customerIdCounter = "c00000";
         accountIdCounter = "a000000000";
@@ -99,9 +99,10 @@ public class Bank {
     }
 
     //add new employee to bank:
-    public void createEmployee(String userId, BankEmployee employee) {
-        this.employees.put(userId, employee);
-    }
+    public void createEmployee(String userId, String password, ContactCard contactCard) throws Exception {
+		Employee newEmployee = new Employee(userId, password, contactCard);
+		this.employees.put(userId, newEmployee);
+	}
 
     //remove employee from bank:
     public void removeEmployee(String employeeId) {
@@ -202,7 +203,7 @@ public class Bank {
             throw new Exception("Invalid user ID or password. Please try again.");
         } else {
             correctUserId = true;
-            BankEmployee employee = employees.get(userId);
+            Employee employee = employees.get(userId);
             if (!employee.getPassword().equals(password)) {
                 throw new Exception("Invalid user ID or password. Please try again.");
             } else {
