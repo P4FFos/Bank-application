@@ -1,34 +1,51 @@
 package src.customers;
+
 import src.utils.ContactCard;
 
 public abstract class User {
+    // user attributes
     final String userId;
     private String password;
     private ContactCard contactInfo;
 
-    public User(String userId, String password, ContactCard contactInfo) {
+    // user class constructor:
+    // checks if password length in bigger than 8 symbols,
+    // if it contains at least one capital letter and at least one digit
+    public User(String userId, String password, ContactCard contactInfo) throws Exception {
         this.userId = userId;
-        this.password = password;
-        //change this: check for password length: min 8 characters, 1 uppercase, 1 number
         this.contactInfo = contactInfo;
+        if (password.length() >= 8 && password.matches(".*[A-Z].*") && password.matches(".*\\d.*")) {
+            this.password = password;
+        } else {
+            throw new Exception("Invalid password format");
+        }
     }
 
+    // get user Id method
     public String getUserId() {
         return userId;
     }
 
+    // get contact Info method
     public ContactCard getContactInfo() {
         return contactInfo;
     }
 
-    public void resetPassword(String newPassword) {
-        this.password = newPassword;
-    }
-
+    // get password method
     public String getPassword() {
         return this.password;
     }
 
-    //create methods for updating contact info (via forwarding from ContactCard once those methods are in place)
+    // change password method which checks:
+    // if new password length in bigger than 8 symbols,
+    // if it contains at least one capital letter and at least one digit
+    public void changePassword(String newPassword) throws Exception {
+        if (newPassword.length() >= 8 && newPassword.matches(".*[A-Z].*") && newPassword.matches(".*\\d.*")) {
+            this.password = newPassword;
+        } else {
+            throw new Exception("New password has invalid format");
+        }
+    }
 
+    //create methods for updating contact info (via forwarding from ContactCard once those methods are in place)
 }
