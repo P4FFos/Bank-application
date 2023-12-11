@@ -3,12 +3,11 @@ package src.customers;
 import src.utils.ContactCard;
 
 public class CustomerCorporate extends Customer {
-    // TODO: add attributes from contact card corporate
     private final String orgNumber;
     private String companyName;
 
     // Constructor for CorporateCustomer class
-    public CustomerCorporate(String orgNumber, String companyName, String userId, String password, ContactCard contactCard) {
+    public CustomerCorporate(String orgNumber, String companyName, String userId, String password, ContactCard contactCard) throws Exception {
         super(userId, password, contactCard);
         this.orgNumber = orgNumber;
         this.companyName = companyName;
