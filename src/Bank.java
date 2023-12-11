@@ -5,63 +5,93 @@ import src.customers.Customer;
 import src.customers.CustomerCorporate;
 import src.customers.CustomerPrivate;
 import src.customers.Transaction;
-import src.employees.BankEmployee;
-import src.employees.BankTeller;
+import src.customers.debts.Credit;
+import src.employees.Employee;
 import src.exceptions.AccountNotFoundException;
-import src.exceptions.DuplicateIdException;
-import src.exceptions.UserNotFoundException;
 import src.utils.ContactCard;
+import src.utils.IdGenerator;
 
-import java.util.HashMap;
-import java.util.Date;
+import java.util.*;
 
 public class Bank {
     private ContactCard contactInfo;
     private HashMap<String, Customer> customers;
-    private HashMap<String, BankEmployee> employees;
+    private HashMap<String, Employee> employees;
+    private String employeeIdCounter;
+    private String customerIdCounter;
+    private String accountIdCounter;
+
 
     public Bank(ContactCard contactInfo) {
         this.contactInfo = contactInfo;
-        this.customers = new HashMap<String, Customer>();
-        this.employees = new HashMap<String, BankEmployee>();
+        customers = new HashMap<String, Customer>();
+        employees = new HashMap<String, Employee>();
+        employeeIdCounter = "e00000";
+        customerIdCounter = "c00000";
+        accountIdCounter = "a000000000";
+    }
+
+    // To simplify instantiation the Bank class
+    public Bank() {
+        contactInfo = null;
+        customers = new HashMap<>();
+        employees = new HashMap<>();
+        employeeIdCounter = "e00000";
+        customerIdCounter = "c00000";
+        accountIdCounter = "a000000000";
     }
 
     //create methods for updating the bank's contact card info (via forwarding from ContactCard once those methods are in place)
     //public void updateAddress(String newAddress){} ...etc
+
+    public void setEmployeeIdCounter(String employeeId) {employeeIdCounter = employeeId;};
+    public void setCustomerIdCounter(String customerId) {customerIdCounter = customerId;};
+    public void setAccountIdCounter(String accountId) {accountIdCounter = accountId;};
 
     //get bank information:
     public ContactCard getBankInfo() {
         return this.contactInfo;
     }
 
-	// create new private customer and add it to the bank's hashmap:
-	public void createCustomerPrivate(String SSN, String firstName, String lastName, String userId, String password, ContactCard contactCard) {
-		CustomerPrivate newCustomer = new CustomerPrivate(SSN, firstName, lastName, userId, password, contactCard);
+    // create new private customer and add it to the bank's hashmap:
+    public void createCustomerPrivate(String SSN, String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
+        // Generates a new ID for a customer, then updates customerIdCounter
+        String userId = IdGenerator.generateCustomerID(customerIdCounter);
+        setCustomerIdCounter(userId);
+
+        CustomerPrivate newCustomer = new CustomerPrivate(SSN, firstName, lastName, userId, password, contactCard);
         this.customers.put(userId, newCustomer);
     }
 
-	// create new corporate customer and add it to the bank's hashmap:
-	public void createCustomerCorporate(String orgNumber, String companyName, String userId, String password, ContactCard contactCard) {
-		CustomerCorporate newCustomer = new CustomerCorporate(orgNumber, companyName, userId, password, contactCard);
+    // A placeholder method for createCustomerPrivate. IdGenerator needs updated logic (check generateAccountId) /Marcus
+    public void createCustomerPrivate(String userId, String SSN, String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
+        CustomerPrivate newCustomer = new CustomerPrivate(SSN, firstName, lastName, userId, password, contactCard);
         this.customers.put(userId, newCustomer);
-	}
+    }
 
-   // remove customer from bank:
-	public void removeCustomer(String employeeID, String customerID) {
-		this.customers.remove(customerID);
-	}
+    // create new corporate customer and add it to the bank's hashmap:
+    public void createCustomerCorporate(String orgNumber, String companyName, String userId, String password, ContactCard contactCard) throws Exception {
+        CustomerCorporate newCustomer = new CustomerCorporate(orgNumber, companyName, userId, password, contactCard);
+        this.customers.put(userId, newCustomer);
+    }
 
-	// create new account for customer:
-	public Account createAccount(String accountNumber){
-		Account newAccount = new Account(accountNumber);
-		return newAccount;
-	}
-	
-	// add account to customer:
-	public void addAccount(String userID, String accountId, Account newAccount) {
-		Customer customer = customers.get(userID);
-		customer.addAccount(newAccount);
-	}
+    // remove customer from bank:
+    public void removeCustomer(String employeeID, String customerID) {
+        this.customers.remove(customerID);
+    }
+
+
+    // creates a new account for customer:
+    public void createAccount(String userID, String accountName) throws Exception {
+        Customer customer = customers.get(userID);
+
+        //Generates accountId
+        String accountId = IdGenerator.generateAccountId(accountIdCounter);
+        setAccountIdCounter(accountId);
+
+        Account newAccount = new Account(accountId, accountName);
+        customer.addAccount(newAccount);
+    }
 
     //retrieve customer information:
     public Customer getCustomer(String userId) {
@@ -69,9 +99,10 @@ public class Bank {
     }
 
     //add new employee to bank:
-    public void createEmployee(String userId, BankEmployee employee) {
-        this.employees.put(userId, employee);
-    }
+    public void createEmployee(String userId, String password, ContactCard contactCard) throws Exception {
+		Employee newEmployee = new Employee(userId, password, contactCard);
+		this.employees.put(userId, newEmployee);
+	}
 
     //remove employee from bank:
     public void removeEmployee(String employeeId) {
@@ -83,11 +114,34 @@ public class Bank {
     public Account getAccountById(String accountId) throws Exception {
         for (Customer customer : customers.values()) {
             boolean accountExists = customer.checkIfAccountExists(accountId);
-            if(accountExists) {
+            if (accountExists) {
                 return customer.getAccount(accountId);
             }
         }
-        throw new AccountNotFoundException("Account was not found.");
+        throw new AccountNotFoundException("Account ID " + accountId + " was not found.");
+    }
+
+    //
+    public Customer getCustomerByIdOrSSN(String inputString) throws Exception {
+        /* Checks for 10 characters, if it is then SSN,
+        otherwise if it is 6 characters then it is a userId
+        */
+
+        /* Loops over the HashMap of customers if string is 10 characters,
+         return Customer if it is a match */
+        if(inputString.length() == 10) {
+            for(Customer customer : customers.values()) {
+                if(customer instanceof CustomerPrivate privateCustomer) {
+                    if(privateCustomer.getSSN().equals(inputString)) {
+                        return customer;
+                    }
+                }
+            }
+        // If a string has length 6 it is a userId, return Customer based on Id
+        } else if (inputString.length() == 6) {
+            return  customers.get(inputString);
+        }
+        throw new NoSuchElementException("Customer not found by ID or SSN.");
     }
 
     // deposits money into specified account
@@ -112,18 +166,9 @@ public class Bank {
     }
 
     // returns a string of all transactions in specified account
-    public String getTransactionHistory(String accountId) throws Exception {
+    public ArrayList<Transaction> getTransactionHistory(String accountId) throws Exception {
         Account account = getAccountById(accountId);
         return account.getTransactionHistory();
-
-        /* To be used in Account class:
-        String transactions = "";
-
-        for(Transaction transaction: account.getTransactionHistory()) {
-            transactions = String.format("%s%n%s", transactions, transaction.toString());
-        }
-        return transactions;
-        */
     }
 
     // returns the balance of the specified account
@@ -133,38 +178,59 @@ public class Bank {
     }
 
     //verify customer login information:
-    public boolean verifyCustomer(String userId, String password) {
+    public boolean verifyCustomer(String userId, String password) throws Exception {
         boolean correctUserId = false;
         boolean correctPassword = false;
-        if (customers.containsKey(userId)) {
+        if (!customers.containsKey(userId)) {
+            throw new Exception("Invalid user ID or password. Please try again.");
+        } else {
             correctUserId = true;
             Customer customer = customers.get(userId);
-            if (customer.getPassword().equals(password)) {
-                correctPassword = true;
+            if (!customer.getPassword().equals(password)) {
+                throw new Exception("Invalid user ID or password. Please try again.");
             } else {
-                System.out.println("Invalid password. Please try again.");
+                correctPassword = true;
             }
+            return correctUserId && correctPassword;
+        }
+    }
+
+    //verify employee login information:
+    public boolean verifyEmployee(String userId, String password) throws Exception {
+        boolean correctUserId = false;
+        boolean correctPassword = false;
+        if (!employees.containsKey(userId)) {
+            throw new Exception("Invalid user ID or password. Please try again.");
         } else {
-            System.out.println("Invalid username. Please try again");
+            correctUserId = true;
+            Employee employee = employees.get(userId);
+            if (!employee.getPassword().equals(password)) {
+                throw new Exception("Invalid user ID or password. Please try again.");
+            } else {
+                correctPassword = true;
+            }
         }
         return correctUserId && correctPassword;
     }
 
-    //verify employee login information:
-    public boolean verifyEmployee(String userId, String password) {
-        boolean correctUserId = false;
-        boolean correctPassword = false;
-        if (employees.containsKey(userId)) {
-            correctUserId = true;
-            BankEmployee employee = employees.get(userId);
-            if (employee.getPassword().equals(password)) {
-                correctPassword = true;
-            } else {
-                System.out.println("Invalid password. Please try again.");
-            }
-        } else {
-            System.out.println("Invalid username. Please try again");
-        }
-        return correctUserId && correctPassword;
+    // getCredit method
+    public Credit getCredit(String userId, String accountId) {
+        Customer customer = customers.get(userId);
+		Account account = customer.getAccount(accountId);
+		return account.getCredit();
+    }
+
+    // addCredit method
+    public void addCredit(String userId, String accountId, Calendar initialCreditDate, double amount) throws Exception{
+        Customer customer = customers.get(userId);
+		Account account = customer.getAccount(accountId);
+		account.addCredit(initialCreditDate, amount);
+    }
+
+    // removeCredit method
+    public void removeCredit(String userId, String accountId) throws Exception{
+        Customer customer = customers.get(userId);
+		Account account = customer.getAccount(accountId);
+		account.removeCredit();
     }
 }

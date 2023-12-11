@@ -18,6 +18,26 @@ public class Transaction {
         this.message = message;
     }
 
+    // getReceiverAccountId method
+    public String getReceiverAccountId() {
+        return this.receiverAccountId;
+    }
+
+    // getSenderAccountId method
+    public String getSenderAccountId() {
+        return this.senderAccountId;
+    }
+
+    // getAmount method
+    public double getAmount() {
+        return this.amount;
+    }
+
+    // getMessage method
+    public String getMessage() {
+        return this.message;
+    }
+
     // toString method, which checks and assign different formats:
     // if receiverAccID and senderAccID fields are Blank
     // if message field is Blank
