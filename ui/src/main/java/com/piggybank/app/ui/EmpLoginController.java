@@ -1,5 +1,6 @@
 package com.piggybank.app.ui;
 
+import com.piggybank.app.backend.Bank;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

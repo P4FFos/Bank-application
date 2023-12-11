@@ -1,12 +1,11 @@
-package src.customers;
+package com.piggybank.app.backend.customers;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 
-import src.customers.debts.Credit;
-import src.utils.TruncationUtil;
+import com.piggybank.app.backend.customers.debts.Credit;
+import com.piggybank.app.backend.utils.TruncationUtil;
 
 public class Account {
     // attributes for account class

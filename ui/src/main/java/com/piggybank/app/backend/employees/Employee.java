@@ -1,8 +1,8 @@
-package src.employees;
+package com.piggybank.app.backend.employees;
 
-import src.utils.ContactCard;
-import src.customers.Customer;
-import src.customers.User;
+import com.piggybank.app.backend.customers.Customer;
+import com.piggybank.app.backend.customers.User;
+import com.piggybank.app.backend.utils.ContactCard;
 
 public class Employee extends User {
 	private Customer currentCustomer;
