@@ -1,0 +1,76 @@
+package src.customers.loans;
+
+import src.customers.Account;
+public class Loan extends Account {
+    //loan type where we can give out larger amounts of money (such as mortgages)
+
+    final double initialAmount;
+    private double currentAmount; //the size of the loan
+    private double interestRate = 5; //the interest rate per month
+    private double minPaymentPercent = 1; //the minimum loan percentage the customer must pay each month
+    private double minPaymentAmount; //the amount the customer must pay each month
+
+    //constructor:
+    public Loan(String accountId, String accountName, double initialAmount) {
+        super(accountId, accountName);
+        this.initialAmount = initialAmount;
+        this.currentAmount = initialAmount;
+        setPaymentAmount();
+    }
+
+    //calculating the minimum monthly payment:
+    public void setPaymentAmount() {
+        //minimum payment amount:
+        double minPayment = (this.initialAmount / 100) * this.minPaymentPercent;
+
+        //interest rate:
+        final double interestAmount = (this.initialAmount / 100) * this.interestRate;
+
+        //total minimum monthly payment:
+        this.minPaymentAmount = minPayment + interestAmount;
+    }
+
+    //make a minimum payment:
+    public void makePayment() {
+        updateAmount(this.minPaymentAmount);
+    }
+
+    //make a custom payment:
+    public void makePayment(double amount) throws Exception {
+        if (amount < this.minPaymentAmount) {
+            throw new Exception ("Payment must not be less than minimum required amount.");
+        } else {
+            updateAmount(amount);
+        }
+    }
+
+    //updating the current amount of the loan based on payments made:
+    public void updateAmount(double paidAmount) {
+        this.currentAmount -= paidAmount;
+    }
+
+    //getters for attributes:
+    public double getInitialAmount() {
+        return this.initialAmount;
+    }
+
+    public double getCurrentAmount() {
+        return this.currentAmount;
+    }
+
+    public double getInterestRate() {
+        return this.interestRate;
+    }
+
+    public double getMinPaymentPercent() {
+        return this.minPaymentPercent;
+    }
+
+    public double getMinPaymentAmount() {
+        return this.minPaymentAmount;
+    }
+
+
+
+
+}
