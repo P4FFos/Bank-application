@@ -43,13 +43,6 @@ public class Account {
 
     // method to get history of transactions
     public ArrayList<Transaction> getTransactionHistory() {
-        // Remove and only return ArrayList transactions, from here:
-		String resultString = "";
-		for (Transaction transaction : transactions) {
-			resultString += transaction.toString() + "\n";
-		}
-		resultString = resultString.substring(0, resultString.length() - 2);
-        // to here.
 		return transactions;
     }
 
@@ -83,7 +76,7 @@ public class Account {
 		if(this.credit != null) {
 			throw new Exception("Credit already exists");
 		}
-		this.credit = new Credit(initialCreditDate, creditAmount);
+		this.credit = new Credit(accountId, accountName, initialCreditDate, creditAmount);
 	}
 
 	public Credit getCredit() {
