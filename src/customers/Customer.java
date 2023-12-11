@@ -9,7 +9,7 @@ public abstract class Customer extends User {
     private HashMap<String, Account> accounts;
 
     // constructor for Customer class
-    public Customer(String userId, String password, ContactCard contactCard) {
+    public Customer(String userId, String password, ContactCard contactCard) throws Exception {
         super(userId, password, contactCard);
         this.accounts = new HashMap<>();
     }
