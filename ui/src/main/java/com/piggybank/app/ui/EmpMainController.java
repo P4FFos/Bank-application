@@ -139,7 +139,7 @@ public class EmpMainController {
         stage.show();
     }
 
-    public void initializeEmpoyeeSection(String id, String name){
+    public void initializeEmployeeSection(String id, String name){
         empIdLabel.setText(id);
         empNameLabel.setText(name);
     }

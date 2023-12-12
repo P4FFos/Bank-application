@@ -32,7 +32,7 @@ public class ContactCard {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAddress() {
+    public String getStreetAddress() {
         return streetAddress;
     }
 
