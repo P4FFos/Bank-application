@@ -1,6 +1,6 @@
 package com.piggybank.app.backend;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import com.piggybank.app.backend.customers.Customer;
 import com.piggybank.app.backend.utils.ContactCard;
@@ -41,11 +41,12 @@ public class BackendMain {
 
         piggyBank.createAccount("C002", "Savings account");
 
+        LocalDate todaysDate = LocalDate.now();
         // Deposit 1000
-        piggyBank.deposit("C001", "A00001", 1000.0, "", new Date());
+        piggyBank.deposit("C001", "A00001", 1000.0, "", todaysDate);
 
         // Transfer 400 to another account
-        piggyBank.transfer("A00001", "A00003", 400.0, "here you go!/JD", new Date());
+        piggyBank.transfer("A00001", "A00003", 400.0, "here you go!/JD", todaysDate);
 
         System.out.println(piggyBank.getCustomer("C001").getAccount("A00001").getBalance());
         System.out.println(piggyBank.getCustomer("C002").getAccount("A00003").getBalance());

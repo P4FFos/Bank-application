@@ -1,14 +1,17 @@
 package com.piggybank.app.backend;
 
 import com.piggybank.app.backend.customers.*;
-import com.piggybank.app.backend.customers.debts.Credit;
-import com.piggybank.app.backend.exceptions.AccountNotFoundException;
-import com.piggybank.app.backend.employees.Employee;
-import com.piggybank.app.backend.exceptions.PasswordException;
-import com.piggybank.app.backend.utils.ContactCard;
-import com.piggybank.app.backend.utils.IdGenerator;
+import com.piggybank.app.backend.customers.debts.*;
+import com.piggybank.app.backend.customers.loans.*;
+import com.piggybank.app.backend.employees.*;
+import com.piggybank.app.backend.exceptions.*;
+import com.piggybank.app.backend.utils.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Calendar;
+import java.time.LocalDate;
+import java.util.NoSuchElementException;
 
 public class Bank {
     private ContactCard contactInfo;
@@ -188,19 +191,19 @@ public class Bank {
     //-----------------------VARIOUS-----------------------
 
     // deposits money into specified account
-    public void deposit(String senderId, String accountId, double amount, String message, Date date) throws Exception {
+    public void deposit(String senderId, String accountId, double amount, String message, LocalDate date) throws Exception {
         Account account = getAccountById(accountId);
         account.deposit(senderId, amount, message, date);
     }
 
     // withdraw money from specified account
-    public void withdraw(String accountId, double amount, String message, Date date) throws Exception {
+    public void withdraw(String accountId, double amount, String message, LocalDate date) throws Exception {
         Account account = getAccountById(accountId);
         account.withdraw(amount, date);
     }
 
     // transfer money between accounts; the actual account and a target account
-    public void transfer(String accountId, String targetAccountId, double amount, String message, Date date) throws Exception {
+    public void transfer(String accountId, String targetAccountId, double amount, String message, LocalDate date) throws Exception {
         Account account = getAccountById(accountId);
         Account targetAccount = getAccountById(targetAccountId);
 
