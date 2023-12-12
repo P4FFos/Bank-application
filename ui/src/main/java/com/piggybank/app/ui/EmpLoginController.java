@@ -44,7 +44,7 @@ public class EmpLoginController {
                 root = loader.load();
 
                 EmpMainController controller = loader.getController();
-                controller.initializeEmpoyeeSection("Emp123", userId);
+                controller.initializeEmployeeSection("Emp123", userId);
                 controller.fillcustomers();
 
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -109,7 +109,7 @@ public class EmpMainController {
         root = loader.load();
 
         EmpCustomerInfoController controller = loader.getController();
-        controller.displayCurrentCustomer(customerID, customerName, customerSSN);
+        //controller.displayCurrentCustomer(customerID, customerName, customerSSN);
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -139,7 +139,7 @@ public class EmpMainController {
         stage.show();
     }
 
-    public void initializeEmpoyeeSection(String id, String name){
+    public void initializeEmployeeSection(String id, String name){
         empIdLabel.setText(id);
         empNameLabel.setText(name);
     }

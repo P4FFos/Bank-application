@@ -1,6 +1,6 @@
 package com.piggybank.app.backend.customers;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Transaction {
     // attributes for Transaction class
@@ -8,14 +8,15 @@ public class Transaction {
     private String senderAccountId;
     private double amount;
     private String message;
-    private Date date;
+    private LocalDate date;
 
     // Constructor for Transaction class
-    public Transaction(String receiverAccountId, String senderAccountId, double amount, String message, Date date) {
+    public Transaction(String receiverAccountId, String senderAccountId, double amount, String message, LocalDate date) {
         this.receiverAccountId = receiverAccountId;
         this.senderAccountId = senderAccountId;
         this.amount = amount;
         this.message = message;
+        this.date = date;
     }
 
     // getReceiverAccountId method

@@ -16,12 +16,11 @@ public class ContactCard {
         this.city = city;
     }
 
-
     public String getEmail() {
         return email;
     }
 
-    public void setEmail() {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -29,15 +28,15 @@ public class ContactCard {
         return phoneNumber;
     }
 
-    public void setPhoneNumber() {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAddress() {
+    public String getStreetAddress() {
         return streetAddress;
     }
 
-    public void setStreetAddress() {
+    public void setStreetAddress(String streetAddress) {
         this.streetAddress = streetAddress;
     }
 
@@ -45,7 +44,7 @@ public class ContactCard {
         return zipCode;
     }
 
-    public void setZipCode() {
+    public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }
 
@@ -53,7 +52,7 @@ public class ContactCard {
         return city;
     }
 
-    public void setCity() {
+    public void setCity(String city) {
         this.city = city;
     }
     
