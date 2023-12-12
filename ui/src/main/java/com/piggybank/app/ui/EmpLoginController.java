@@ -34,25 +34,28 @@ public class EmpLoginController {
 
     public void login(ActionEvent event) throws Exception {
         //do a try-catch. if exception -> display exception message in terminal (for now)
+        try {
+            Bank bank = UIMain.getBank();
+            userId = usernameTextField.getText();
+            password = passwordField.getText();
 
-        Bank bank = UIMain.getBank();
-        userId = usernameTextField.getText();
-        password = passwordField.getText();
+            if (bank.verifyEmployee(userId, password)) { //using method from bank
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
+                root = loader.load();
 
-        if(bank.verifyEmployee(userId, password)){ //using method from bank
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
-            root = loader.load();
+                EmpMainController controller = loader.getController();
+                controller.initializeEmpoyeeSection("Emp123", userId);
+                controller.fillcustomers();
 
-            EmpMainController controller = loader.getController();
-            controller.initializeEmpoyeeSection("Emp123", userId);
-            controller.fillcustomers();
-
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+        } catch (Exception e) {
+            // Show error message or summon pop-up window
+            e.printStackTrace();
         }
-
     }
 }
 
