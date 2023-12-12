@@ -8,6 +8,7 @@ import com.piggybank.app.backend.exceptions.AccountNotFoundException;
 import com.piggybank.app.backend.customers.Customer;
 import com.piggybank.app.backend.customers.Transaction;
 import com.piggybank.app.backend.employees.Employee;
+import com.piggybank.app.backend.exceptions.PasswordException;
 import com.piggybank.app.backend.utils.ContactCard;
 import com.piggybank.app.backend.utils.IdGenerator;
 
@@ -178,16 +179,16 @@ public class Bank {
     }
 
     //verify customer login information:
-    public boolean verifyCustomer(String userId, String password) throws Exception {
+    public boolean verifyCustomer(String userId, String password) throws PasswordException {
         boolean correctUserId = false;
         boolean correctPassword = false;
         if (!customers.containsKey(userId)) {
-            throw new Exception("Invalid user ID or password. Please try again.");
+            throw new PasswordException("Invalid user ID or password. Please try again.");
         } else {
             correctUserId = true;
             Customer customer = customers.get(userId);
             if (!customer.getPassword().equals(password)) {
-                throw new Exception("Invalid user ID or password. Please try again.");
+                throw new PasswordException("Invalid user ID or password. Please try again.");
             } else {
                 correctPassword = true;
             }
@@ -196,16 +197,16 @@ public class Bank {
     }
 
     //verify employee login information:
-    public boolean verifyEmployee(String userId, String password) throws Exception {
+    public boolean verifyEmployee(String userId, String password) throws PasswordException {
         boolean correctUserId = false;
         boolean correctPassword = false;
         if (!employees.containsKey(userId)) {
-            throw new Exception("Invalid user ID or password. Please try again.");
+            throw new PasswordException("Invalid user ID or password. Please try again.");
         } else {
             correctUserId = true;
             Employee employee = employees.get(userId);
             if (!employee.getPassword().equals(password)) {
-                throw new Exception("Invalid user ID or password. Please try again.");
+                throw new PasswordException("Invalid user ID or password. Please try again.");
             } else {
                 correctPassword = true;
             }

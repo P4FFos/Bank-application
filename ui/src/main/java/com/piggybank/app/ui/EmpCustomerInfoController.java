@@ -3,6 +3,7 @@ package com.piggybank.app.ui;
 import com.piggybank.app.backend.customers.Customer;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
+import com.piggybank.app.backend.exceptions.PasswordException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -97,7 +98,7 @@ public class EmpCustomerInfoController extends EmpMainController {
             passwordField.setText(newPassword);
             currentCustomer.changePassword(newPassword);
             passwordField.setEditable(false);
-        } catch (Exception passwordException) {
+        } catch (PasswordException passwordException) {
             System.out.println("Password must be at least 8 characters and include uppercase letters and numbers.");
         }
         //If the employee has checked the customer's id in real life,
