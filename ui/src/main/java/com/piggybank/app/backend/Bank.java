@@ -80,8 +80,8 @@ public class Bank {
                     }
                 }
             }
-            // If a string has length 6 it is a userId, return Customer based on Id
-        } else if (inputString.length() == 6) {
+            // If a string has length 4 it is a userId, return Customer based on ID
+        } else if (inputString.length() == 4) {
             return  customers.get(inputString);
         }
         throw new NoSuchElementException("Customer not found by ID or SSN.");

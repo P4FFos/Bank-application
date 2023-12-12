@@ -27,13 +27,13 @@ public class BackendMain {
                 "8801011122",
                 "John",
                 "Doe",
-                "password",
+                "Password1",
                 CCJohnD);
         piggyBank.createCustomerPrivate(
                 "8801013344",
                 "Jane",
                 "Doe",
-                "password",
+                "Password22",
                 CCJaneD);
 
         piggyBank.createAccount("C001", "Daily account");
@@ -52,9 +52,11 @@ public class BackendMain {
 
         // Two ways of operating, either in Bank methods or digging through methods trees
         //System.out.println(piggyBank.getCustomer(janeDoe).getAccount(janeDoeAccount1).getTransactionHistory());
-        System.out.println(piggyBank.getTransactionHistory("a000000003"));
-        Customer customer_found = piggyBank.getCustomerByIdOrSSN("C00001");
-        piggyBank.getCity(customer_found);
+        System.out.println(piggyBank.getTransactionHistory("A00003"));
+
+        // Print city of userId C001
+        Customer customer_found = piggyBank.getCustomerByIdOrSSN("C001");
+        System.out.println(piggyBank.getCity(customer_found));
 
     }
 }
