@@ -43,9 +43,9 @@ public class AddCustomerController extends EmpMainController {
     @FXML
     private PasswordField passwordField;
 
-    public void addCustomer(){ // saveNewCustomerButton
-        //throw exception if fields not filled out properly or if there are any empty fields
+    //-----------------METHODS THAT NEED FURTHER IMPLEMENTATION-----------
 
+    public void addCustomer(){ // saveNewCustomerButton
         companyNameField.setEditable(false);
         firstNameField.setEditable(false);
         lastNameField.setEditable(false);
@@ -60,18 +60,28 @@ public class AddCustomerController extends EmpMainController {
         saveNewCustomerButton.setVisible(false);
 
         if(privateCustomerCheckBox.isSelected()){
-            //bank.createPrivateCustomer()with arguments (addPrivateCustomer()??)
+            //try:
+            //use method in bank to create a CustomerPrivate.
+            //get arguments from corresponding TextFields.
+            //catch: if there are empty fields or if password is invalid
+
         } else if(corporateCustomerCheckBox.isSelected()){
-            //bank.createCorporateCustomewr() with arguments
+            //try:
+            //use method in bank to create a CustomerCorporate.
+            //get arguments from corresponding TextFields.
+            //catch: if there are empty fields or if password is invalid
         }
 
         privateCustomerCheckBox.setVisible(false);
         corporateCustomerCheckBox.setVisible(false);
         onSavePane.setVisible(true);
         //newCustomerIdLabel.setText(bank.getCurrentCustomer.getId()); or whatever method applies
+        //Tanya will create logic for setting currentCustomer to the newly created customer
 
     }
 
+
+    //-------------------FINISHED METHODS------------------------
     public void togglePrivate(){ //privateCustomerCheckBox
         privateCustomerAnchorPane.setVisible(true);
         corporateCustomerAnchorPane.setVisible(false);

@@ -23,10 +23,7 @@ public class StartController {
     private Scene scene;
 
 
-    public void employeeLogin(ActionEvent event) throws IOException { // employeeLoginButton
-        //These lines should only be executed if there exists an employee with the entered userid
-        //and if that userid matches the entered password.
-        //Use methods from bank that handle this.
+    public void employeeLogin(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginScene.fxml"));
         root = loader.load();
 
@@ -36,9 +33,8 @@ public class StartController {
         stage.show();
     }
 
-    public void customerLogin(ActionEvent event){ // customerLoginButton
-        //Make this similar to employeeLogin but connect it to customer start page and logic for
-        //verifying customer.
+    public void customerLogin(ActionEvent event){
+        //Tanya will connect to customer login
         System.out.println("Customer login not available yet.");
     }
 
