@@ -13,6 +13,16 @@ public class CustomerCorporate extends Customer {
         this.companyName = companyName;
     }
 
+    // retrieve company name
+    public String getCompanyName() {
+        return this.companyName;
+    }
+
+    // retrieve organization number
+    public String getOrgNumber() {
+        return this.orgNumber;
+    }
+
     // equals method to check if two Corporate Customers
     // are equal by same user ID
     public boolean equals(CustomerCorporate anotherObject) {

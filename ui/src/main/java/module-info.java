@@ -1,6 +1,8 @@
 module com.piggybank.app.ui {
     requires javafx.controls;
     requires javafx.fxml;
+    requires com.google.gson;
+    requires com.fasterxml.jackson.databind;
 
 
     opens com.piggybank.app.ui to javafx.fxml;

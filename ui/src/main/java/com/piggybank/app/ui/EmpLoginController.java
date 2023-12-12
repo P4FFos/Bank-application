@@ -21,10 +21,8 @@ public class EmpLoginController {
     @FXML
     private Button loginButton;
 
-    //..............................................................
+    //.................VARIABLES.............................................
 
-    private boolean passwordValid;
-    private boolean userIdValid;
     private String password;
     private String userId;
     private Stage stage;
@@ -35,24 +33,29 @@ public class EmpLoginController {
     //..........................METHODS.............................
 
     public void login(ActionEvent event) throws Exception {
-        Bank bank = UIMain.getBank();
-        userId = usernameTextField.getText();
-        password = passwordField.getText();
+        //do a try-catch. if exception -> display exception message in terminal (for now)
+        try {
+            Bank bank = UIMain.getBank();
+            userId = usernameTextField.getText();
+            password = passwordField.getText();
 
-        if(bank.verifyEmployee(userId, password)){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
-            root = loader.load();
+            if (bank.verifyEmployee(userId, password)) { //using method from bank
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
+                root = loader.load();
 
-            EmpMainController controller = loader.getController();
-            controller.initializeEmpoyeeSection("Emp123", userId);
-            controller.fillcustomers();
+                EmpMainController controller = loader.getController();
+                controller.initializeEmpoyeeSection("Emp123", userId);
+                controller.fillcustomers();
 
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+        } catch (Exception e) {
+            // Show error message or summon pop-up window
+            e.printStackTrace();
         }
-
     }
 }
 
