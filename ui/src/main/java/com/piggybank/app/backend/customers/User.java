@@ -47,5 +47,9 @@ public abstract class User {
         }
     }
 
+    public void setStreet(String newStreet) {
+        contactInfo.setStreetAddress();
+    }
+
     //create methods for updating contact info (via forwarding from ContactCard once those methods are in place)
 }

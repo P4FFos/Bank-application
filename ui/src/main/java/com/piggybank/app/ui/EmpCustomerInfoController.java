@@ -75,7 +75,7 @@ public class EmpCustomerInfoController extends EmpMainController {
     public void setNewStreet(){ //saveNewStreetButton
         String newStreet = streetField.getText();
         streetField.setText(newStreet);
-        currentCustomer.setStreet(newStreet); //make sure there is a method in Customer "setStreet(String street)" that uses forwarding to reuse the corresponding method in ContactCard. If no such method exists, create it.
+        currentCustomer.setStreet(newStreet);
         streetField.setEditable(false);
     }
     //implement the "setNew" methods the same way as setNewStreet() and create the necessary setters in Customer and ContactCard
