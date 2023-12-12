@@ -50,12 +50,12 @@ public abstract class User {
 
     // updates the user's street address:
     public void setStreet(String newStreet) {
-        contactInfo.setStreetAddress();
+        contactInfo.setStreetAddress(newStreet);
     }
 
     // updates the user's email:
     public void setEmail(String newEmail) {
-        contactInfo.setEmail();
+        contactInfo.setEmail(newEmail);
     }
 
     //create methods for updating contact info (via forwarding from ContactCard once those methods are in place)

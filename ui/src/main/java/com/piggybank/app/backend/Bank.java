@@ -1,12 +1,8 @@
 package com.piggybank.app.backend;
 
-import com.piggybank.app.backend.customers.Account;
-import com.piggybank.app.backend.customers.CustomerCorporate;
-import com.piggybank.app.backend.customers.CustomerPrivate;
+import com.piggybank.app.backend.customers.*;
 import com.piggybank.app.backend.customers.debts.Credit;
 import com.piggybank.app.backend.exceptions.AccountNotFoundException;
-import com.piggybank.app.backend.customers.Customer;
-import com.piggybank.app.backend.customers.Transaction;
 import com.piggybank.app.backend.employees.Employee;
 import com.piggybank.app.backend.exceptions.PasswordException;
 import com.piggybank.app.backend.utils.ContactCard;
@@ -25,11 +21,11 @@ public class Bank {
 
     public Bank(ContactCard contactInfo) {
         this.contactInfo = contactInfo;
-        customers = new HashMap<String, Customer>();
-        employees = new HashMap<String, Employee>();
-        employeeIdCounter = "e00000";
-        customerIdCounter = "c00000";
-        accountIdCounter = "a000000000";
+        customers = new HashMap<>();
+        employees = new HashMap<>();
+        employeeIdCounter = "E000";
+        customerIdCounter = "C000";
+        accountIdCounter = "A00000";
     }
 
     // To simplify instantiation the Bank class
@@ -37,77 +33,23 @@ public class Bank {
         contactInfo = null;
         customers = new HashMap<>();
         employees = new HashMap<>();
-        employeeIdCounter = "e00000";
-        customerIdCounter = "c00000";
-        accountIdCounter = "a000000000";
+        employeeIdCounter = "E000";
+        customerIdCounter = "C000";
+        accountIdCounter = "A00000";
     }
 
     //create methods for updating the bank's contact card info (via forwarding from ContactCard once those methods are in place)
     //public void updateAddress(String newAddress){} ...etc
 
-    public void setEmployeeIdCounter(String employeeId) {employeeIdCounter = employeeId;};
-    public void setCustomerIdCounter(String customerId) {customerIdCounter = customerId;};
-    public void setAccountIdCounter(String accountId) {accountIdCounter = accountId;};
 
-    //get bank information:
-    public ContactCard getBankInfo() {
-        return this.contactInfo;
-    }
-
-    // create new private customer and add it to the bank's hashmap:
-    public void createCustomerPrivate(String SSN, String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
-        // Generates a new ID for a customer, then updates customerIdCounter
-        String userId = IdGenerator.generateCustomerID(customerIdCounter);
-        setCustomerIdCounter(userId);
-
-        CustomerPrivate newCustomer = new CustomerPrivate(SSN, firstName, lastName, userId, password, contactCard);
-        this.customers.put(userId, newCustomer);
-    }
-
-    // A placeholder method for createCustomerPrivate. IdGenerator needs updated logic (check generateAccountId) /Marcus
-    public void createCustomerPrivate(String userId, String SSN, String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
-        CustomerPrivate newCustomer = new CustomerPrivate(SSN, firstName, lastName, userId, password, contactCard);
-        this.customers.put(userId, newCustomer);
-    }
-
-    // create new corporate customer and add it to the bank's hashmap:
-    public void createCustomerCorporate(String orgNumber, String companyName, String userId, String password, ContactCard contactCard) throws Exception {
-        CustomerCorporate newCustomer = new CustomerCorporate(orgNumber, companyName, userId, password, contactCard);
-        this.customers.put(userId, newCustomer);
-    }
-
-    // remove customer from bank:
-    public void removeCustomer(String employeeID, String customerID) {
-        this.customers.remove(customerID);
-    }
-
-
-    // creates a new account for customer:
-    public void createAccount(String userID, String accountName) throws Exception {
-        Customer customer = customers.get(userID);
-
-        //Generates accountId
-        String accountId = IdGenerator.generateAccountId(accountIdCounter);
-        setAccountIdCounter(accountId);
-
-        Account newAccount = new Account(accountId, accountName);
-        customer.addAccount(newAccount);
-    }
+    //-----------------------GETTERS-----------------------
+    public String getCustomerIdCounter() {return customerIdCounter;}
+    public String getEmployeeIdCounter() {return employeeIdCounter;}
+    public String getAccountIdCounter() {return accountIdCounter;}
 
     //retrieve customer information:
     public Customer getCustomer(String userId) {
         return this.customers.get(userId);
-    }
-
-    //add new employee to bank:
-    public void createEmployee(String userId, String password, ContactCard contactCard) throws Exception {
-		Employee newEmployee = new Employee(userId, password, contactCard);
-		this.employees.put(userId, newEmployee);
-	}
-
-    //remove employee from bank:
-    public void removeEmployee(String employeeId) {
-        this.employees.remove(employeeId);
     }
 
     /* iterates through HashMap of customers to find the owner of specified account,
@@ -138,12 +80,112 @@ public class Bank {
                     }
                 }
             }
-        // If a string has length 6 it is a userId, return Customer based on Id
+            // If a string has length 6 it is a userId, return Customer based on Id
         } else if (inputString.length() == 6) {
             return  customers.get(inputString);
         }
         throw new NoSuchElementException("Customer not found by ID or SSN.");
     }
+
+    // returns a string of all transactions in specified account
+    public ArrayList<Transaction> getTransactionHistory(String accountId) throws Exception {
+        Account account = getAccountById(accountId);
+        return account.getTransactionHistory();
+    }
+
+    // returns the balance of the specified account
+    public double getBalance(String accountId) throws Exception {
+        Account account = getAccountById(accountId);
+        return account.getBalance();
+    }
+
+    //get bank information:
+    public ContactCard getBankInfo() {
+        return contactInfo;
+    }
+
+    // below methods get information from user's ContactCard
+    public ContactCard getContactInfo(User user) {return user.getContactInfo();}
+    public String getEmail(User user) {return user.getEmail();}
+    public String getPhoneNumber(User user) {return user.getPhoneNumber();}
+    public String getStreetAddress(User user) {return user.getStreet();}
+    public int getZipCode(User user) {return user.getZipCode();}
+    public String getCity(User user) {return user.getCity();}
+
+
+
+    //-----------------------SETTERS-----------------------
+    public void setCustomerIdCounter(String customerId) {customerIdCounter = customerId;};
+    public void setEmployeeIdCounter(String employeeId) {employeeIdCounter = employeeId;};
+    public void setAccountIdCounter(String accountId) {accountIdCounter = accountId;};
+    public void setStreetAddress(String newStreet, User user) {user.setStreet(newStreet);}
+    public void setZipCode(int newZipCode, User user) {user.setZipCode(newZipCode);}
+    public void setPhoneNumber(String newPhoneNr, User user) {user.setPhoneNumber(newPhoneNr);}
+    public void setCity(String newCity, User user) {user.setCity(newCity);}
+
+
+
+    //-----------------------CREATOR METHODS-----------------------
+
+    // creates new private customer and add it to customers hashmap:
+    public void createCustomerPrivate(String SSN, String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
+        // Generates a new ID for a customer, then updates customerIdCounter
+        String userId = IdGenerator.generateCustomerID(customerIdCounter);
+        setCustomerIdCounter(userId);
+
+        CustomerPrivate newCustomer = new CustomerPrivate(SSN, firstName, lastName, userId, password, contactCard);
+        this.customers.put(userId, newCustomer);
+    }
+    // creates new corporate customer and add it to customers hashmap:
+    public void createCustomerCorporate(String orgNumber, String companyName, String password, ContactCard contactCard) throws Exception {
+        // Generates a new ID for a corporate customer, then updates customerIdCounter
+        String userId = IdGenerator.generateCustomerID(customerIdCounter);
+        setCustomerIdCounter(userId);
+
+        CustomerCorporate newCustomer = new CustomerCorporate(orgNumber, companyName, userId, password, contactCard);
+        this.customers.put(userId, newCustomer);
+    }
+
+    // creates new private employee and add it to employees hashmap:
+    public void createEmployee(String password, ContactCard contactCard) throws Exception {
+        // Generates a new ID for an employee, then updates employeeIdCounter
+        String userId = IdGenerator.generateEmployeeID(employeeIdCounter);
+        setEmployeeIdCounter(userId);
+
+        Employee newEmployee = new Employee(userId, password, contactCard);
+        this.employees.put(userId, newEmployee);
+    }
+
+    // creates a new account for customer:
+    public void createAccount(String userID, String accountName) throws Exception {
+        Customer customer = customers.get(userID);
+
+        //Generates accountId
+        String accountId = IdGenerator.generateAccountId(accountIdCounter);
+        setAccountIdCounter(accountId);
+
+        Account newAccount = new Account(accountId, accountName);
+        customer.addAccount(newAccount);
+    }
+
+    //-----------------------REMOVAL METHODS-----------------------
+    // remove customer from bank:
+    public void removeCustomer(String customerId) {
+        this.customers.remove(customerId);
+    }
+
+    //remove employee from bank:
+    public void removeEmployee(String employeeId) {
+        this.employees.remove(employeeId);
+    }
+
+    // removes account from customer
+    public void removeAccount(String customerId, String accountToRemove) {
+        customers.get(customerId).removeAccount(accountToRemove);
+    }
+
+
+    //-----------------------VARIOUS-----------------------
 
     // deposits money into specified account
     public void deposit(String senderId, String accountId, double amount, String message, Date date) throws Exception {
@@ -164,18 +206,6 @@ public class Bank {
 
         account.withdraw(amount, date);
         targetAccount.deposit(accountId, amount, message, date);
-    }
-
-    // returns a string of all transactions in specified account
-    public ArrayList<Transaction> getTransactionHistory(String accountId) throws Exception {
-        Account account = getAccountById(accountId);
-        return account.getTransactionHistory();
-    }
-
-    // returns the balance of the specified account
-    public double getBalance(String accountId) throws Exception {
-        Account account = getAccountById(accountId);
-        return account.getBalance();
     }
 
     //verify customer login information:

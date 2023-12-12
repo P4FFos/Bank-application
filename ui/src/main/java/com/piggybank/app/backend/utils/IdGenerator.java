@@ -13,7 +13,7 @@ public class IdGenerator {
         if (nextID > MAX_CUSTOMER_ID) {
             throw new Exception("Customer ID out of range");
         } else {
-            int paddingSize = 4 - Integer.toString(nextID).length();
+            int paddingSize = lastCustomerID.length() - Integer.toString(nextID).length();
             return String.format("C%0" + paddingSize + "d", nextID);
         }
     }
@@ -25,7 +25,7 @@ public class IdGenerator {
 
         if (nextID > MAX_EMPLOYEE_ID)
             throw new Exception("Employee ID out of range");
-        int paddingSize = 4 - Integer.toString(nextID).length();
+        int paddingSize = lastEmployeeID.length() - Integer.toString(nextID).length();
         return String.format("E%0" + paddingSize + "d", nextID);
     }
 
@@ -40,7 +40,7 @@ public class IdGenerator {
         }
 
         // Checks length of integer, used to pad with this amount of zeros
-        int paddingSize = 6 - Integer.toString(nextId).length();
+        int paddingSize = lastAccountId.length() - Integer.toString(nextId).length();
 
         // E.g. A%04d would give "A0000" plus int of nextID
         return String.format("A%0" + paddingSize + "d", nextId);
