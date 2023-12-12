@@ -85,7 +85,10 @@ public class EmpCustomerInfoController extends EmpMainController {
 
     }
     public void setNewEmail(){ //saveNewEmailButton
-
+        String newEmail = emailField.getText();
+        emailField.setText(newEmail);
+        currentCustomer.setEmail(newEmail);
+        emailField.setEditable(false);
     }
     public void setNewPassword(){ //saveNewPasswordButton
         //If the employee has checked the customer's id in real life,
