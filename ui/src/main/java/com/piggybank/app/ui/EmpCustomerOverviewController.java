@@ -39,32 +39,33 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     @FXML
     private ListView<String> transactionsListView; //will be list of the current account's transactions
 
-    //--------------
-    //Placeholders: current customer should be of type Customer when possible
+    //----------------VARIABLES------------------
+    //Placeholders. Use "private Customer currentCustomer;" instead.
     private String currentCustomerName;
     private String currentCustomerSSN;
     private String currentCustomerId;
-    //______________
-    //Placeholder: will be derived from current customer when possible
+    //Change to HashMap<String, Account> and initialize as currentCustomer.getAccounts(). If no such method exists in Customer, create it and make it return the hashmap of accounts.
     private String[] accounts = {"main_account", "savings", "emergency", "travel"};
-    //--------------
+    //Change type to Account, don't initialize.
     private String currentAccount = "";
 
-    public void initialize(URL arg0, ResourceBundle arg1){
+    //-----------------METHODS-------------------
+
+    public void displayCurrentCustomer(String id, String name, String ssn){ //change parameter to "Customer currentCustomer" and modify implementation accordingly
+        customerIdLabel.setText(id);
+        customerSSNLabel.setText(ssn);
+        customerNameLabel.setText(name);
+    }
+
+    public void initialize(URL arg0, ResourceBundle arg1){ //Populates accountsListView with elements in accounts, selection "gets" an account
         accountsListView.getItems().addAll(accounts);
         accountsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
             @Override
             public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2){
                 currentAccount = accountsListView.getSelectionModel().getSelectedItem();
-                System.out.println("Current account: " + currentAccount);
+                //System.out.println("Current account: " + currentAccount);
             }
         });
-    } //Initializes accountsListView with elements in accounts, selection sets currentAccount
-
-    public void displayCurrentCustomer(String id, String name, String ssn){ //change parameter to Customer and modify implementation accordingly
-        customerIdLabel.setText(id);
-        customerSSNLabel.setText(ssn);
-        customerNameLabel.setText(name);
     }
 
     //--------------- METHODS CONNECTED TO FXML ELEMENTS -------------------------

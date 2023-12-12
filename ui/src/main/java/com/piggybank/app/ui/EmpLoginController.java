@@ -21,10 +21,8 @@ public class EmpLoginController {
     @FXML
     private Button loginButton;
 
-    //..............................................................
+    //.................VARIABLES.............................................
 
-    private boolean passwordValid;
-    private boolean userIdValid;
     private String password;
     private String userId;
     private Stage stage;
@@ -35,11 +33,13 @@ public class EmpLoginController {
     //..........................METHODS.............................
 
     public void login(ActionEvent event) throws Exception {
+        //do a try-catch. if exception -> display exception message in terminal (for now)
+
         Bank bank = UIMain.getBank();
         userId = usernameTextField.getText();
         password = passwordField.getText();
 
-        if(bank.verifyEmployee(userId, password)){
+        if(bank.verifyEmployee(userId, password)){ //using method from bank
             FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
             root = loader.load();
 

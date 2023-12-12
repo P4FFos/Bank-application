@@ -1,5 +1,7 @@
 package com.piggybank.app.ui;
 
+import com.piggybank.app.backend.customers.Customer;
+import com.piggybank.app.backend.customers.CustomerPrivate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -49,9 +51,12 @@ public class EmpCustomerInfoController extends EmpMainController {
     @FXML
     private TextField emailField;
 
+    private Customer currentCustomer;
+
     public void streetEditable(){ //editStreetButton
         streetField.setEditable(true);
     }
+    //implement the "Editable" methods the same way as streetEditable() for their corresponding fields
     public void zipEditable(){ //editZipButton
 
     }
@@ -70,9 +75,10 @@ public class EmpCustomerInfoController extends EmpMainController {
     public void setNewStreet(){ //saveNewStreetButton
         String newStreet = streetField.getText();
         streetField.setText(newStreet);
-        //currentCustomer.setStreet(newStreet);
+        currentCustomer.setStreet(newStreet); //make sure there is a method in Customer "setStreet(String street)" that uses forwarding to reuse the corresponding method in ContactCard. If no such method exists, create it.
         streetField.setEditable(false);
     }
+    //implement the "setNew" methods the same way as setNewStreet() and create the necessary setters in Customer and ContactCard
     public void setNewZip(){ //saveNewZipButton
 
     }
@@ -95,6 +101,7 @@ public class EmpCustomerInfoController extends EmpMainController {
     public void displayCurrentCustomer(String id, String name, String ssn){ //change parameter to Customer and modify implementation accordingly
         customerIdLabel.setText(id);
         customerNameLabel.setText(name);
+        //Tanya will add a label in the UI for SSN
     }
 
 
