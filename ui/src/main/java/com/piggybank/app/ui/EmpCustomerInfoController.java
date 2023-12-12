@@ -66,12 +66,8 @@ public class EmpCustomerInfoController extends EmpMainController {
     public void phoneEditable(){ //editPhoneButton
 
     }
-    public void emailEditable(){ //editEmailButton
-
-    }
-    public void passwordEditable(){ //editPasswordButton
-
-    }
+    public void emailEditable() {emailField.setEditable(true);} //editEmailButton
+    public void passwordEditable(){passwordField.setEditable(true);} //editPasswordButton
     public void setNewStreet(){ //saveNewStreetButton
         String newStreet = streetField.getText();
         streetField.setText(newStreet);
