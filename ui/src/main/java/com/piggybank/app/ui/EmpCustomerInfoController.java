@@ -1,7 +1,9 @@
 package com.piggybank.app.ui;
 
 import com.piggybank.app.backend.customers.Customer;
+import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
+import com.piggybank.app.backend.exceptions.PasswordException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -66,16 +68,12 @@ public class EmpCustomerInfoController extends EmpMainController {
     public void phoneEditable(){ //editPhoneButton
 
     }
-    public void emailEditable(){ //editEmailButton
-
-    }
-    public void passwordEditable(){ //editPasswordButton
-
-    }
+    public void emailEditable() {emailField.setEditable(true);} //editEmailButton
+    public void passwordEditable(){passwordField.setEditable(true);} //editPasswordButton
     public void setNewStreet(){ //saveNewStreetButton
         String newStreet = streetField.getText();
         streetField.setText(newStreet);
-        currentCustomer.setStreet(newStreet); //make sure there is a method in Customer "setStreet(String street)" that uses forwarding to reuse the corresponding method in ContactCard. If no such method exists, create it.
+        currentCustomer.setStreet(newStreet);
         streetField.setEditable(false);
     }
     //implement the "setNew" methods the same way as setNewStreet() and create the necessary setters in Customer and ContactCard
@@ -89,19 +87,38 @@ public class EmpCustomerInfoController extends EmpMainController {
 
     }
     public void setNewEmail(){ //saveNewEmailButton
-
+        String newEmail = emailField.getText();
+        emailField.setText(newEmail);
+        currentCustomer.setEmail(newEmail);
+        emailField.setEditable(false);
     }
-    public void setNewPassword(){ //saveNewPasswordButton
+    public void setNewPassword() { //saveNewPasswordButton
+        try {
+            String newPassword = passwordField.getText();
+            passwordField.setText(newPassword);
+            currentCustomer.changePassword(newPassword);
+            passwordField.setEditable(false);
+        } catch (PasswordException passwordException) {
+            System.out.println("Password must be at least 8 characters and include uppercase letters and numbers.");
+        }
         //If the employee has checked the customer's id in real life,
         //they don't need to enter the old password to be able to update
         //it. It could be a service performed by a bank employee for a
         //customer who has forgotten their password.
     }
 
-    public void displayCurrentCustomer(String id, String name, String ssn){ //change parameter to Customer and modify implementation accordingly
-        customerIdLabel.setText(id);
-        customerNameLabel.setText(name);
-        //Tanya will add a label in the UI for SSN
+    public void displayCurrentCustomer(Customer currentCustomer){
+        customerIdLabel.setText(currentCustomer.getUserId());
+        if (currentCustomer instanceof CustomerPrivate) {
+            CustomerPrivate currentPrivate = (CustomerPrivate) currentCustomer;
+            customerNameLabel.setText(currentPrivate.getName());
+            customerSsnLabel.setText(currentPrivate.getSSN());
+        } else if (currentCustomer instanceof CustomerCorporate) {
+            CustomerCorporate currentCorporate = (CustomerCorporate) currentCustomer;
+            customerNameLabel.setText(currentCorporate.getCompanyName());
+            customerSsnLabel.setText(currentCorporate.getOrgNumber());
+        }
+
     }
 
 
