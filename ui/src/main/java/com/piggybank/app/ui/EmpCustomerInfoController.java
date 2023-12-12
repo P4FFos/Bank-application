@@ -90,7 +90,15 @@ public class EmpCustomerInfoController extends EmpMainController {
         currentCustomer.setEmail(newEmail);
         emailField.setEditable(false);
     }
-    public void setNewPassword(){ //saveNewPasswordButton
+    public void setNewPassword() { //saveNewPasswordButton
+        try {
+            String newPassword = passwordField.getText();
+            passwordField.setText(newPassword);
+            currentCustomer.changePassword(newPassword);
+            passwordField.setEditable(false);
+        } catch (Exception passwordException) {
+            System.out.println("Password must be at least 8 characters and include uppercase letters and numbers.");
+        }
         //If the employee has checked the customer's id in real life,
         //they don't need to enter the old password to be able to update
         //it. It could be a service performed by a bank employee for a
