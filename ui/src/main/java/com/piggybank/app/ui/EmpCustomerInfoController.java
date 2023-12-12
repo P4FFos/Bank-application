@@ -1,6 +1,7 @@
 package com.piggybank.app.ui;
 
 import com.piggybank.app.backend.customers.Customer;
+import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -105,10 +106,18 @@ public class EmpCustomerInfoController extends EmpMainController {
         //customer who has forgotten their password.
     }
 
-    public void displayCurrentCustomer(String id, String name, String ssn){ //change parameter to Customer and modify implementation accordingly
-        customerIdLabel.setText(id);
-        customerNameLabel.setText(name);
-        //Tanya will add a label in the UI for SSN
+    public void displayCurrentCustomer(Customer currentCustomer){
+        customerIdLabel.setText(currentCustomer.getUserId());
+        if (currentCustomer instanceof CustomerPrivate) {
+            CustomerPrivate currentPrivate = (CustomerPrivate) currentCustomer;
+            customerNameLabel.setText(currentPrivate.getName());
+            customerSsnLabel.setText(currentPrivate.getSSN());
+        } else if (currentCustomer instanceof CustomerCorporate) {
+            CustomerCorporate currentCorporate = (CustomerCorporate) currentCustomer;
+            customerNameLabel.setText(currentCorporate.getCompanyName());
+            customerSsnLabel.setText(currentCorporate.getOrgNumber());
+        }
+
     }
 
 

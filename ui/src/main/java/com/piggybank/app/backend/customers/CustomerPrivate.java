@@ -15,6 +15,12 @@ public class CustomerPrivate extends Customer {
         this.SSN = SSN;
     }
 
+    // retrieve customer's full name
+    public String getName() {
+        return firstName + " " + lastName;
+    }
+
+    // retrieve customer's SSN
     public String getSSN() {
         return SSN;
     }
