@@ -33,5 +33,8 @@ public abstract class Customer extends User {
     public void removeAccount(String accountId) {
         this.accounts.remove(accountId);
     }
+
+    public void setZipCode(String newZip) {
+    }
 }
 
