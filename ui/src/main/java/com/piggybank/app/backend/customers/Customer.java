@@ -30,8 +30,11 @@ public abstract class Customer extends User {
     }
 
     // removeCustomer method
-    public void removeAccount(Account account) {
-        this.accounts.remove(account.getAccountId());
+    public void removeAccount(String accountId) {
+        this.accounts.remove(accountId);
+    }
+
+    public void setZipCode(String newZip) {
     }
 }
 

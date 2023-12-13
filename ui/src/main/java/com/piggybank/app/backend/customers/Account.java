@@ -1,8 +1,8 @@
 package com.piggybank.app.backend.customers;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 import com.piggybank.app.backend.customers.debts.Credit;
 import com.piggybank.app.backend.utils.TruncationUtil;
@@ -17,11 +17,10 @@ public class Account {
 
     // constructor for the account class, with initialised balance = 0
     public Account(String accountId, String accountName) {
-        this.transactions = new ArrayList<>();
         this.accountName = accountName;
         this.accountId = accountId;
         this.balance = 0.0;
-		this.transactions = new ArrayList<Transaction>();
+		this.transactions = new ArrayList<>();
 		this.credit = null;
     }
 
@@ -47,7 +46,7 @@ public class Account {
 
     // deposit methods, checks is the message is blank:
     // fill in message field with empty string
-    public void deposit(String senderAccountId, double amount, String message, Date date) {
+    public void deposit(String senderAccountId, double amount, String message, LocalDate date) {
         balance += TruncationUtil.truncate(amount);
         if (message.isBlank()) {
             Transaction withdraw = new Transaction("", senderAccountId, amount, "", date);
@@ -61,7 +60,7 @@ public class Account {
     // withdraw method, checks if balance is bigger or equal to the amount to be sent:
     // if bigger -> create new transaction and add it to the list
     // if lower -> throw exception
-    public void withdraw(double amount, Date date) throws Exception {
+    public void withdraw(double amount, LocalDate date) throws Exception {
         if (balance >= amount) {
             balance -= TruncationUtil.truncate(amount);
             Transaction withdraw = new Transaction("", "", amount, "", date);

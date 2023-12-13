@@ -60,16 +60,20 @@ public class EmpCustomerInfoController extends EmpMainController {
     }
     //implement the "Editable" methods the same way as streetEditable() for their corresponding fields
     public void zipEditable(){ //editZipButton
-
+        zipField.setEditable(true);
     }
     public void cityEditable(){ //editCityButton
-
+        cityField.setEditable(true);
     }
     public void phoneEditable(){ //editPhoneButton
-
+        phoneField.setEditable(true);
     }
-    public void emailEditable() {emailField.setEditable(true);} //editEmailButton
-    public void passwordEditable(){passwordField.setEditable(true);} //editPasswordButton
+    public void emailEditable(){ //editEmailButton
+        emailField.setEditable(true);
+    }
+    public void passwordEditable(){ //editPasswordButton
+        passwordField.setEditable(true);
+    }
     public void setNewStreet(){ //saveNewStreetButton
         String newStreet = streetField.getText();
         streetField.setText(newStreet);
@@ -78,13 +82,22 @@ public class EmpCustomerInfoController extends EmpMainController {
     }
     //implement the "setNew" methods the same way as setNewStreet() and create the necessary setters in Customer and ContactCard
     public void setNewZip(){ //saveNewZipButton
-
+        String newZip = zipField.getText();
+        zipField.setText(newZip);
+        currentCustomer.setZipCode(newZip);
+        zipField.setEditable(true);
     }
     public void setNewCity(){ //saveNewCityButton
-
+        String newCity = cityField.getText();
+        cityField.setText(newCity);
+        currentCustomer.setCity(newCity);
+        cityField.setEditable(true);
     }
     public void setNewPhone(){ //saveNewPhoneButton
-
+        String newPhone = phoneField.getText();
+        phoneField.setText(newPhone);
+        currentCustomer.setPhoneNumber(newPhone);
+        phoneField.setEditable(true);
     }
     public void setNewEmail(){ //saveNewEmailButton
         String newEmail = emailField.getText();

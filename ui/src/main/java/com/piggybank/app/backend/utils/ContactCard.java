@@ -5,10 +5,10 @@ public class ContactCard {
     private String email;
     private String phoneNumber;
     private String streetAddress;
-    private int zipCode;
+    private String zipCode;
     private String city;
 
-    public ContactCard(String email, String phoneNumber, String streetAddress, int zipCode, String city) {
+    public ContactCard(String email, String phoneNumber, String streetAddress, String zipCode, String city) {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.streetAddress = streetAddress;
@@ -16,12 +16,11 @@ public class ContactCard {
         this.city = city;
     }
 
-
     public String getEmail() {
         return email;
     }
 
-    public void setEmail() {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -29,31 +28,31 @@ public class ContactCard {
         return phoneNumber;
     }
 
-    public void setPhoneNumber() {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAddress() {
+    public String getStreetAddress() {
         return streetAddress;
     }
 
-    public void setStreetAddress() {
+    public void setStreetAddress(String streetAddress) {
         this.streetAddress = streetAddress;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode() {
-        this.zipCode = zipCode;
+    public void setZipCode(String newZip) {
+        this.zipCode = newZip;
     }
 
     public String getCity() {
         return city;
     }
 
-    public void setCity() {
+    public void setCity(String city) {
         this.city = city;
     }
     

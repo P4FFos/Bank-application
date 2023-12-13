@@ -37,6 +37,13 @@ public abstract class User {
         return this.password;
     }
 
+    // Getters for ContactCard information
+    public String getEmail() {return contactInfo.getEmail();}
+    public String getPhoneNumber() {return contactInfo.getPhoneNumber();}
+    public String getStreet() {return contactInfo.getStreetAddress();}
+    public String getZipCode() {return contactInfo.getZipCode();}
+    public String getCity() {return contactInfo.getCity();}
+
     // change password method which checks:
     // if new password length in bigger than 8 symbols,
     // if it contains at least one capital letter and at least one digit
@@ -48,15 +55,21 @@ public abstract class User {
         }
     }
 
+    // setters for ContactCard information
+    public void setEmail(String newEmail) {
+        contactInfo.setEmail(newEmail);
+    }
+    public void setPhoneNumber(String newPhoneNr) {contactInfo.setPhoneNumber(newPhoneNr);}
     // updates the user's street address:
     public void setStreet(String newStreet) {
-        contactInfo.setStreetAddress();
+        contactInfo.setStreetAddress(newStreet);
     }
+    public void setZipCode(String newZip) {contactInfo.setZipCode(newZip);}
+    public void setCity(String newCity) {contactInfo.setCity(newCity);}
 
-    // updates the user's email:
-    public void setEmail(String newEmail) {
-        contactInfo.setEmail();
-    }
+
+
+
 
     //create methods for updating contact info (via forwarding from ContactCard once those methods are in place)
 }
