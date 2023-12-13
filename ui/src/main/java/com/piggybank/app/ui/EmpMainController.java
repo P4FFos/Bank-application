@@ -1,5 +1,6 @@
 package com.piggybank.app.ui;
 
+import com.piggybank.app.backend.employees.Employee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -109,7 +110,7 @@ public class EmpMainController {
         root = loader.load();
 
         EmpCustomerInfoController controller = loader.getController();
-        controller.displayCurrentCustomer(customerID, customerName, customerSSN);
+        //controller.displayCurrentCustomer(customerID, customerName, customerSSN);
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -139,14 +140,9 @@ public class EmpMainController {
         stage.show();
     }
 
-    public void initializeEmpoyeeSection(String id, String name){
-        empIdLabel.setText(id);
-        empNameLabel.setText(name);
+    public void initializeEmployeeSection(){
+
+        //empIdLabel.setText(EmpMainController.?.getUserId());
     }
-
-
-
-
-
 
 }
