@@ -17,9 +17,9 @@ public class UIMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        ContactCard bankContactInfo = new ContactCard("employee@piggybank.com", "0701234567", "Oink Oink Alley", 35533, "Trufflesville");
+        ContactCard bankContactInfo = new ContactCard("employee@piggybank.com", "0701234567", "Oink Oink Alley", "35533", "Trufflesville");
         bank = new Bank(bankContactInfo);
-        ContactCard employeeContactCard = new ContactCard("moiraine@sedai.com", "0731234567", "White Tower", 77777, "Tar Valon");
+        ContactCard employeeContactCard = new ContactCard("moiraine@sedai.com", "0731234567", "White Tower", "77777", "Tar Valon");
         bank.createEmployee("11DRAGON", employeeContactCard);
 
         try {
