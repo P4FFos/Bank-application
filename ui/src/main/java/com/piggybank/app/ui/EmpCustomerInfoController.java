@@ -59,14 +59,14 @@ public class EmpCustomerInfoController extends EmpMainController {
         streetField.setEditable(true);
     }
     //implement the "Editable" methods the same way as streetEditable() for their corresponding fields
-    public void zipEditable(){ //editZipButton
-
+    public void zipEditable(){ //editZipButton 
+        zipField.setEditable(true);
     }
-    public void cityEditable(){ //editCityButton
-
+    public void cityEditable(){ //editCityButton 
+        cityField.setEditable(true);
     }
-    public void phoneEditable(){ //editPhoneButton
-
+    public void phoneEditable(){ //editPhoneButton 
+        phoneField.setEditable(true);
     }
     public void emailEditable() {emailField.setEditable(true);} //editEmailButton
     public void passwordEditable(){passwordField.setEditable(true);} //editPasswordButton
