@@ -1,5 +1,6 @@
 package com.piggybank.app.ui;
 
+import com.piggybank.app.backend.employees.Employee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -142,6 +143,7 @@ public class EmpMainController {
     public void initializeEmployeeSection(String id, String name){
         empIdLabel.setText(id);
         empNameLabel.setText(name);
+        //empIdLabel.setText(EmpMainController.?.getUserId());
     }
 
 
