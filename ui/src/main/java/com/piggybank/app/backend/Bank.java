@@ -112,7 +112,7 @@ public class Bank {
     public String getEmail(User user) {return user.getEmail();}
     public String getPhoneNumber(User user) {return user.getPhoneNumber();}
     public String getStreetAddress(User user) {return user.getStreet();}
-    public int getZipCode(User user) {return user.getZipCode();}
+    public String getZipCode(User user) {return user.getZipCode();}
     public String getCity(User user) {return user.getCity();}
 
     //get employee
@@ -126,7 +126,7 @@ public class Bank {
     public void setEmployeeIdCounter(String employeeId) {employeeIdCounter = employeeId;};
     public void setAccountIdCounter(String accountId) {accountIdCounter = accountId;};
     public void setStreetAddress(String newStreet, User user) {user.setStreet(newStreet);}
-    public void setZipCode(int newZipCode, User user) {user.setZipCode(newZipCode);}
+    public void setZipCode(String newZipCode, User user) {user.setZipCode(newZipCode);}
     public void setPhoneNumber(String newPhoneNr, User user) {user.setPhoneNumber(newPhoneNr);}
     public void setCity(String newCity, User user) {user.setCity(newCity);}
 

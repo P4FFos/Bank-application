@@ -11,14 +11,14 @@ public class BackendMain {
                 "johnd@student.gu.se",
                 "+46709876543",
                 "Kungsgatan 1",
-                41102,
+                "41102",
                 "Gothenburg");
 
         ContactCard CCJaneD = new ContactCard(
                 "janed@student.gu.se",
                 "+4670756634",
                 "Kungsgatan 1",
-                41102,
+                "41102",
                 "Gothenburg");
 
         Bank piggyBank = new Bank();
