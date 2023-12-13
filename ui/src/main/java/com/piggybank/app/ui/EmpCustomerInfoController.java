@@ -77,14 +77,20 @@ public class EmpCustomerInfoController extends EmpMainController {
         streetField.setEditable(false);
     }
     //implement the "setNew" methods the same way as setNewStreet() and create the necessary setters in Customer and ContactCard
-    public void setNewZip(){ //saveNewZipButton
-
+    public void setNewZip(){ //saveNewZipButton 
+        String newZip = zipField.getText();
+        zipField.setText(newZip);
+        zipField.setEditable(true);
     }
-    public void setNewCity(){ //saveNewCityButton
-
+    public void setNewCity(){ //saveNewCityButton 
+        String newCity = cityField.getText();
+        cityField.setText(newCity);
+        cityField.setEditable(true);
     }
-    public void setNewPhone(){ //saveNewPhoneButton
-
+    public void setNewPhone(){ //saveNewPhoneButton 
+        String newPhone = phoneField.getText();
+        phoneField.setText(newPhone);
+        phoneField.setEditable(true);
     }
     public void setNewEmail(){ //saveNewEmailButton
         String newEmail = emailField.getText();
