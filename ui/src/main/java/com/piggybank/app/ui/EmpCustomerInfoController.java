@@ -59,21 +59,21 @@ public class EmpCustomerInfoController extends EmpMainController {
         streetField.setEditable(true);
     }
     //implement the "Editable" methods the same way as streetEditable() for their corresponding fields
-    public void zipEditable(){ //editZipButton 
+    public void zipEditable(){ //editZipButton
         zipField.setEditable(true);
     }
-    public void cityEditable(){ //editCityButton 
+    public void cityEditable(){ //editCityButton
         cityField.setEditable(true);
     }
-    public void phoneEditable(){ //editPhoneButton 
+    public void phoneEditable(){ //editPhoneButton
         phoneField.setEditable(true);
     }
     public void emailEditable(){ //editEmailButton
         emailField.setEditable(true);
-    } 
+    }
     public void passwordEditable(){ //editPasswordButton
         passwordField.setEditable(true);
-    } 
+    }
     public void setNewStreet(){ //saveNewStreetButton
         String newStreet = streetField.getText();
         streetField.setText(newStreet);
@@ -81,19 +81,19 @@ public class EmpCustomerInfoController extends EmpMainController {
         streetField.setEditable(false);
     }
     //implement the "setNew" methods the same way as setNewStreet() and create the necessary setters in Customer and ContactCard
-    public void setNewZip(){ //saveNewZipButton 
+    public void setNewZip(){ //saveNewZipButton
         String newZip = zipField.getText();
         zipField.setText(newZip);
         currentCustomer.setZipCode(newZip);
         zipField.setEditable(true);
     }
-    public void setNewCity(){ //saveNewCityButton 
+    public void setNewCity(){ //saveNewCityButton
         String newCity = cityField.getText();
         cityField.setText(newCity);
         currentCustomer.setCity(newCity);
         cityField.setEditable(true);
     }
-    public void setNewPhone(){ //saveNewPhoneButton 
+    public void setNewPhone(){ //saveNewPhoneButton
         String newPhone = phoneField.getText();
         phoneField.setText(newPhone);
         currentCustomer.setPhoneNumber(newPhone);
@@ -125,7 +125,7 @@ public class EmpCustomerInfoController extends EmpMainController {
         if (currentCustomer instanceof CustomerPrivate) {
             CustomerPrivate currentPrivate = (CustomerPrivate) currentCustomer;
             customerNameLabel.setText(currentPrivate.getName());
-            //customerSnLabel.setText(currentPrivate.getSSN());
+            //customerSsnLabel.setText(currentPrivate.getSSN());
         } else if (currentCustomer instanceof CustomerCorporate) {
             CustomerCorporate currentCorporate = (CustomerCorporate) currentCustomer;
             customerNameLabel.setText(currentCorporate.getCompanyName());

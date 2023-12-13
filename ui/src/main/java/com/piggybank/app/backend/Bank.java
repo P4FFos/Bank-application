@@ -115,6 +115,10 @@ public class Bank {
     public int getZipCode(User user) {return user.getZipCode();}
     public String getCity(User user) {return user.getCity();}
 
+    //get employee
+    public Employee getEmployee(String userId){
+        return employees.get(userId);
+    }
 
 
     //-----------------------SETTERS-----------------------
