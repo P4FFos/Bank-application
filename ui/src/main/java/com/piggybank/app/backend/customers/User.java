@@ -41,7 +41,7 @@ public abstract class User {
     public String getEmail() {return contactInfo.getEmail();}
     public String getPhoneNumber() {return contactInfo.getPhoneNumber();}
     public String getStreet() {return contactInfo.getStreetAddress();}
-    public int getZipCode() {return contactInfo.getZipCode();}
+    public String getZipCode() {return contactInfo.getZipCode();}
     public String getCity() {return contactInfo.getCity();}
 
     // change password method which checks:
@@ -64,7 +64,7 @@ public abstract class User {
     public void setStreet(String newStreet) {
         contactInfo.setStreetAddress(newStreet);
     }
-    public void setZipCode(int newZipCode) {contactInfo.setZipCode(newZipCode);}
+    public void setZipCode(String newZip) {contactInfo.setZipCode(newZip);}
     public void setCity(String newCity) {contactInfo.setCity(newCity);}
 
 
