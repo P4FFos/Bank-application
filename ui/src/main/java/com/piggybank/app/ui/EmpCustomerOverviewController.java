@@ -1,5 +1,7 @@
 package com.piggybank.app.ui;
 
+import com.piggybank.app.backend.customers.Account;
+import com.piggybank.app.backend.customers.Customer;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -51,17 +53,17 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 
     //-----------------METHODS-------------------
 
-    public void displayCurrentCustomer(String id, String name, String ssn){ //change parameter to "Customer currentCustomer" and modify implementation accordingly
+    public void displayCurrentCustomer(String id, String name, String ssn) { //change parameter to "Customer currentCustomer" and modify implementation accordingly
         customerIdLabel.setText(id);
         customerSSNLabel.setText(ssn);
         customerNameLabel.setText(name);
     }
 
-    public void initialize(URL arg0, ResourceBundle arg1){ //Populates accountsListView with elements in accounts, selection "gets" an account
+    public void initialize(URL arg0, ResourceBundle arg1) { //Populates accountsListView with elements in accounts, selection "gets" an account
         accountsListView.getItems().addAll(accounts);
-        accountsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
+        accountsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2){
+            public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
                 currentAccount = accountsListView.getSelectionModel().getSelectedItem();
                 //System.out.println("Current account: " + currentAccount);
             }
@@ -69,20 +71,23 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     }
 
     //--------------- METHODS CONNECTED TO FXML ELEMENTS -------------------------
-    public void setCurrentAccount(ActionEvent event){
+    public void setCurrentAccount(ActionEvent event, Customer currentCustomer) {
         //get selection from accountsListView, set this account as current account and
         //load transactionsListView with the transaction list of current account
+        currentAccount = accountsListView.getSelectionModel().getSelectedItem();
+        Account selectedAccount = currentCustomer.getAccount(currentAccount);
+        transactionsListView.getItems().addAll(String.valueOf(selectedAccount.getTransactionHistory()));
     }
 
-    public void addAccount(ActionEvent event){
+    public void addAccount(ActionEvent event) {
         //create an account, set initial balance to 0. add to customer's account list.
         //reload accountsListView
+        Account createdAccount = new Account(currentCustomerId, currentCustomerName);
+        accountsListView.getItems().add(createdAccount.getAccountName());
+        accountsListView.getItems().addAll(accounts);
     }
 
-    public void makeTransaction(ActionEvent event){
+    public void makeTransaction(ActionEvent event) {
         //wait until ui is built for this
     }
-
-
-
 }
