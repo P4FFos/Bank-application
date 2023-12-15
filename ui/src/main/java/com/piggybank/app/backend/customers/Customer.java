@@ -19,6 +19,10 @@ public abstract class Customer extends User {
         return accounts.get(accountId);
     }
 
+    public HashMap<String, Account> getAccounts(){
+        return accounts;
+    }
+
     // checks if account exist in HashMap and returns boolean value
     public boolean checkIfAccountExists(String accountId) {
         return accounts.containsKey(accountId);
