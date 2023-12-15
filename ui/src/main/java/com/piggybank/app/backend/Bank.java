@@ -120,6 +120,9 @@ public class Bank {
         return employees.get(userId);
     }
 
+    public HashMap<String, Customer> getCustomers(){
+        return customers;
+    }
 
     //-----------------------SETTERS-----------------------
     public void setCustomerIdCounter(String customerId) {customerIdCounter = customerId;}
