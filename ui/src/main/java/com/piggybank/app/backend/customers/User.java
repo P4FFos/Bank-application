@@ -9,7 +9,7 @@ public abstract class User {
     private String password;
     private ContactCard contactInfo;
 
-    // user class constructor:
+    // user object constructor:
     public User(String userId, String password, ContactCard contactInfo) throws PasswordException {
         this.userId = userId;
         this.contactInfo = contactInfo;
@@ -35,8 +35,8 @@ public abstract class User {
     public String getCity() {return contactInfo.getCity();}
 
     // change password method which checks:
-    // if new password length in bigger than 8 symbols,
-    // if it contains at least one capital letter and at least one digit
+    // new password must be longer than 8 symbols,
+    // new password must contain at least one capital letter and at least one digit
     public void setPassword(String newPassword) throws PasswordException {
         if (newPassword.length() >= 8 && newPassword.matches(".*[A-Z].*") && newPassword.matches(".*\\d.*")) {
             this.password = newPassword;
