@@ -4,40 +4,30 @@ import com.piggybank.app.backend.exceptions.PasswordException;
 import com.piggybank.app.backend.utils.ContactCard;
 
 public abstract class User {
-    // user attributes
+    // user attributes:
     final String userId;
     private String password;
     private ContactCard contactInfo;
 
     // user class constructor:
-    // checks if password length in bigger than 8 symbols,
-    // if it contains at least one capital letter and at least one digit
-    public User(String userId, String password, ContactCard contactInfo) throws Exception {
+    public User(String userId, String password, ContactCard contactInfo) throws PasswordException {
         this.userId = userId;
         this.contactInfo = contactInfo;
-        if (password.length() >= 8 && password.matches(".*[A-Z].*") && password.matches(".*\\d.*")) {
-            this.password = password;
-        } else {
-            throw new Exception("Invalid password format");
-        }
+        setPassword(password);
     }
 
-    // get user Id method
+    // getters for user information:
     public String getUserId() {
         return userId;
     }
-
-    // get contact Info method
     public ContactCard getContactInfo() {
         return contactInfo;
     }
-
-    // get password method
     public String getPassword() {
         return this.password;
     }
 
-    // Getters for ContactCard information
+    // getters for ContactCard information
     public String getEmail() {return contactInfo.getEmail();}
     public String getPhoneNumber() {return contactInfo.getPhoneNumber();}
     public String getStreet() {return contactInfo.getStreetAddress();}
@@ -47,11 +37,11 @@ public abstract class User {
     // change password method which checks:
     // if new password length in bigger than 8 symbols,
     // if it contains at least one capital letter and at least one digit
-    public void changePassword(String newPassword) throws PasswordException {
+    public void setPassword(String newPassword) throws PasswordException {
         if (newPassword.length() >= 8 && newPassword.matches(".*[A-Z].*") && newPassword.matches(".*\\d.*")) {
             this.password = newPassword;
         } else {
-            throw new PasswordException("New password has invalid format");
+            throw new PasswordException("Password has invalid format");
         }
     }
 
@@ -60,16 +50,9 @@ public abstract class User {
         contactInfo.setEmail(newEmail);
     }
     public void setPhoneNumber(String newPhoneNr) {contactInfo.setPhoneNumber(newPhoneNr);}
-    // updates the user's street address:
     public void setStreet(String newStreet) {
         contactInfo.setStreetAddress(newStreet);
     }
     public void setZipCode(String newZip) {contactInfo.setZipCode(newZip);}
     public void setCity(String newCity) {contactInfo.setCity(newCity);}
-
-
-
-
-
-    //create methods for updating contact info (via forwarding from ContactCard once those methods are in place)
 }
