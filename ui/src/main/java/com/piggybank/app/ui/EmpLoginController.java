@@ -22,14 +22,7 @@ public class EmpLoginController {
     @FXML
     private Button loginButton;
 
-    //....................CURRENT EMPLOYEE..................
-    private Employee currentEmployee = null;
-
     //..........................METHODS.............................
-
-    public static Employee getCurrentEmployee(){
-        return getCurrentEmployee();
-    }
 
     public void login(ActionEvent event) throws Exception {
         Stage stage;
@@ -44,13 +37,11 @@ public class EmpLoginController {
             password = passwordField.getText();
 
             if (bank.verifyEmployee(userId, password)) { //using method from bank
-                currentEmployee = bank.getEmployee(userId);
-
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
                 root = loader.load();
 
                 EmpMainController controller = loader.getController();
-                controller.initializeEmployeeSection("Emp123", userId);
+                controller.setCurrentEmployee(bank.getEmployee(userId));
                 controller.fillcustomers();
 
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

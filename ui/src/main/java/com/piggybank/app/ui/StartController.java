@@ -24,7 +24,7 @@ public class StartController {
 
 
     public void employeeLogin(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpLoginScene.fxml"));
         root = loader.load();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

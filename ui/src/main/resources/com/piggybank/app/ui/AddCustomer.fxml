@@ -43,7 +43,7 @@
                         <Font name="Kodchasan Regular" size="11.0" />
                     </font>
                 </Label>
-                <Label fx:id="empNameLabel" layoutX="525.0" layoutY="25.0" text="Firstname Lastname">
+                <Label fx:id="empInitialsLabel" layoutX="525.0" layoutY="25.0" text="Firstname Lastname">
                     <font>
                         <Font name="Kodchasan Regular" size="11.0" />
                     </font>

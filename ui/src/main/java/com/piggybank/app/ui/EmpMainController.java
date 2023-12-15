@@ -34,7 +34,7 @@ public class EmpMainController {
     @FXML
     private Label empIdLabel;
     @FXML
-    private Label empNameLabel;
+    private Label empInitialsLabel;
     @FXML
     private TextField searchCustomerTextField;
 
@@ -43,11 +43,20 @@ public class EmpMainController {
     private Scene scene;
     private Node node;
     private FXMLLoader loader;
+    public static Employee currentEmployee;
+
 
     public static Map<String, String[]> customers = new HashMap<>();
     public static String customerID;
     public static String customerName;
     public static String customerSSN;
+
+    public void setCurrentEmployee(Employee employee){
+        currentEmployee = employee;
+        empIdLabel.setText(currentEmployee.getUserId());
+        empInitialsLabel.setText(currentEmployee.getInitials());
+        System.out.println("Employee Start Page. Logged in as: " + employee.getInitials());
+    }
 
     public void fillcustomers() {
         customers.put("010101-1234", new String[]{"Anna Andersson", "0123"});
@@ -55,7 +64,8 @@ public class EmpMainController {
     }
 
     public void logout(ActionEvent event) throws IOException { //logoutButton
-        //Later: add alert with options to save before logging out, cancelling logout and logging out without saving
+        currentEmployee = null;
+        System.out.println("Logged out. Have a nice day.");
         loader = new FXMLLoader(getClass().getResource("StartScene.fxml"));
         root = loader.load();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -63,6 +73,20 @@ public class EmpMainController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
+        loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
+        root = loader.load();
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+        empIdLabel.setText(currentEmployee.getUserId());
+        empInitialsLabel.setText(currentEmployee.getInitials());
+        System.out.println("Employee Start Page. Logged in as: " + currentEmployee.getInitials());
+    } //Not displaying Emp Info Labels correctly
 
     public void searchCustomer(ActionEvent event) throws IOException { //searchButton
         if(customers.containsKey(searchCustomerTextField.getText())){
@@ -87,18 +111,14 @@ public class EmpMainController {
         }
     }
 
-    public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
-        loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
-        root = loader.load();
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
     public void goToCustomer(ActionEvent event) throws IOException { //viewCustomerButton
         loader = new FXMLLoader(getClass().getResource("EmpCustomerOverview.fxml"));
         root = loader.load();
+
+        EmpCustomerOverviewController controller = loader.getController();
+        controller.displayCurrentCustomer(customerID, customerName, customerSSN);
+        controller.setCurrentEmployee();
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -110,7 +130,7 @@ public class EmpMainController {
         root = loader.load();
 
         EmpCustomerInfoController controller = loader.getController();
-        //controller.displayCurrentCustomer(customerID, customerName, customerSSN);
+        controller.setCurrentEmployee();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -121,6 +141,10 @@ public class EmpMainController {
     public void goToLoans(ActionEvent event) throws IOException { //manageLoansButton
         loader = new FXMLLoader(getClass().getResource("ManageLoans.fxml"));
         root = loader.load();
+
+        ManageLoansController controller = loader.getController();
+        controller.setCurrentEmployee();
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -133,6 +157,7 @@ public class EmpMainController {
 
         AddCustomerController controller = loader.getController();
         controller.initialiseAddCustomer();
+        controller.setCurrentEmployee();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -140,11 +165,7 @@ public class EmpMainController {
         stage.show();
     }
 
-    public void initializeEmployeeSection(String id, String name){
-        empIdLabel.setText(id);
-        empNameLabel.setText(name);
-        //empIdLabel.setText(EmpMainController.?.getUserId());
-    }
+
 
 
 

@@ -20,7 +20,7 @@ public class UIMain extends Application {
         ContactCard bankContactInfo = new ContactCard("employee@piggybank.com", "0701234567", "Oink Oink Alley", "35533", "Trufflesville");
         bank = new Bank(bankContactInfo);
         ContactCard employeeContactCard = new ContactCard("moiraine@sedai.com", "0731234567", "White Tower", "77777", "Tar Valon");
-        bank.createEmployee("11DRAGON", employeeContactCard);
+        bank.createEmployee("11DRAGON", employeeContactCard, "MD");
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("StartScene.fxml"));

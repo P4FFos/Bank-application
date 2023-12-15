@@ -19,6 +19,10 @@ public class AddCustomerController extends EmpMainController {
     @FXML
     private Label newCustomerIdLabel;
     @FXML
+    private Label empIdLabel;
+    @FXML
+    private Label empInitialsLabel;
+    @FXML
     private Pane onSavePane;
     @FXML
     private TextField companyNameField;
@@ -82,6 +86,12 @@ public class AddCustomerController extends EmpMainController {
 
 
     //-------------------FINISHED METHODS------------------------
+    public void setCurrentEmployee(){
+        empIdLabel.setText(EmpMainController.currentEmployee.getUserId());
+        empInitialsLabel.setText(EmpMainController.currentEmployee.getInitials());
+        System.out.println("Add Customer Page. Logged in as: " + EmpMainController.currentEmployee.getInitials());
+    }
+
     public void togglePrivate(){ //privateCustomerCheckBox
         privateCustomerAnchorPane.setVisible(true);
         corporateCustomerAnchorPane.setVisible(false);
