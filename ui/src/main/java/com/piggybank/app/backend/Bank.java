@@ -120,11 +120,14 @@ public class Bank {
         return employees.get(userId);
     }
 
+    public HashMap<String, Customer> getCustomers(){
+        return customers;
+    }
 
     //-----------------------SETTERS-----------------------
-    public void setCustomerIdCounter(String customerId) {customerIdCounter = customerId;};
-    public void setEmployeeIdCounter(String employeeId) {employeeIdCounter = employeeId;};
-    public void setAccountIdCounter(String accountId) {accountIdCounter = accountId;};
+    public void setCustomerIdCounter(String customerId) {customerIdCounter = customerId;}
+    public void setEmployeeIdCounter(String employeeId) {employeeIdCounter = employeeId;}
+    public void setAccountIdCounter(String accountId) {accountIdCounter = accountId;}
     public void setStreetAddress(String newStreet, User user) {user.setStreet(newStreet);}
     public void setZipCode(String newZipCode, User user) {user.setZipCode(newZipCode);}
     public void setPhoneNumber(String newPhoneNr, User user) {user.setPhoneNumber(newPhoneNr);}
@@ -154,13 +157,14 @@ public class Bank {
     }
 
     // creates new private employee and add it to employees hashmap:
-    public void createEmployee(String password, ContactCard contactCard) throws Exception {
+    public void createEmployee(String password, ContactCard contactCard, String initials) throws Exception {
         // Generates a new ID for an employee, then updates employeeIdCounter
         String userId = IdGenerator.generateEmployeeID(employeeIdCounter);
         setEmployeeIdCounter(userId);
 
-        Employee newEmployee = new Employee(userId, password, contactCard);
+        Employee newEmployee = new Employee(userId, password, contactCard, initials);
         this.employees.put(userId, newEmployee);
+        System.out.println(userId);
     }
 
     // creates a new account for customer:
