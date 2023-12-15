@@ -1,5 +1,8 @@
 package com.piggybank.app.ui;
 
+import com.piggybank.app.backend.Bank;
+import com.piggybank.app.backend.customers.Customer;
+import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.employees.Employee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,24 +46,20 @@ public class EmpMainController {
     private Scene scene;
     private Node node;
     private FXMLLoader loader;
+    private Customer currentCustomer;
+
     public static Employee currentEmployee;
+    public static Bank bank = UIMain.getBank();
 
 
-    public static Map<String, String[]> customers = new HashMap<>();
-    public static String customerID;
-    public static String customerName;
-    public static String customerSSN;
-
+    public Customer getCurrentCustomer(){
+        return currentCustomer;
+    }
     public void setCurrentEmployee(Employee employee){
         currentEmployee = employee;
         empIdLabel.setText(currentEmployee.getUserId());
         empInitialsLabel.setText(currentEmployee.getInitials());
         System.out.println("Employee Start Page. Logged in as: " + employee.getInitials());
-    }
-
-    public void fillcustomers() {
-        customers.put("010101-1234", new String[]{"Anna Andersson", "0123"});
-        customers.put("020202-2345", new String[]{"Babben Borg", "0456"});
     }
 
     public void logout(ActionEvent event) throws IOException { //logoutButton
@@ -89,17 +88,33 @@ public class EmpMainController {
     } //Not displaying Emp Info Labels correctly
 
     public void searchCustomer(ActionEvent event) throws IOException { //searchButton
-        if(customers.containsKey(searchCustomerTextField.getText())){
+        String searchPhrase = searchCustomerTextField.getText();
+        try{
+            currentCustomer = bank.getCustomerByIdOrSSN(searchPhrase);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpCustomerOverview.fxml"));
             root = loader.load();
 
-            //Placeholder logic. Connect appropriately with backend when ready.
-            customerID = searchCustomerTextField.getText();
-            customerName = customers.get(customerID)[0];
-            customerSSN = customers.get(customerID)[1];
+            EmpCustomerOverviewController controller = loader.getController();
+            controller.setCurrentCustomer(currentCustomer);
+            controller.setCurrentEmployee();
+
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            System.out.println("Customer not found by ID or SSN.");
+        }
+
+
+        /*if(bank.getCustomers().containsKey(searchCustomerTextField.getText())){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpCustomerOverview.fxml"));
+            root = loader.load();
 
             EmpCustomerOverviewController controller = loader.getController();
-            controller.displayCurrentCustomer(customerID, customerName, customerSSN);
+            controller.setCurrentCustomer(bank.getCustomer());
+            controller.setCurrentEmployee();
 
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
@@ -108,7 +123,7 @@ public class EmpMainController {
 
         } else {
             System.out.println("Customer not found.");
-        }
+        }*/
     }
 
     public void goToCustomer(ActionEvent event) throws IOException { //viewCustomerButton
@@ -116,7 +131,7 @@ public class EmpMainController {
         root = loader.load();
 
         EmpCustomerOverviewController controller = loader.getController();
-        controller.displayCurrentCustomer(customerID, customerName, customerSSN);
+        controller.setCurrentCustomer(currentCustomer);
         controller.setCurrentEmployee();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

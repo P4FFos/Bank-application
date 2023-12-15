@@ -42,7 +42,6 @@ public class EmpLoginController {
 
                 EmpMainController controller = loader.getController();
                 controller.setCurrentEmployee(bank.getEmployee(userId));
-                controller.fillcustomers();
 
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
