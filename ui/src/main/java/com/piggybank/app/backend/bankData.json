@@ -186,7 +186,7 @@
         }
       }
   },
-  "employeeIdCounter": "E001",
-  "customerIdCounter": "C001",
-  "accountIdCounter": "A001"
+  "employeeIdCounter": "E002",
+  "customerIdCounter": "C005",
+  "accountIdCounter": "A00003"
 }
