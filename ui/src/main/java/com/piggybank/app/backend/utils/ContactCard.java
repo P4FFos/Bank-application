@@ -8,6 +8,10 @@ public class ContactCard {
     private String zipCode;
     private String city;
 
+    // Bare constructor used by Jackson-Databind for Json deserializing
+    public ContactCard() {
+    }
+
     public ContactCard(String email, String phoneNumber, String streetAddress, String zipCode, String city) {
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -52,12 +56,20 @@ public class ContactCard {
         return city;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setCity(String city) {
         this.city = city;
     }
     
     public String toString() {
-        return String.format("%s, %s, %s, %s, %d, %s", name, email, phoneNumber, streetAddress, zipCode, city);
+        return String.format("%s, %s, %s, %s, %s, %s", name, email, phoneNumber, streetAddress, zipCode, city);
     }
 }
 

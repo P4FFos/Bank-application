@@ -1,13 +1,27 @@
 package com.piggybank.app.backend.customers;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+import com.piggybank.app.backend.employees.Employee;
 import com.piggybank.app.backend.exceptions.PasswordException;
 import com.piggybank.app.backend.utils.ContactCard;
 
+// Used by Jackson-Databind for handling Json files with abstract classes, specifying which subclass an object belong to
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Employee.class, name = "employee"),
+        @JsonSubTypes.Type(value = Customer.class, name = "customer")
+})
 public abstract class User {
     // user attributes:
-    final String userId;
+    private String userId;
     private String password;
     private ContactCard contactInfo;
+
+
+    public User() {
+    }
 
     // user object constructor:
     public User(String userId, String password, ContactCard contactInfo) throws PasswordException {
@@ -25,6 +39,14 @@ public abstract class User {
     }
     public String getPassword() {
         return this.password;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public void setContactInfo(ContactCard contactInfo) {
+        this.contactInfo = contactInfo;
     }
 
     // getters for ContactCard information

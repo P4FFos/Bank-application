@@ -10,10 +10,13 @@ import com.piggybank.app.backend.utils.TruncationUtil;
 public class Account {
     // attributes for account class
     private String accountName;
-    private final String accountId;
+    private String accountId;
     private double balance;
     private ArrayList<Transaction> transactions;
 	private Credit credit;
+
+    public Account() {
+    }
 
     // constructor for the account class, with initialised balance = 0
     public Account(String accountId, String accountName) {
@@ -24,9 +27,33 @@ public class Account {
 		this.credit = null;
     }
 
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
+
     // get method to receive accountName
     public String getAccountName() {
         return this.accountName;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public ArrayList<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(ArrayList<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public void setCredit(Credit credit) {
+        this.credit = credit;
     }
 
     // get method to receive accountId

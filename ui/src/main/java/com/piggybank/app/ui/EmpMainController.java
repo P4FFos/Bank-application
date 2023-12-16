@@ -90,7 +90,7 @@ public class EmpMainController {
     public void searchCustomer(ActionEvent event) throws IOException { //searchButton
         String searchPhrase = searchCustomerTextField.getText();
         try{
-            currentCustomer = bank.getCustomerByIdOrSSN(searchPhrase);
+            currentCustomer = bank.getCustomerByIdOrSsn(searchPhrase);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpCustomerOverview.fxml"));
             root = loader.load();
 

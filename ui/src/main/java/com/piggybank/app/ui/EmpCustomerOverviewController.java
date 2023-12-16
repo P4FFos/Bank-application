@@ -8,7 +8,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -74,7 +73,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         currentCustomer = customer;
         customerIdLabel.setText(customer.getUserId());
         if(customer instanceof CustomerPrivate customerPrivate){
-            customerSSNLabel.setText(customerPrivate.getSSN());
+            customerSSNLabel.setText(customerPrivate.getSsn());
             customerNameLabel.setText(customerPrivate.getName());
         }
         accounts = customer.getAccounts();

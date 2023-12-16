@@ -2,7 +2,6 @@ package com.piggybank.app.backend;
 
 import com.piggybank.app.backend.customers.*;
 import com.piggybank.app.backend.customers.debts.*;
-import com.piggybank.app.backend.customers.loans.*;
 import com.piggybank.app.backend.employees.*;
 import com.piggybank.app.backend.exceptions.*;
 import com.piggybank.app.backend.utils.*;
@@ -21,6 +20,8 @@ public class Bank {
     private String customerIdCounter;
     private String accountIdCounter;
 
+    // Bare constructor used by Jackson-Databind for Json deserializing
+    public Bank() {}
 
     public Bank(ContactCard contactInfo) {
         this.contactInfo = contactInfo;
@@ -30,20 +31,6 @@ public class Bank {
         customerIdCounter = "C000";
         accountIdCounter = "A00000";
     }
-
-    // To simplify instantiation the Bank class
-    public Bank() {
-        contactInfo = null;
-        customers = new HashMap<>();
-        employees = new HashMap<>();
-        employeeIdCounter = "E000";
-        customerIdCounter = "C000";
-        accountIdCounter = "A00000";
-    }
-
-    //create methods for updating the bank's contact card info (via forwarding from ContactCard once those methods are in place)
-    //public void updateAddress(String newAddress){} ...etc
-
 
     //-----------------------GETTERS-----------------------
     public String getCustomerIdCounter() {return customerIdCounter;}
@@ -68,7 +55,7 @@ public class Bank {
     }
 
     //
-    public Customer getCustomerByIdOrSSN(String inputString) throws Exception {
+    public Customer getCustomerByIdOrSsn(String inputString) throws Exception {
         /* Checks for 10 characters, if it is then SSN,
         otherwise if it is 6 characters then it is a userId
         */
@@ -78,7 +65,7 @@ public class Bank {
         if(inputString.length() == 10) {
             for(Customer customer : customers.values()) {
                 if(customer instanceof CustomerPrivate privateCustomer) {
-                    if(privateCustomer.getSSN().equals(inputString)) {
+                    if(privateCustomer.getSsn().equals(inputString)) {
                         return customer;
                     }
                 }
@@ -120,6 +107,10 @@ public class Bank {
         return employees.get(userId);
     }
 
+    public HashMap<String, Employee> getEmployees() {
+        return employees;
+    }
+
     public HashMap<String, Customer> getCustomers(){
         return customers;
     }
@@ -133,17 +124,31 @@ public class Bank {
     public void setPhoneNumber(String newPhoneNr, User user) {user.setPhoneNumber(newPhoneNr);}
     public void setCity(String newCity, User user) {user.setCity(newCity);}
 
+    public ContactCard getContactInfo() {
+        return contactInfo;
+    }
 
+    public void setCustomers(HashMap<String, Customer> customers) {
+        this.customers = customers;
+    }
 
-    //-----------------------CREATOR METHODS-----------------------
+    public void setEmployees(HashMap<String, Employee> employees) {
+        this.employees = employees;
+    }
+
+    public void setContactInfo(ContactCard contactInfo) {
+        this.contactInfo = contactInfo;
+    }
+
+//-----------------------CREATOR METHODS-----------------------
 
     // creates new private customer and add it to customers hashmap:
-    public void createCustomerPrivate(String SSN, String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
+    public void createCustomerPrivate(String ssn, String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
         // Generates a new ID for a customer, then updates customerIdCounter
         String userId = IdGenerator.generateCustomerID(customerIdCounter);
         setCustomerIdCounter(userId);
 
-        CustomerPrivate newCustomer = new CustomerPrivate(SSN, firstName, lastName, userId, password, contactCard);
+        CustomerPrivate newCustomer = new CustomerPrivate(ssn, firstName, lastName, userId, password, contactCard);
         this.customers.put(userId, newCustomer);
     }
     // creates new corporate customer and add it to customers hashmap:
@@ -157,12 +162,12 @@ public class Bank {
     }
 
     // creates new private employee and add it to employees hashmap:
-    public void createEmployee(String password, ContactCard contactCard, String initials) throws Exception {
+    public void createEmployee(String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
         // Generates a new ID for an employee, then updates employeeIdCounter
         String userId = IdGenerator.generateEmployeeID(employeeIdCounter);
         setEmployeeIdCounter(userId);
 
-        Employee newEmployee = new Employee(userId, password, contactCard, initials);
+        Employee newEmployee = new Employee(firstName, lastName, userId, password, contactCard);
         this.employees.put(userId, newEmployee);
         System.out.println(userId);
     }
@@ -274,5 +279,16 @@ public class Bank {
         Customer customer = customers.get(userId);
 		Account account = customer.getAccount(accountId);
 		account.removeCredit();
+    }
+
+    @Override
+    public String toString() {
+        return "Bank{" +
+                "contactInfo=" + contactInfo +
+                ", customers=" + customers +
+                ", employees=" + employees +
+                ", employeeIdCounter='" + employeeIdCounter + '\'' +
+                ", customerIdCounter='" + customerIdCounter + '\'' +
+                ", accountIdCounter='" + accountIdCounter + '\'' + '}';
     }
 }

@@ -4,11 +4,14 @@ import com.piggybank.app.backend.customers.Account;
 public class Loan extends Account {
     //loan type where we can give out larger amounts of money (such as mortgages)
 
-    final double initialAmount;
+    private double initialAmount;
     private double currentAmount; //the size of the loan
     private double interestRate = 5; //the interest rate per month
     private double minPaymentPercent = 1; //the minimum loan percentage the customer must pay each month
     private double minPaymentAmount; //the amount the customer must pay each month
+
+    public Loan() {
+    }
 
     //constructor:
     public Loan(String accountId, String accountName, double initialAmount) {
@@ -16,6 +19,10 @@ public class Loan extends Account {
         this.initialAmount = initialAmount;
         this.currentAmount = initialAmount;
         setPaymentAmount();
+    }
+
+    public void setInitialAmount(double initialAmount) {
+        this.initialAmount = initialAmount;
     }
 
     //calculating the minimum monthly payment:
@@ -28,6 +35,22 @@ public class Loan extends Account {
 
         //total minimum monthly payment:
         this.minPaymentAmount = minPayment + interestAmount;
+    }
+
+    public void setCurrentAmount(double currentAmount) {
+        this.currentAmount = currentAmount;
+    }
+
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
+    }
+
+    public void setMinPaymentPercent(double minPaymentPercent) {
+        this.minPaymentPercent = minPaymentPercent;
+    }
+
+    public void setMinPaymentAmount(double minPaymentAmount) {
+        this.minPaymentAmount = minPaymentAmount;
     }
 
     //make a minimum payment:

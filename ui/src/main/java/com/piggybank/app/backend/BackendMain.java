@@ -56,8 +56,9 @@ public class BackendMain {
         System.out.println(piggyBank.getTransactionHistory("A00003"));
 
         // Print city of userId C001
-        Customer customer_found = piggyBank.getCustomerByIdOrSSN("C001");
+        Customer customer_found = piggyBank.getCustomerByIdOrSsn("C001");
         System.out.println(piggyBank.getCity(customer_found));
+        System.out.println(piggyBank);
 
     }
 }
