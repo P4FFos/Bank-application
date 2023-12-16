@@ -194,8 +194,5 @@
         "city": "Mega City One"
       }
     }
-  },
-  "employeeIdCounter": "E002",
-  "customerIdCounter": "C004",
-  "accountIdCounter": "A00003"
+  }
 }
