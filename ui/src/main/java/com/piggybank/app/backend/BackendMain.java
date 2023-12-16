@@ -1,65 +1,32 @@
 package com.piggybank.app.backend;
 
+import java.io.File;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.piggybank.app.backend.customers.Customer;
 import com.piggybank.app.backend.utils.ContactCard;
 
 public class BackendMain {
+
+    public static Bank jsonExample() throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+        // to enable java.time.LocalDate module in Jackson, this is needed. Used in Transaction class
+        objectMapper.registerModule(new JavaTimeModule());
+        File objJsonfile = new File("ui/src/main/java/com/piggybank/app/backend/bankData.json");
+        return objectMapper.readValue(objJsonfile, Bank.class);
+    }
     public static void main(String[] args) throws Exception {
-        ContactCard CCJohnD = new ContactCard(
-                "johnd@student.gu.se",
-                "+46709876543",
-                "Kungsgatan 1",
-                "41102",
-                "Gothenburg");
+        Bank bank = jsonExample();
 
-        ContactCard CCJaneD = new ContactCard(
-                "janed@student.gu.se",
-                "+4670756634",
-                "Kungsgatan 1",
-                "41102",
-                "Gothenburg");
-
-        Bank piggyBank = new Bank();
-
-        piggyBank.createCustomerPrivate(
-                "8801011122",
-                "John",
-                "Doe",
-                "Password1",
-                CCJohnD);
-        piggyBank.createCustomerPrivate(
-                "8801013344",
-                "Jane",
-                "Doe",
-                "Password22",
-                CCJaneD);
-
-        piggyBank.createAccount("C001", "Daily account");
-        piggyBank.createAccount("C001", "Savings account");
-
-        piggyBank.createAccount("C002", "Savings account");
-
-        LocalDate todaysDate = LocalDate.now();
-        // Deposit 1000
-        piggyBank.deposit("C001", "A00001", 1000.0, "", todaysDate);
-
-        // Transfer 400 to another account
-        piggyBank.transfer("A00001", "A00003", 400.0, "here you go!/JD", todaysDate);
-
-        System.out.println(piggyBank.getCustomer("C001").getAccount("A00001").getBalance());
-        System.out.println(piggyBank.getCustomer("C002").getAccount("A00003").getBalance());
-
-        // Two ways of operating, either in Bank methods or digging through methods trees
-        //System.out.println(piggyBank.getCustomer(janeDoe).getAccount(janeDoeAccount1).getTransactionHistory());
-        System.out.println(piggyBank.getTransactionHistory("A00003"));
-
-        // Print city of userId C001
-        Customer customer_found = piggyBank.getCustomerByIdOrSsn("C001");
-        System.out.println(piggyBank.getCity(customer_found));
-        System.out.println(piggyBank);
-
+        // testing the bank
+        System.out.println(bank.getCustomerByIdOrSsn("C001").getEmail());
+        System.out.println(bank);
+        System.out.println(bank.getCustomerByIdOrSsn("C002").getAccounts());
+        System.out.println(bank.getCustomerIdCounter());
+        System.out.println(bank.getBankInfo());
+        System.out.println(bank.getTransactionHistory("A00001"));
     }
 }
 

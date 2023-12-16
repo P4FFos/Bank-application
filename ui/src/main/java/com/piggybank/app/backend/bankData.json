@@ -1,5 +1,6 @@
 {
   "contactInfo": {
+    "name": "ThePiggyBank",
     "email":"employee@piggybank.com",
     "phoneNumber": "0701234567",
     "streetAddress": "Oink Oink Alley",
@@ -31,19 +32,22 @@
               "senderAccountId": "A00001",
               "receiverAccountId": "A00002",
               "amount": -200.0,
-              "message": ""
+              "message": "",
+              "date": "2023-12-16"
             },
             {
               "senderAccountId": "A00002",
               "receiverAccountId": "A00001",
               "amount": 400.0,
-              "message": "Money from Jane"
+              "message": "Money from Jane",
+              "date": "2023-12-15"
             },
             {
               "senderAccountId": "A00001",
               "receiverAccountId": "A00003",
               "amount": -300.0,
-              "message": ""
+              "message": "",
+              "date": "2023-12-14"
             }
           ]
         }
@@ -73,19 +77,22 @@
               "senderAccountId": "A00001",
               "receiverAccountId": "A00002",
               "amount": 200.0,
-              "message": "Money from John"
+              "message": "Money from John",
+              "date": "2023-12-14"
             },
             {
               "senderAccountId": "A00002",
               "receiverAccountId": "A00003",
               "amount": -100.0,
-              "message": ""
+              "message": "",
+              "date": "2023-12-13"
             },
             {
               "senderAccountId": "A00002",
               "receiverAccountId": "A00001",
               "amount": -400.0,
-              "message": ""
+              "message": "",
+              "date": "2023-12-12"
             }
           ]
         },
@@ -98,13 +105,15 @@
               "senderAccountId": "A00002",
               "receiverAccountId": "A00003",
               "amount": 100.0,
-              "message": "Money from Jane"
+              "message": "Money from Jane",
+              "date": "2023-12-12"
             },
             {
               "senderAccountId": "A00001",
               "receiverAccountId": "A00003",
               "amount": 300.0,
-              "message": "Money from John"
+              "message": "Money from John",
+              "date": "2023-12-11"
             }
           ]
         }
@@ -171,22 +180,22 @@
         "city": "White Tower"
       }
     },
-      "E002": {
-        "type": "employee",
-        "firstName": "Judge",
-        "lastName": "Dredd",
-        "userId": "E002",
-        "password": "Password1234!",
-        "contactInfo": {
-          "email": "joseph.dredd@judge.com",
-          "phoneNumber": "0707890000",
-          "streetAddress": "Mega City 111",
-          "zipCode": 55555,
-          "city": "Mega City One"
-        }
+    "E002": {
+      "type": "employee",
+      "firstName": "Judge",
+      "lastName": "Dredd",
+      "userId": "E002",
+      "password": "Password1234!",
+      "contactInfo": {
+        "email": "joseph.dredd@judge.com",
+        "phoneNumber": "0707890000",
+        "streetAddress": "Mega City 111",
+        "zipCode": 55555,
+        "city": "Mega City One"
       }
+    }
   },
   "employeeIdCounter": "E002",
-  "customerIdCounter": "C005",
+  "customerIdCounter": "C004",
   "accountIdCounter": "A00003"
 }

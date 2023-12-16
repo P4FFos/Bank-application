@@ -21,15 +21,16 @@ public class Bank {
     private String accountIdCounter;
 
     // Bare constructor used by Jackson-Databind for Json deserializing
-    public Bank() {}
+    public Bank() {
+    }
 
     public Bank(ContactCard contactInfo) {
         this.contactInfo = contactInfo;
         customers = new HashMap<>();
         employees = new HashMap<>();
-        employeeIdCounter = "E000";
-        customerIdCounter = "C000";
-        accountIdCounter = "A00000";
+        employeeIdCounter = "E001";
+        customerIdCounter = "C001";
+        accountIdCounter = "A00001";
     }
 
     //-----------------------GETTERS-----------------------
@@ -115,18 +116,19 @@ public class Bank {
         return customers;
     }
 
+    public ContactCard getContactInfo() {
+        return contactInfo;
+    }
+
     //-----------------------SETTERS-----------------------
     public void setCustomerIdCounter(String customerId) {customerIdCounter = customerId;}
     public void setEmployeeIdCounter(String employeeId) {employeeIdCounter = employeeId;}
     public void setAccountIdCounter(String accountId) {accountIdCounter = accountId;}
+
     public void setStreetAddress(String newStreet, User user) {user.setStreet(newStreet);}
     public void setZipCode(String newZipCode, User user) {user.setZipCode(newZipCode);}
     public void setPhoneNumber(String newPhoneNr, User user) {user.setPhoneNumber(newPhoneNr);}
     public void setCity(String newCity, User user) {user.setCity(newCity);}
-
-    public ContactCard getContactInfo() {
-        return contactInfo;
-    }
 
     public void setCustomers(HashMap<String, Customer> customers) {
         this.customers = customers;
