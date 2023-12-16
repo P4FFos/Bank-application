@@ -24,16 +24,12 @@ public class Employee extends User {
 
 	}
 
-	public void setInitials(String initials) {
-		this.initials = initials;
+	public void setInitials() {
+		initials = firstName.substring(0, 1).toUpperCase() + lastName.substring(0, 1).toUpperCase();
 	}
 
 	public String getFirstName() {
 		return firstName;
-	}
-
-	public void setInitials() {
-		initials = firstName.substring(0, 1).toUpperCase() + lastName.substring(0, 1).toUpperCase();
 	}
 
 	public void setFirstName(String firstName) {
