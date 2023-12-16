@@ -146,8 +146,11 @@ public class Bank {
 
     // creates new private customer and add it to customers hashmap:
     public void createCustomerPrivate(String ssn, String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
-        // Generates a new ID for a customer, then updates customerIdCounter
-        String userId = IdGenerator.generateCustomerID(customerIdCounter);
+        // finds the highest customerId in the HashMap customers
+        String customerHighestId = findHighestCustomerId();
+
+        // generates a new ID for a customer, then updates customerIdCounter
+        String userId = IdGenerator.generateCustomerID(customerHighestId);
         setCustomerIdCounter(userId);
 
         CustomerPrivate newCustomer = new CustomerPrivate(ssn, firstName, lastName, userId, password, contactCard);
@@ -155,8 +158,11 @@ public class Bank {
     }
     // creates new corporate customer and add it to customers hashmap:
     public void createCustomerCorporate(String orgNumber, String companyName, String password, ContactCard contactCard) throws Exception {
+        // finds the highest customerId in the HashMap customers
+        String customerHighestId = findHighestCustomerId();
+
         // Generates a new ID for a corporate customer, then updates customerIdCounter
-        String userId = IdGenerator.generateCustomerID(customerIdCounter);
+        String userId = IdGenerator.generateCustomerID(customerHighestId);
         setCustomerIdCounter(userId);
 
         CustomerCorporate newCustomer = new CustomerCorporate(orgNumber, companyName, userId, password, contactCard);
@@ -165,21 +171,26 @@ public class Bank {
 
     // creates new private employee and add it to employees hashmap:
     public void createEmployee(String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
+        // finds the highest employeeId in the HashMap employees
+        String employeeHighestId = findHighestEmployeeId();
+
         // Generates a new ID for an employee, then updates employeeIdCounter
         String userId = IdGenerator.generateEmployeeID(employeeIdCounter);
         setEmployeeIdCounter(userId);
 
         Employee newEmployee = new Employee(firstName, lastName, userId, password, contactCard);
         this.employees.put(userId, newEmployee);
-        System.out.println(userId);
     }
 
     // creates a new account for customer:
     public void createAccount(String userID, String accountName) throws Exception {
         Customer customer = customers.get(userID);
 
+        // finds the highest accountId in the HashMap customers
+        String accountHighestId = findHighestAccountId();
+
         //Generates accountId
-        String accountId = IdGenerator.generateAccountId(accountIdCounter);
+        String accountId = IdGenerator.generateAccountId(accountHighestId);
         setAccountIdCounter(accountId);
 
         Account newAccount = new Account(accountId, accountName);
@@ -202,8 +213,52 @@ public class Bank {
         customers.get(customerId).removeAccount(accountToRemove);
     }
 
-
     //-----------------------VARIOUS-----------------------
+
+    // loops through HashMap customers for their userIds and returns which is highest
+    public String findHighestCustomerId() {
+        int highestIdCount = 0;
+        String highestCustomerId = "C000";
+        for(Customer customer : customers.values()) {
+            int tempIdCount = Integer.parseInt(customer.getUserId().substring(1));
+            if(tempIdCount > highestIdCount) {
+                highestIdCount = tempIdCount;
+                highestCustomerId = customer.getUserId();
+            }
+        }
+        return highestCustomerId;
+    }
+
+    // loops through HashMap employees for their userIds and returns which is highest
+    public String findHighestEmployeeId() {
+        int highestIdCount = 0;
+        String highestEmployeeId = "E000";
+        for(Employee employee : employees.values()) {
+            int tempIdCount = Integer.parseInt(employee.getUserId().substring(1));
+            if(tempIdCount > highestIdCount) {
+                highestIdCount = tempIdCount;
+                highestEmployeeId = employee.getUserId();
+            }
+        }
+        return highestEmployeeId;
+    }
+
+    // loops through HashMap employees for their HashMap of accounts, then gets the highest accountId of them all
+    public String findHighestAccountId() {
+        int highestIdCount = 0;
+        String highestAccountId = "A00000";
+        for(Customer customer : customers.values()) {
+            HashMap<String, Account> customerAccounts = customer.getAccounts();
+            for(Account account : customerAccounts.values()) {
+                int tempIdCount = Integer.parseInt(account.getAccountId().substring(1));
+                if(tempIdCount > highestIdCount) {
+                    highestIdCount = tempIdCount;
+                    highestAccountId = customer.getUserId();
+                }
+            }
+        }
+        return highestAccountId;
+    }
 
     // deposits money into specified account
     public void deposit(String senderId, String accountId, double amount, String message, LocalDate date) throws Exception {
