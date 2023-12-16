@@ -72,4 +72,9 @@ public class CustomerPrivate extends Customer {
         }
         return isEqual;
     }
+
+    @Override
+    public String toString() {
+        return String.format("userId: %s, firstName: %s, lastName: %s, ssn: %s", getUserId(), firstName, lastName, ssn);
+    }
 }
