@@ -16,9 +16,6 @@ public class Bank {
     private ContactCard contactInfo;
     private HashMap<String, Customer> customers;
     private HashMap<String, Employee> employees;
-    private String employeeIdCounter;
-    private String customerIdCounter;
-    private String accountIdCounter;
 
     // Bare constructor used by Jackson-Databind for Json deserializing
     public Bank() {
@@ -28,15 +25,9 @@ public class Bank {
         this.contactInfo = contactInfo;
         customers = new HashMap<>();
         employees = new HashMap<>();
-        employeeIdCounter = "E001";
-        customerIdCounter = "C001";
-        accountIdCounter = "A00001";
     }
 
     //-----------------------GETTERS-----------------------
-    public String getCustomerIdCounter() {return customerIdCounter;}
-    public String getEmployeeIdCounter() {return employeeIdCounter;}
-    public String getAccountIdCounter() {return accountIdCounter;}
 
     //retrieve customer information:
     public Customer getCustomer(String userId) {
@@ -121,10 +112,6 @@ public class Bank {
     }
 
     //-----------------------SETTERS-----------------------
-    public void setCustomerIdCounter(String customerId) {customerIdCounter = customerId;}
-    public void setEmployeeIdCounter(String employeeId) {employeeIdCounter = employeeId;}
-    public void setAccountIdCounter(String accountId) {accountIdCounter = accountId;}
-
     public void setStreetAddress(String newStreet, User user) {user.setStreet(newStreet);}
     public void setZipCode(String newZipCode, User user) {user.setZipCode(newZipCode);}
     public void setPhoneNumber(String newPhoneNr, User user) {user.setPhoneNumber(newPhoneNr);}
@@ -151,7 +138,6 @@ public class Bank {
 
         // generates a new ID for a customer, then updates customerIdCounter
         String userId = IdGenerator.generateCustomerID(customerHighestId);
-        setCustomerIdCounter(userId);
 
         CustomerPrivate newCustomer = new CustomerPrivate(ssn, firstName, lastName, userId, password, contactCard);
         this.customers.put(userId, newCustomer);
@@ -163,7 +149,6 @@ public class Bank {
 
         // Generates a new ID for a corporate customer, then updates customerIdCounter
         String userId = IdGenerator.generateCustomerID(customerHighestId);
-        setCustomerIdCounter(userId);
 
         CustomerCorporate newCustomer = new CustomerCorporate(orgNumber, companyName, userId, password, contactCard);
         this.customers.put(userId, newCustomer);
@@ -174,9 +159,8 @@ public class Bank {
         // finds the highest employeeId in the HashMap employees
         String employeeHighestId = findHighestEmployeeId();
 
-        // Generates a new ID for an employee, then updates employeeIdCounter
-        String userId = IdGenerator.generateEmployeeID(employeeIdCounter);
-        setEmployeeIdCounter(userId);
+        // Generates a new ID for an employee
+        String userId = IdGenerator.generateEmployeeID(employeeHighestId);
 
         Employee newEmployee = new Employee(firstName, lastName, userId, password, contactCard);
         this.employees.put(userId, newEmployee);
@@ -191,7 +175,6 @@ public class Bank {
 
         //Generates accountId
         String accountId = IdGenerator.generateAccountId(accountHighestId);
-        setAccountIdCounter(accountId);
 
         Account newAccount = new Account(accountId, accountName);
         customer.addAccount(newAccount);
@@ -340,12 +323,6 @@ public class Bank {
 
     @Override
     public String toString() {
-        return "Bank{" +
-                "contactInfo=" + contactInfo +
-                ", customers=" + customers +
-                ", employees=" + employees +
-                ", employeeIdCounter='" + employeeIdCounter + '\'' +
-                ", customerIdCounter='" + customerIdCounter + '\'' +
-                ", accountIdCounter='" + accountIdCounter + '\'' + '}';
+        return String.format("Bank{ contactInfo: %s, customers: %s, employees: %s", contactInfo, customers, employees);
     }
 }
