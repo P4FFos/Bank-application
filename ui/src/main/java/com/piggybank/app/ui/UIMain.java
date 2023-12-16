@@ -1,5 +1,6 @@
 package com.piggybank.app.ui;
 
+import com.piggybank.app.backend.utils.FileHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,10 +18,7 @@ public class UIMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        ContactCard bankContactInfo = new ContactCard("employee@piggybank.com", "0701234567", "Oink Oink Alley", "35533", "Trufflesville");
-        bank = new Bank(bankContactInfo);
-        ContactCard employeeContactCard = new ContactCard("moiraine@sedai.com", "0731234567", "White Tower", "77777", "Tar Valon");
-        bank.createEmployee("Moiraine", "Sedai", "11DRAGON", employeeContactCard);
+        bank = FileHandler.jsonDeserializer("ui/src/main/java/com/piggybank/app/backend/bankData.json");
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("StartScene.fxml"));
