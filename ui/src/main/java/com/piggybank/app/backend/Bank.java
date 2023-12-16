@@ -2,6 +2,7 @@ package com.piggybank.app.backend;
 
 import com.piggybank.app.backend.customers.*;
 import com.piggybank.app.backend.customers.debts.*;
+import com.piggybank.app.backend.customers.loans.Loan;
 import com.piggybank.app.backend.employees.*;
 import com.piggybank.app.backend.exceptions.*;
 import com.piggybank.app.backend.utils.*;
@@ -79,11 +80,6 @@ public class Bank {
     public double getBalance(String accountId) throws Exception {
         Account account = getAccountById(accountId);
         return account.getBalance();
-    }
-
-    //get bank information:
-    public ContactCard getBankInfo() {
-        return contactInfo;
     }
 
     // below methods get information from user's ContactCard
@@ -167,8 +163,8 @@ public class Bank {
     }
 
     // creates a new account for customer:
-    public void createAccount(String userID, String accountName) throws Exception {
-        Customer customer = customers.get(userID);
+    public void createAccount(String userId, String accountName) throws Exception {
+        Customer customer = customers.get(userId);
 
         // finds the highest accountId in the HashMap customers
         String accountHighestId = findHighestAccountId();
@@ -178,6 +174,19 @@ public class Bank {
 
         Account newAccount = new Account(accountId, accountName);
         customer.addAccount(newAccount);
+    }
+
+    public void createLoanAccount(String userId, String accountName, double loanAmount) throws Exception {
+        Customer customer = customers.get(userId);
+
+        // finds the highest accountId in the HashMap customers
+        String accountHighestId = findHighestAccountId();
+
+        //Generates accountId
+        String accountId = IdGenerator.generateAccountId(accountHighestId);
+
+        Loan newLoan = new Loan(accountId, accountName, loanAmount);
+        customer.addAccount(newLoan);
     }
 
     //-----------------------REMOVAL METHODS-----------------------
