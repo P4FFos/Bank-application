@@ -18,7 +18,7 @@ public class UIMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        bank = FileHandler.jsonDeserializer("ui/src/main/java/com/piggybank/app/backend/bankData.json");
+        bank = FileHandler.jsonDeserializer("ui/src/main/java/com/piggybank/app/backend/bankData4.json");
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("StartScene.fxml"));
