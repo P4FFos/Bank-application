@@ -3,7 +3,6 @@ package com.piggybank.app.ui;
 import com.piggybank.app.backend.customers.Customer;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
-import com.piggybank.app.backend.employees.Employee;
 import com.piggybank.app.backend.exceptions.PasswordException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -134,7 +133,7 @@ public class EmpCustomerInfoController extends EmpMainController {
         customerIdLabel.setText(currentCustomer.getUserId());
         if (currentCustomer instanceof CustomerPrivate) {
             CustomerPrivate currentPrivate = (CustomerPrivate) currentCustomer;
-            customerNameLabel.setText(currentPrivate.getName());
+            customerNameLabel.setText(currentPrivate.giveFullName());
             //customerSsnLabel.setText(currentPrivate.getSSN());
         } else if (currentCustomer instanceof CustomerCorporate) {
             CustomerCorporate currentCorporate = (CustomerCorporate) currentCustomer;
