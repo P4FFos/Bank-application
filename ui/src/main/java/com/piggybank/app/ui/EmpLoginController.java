@@ -32,7 +32,7 @@ public class EmpLoginController {
         String userId;
 
         try {
-            Bank bank = UIMain.getBank();
+            Bank bank = UIMain.bank;
             userId = usernameTextField.getText();
             password = passwordField.getText();
 

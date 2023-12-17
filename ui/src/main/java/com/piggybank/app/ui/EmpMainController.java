@@ -1,8 +1,8 @@
 package com.piggybank.app.ui;
 
 import com.piggybank.app.backend.Bank;
+import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.Customer;
-import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.employees.Employee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +16,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
 
 public class EmpMainController {
@@ -46,20 +45,24 @@ public class EmpMainController {
     private Scene scene;
     private Node node;
     private FXMLLoader loader;
-    private Customer currentCustomer;
 
+
+    public static Bank bank = UIMain.bank;
     public static Employee currentEmployee;
-    public static Bank bank = UIMain.getBank();
+    public static Customer currentCustomer;
+    public static HashMap<String, Account> currentCustomersAccounts; //to be able to populate accountsListview
 
 
-    public Customer getCurrentCustomer(){
-        return currentCustomer;
-    }
-    public void setCurrentEmployee(Employee employee){
+    public void setCurrentEmployee(Employee employee){ //Method called from EmpLoginController
         currentEmployee = employee;
         empIdLabel.setText(currentEmployee.getUserId());
         empInitialsLabel.setText(currentEmployee.getInitials());
         System.out.println("Employee Start Page. Logged in as: " + employee.getInitials());
+    }
+
+    public void showCurrentEmployee(){
+        empIdLabel.setText(currentEmployee.getUserId());
+        empInitialsLabel.setText(currentEmployee.getInitials());
     }
 
     public void logout(ActionEvent event) throws IOException { //logoutButton
@@ -82,21 +85,22 @@ public class EmpMainController {
         stage.setScene(scene);
         stage.show();
 
-        empIdLabel.setText(currentEmployee.getUserId());
-        empInitialsLabel.setText(currentEmployee.getInitials());
+        showCurrentEmployee();
+        currentCustomer = null;
         System.out.println("Employee Start Page. Logged in as: " + currentEmployee.getInitials());
-    } //Not displaying Emp Info Labels correctly
+    }
 
     public void searchCustomer(ActionEvent event) throws IOException { //searchButton
         String searchPhrase = searchCustomerTextField.getText();
         try{
             currentCustomer = bank.getCustomerByIdOrSSN(searchPhrase);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpCustomerOverview.fxml"));
+            currentCustomersAccounts = currentCustomer.getAccounts();
+            loader = new FXMLLoader(getClass().getResource("EmpCustomerOverView.fxml"));
             root = loader.load();
 
             EmpCustomerOverviewController controller = loader.getController();
-            controller.setCurrentCustomer(currentCustomer);
-            controller.setCurrentEmployee();
+            controller.showCurrentCustomer();
+            controller.showCurrentEmployee();
 
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
@@ -104,69 +108,69 @@ public class EmpMainController {
             stage.show();
 
         } catch (Exception e) {
-            System.out.println("Customer not found by ID or SSN.");
+            e.printStackTrace();
         }
+    }
 
-
-        /*if(bank.getCustomers().containsKey(searchCustomerTextField.getText())){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpCustomerOverview.fxml"));
+    public void goToCustomer(ActionEvent event) throws IOException { //viewCustomerButton
+        if(currentCustomer != null) {
+            loader = new FXMLLoader(getClass().getResource("EmpCustomerOverview.fxml"));
             root = loader.load();
 
             EmpCustomerOverviewController controller = loader.getController();
-            controller.setCurrentCustomer(bank.getCustomer());
+            controller.showCurrentCustomer();
+            controller.showCurrentEmployee();
+
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } else {
+            System.out.println("No selected customer. Do a search.");
+        }
+
+    }
+
+    public void goToCustomerInfo(ActionEvent event) throws IOException { //customerInfoButton
+        if(currentCustomer != null){
+            loader = new FXMLLoader(getClass().getResource("EmpCustomerInfo.fxml"));
+            root = loader.load();
+
+            EmpCustomerInfoController controller = loader.getController();
+            controller.showCurrentEmployee();
+            controller.showCurrentCustomer();
+
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } else {
+            System.out.println("No selected customer. Do a search.");
+        }
+
+
+    }
+
+    public void goToLoans(ActionEvent event) throws IOException { //manageLoansButton
+        if(currentCustomer != null){
+            loader = new FXMLLoader(getClass().getResource("ManageLoans.fxml"));
+            root = loader.load();
+
+            ManageLoansController controller = loader.getController();
             controller.setCurrentEmployee();
 
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-
         } else {
-            System.out.println("Customer not found.");
-        }*/
-    }
+            System.out.println("No selected customer. Do a search.");
+        }
 
-    public void goToCustomer(ActionEvent event) throws IOException { //viewCustomerButton
-        loader = new FXMLLoader(getClass().getResource("EmpCustomerOverview.fxml"));
-        root = loader.load();
-
-        EmpCustomerOverviewController controller = loader.getController();
-        controller.setCurrentCustomer(currentCustomer);
-        controller.setCurrentEmployee();
-
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void goToCustomerInfo(ActionEvent event) throws IOException { //customerInfoButton
-        loader = new FXMLLoader(getClass().getResource("EmpCustomerInfo.fxml"));
-        root = loader.load();
-
-        EmpCustomerInfoController controller = loader.getController();
-        controller.setCurrentEmployee();
-
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void goToLoans(ActionEvent event) throws IOException { //manageLoansButton
-        loader = new FXMLLoader(getClass().getResource("ManageLoans.fxml"));
-        root = loader.load();
-
-        ManageLoansController controller = loader.getController();
-        controller.setCurrentEmployee();
-
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 
     public void goToCustomerCreation(ActionEvent event) throws IOException { //newCustomerButton
+        currentCustomer = null;
         loader = new FXMLLoader(getClass().getResource("AddCustomer.fxml"));
         root = loader.load();
 

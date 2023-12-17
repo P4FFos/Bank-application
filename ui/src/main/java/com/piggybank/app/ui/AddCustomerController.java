@@ -80,14 +80,14 @@ public class AddCustomerController extends EmpMainController {
         if(privateCustomerCheckBox.isSelected()){
 			ContactCard newContactCard = new ContactCard(email, phone, street, zip, city);
 			try{
-				UIMain.getBank().createCustomerPrivate(ssn, firstName, lastName, password, newContactCard);
+				UIMain.bank.createCustomerPrivate(ssn, firstName, lastName, password, newContactCard);
 			} catch (Exception e){
 				System.out.println(e.getMessage());
 			}
         } else if(corporateCustomerCheckBox.isSelected()){
 			ContactCard newContactCard = new ContactCard(email, phone, street, zip, city);
 			try{
-				UIMain.getBank().createCustomerCorporate(orgNumber, companyName, password, newContactCard);
+				UIMain.bank.createCustomerCorporate(orgNumber, companyName, password, newContactCard);
 			} catch (Exception e){
 				System.out.println(e.getMessage());
 			}
