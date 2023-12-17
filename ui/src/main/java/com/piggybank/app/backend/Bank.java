@@ -1,5 +1,8 @@
 package com.piggybank.app.backend;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.piggybank.app.backend.customers.*;
 import com.piggybank.app.backend.customers.debts.*;
 import com.piggybank.app.backend.customers.loans.Loan;
@@ -71,6 +74,7 @@ public class Bank {
     }
 
     // returns a string of all transactions in specified account
+    //@JsonProperty("transactions")
     public ArrayList<Transaction> getTransactionHistory(String accountId) throws Exception {
         Account account = getAccountById(accountId);
         return account.getTransactionHistory();
@@ -84,10 +88,17 @@ public class Bank {
 
     // below methods get information from user's ContactCard
     public ContactCard getContactInfo(User user) {return user.getContactInfo();}
+
+    // information is available in ContactCard, so let serializer ignore these below attributes with @JsonIgnore
+    @JsonIgnore
     public String getEmail(User user) {return user.getEmail();}
+    @JsonIgnore
     public String getPhoneNumber(User user) {return user.getPhoneNumber();}
+    @JsonIgnore
     public String getStreetAddress(User user) {return user.getStreet();}
+    @JsonIgnore
     public String getZipCode(User user) {return user.getZipCode();}
+    @JsonIgnore
     public String getCity(User user) {return user.getCity();}
 
     //get employee
@@ -108,9 +119,15 @@ public class Bank {
     }
 
     //-----------------------SETTERS-----------------------
+    @JsonIgnore
     public void setStreetAddress(String newStreet, User user) {user.setStreet(newStreet);}
+    @JsonIgnore
+    public void setEmail(String newEmail, User user) {user.setStreet(newEmail);}
+    @JsonIgnore
     public void setZipCode(String newZipCode, User user) {user.setZipCode(newZipCode);}
+    @JsonIgnore
     public void setPhoneNumber(String newPhoneNr, User user) {user.setPhoneNumber(newPhoneNr);}
+    @JsonIgnore
     public void setCity(String newCity, User user) {user.setCity(newCity);}
 
     public void setCustomers(HashMap<String, Customer> customers) {
@@ -269,7 +286,7 @@ public class Bank {
         Account account = getAccountById(accountId);
         Account targetAccount = getAccountById(targetAccountId);
 
-        account.withdraw(amount, date);
+        account.withdraw(targetAccountId, amount, date);
         targetAccount.deposit(accountId, amount, message, date);
     }
 

@@ -1,5 +1,6 @@
 package com.piggybank.app.backend.customers;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -50,10 +51,15 @@ public abstract class User {
     }
 
     // getters for ContactCard information
+    @JsonIgnore
     public String getEmail() {return contactInfo.getEmail();}
+    @JsonIgnore
     public String getPhoneNumber() {return contactInfo.getPhoneNumber();}
+    @JsonIgnore
     public String getStreet() {return contactInfo.getStreetAddress();}
+    @JsonIgnore
     public String getZipCode() {return contactInfo.getZipCode();}
+    @JsonIgnore
     public String getCity() {return contactInfo.getCity();}
 
     // change password method which checks:
@@ -68,13 +74,18 @@ public abstract class User {
     }
 
     // setters for ContactCard information
+    @JsonIgnore
     public void setEmail(String newEmail) {
         contactInfo.setEmail(newEmail);
     }
+    @JsonIgnore
     public void setPhoneNumber(String newPhoneNr) {contactInfo.setPhoneNumber(newPhoneNr);}
+    @JsonIgnore
     public void setStreet(String newStreet) {
         contactInfo.setStreetAddress(newStreet);
     }
+    @JsonIgnore
     public void setZipCode(String newZip) {contactInfo.setZipCode(newZip);}
+    @JsonIgnore
     public void setCity(String newCity) {contactInfo.setCity(newCity);}
 }

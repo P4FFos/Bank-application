@@ -33,7 +33,7 @@ public class CustomerPrivate extends Customer {
     }
 
     // retrieve customer's full name
-    public String getName() {
+    public String giveFullName() {
         return firstName + " " + lastName;
     }
 
@@ -47,7 +47,6 @@ public class CustomerPrivate extends Customer {
 
     public void setInitials() {
         initials = firstName.substring(0, 1).toUpperCase() + lastName.substring(0, 1).toUpperCase();
-
     }
 
     public String getInitials() {return initials;}
