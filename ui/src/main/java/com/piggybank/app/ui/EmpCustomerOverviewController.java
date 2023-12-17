@@ -8,6 +8,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -63,25 +64,25 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 
     //-----------------METHODS-------------------
 
-    public void setCurrentEmployee(){
+    public void showCurrentEmployee(){
         empIdLabel.setText(EmpMainController.currentEmployee.getUserId());
         empInitialsLabel.setText(EmpMainController.currentEmployee.getInitials());
-        System.out.println("Customer Overview Page. Logged in as: " + EmpMainController.currentEmployee.getInitials());
+        System.out.println("Customer Overview (Accounts) Page. Logged in as: " + EmpMainController.currentEmployee.getInitials());
     }
 
-    public void setCurrentCustomer(Customer customer) { //change parameter to "Customer currentCustomer" and modify implementation accordingly
-        currentCustomer = customer;
-        customerIdLabel.setText(customer.getUserId());
-        if(customer instanceof CustomerPrivate customerPrivate){
-            customerSSNLabel.setText(customerPrivate.getSsn());
-            customerNameLabel.setText(customerPrivate.getFullName());
+    public void showCurrentCustomer() {
+        currentCustomer = EmpMainController.currentCustomer;
+        customerIdLabel.setText(currentCustomer.getUserId());
+        if(currentCustomer instanceof CustomerPrivate customerPrivate){
+            customerSSNLabel.setText(customerPrivate.getSSN());
+            customerNameLabel.setText(customerPrivate.getName());
         }
-        accounts = customer.getAccounts();
+        addAccountAnchorPane.setVisible(false);
+        contentAnchorPane.setVisible(true);
     }
 
     public void initialize(URL arg0, ResourceBundle arg1) { //Populates accountsListView with elements in accounts, selection "gets" an account
-
-        accountsListView.getItems().addAll(accounts.keySet());
+        accountsListView.getItems().addAll(currentCustomersAccounts.keySet());
         accountsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
@@ -107,7 +108,6 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         //Account createdAccount = new Account(currentCustomer.getUserId(), currentCustomerName);
         //accountsListView.getItems().add(createdAccount.getAccountName());
         //accountsListView.getItems().addAll(accounts);
-
         contentAnchorPane.setVisible(false);
         addAccountAnchorPane.setVisible(true);
     }

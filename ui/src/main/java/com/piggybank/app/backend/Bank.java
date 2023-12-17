@@ -154,6 +154,7 @@ public class Bank {
 
         CustomerPrivate newCustomer = new CustomerPrivate(ssn, firstName, lastName, userId, password, contactCard);
         this.customers.put(userId, newCustomer);
+        System.out.println("Private customer created: " + userId + " " + firstName + " " + lastName);
     }
     // creates new corporate customer and add it to customers hashmap:
     public void createCustomerCorporate(String orgNumber, String companyName, String password, ContactCard contactCard) throws Exception {
@@ -165,6 +166,7 @@ public class Bank {
 
         CustomerCorporate newCustomer = new CustomerCorporate(orgNumber, companyName, userId, password, contactCard);
         this.customers.put(userId, newCustomer);
+        System.out.println("Corporate customer created: " + userId + " " + companyName);
     }
 
     // creates new private employee and add it to employees hashmap:
@@ -177,6 +179,7 @@ public class Bank {
 
         Employee newEmployee = new Employee(firstName, lastName, userId, password, contactCard);
         this.employees.put(userId, newEmployee);
+        System.out.println("Employee created: " + userId);
     }
 
     // creates a new account for customer:
@@ -191,6 +194,7 @@ public class Bank {
 
         Account newAccount = new Account(accountId, accountName);
         customer.addAccount(newAccount);
+        System.out.println("New account: " + accountId + " " + accountName);
     }
 
     public void createLoanAccount(String userId, String accountName, double loanAmount) throws Exception {
