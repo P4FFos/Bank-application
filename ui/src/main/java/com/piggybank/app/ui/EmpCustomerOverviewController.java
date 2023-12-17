@@ -74,7 +74,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         customerIdLabel.setText(customer.getUserId());
         if(customer instanceof CustomerPrivate customerPrivate){
             customerSSNLabel.setText(customerPrivate.getSsn());
-            customerNameLabel.setText(customerPrivate.giveFullName());
+            customerNameLabel.setText(customerPrivate.getFullName());
         }
         accounts = customer.getAccounts();
     }

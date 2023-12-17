@@ -1,5 +1,6 @@
 package com.piggybank.app.backend.customers;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.piggybank.app.backend.utils.ContactCard;
 
 public class CustomerPrivate extends Customer {
@@ -33,7 +34,8 @@ public class CustomerPrivate extends Customer {
     }
 
     // retrieve customer's full name
-    public String giveFullName() {
+    @JsonIgnore
+    public String getFullName() {
         return firstName + " " + lastName;
     }
 

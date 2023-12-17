@@ -133,7 +133,7 @@ public class EmpCustomerInfoController extends EmpMainController {
         customerIdLabel.setText(currentCustomer.getUserId());
         if (currentCustomer instanceof CustomerPrivate) {
             CustomerPrivate currentPrivate = (CustomerPrivate) currentCustomer;
-            customerNameLabel.setText(currentPrivate.giveFullName());
+            customerNameLabel.setText(currentPrivate.getFullName());
             //customerSsnLabel.setText(currentPrivate.getSSN());
         } else if (currentCustomer instanceof CustomerCorporate) {
             CustomerCorporate currentCorporate = (CustomerCorporate) currentCustomer;
