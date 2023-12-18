@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.MotionBlur?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="baseAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.piggybank.app.ui.CustomerLoansApplicationController">
+    <children>
+        <Separator fx:id="verticalSeparator" layoutX="173.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="320.0" prefWidth="15.0" />
+        <Separator fx:id="horisontalSeparator" layoutY="65.0" prefHeight="22.0" prefWidth="645.0" />
+        <AnchorPane fx:id="headerAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="645.0">
+            <children>
+                <ImageView fx:id="headerIconImageView" fitHeight="52.0" fitWidth="36.0" layoutX="304.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../img/PB_icon.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="headerIconShadedImageView" fitHeight="52.0" fitWidth="36.0" layoutX="306.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                    <image>
+                        <Image url="@../../../../img/PB_icon_shaded.png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="headerBankNameLabel" layoutX="265.0" layoutY="38.0" text="Piggy Bank" textFill="#ab3e56">
+                    <font>
+                        <Font name="Kodchasan Regular" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="headerIdLabel" layoutX="525.0" layoutY="10.0" text="ID">
+                    <font>
+                        <Font name="Kodchasan Regular" size="11.0" />
+                    </font>
+                </Label>
+                <Label fx:id="headerActualIdLabel" alignment="CENTER_RIGHT" contentDisplay="TOP" layoutX="540.0" layoutY="10.0" text="##########">
+                    <font>
+                        <Font name="Kodchasan Regular" size="11.0" />
+                    </font>
+                </Label>
+                <Label fx:id="headerCustomerNameLabel" layoutX="525.0" layoutY="25.0" text="Firstname Lastname">
+                    <font>
+                        <Font name="Kodchasan Regular" size="11.0" />
+                    </font>
+                </Label>
+                <Button fx:id="headerLogoutButton" layoutX="525.0" layoutY="42.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="66.0" text="LOGOUT">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="sideMenuAnchorPane" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="175.0">
+            <children>
+                <Label fx:id="sideMenuLabel" layoutX="105.0" layoutY="10.0" text="MENU">
+                    <font>
+                        <Font name="Kodchasan Regular" size="20.0" />
+                    </font>
+                </Label>
+                <Button fx:id="sideMenuStartButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="40.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="START" textAlignment="RIGHT">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Button>
+                <Button fx:id="sideMenuAccountsOverviewButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="70.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="ACCOUNTS OVERVIEW">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Button>
+                <Button fx:id="sideMenuTransferFundsButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="100.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="TRANSFER FUNDS">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Button>
+                <Button fx:id="sideMenuLoansButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="130.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="LOANS">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Button>
+                <Button fx:id="sideMenuCreditsButton1" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="160.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="CREDITS">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Button>
+                <Button fx:id="sideMenuFaqButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="190.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="FAQ">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Button>
+                <Button fx:id="sideMenuSupportButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="220.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="SUPPORT" textAlignment="RIGHT">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="infoAnchorPane" layoutX="175.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="470.0">
+            <children>
+                <Label fx:id="infoNameLabel" layoutX="10.0" layoutY="10.0" text="Firstname Lastname">
+                    <font>
+                        <Font name="Kodchasan Regular" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="infoAccountIdLabel" layoutX="10.0" layoutY="35.0" text="Account ID:">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Label>
+                <Label fx:id="infoActualAccountIdLabel" layoutX="75.0" layoutY="35.0" text="c####">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Label>
+                <Separator layoutX="5.0" layoutY="60.0" prefHeight="5.0" prefWidth="461.0" />
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="loanApplicationAnchorPane" layoutX="175.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="270.0" prefWidth="470.0">
+            <children>
+                <Label fx:id="loanApplicationLabel" layoutX="10.0" layoutY="10.0" text="LOAN APPLICATION">
+                    <font>
+                        <Font name="Kodchasan Regular" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="desiredAmountLabel" layoutX="10.0" layoutY="45.0" text="DESIRED AMOUNT">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Label>
+                <Button fx:id="amountInfoButton" layoutX="107.0" layoutY="46.0" mnemonicParsing="false" text="i">
+                    <font>
+                        <Font name="Kodchasan Regular" size="5.0" />
+                    </font>
+                </Button>
+                <Label fx:id="amountInfoHint" layoutX="10.0" layoutY="55.0" prefHeight="19.0" prefWidth="187.0" text="SELECT A DEFAULT AMOUNT BY CHECKING ONE OF THE BOXES OR SPECIFY A DIFFERENT AMOUNT IN THE FIELD BELOW" textFill="#323131" wrapText="true">
+                    <font>
+                        <Font name="Kodchasan ExtraLight" size="5.0" />
+                    </font>
+                </Label>
+                <CheckBox fx:id="firstAmountCheckBox" layoutX="10.0" layoutY="75.0" mnemonicParsing="false" text="50.000">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </CheckBox>
+                <CheckBox fx:id="secondAmountCheckBox" layoutX="60.0" layoutY="75.0" mnemonicParsing="false" text="100.000">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </CheckBox>
+                <CheckBox fx:id="thirdAmountCheckBox" layoutX="110.0" layoutY="75.0" mnemonicParsing="false" text="250.000">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </CheckBox>
+                <CheckBox fx:id="fourthAmountCheckBox" layoutX="160.0" layoutY="75.0" mnemonicParsing="false" text="500.000">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </CheckBox>
+                <TextField fx:id="enterAmountTextField" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="93.0" prefHeight="15.0" prefWidth="198.0" promptText="0.00">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </TextField>
+                <Label fx:id="amountSekLabel" layoutX="15.0" layoutY="95.0" text="SEK">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </Label>
+                <Label fx:id="repaymentPeriodLabel" layoutX="10.0" layoutY="120.0" text="REPAYMENT PERIOD">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Label>
+                <Label fx:id="repaymentPeriodHintLabel" layoutX="10.0" layoutY="130.0" prefHeight="19.0" prefWidth="205.0" text="SELECT TIMEFRAME TO PAY BACK YOUR LOAN BY CHECKING ONE OF THE BOXES OR SPECIFY IN THE FIELD BELOW" textFill="#807c7c" wrapText="true">
+                    <font>
+                        <Font name="Kodchasan ExtraLight" size="5.0" />
+                    </font>
+                </Label>
+                <CheckBox fx:id="firstPeriodCheckBox" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" text="5 years">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </CheckBox>
+                <CheckBox fx:id="secondPeriodCheckBox" layoutX="60.0" layoutY="150.0" mnemonicParsing="false" text="10 years">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </CheckBox>
+                <CheckBox fx:id="thirdPeriodCheckBox" layoutX="110.0" layoutY="150.0" mnemonicParsing="false" text="20 years">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </CheckBox>
+                <CheckBox fx:id="fourthPeriodCheckBox" layoutX="160.0" layoutY="150.0" mnemonicParsing="false" text="30 years">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </CheckBox>
+                <TextField fx:id="enterYearsTextField" layoutX="9.0" layoutY="167.0" prefHeight="15.0" prefWidth="198.0" promptText="0">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </TextField>
+                <Label fx:id="enterYearsLabel" layoutX="180.0" layoutY="170.0" text="years">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </Label>
+                <Label fx:id="annualIncomeLabel" layoutX="10.0" layoutY="190.0" text="ANNUAL INCOME">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Label>
+                <Label fx:id="annualIncomeHintLabel" layoutX="10.0" layoutY="200.0" text="SPECIFY YOUR ANNUAL, GROSS SALARY INCOME" textFill="#807c7c">
+                    <font>
+                        <Font name="Kodchasan ExtraLight" size="5.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="enterIncomeTextField" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="209.0" prefHeight="15.0" prefWidth="198.0" promptText="0.00">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </TextField>
+                <Label fx:id="incomeSekLabel" layoutX="15.0" layoutY="211.0" text="SEK">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </Label>
+                <Label fx:id="termsConditionsLabel" layoutX="240.0" layoutY="45.0" text="TERMS &amp; CONDITIONS">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Label>
+                <Label fx:id="sectionHeadingLabel" layoutX="240.0" layoutY="60.0" text="SECTION HEADING">
+                    <font>
+                        <Font name="Kodchasan Regular" size="6.0" />
+                    </font>
+                </Label>
+                <Label fx:id="informationSectionLabel" alignment="TOP_LEFT" layoutX="240.0" layoutY="70.0" prefHeight="40.0" prefWidth="198.0" text="LOREM IPSUM" textFill="#323131" wrapText="true">
+                    <font>
+                        <Font name="Kodchasan ExtraLight" size="5.0" />
+                    </font>
+                </Label>
+                <Label fx:id="enterPasswordLabel" layoutX="239.0" layoutY="188.0" text="Enter Password">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Label>
+                <Label fx:id="passwordHintLabel" layoutX="241.0" layoutY="198.0" text="ENTER YOUR ACCOUNT PASSWORD (4-6 DIGITS)" textFill="#807c7c">
+                    <font>
+                        <Font name="Kodchasan ExtraLight" size="5.0" />
+                    </font>
+                </Label>
+                <PasswordField fx:id="passwordField" layoutX="239.0" layoutY="208.0" prefHeight="15.0" prefWidth="159.0" promptText="******">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </PasswordField>
+                <CheckBox fx:id="agreeCheckBox" layoutX="239.0" layoutY="229.0" mnemonicParsing="false" text="I agree to the terms &amp; conditions." underline="true">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </CheckBox>
+                <Button fx:id="applyButton" layoutX="229.0" layoutY="240.0" mnemonicParsing="false" prefHeight="5.0" prefWidth="160.0" text="APPLY">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="bodySeparatorsAnchorPane" layoutX="175.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="470.0">
+            <children>
+                <Separator layoutX="5.0" layoutY="38.0" opacity="0.25" prefHeight="5.0" prefWidth="460.0">
+                    <effect>
+                        <MotionBlur />
+                    </effect>
+                </Separator>
+                <Separator layoutX="230.0" layoutY="40.0" opacity="0.1" orientation="VERTICAL" prefHeight="250.0" prefWidth="0.0" visible="false">
+                    <effect>
+                        <Shadow blurType="GAUSSIAN" />
+                    </effect>
+                </Separator>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
