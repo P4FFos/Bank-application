@@ -19,7 +19,7 @@
         "email": "john.doe@student.gu.se",
         "phoneNumber": "0701234567",
         "streetAddress": "Lindholmsplatsen 1",
-        "zipCode": 41756,
+        "zipCode": "41756",
         "city": "Gothenburg"
       },
       "accounts": {
@@ -65,7 +65,7 @@
         "email": "jane.doe@student.gu.se",
         "phoneNumber": "0702345678",
         "streetAddress": "Lindholmsplatsen 1",
-        "zipCode": 41756,
+        "zipCode": "41756",
         "city": "Gothenburg"
       },
       "accounts": {
@@ -166,7 +166,7 @@
         "email": "rand.althor@dragon.com",
         "phoneNumber": "0705678900",
         "streetAddress": "Dragon Mount 1",
-        "zipCode": 55555,
+        "zipCode": "55555",
         "city": "Dragon Mount"
       },
       "accounts": { }
@@ -185,7 +185,7 @@
         "email": "moiraine.damodred@whitetower.com",
         "phoneNumber": "0706789000",
         "streetAddress": "White Tower 126",
-        "zipCode": 55555,
+        "zipCode": "55555",
         "city": "White Tower"
       }
     },
@@ -201,7 +201,7 @@
         "email": "joseph.dredd@judge.com",
         "phoneNumber": "0707890000",
         "streetAddress": "Mega City 111",
-        "zipCode": 55555,
+        "zipCode": "55555",
         "city": "Mega City One"
       }
     }
