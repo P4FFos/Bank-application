@@ -86,41 +86,74 @@
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Button>
-                <Label fx:id="customerNameLabel" layoutY="14.0" prefHeight="23.0" prefWidth="179.0" text="Firstname Lastname" textAlignment="JUSTIFY" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
-                    <font>
+            <AnchorPane fx:id="privateCustomerInfoAnchorPane" prefHeight="112.0" prefWidth="190.0" AnchorPane.bottomAnchor="205.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                      <Label fx:id="customerNameLabel" prefHeight="23.0" prefWidth="179.0" text="Firstname Lastname" textAlignment="JUSTIFY" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                      <Label text="Account ID:" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="37.0">
+                          <font>
+                              <Font name="Kodchasan Regular" size="10.0" />
+                          </font>
+                      </Label>
+                      <Label fx:id="customerIdLabel" prefHeight="13.0" prefWidth="115.0" text="##########" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="37.0">
+                          <font>
+                              <Font name="Kodchasan Regular" size="10.0" />
+                          </font>
+                      </Label>
+                  <Label fx:id="customerSSNLabel" prefHeight="13.0" prefWidth="83.0" text="##########" AnchorPane.leftAnchor="86.0" AnchorPane.topAnchor="52.0">
+                     <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label text="Social Security Nr." AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="52.0">
+                     <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="corporateCustomerInfoAnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="112.0" prefWidth="190.0" visible="false" AnchorPane.bottomAnchor="205.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label fx:id="companyNameLabel" prefHeight="23.0" prefWidth="179.0" text="Company" textAlignment="JUSTIFY" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                     <font>
                         <Font size="18.0" />
-                    </font>
-                </Label>
-                <Label layoutX="3.0" layoutY="37.0" text="Account ID:" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="37.0">
-                    <font>
+                     </font>
+                  </Label>
+                  <Label text="Account ID:" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="37.0">
+                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
-                    </font>
-                </Label>
-                <Label fx:id="customerIdLabel" layoutX="61.0" layoutY="37.0" prefHeight="13.0" prefWidth="115.0" text="##########" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="37.0">
-                    <font>
+                     </font>
+                  </Label>
+                  <Label fx:id="companyIdLabel" prefHeight="13.0" prefWidth="115.0" text="##########" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="37.0">
+                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
-                    </font>
-                </Label>
-            <Label layoutX="-2.0" layoutY="53.0" text="Social Security Nr." AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="52.0">
-               <font>
-                  <Font name="Kodchasan Regular" size="10.0" />
-               </font>
-            </Label>
-            <Label fx:id="customerSSNLabel" layoutX="86.0" layoutY="52.0" prefHeight="13.0" prefWidth="83.0" text="##########" AnchorPane.leftAnchor="86.0" AnchorPane.topAnchor="52.0">
-               <font>
-                  <Font name="Kodchasan Regular" size="10.0" />
-               </font>
-            </Label>
+                     </font>
+                  </Label>
+                  <Label fx:id="companyOrgNrLabel" layoutX="43.0" prefHeight="13.0" prefWidth="126.0" text="##########" AnchorPane.leftAnchor="43.0" AnchorPane.topAnchor="52.0">
+                     <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label text="Org.nr." AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="52.0">
+                     <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
             </children>
         </AnchorPane>
-      <AnchorPane fx:id="addAccountAnchorPane" prefHeight="104.0" prefWidth="293.0" AnchorPane.bottomAnchor="191.0" AnchorPane.leftAnchor="236.0" AnchorPane.rightAnchor="113.0" AnchorPane.topAnchor="100.0">
+      <AnchorPane fx:id="addAccountAnchorPane" prefHeight="104.0" prefWidth="293.0" visible="false" AnchorPane.bottomAnchor="191.0" AnchorPane.leftAnchor="236.0" AnchorPane.rightAnchor="113.0" AnchorPane.topAnchor="100.0">
          <children>
             <Label layoutX="10.0" layoutY="27.0" text="ACCOUNT NAME" />
             <TextField fx:id="newAccountNameField" layoutX="116.0" layoutY="22.0" />
             <Button fx:id="saveNewAccountButton" layoutX="231.0" layoutY="59.0" mnemonicParsing="false" onAction="#saveNewAccount" text="Save" />
          </children>
       </AnchorPane>
-        <AnchorPane fx:id="contentAnchorPane" layoutX="180.0" layoutY="150.0" prefHeight="232.0" prefWidth="458.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
+        <AnchorPane fx:id="contentAnchorPane" layoutX="180.0" layoutY="150.0" prefHeight="232.0" prefWidth="458.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
          <children>
             <ListView fx:id="accountsListView" layoutX="16.0" layoutY="39.0" prefHeight="202.0" prefWidth="200.0" AnchorPane.leftAnchor="15.0" />
             <ListView fx:id="transactionsListView" layoutX="249.0" layoutY="41.0" prefHeight="202.0" prefWidth="200.0" AnchorPane.leftAnchor="252.0" />

@@ -2,6 +2,7 @@ package com.piggybank.app.ui;
 
 import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.Customer;
+import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
 import com.piggybank.app.backend.employees.Employee;
 import javafx.beans.value.ChangeListener;
@@ -28,6 +29,10 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     @FXML
     private AnchorPane addAccountAnchorPane;
     @FXML
+    private AnchorPane privateCustomerInfoAnchorPane;
+    @FXML
+    private AnchorPane corporateCustomerInfoAnchorPane;
+    @FXML
     private Label empIdLabel;
     @FXML
     private Label empInitialsLabel;
@@ -37,6 +42,12 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     private Label customerSSNLabel;
     @FXML
     private Label customerNameLabel;
+    @FXML
+    private Label companyNameLabel;
+    @FXML
+    private Label companyIdLabel;
+    @FXML
+    private Label companyOrgNrLabel;
     @FXML
     private Label accountIdLabel;
     @FXML
@@ -76,15 +87,26 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     }
 
     public void showCurrentCustomer() {
-        currentCustomer = EmpMainController.currentCustomer;
-        customerIdLabel.setText(currentCustomer.getUserId());
-        if(currentCustomer instanceof CustomerPrivate customerPrivate){
-            customerSSNLabel.setText(customerPrivate.getSsn());
-            customerNameLabel.setText(customerPrivate.getFullName());
+        if(EmpMainController.currentCustomer instanceof CustomerPrivate){
+            CustomerPrivate currentPrivate = (CustomerPrivate) EmpMainController.currentCustomer;
+            privateCustomerInfoAnchorPane.setVisible(true);
+            corporateCustomerInfoAnchorPane.setVisible(false);
+            customerSSNLabel.setText(currentPrivate.getSsn());
+            customerNameLabel.setText(currentPrivate.getFullName());
+            customerIdLabel.setText(currentPrivate.getUserId());
+        } else {
+            CustomerCorporate currentCorporate = (CustomerCorporate) EmpMainController.currentCustomer;
+            privateCustomerInfoAnchorPane.setVisible(true);
+            corporateCustomerInfoAnchorPane.setVisible(false);
+            companyNameLabel.setText(currentCorporate.getCompanyName());
+            companyIdLabel.setText(currentCorporate.getUserId());
+            companyOrgNrLabel.setText(currentCorporate.getOrgNumber());
         }
         addAccountAnchorPane.setVisible(false);
         contentAnchorPane.setVisible(true);
     }
+
+
 
     public void initialize(URL arg0, ResourceBundle arg1) { //Populates accountsListView with elements in accounts, selection "gets" an account
         accountsListView.getItems().addAll(currentCustomersAccounts.keySet());
@@ -108,11 +130,6 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     }
 
     public void addAccount(ActionEvent event) {
-        //create an account, set initial balance to 0. add to customer's account list.
-        //reload accountsListView
-        //Account createdAccount = new Account(currentCustomer.getUserId(), currentCustomerName);
-        //accountsListView.getItems().add(createdAccount.getAccountName());
-        //accountsListView.getItems().addAll(accounts);
         contentAnchorPane.setVisible(false);
         addAccountAnchorPane.setVisible(true);
     }

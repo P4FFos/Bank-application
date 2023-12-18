@@ -14,11 +14,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class EmpCustomerInfoController extends EmpMainController {
+    @FXML
+    private AnchorPane privateCustomerInfoAnchorPane;
+    @FXML
+    private AnchorPane corporateCustomerInfoAnchorPane;
     @FXML
     private Button editStreetButton;
     @FXML
@@ -54,6 +59,12 @@ public class EmpCustomerInfoController extends EmpMainController {
     @FXML
     private Label customerSSNLabel;
     @FXML
+    private Label companyNameLabel;
+    @FXML
+    private Label companyIdLabel;
+    @FXML
+    private Label companyOrgNrLabel;
+    @FXML
     private PasswordField passwordField;
     @FXML
     private TextField streetField;
@@ -70,7 +81,6 @@ public class EmpCustomerInfoController extends EmpMainController {
     public void streetEditable(){ //editStreetButton
         streetField.setEditable(true);
     }
-    //implement the "Editable" methods the same way as streetEditable() for their corresponding fields
     public void zipEditable(){ //editZipButton
         zipField.setEditable(true);
     }
@@ -92,7 +102,6 @@ public class EmpCustomerInfoController extends EmpMainController {
         EmpMainController.currentCustomer.setStreet(newStreet);
         streetField.setEditable(false);
     }
-    //implement the "setNew" methods the same way as setNewStreet() and create the necessary setters in Customer and ContactCard
     public void setNewZip(){ //saveNewZipButton
         String newZip = zipField.getText();
         zipField.setText(newZip);
@@ -126,10 +135,19 @@ public class EmpCustomerInfoController extends EmpMainController {
         } catch (PasswordException passwordException) {
             System.out.println("Password must be at least 8 characters and include uppercase letters and numbers.");
         }
-        //If the employee has checked the customer's id in real life,
-        //they don't need to enter the old password to be able to update
-        //it. It could be a service performed by a bank employee for a
-        //customer who has forgotten their password.
+    }
+    public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
+        Parent root = loader.load();
+
+        EmpMainController controller = loader.getController();
+        controller.showCurrentEmployee();
+        EmpMainController.currentCustomer = null;
+
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void showCurrentEmployee(){
@@ -145,33 +163,24 @@ public class EmpCustomerInfoController extends EmpMainController {
         cityField.setText(EmpMainController.currentCustomer.getCity());
         phoneField.setText(EmpMainController.currentCustomer.getPhoneNumber());
         emailField.setText(EmpMainController.currentCustomer.getEmail());
-        if (EmpMainController.currentCustomer instanceof CustomerPrivate) {
+        if(EmpMainController.currentCustomer instanceof CustomerPrivate){
             CustomerPrivate currentPrivate = (CustomerPrivate) EmpMainController.currentCustomer;
+            privateCustomerInfoAnchorPane.setVisible(true);
+            corporateCustomerInfoAnchorPane.setVisible(false);
+            customerSSNLabel.setText(currentPrivate.getSsn());
             customerNameLabel.setText(currentPrivate.getFullName());
             customerIdLabel.setText(currentPrivate.getUserId());
-            customerSSNLabel.setText(currentPrivate.getSsn());
-        } else if (EmpMainController.currentCustomer instanceof CustomerCorporate) {
+        } else {
             CustomerCorporate currentCorporate = (CustomerCorporate) EmpMainController.currentCustomer;
-            customerNameLabel.setText(currentCorporate.getCompanyName());
-            //customerOrgNrLabel.setText(currentCorporate.getOrgNumber());
-            //customerSsnLabel.setText(currentCorporate.getOrgNumber());
+            privateCustomerInfoAnchorPane.setVisible(true);
+            corporateCustomerInfoAnchorPane.setVisible(false);
+            companyNameLabel.setText(currentCorporate.getCompanyName());
+            companyIdLabel.setText(currentCorporate.getUserId());
+            companyOrgNrLabel.setText(currentCorporate.getOrgNumber());
         }
 
     }
 
-    public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
-        Parent root = loader.load();
-
-        EmpMainController controller = loader.getController();
-        controller.showCurrentEmployee();
-        EmpMainController.currentCustomer = null;
-
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 
 
 }
