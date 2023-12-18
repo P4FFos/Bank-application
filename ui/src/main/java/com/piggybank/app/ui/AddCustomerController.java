@@ -2,10 +2,18 @@ package com.piggybank.app.ui;
 
 import com.piggybank.app.backend.utils.ContactCard;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class AddCustomerController extends EmpMainController {
     @FXML
@@ -14,6 +22,8 @@ public class AddCustomerController extends EmpMainController {
     private AnchorPane corporateCustomerAnchorPane;
     @FXML
     private Button saveNewCustomerButton;
+    @FXML
+    private Button empStartButton;
     @FXML
     private CheckBox corporateCustomerCheckBox;
     @FXML
@@ -125,6 +135,20 @@ public class AddCustomerController extends EmpMainController {
         onSavePane.setVisible(false);
         privateCustomerCheckBox.setSelected(true);
         togglePrivate();
+    }
+
+    public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
+        Parent root = loader.load();
+
+        EmpMainController controller = loader.getController();
+        controller.showCurrentEmployee();
+        EmpMainController.currentCustomer = null;
+
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
 
