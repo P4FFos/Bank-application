@@ -1,11 +1,27 @@
 {
+  "contactInfo": {
+    "email":"employee@piggybank.com",
+    "phoneNumber": "0701234567",
+    "streetAddress": "Oink Oink Alley",
+    "zipCode": "35533",
+    "city": "Trufflesville"
+  },
   "customers": {
-    "c001": {
+    "C001": {
+      "customerType": "customerPrivate",
+      "ssn": "0101010101",
+      "firstName": "John",
+      "lastName": "Doe",
+      "initials": "JD",
       "userId": "C001",
-      "firstName": "Julien",
-      "lastName": "Baker",
-      "SSN": "0101010101",
-      "password": "BAKER123",
+      "password": "Password1",
+      "contactInfo": {
+        "email": "john.doe@student.gu.se",
+        "phoneNumber": "0701234567",
+        "streetAddress": "Lindholmsplatsen 1",
+        "zipCode": 41756,
+        "city": "Gothenburg"
+      },
       "accounts": {
         "A00001": {
           "accountName": "Daily account",
@@ -13,40 +29,45 @@
           "balance": 600.0,
           "transactions": [
             {
-              "fromAccountId": "A00001",
-              "toAccountId": "A00002",
+              "senderAccountId": "A00001",
+              "receiverAccountId": "A00002",
               "amount": -200.0,
-              "note": ""
+              "message": "",
+              "date": "2023-12-16"
             },
             {
-              "fromAccountId": "A00002",
-              "toAccountId": "A00001",
+              "senderAccountId": "A00002",
+              "receiverAccountId": "A00001",
               "amount": 400.0,
-              "note": "Money from Phoebe"
+              "message": "Money from Jane",
+              "date": "2023-12-15"
             },
             {
-              "fromAccountId": "A00001",
-              "toAccountId": "A00003",
+              "senderAccountId": "A00001",
+              "receiverAccountId": "A00003",
               "amount": -300.0,
-              "note": ""
+              "message": "",
+              "date": "2023-12-14"
             }
           ]
         }
-      },
-      "contactCard": {
-        "email": "julien.baker@student.gu.se",
-        "phoneNumber": "0701234567",
-        "streetAddress": "Lindholmsplatsen 1",
-        "zipCode": "41756",
-        "city": "Gothenburg"
       }
     },
-    "c002": {
-      "userId": "c002",
-      "firstName": "Phoebe",
-      "lastName": "Bridgers",
-      "SSN": "0201010101",
-      "password": "BRIDGERS1",
+    "C002": {
+      "customerType": "customerPrivate",
+      "ssn": "0201010101",
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "initials": "JD",
+      "userId": "C002",
+      "password": "Password123!",
+      "contactInfo": {
+        "email": "jane.doe@student.gu.se",
+        "phoneNumber": "0702345678",
+        "streetAddress": "Lindholmsplatsen 1",
+        "zipCode": 41756,
+        "city": "Gothenburg"
+      },
       "accounts": {
         "A00002": {
           "accountName": "Savings account",
@@ -54,121 +75,134 @@
           "balance": 1000.0,
           "transactions": [
             {
-              "fromAccountId": "A00001",
-              "toAccountId": "A00002",
+              "senderAccountId": "A00001",
+              "receiverAccountId": "A00002",
               "amount": 200.0,
-              "note": "Money from Julien"
+              "message": "Money from John",
+              "date": "2023-12-14"
             },
             {
-              "fromAccountId": "A00002",
-              "toAccountId": "A00003",
+              "senderAccountId": "A00002",
+              "receiverAccountId": "A00003",
               "amount": -100.0,
-              "note": ""
+              "message": "",
+              "date": "2023-12-13"
             },
             {
-              "fromAccountId": "A00002",
-              "toAccountId": "A00001",
+              "senderAccountId": "A00002",
+              "receiverAccountId": "A00001",
               "amount": -400.0,
-              "note": ""
+              "message": "",
+              "date": "2023-12-12"
             }
           ]
         },
         "A00003": {
-          "accountName": "Savings account",
+          "accountName": "Test account",
           "accountId": "A00003",
           "balance": 2500.0,
           "transactions": [
             {
-              "fromAccountId": "A00002",
-              "toAccountId": "A00003",
+              "senderAccountId": "A00002",
+              "receiverAccountId": "A00003",
               "amount": 100.0,
-              "note": "Money from Lucy"
+              "message": "Money from Jane",
+              "date": "2023-12-12"
             },
             {
-              "fromAccountId": "A00001",
-              "toAccountId": "A00003",
+              "senderAccountId": "A00001",
+              "receiverAccountId": "A00003",
               "amount": 300.0,
-              "note": "Money from Julien"
+              "message": "Money from John",
+              "date": "2023-12-11"
             }
           ]
         }
-      },
-      "contactCard": {
-        "email": "phoebe.bridgers@student.gu.se",
-        "phoneNumber": "0702345678",
-        "streetAddress": "Lindholmsplatsen 1",
-        "zipCode": "41756",
-        "city": "Gothenburg"
       }
     },
-    "c003": {
-      "userId": "c003",
+    "C003": {
+      "customerType": "customerPrivate",
+      "ssn": "0301010101",
       "firstName": "Din",
       "lastName": "Djaron",
-      "SSN": "0301010101",
-      "password": "PW123456",
-      "contactCard": {
+      "initials": "DD",
+      "userId": "C003",
+      "password": "pAssword123",
+      "contactInfo": {
         "email": "din.djarin@mandalorian.com",
         "phoneNumber": "0703456789",
         "streetAddress": "Concordia 1",
         "zipCode": "55555",
         "city": "Concordia"
-      }
+      },
+      "accounts": { }
     },
-    "c004": {
-      "userId": "c004",
+    "C004": {
+      "customerType": "customerPrivate",
+      "ssn": "0401010101",
       "firstName": "Raylan",
       "lastName": "Givens",
-      "SSN": "0401010101",
-      "password": "MYPASSWORD",
-      "contactCard": {
+      "initials": "RG",
+      "userId": "C004",
+      "password": "paSsword1!",
+      "contactInfo": {
         "email": "raylan.givens@justified.com",
         "phoneNumber": "0704567890",
         "streetAddress": "Lexington 1",
         "zipCode": "55555",
         "city": "Lexington"
-      }
+      },
+      "accounts": { }
     },
-    "c005": {
-      "userId": "c005",
+    "C005": {
+      "customerType": "customerPrivate",
+      "ssn": "0101010101",
       "firstName": "Rand",
       "lastName": "Al'Thor",
-      "SSN": "0101010101",
-      "password": "HELLO123",
-      "contactCard": {
+      "initials": "RA",
+      "userId": "C005",
+      "password": "passWord!123",
+      "contactInfo": {
         "email": "rand.althor@dragon.com",
         "phoneNumber": "0705678900",
         "streetAddress": "Dragon Mount 1",
-        "zipCode": "55555",
+        "zipCode": 55555,
         "city": "Dragon Mount"
-      }
+      },
+      "accounts": { }
     }
   },
-    "employees": {
-    "e001": {
-      "userId": "e001",
+  "employees": {
+    "E001": {
+      "type": "employee",
       "firstName": "Moiraine",
       "lastName": "Sedai",
-      "password": "PASSWORD11",
-      "contactCard": {
+      "initials": "MS",
+      "userId": "E001",
+      "currentCustomer": null,
+      "password": "11DRAGON",
+      "contactInfo": {
         "email": "moiraine.damodred@whitetower.com",
         "phoneNumber": "0706789000",
         "streetAddress": "White Tower 126",
-        "zipCode": "55555",
+        "zipCode": 55555,
         "city": "White Tower"
-      },
-      "e002": {
-        "userId": "e002",
-        "firstName": "Dr. Taylor Alison",
-        "lastName": "Swift",
-        "password": "SWIFT1989",
-        "contactCard": {
-          "email": "taylor@swift.com",
-          "phoneNumber": "0707890000",
-          "streetAddress": "Mega City 111",
-          "zipCode": "55555",
-          "city": "Mega City One"
-        }
+      }
+    },
+    "E002": {
+      "type": "employee",
+      "firstName": "Judge",
+      "lastName": "Dredd",
+      "initials": "JD",
+      "userId": "E002",
+      "currentCustomer": null,
+      "password": "Password1234!",
+      "contactInfo": {
+        "email": "joseph.dredd@judge.com",
+        "phoneNumber": "0707890000",
+        "streetAddress": "Mega City 111",
+        "zipCode": 55555,
+        "city": "Mega City One"
       }
     }
   }
