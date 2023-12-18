@@ -1,6 +1,7 @@
 package com.piggybank.app.ui;
 
 import com.piggybank.app.backend.customers.Customer;
+import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,11 +12,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class ManageLoansController extends EmpMainController {
+    @FXML
+    private AnchorPane privateCustomerInfoAnchorPane;
+    @FXML
+    private AnchorPane corporateCustomerInfoAnchorPane;
     @FXML
     private Button selectedLoanButton;
     @FXML
@@ -28,6 +34,12 @@ public class ManageLoansController extends EmpMainController {
     private Label customerSSNLabel;
     @FXML
     private Label customerNameLabel;
+    @FXML
+    private Label companyNameLabel;
+    @FXML
+    private Label companyIdLabel;
+    @FXML
+    private Label companyOrgNrLabel;
     @FXML
     private Label empIdLabel;
     @FXML
@@ -46,14 +58,21 @@ public class ManageLoansController extends EmpMainController {
     }
 
     public void showCurrentCustomer() {
-        Customer currentCustomer = EmpMainController.currentCustomer;
-        customerIdLabel.setText(currentCustomer.getUserId());
-        if(currentCustomer instanceof CustomerPrivate customerPrivate){
-            customerSSNLabel.setText(customerPrivate.getSsn());
-            customerNameLabel.setText(customerPrivate.getFullName());
+        if(EmpMainController.currentCustomer instanceof CustomerPrivate){
+            CustomerPrivate currentPrivate = (CustomerPrivate) EmpMainController.currentCustomer;
+            privateCustomerInfoAnchorPane.setVisible(true);
+            corporateCustomerInfoAnchorPane.setVisible(false);
+            customerSSNLabel.setText(currentPrivate.getSsn());
+            customerNameLabel.setText(currentPrivate.getFullName());
+            customerIdLabel.setText(currentPrivate.getUserId());
+        } else {
+            CustomerCorporate currentCorporate = (CustomerCorporate) EmpMainController.currentCustomer;
+            privateCustomerInfoAnchorPane.setVisible(true);
+            corporateCustomerInfoAnchorPane.setVisible(false);
+            companyNameLabel.setText(currentCorporate.getCompanyName());
+            companyIdLabel.setText(currentCorporate.getUserId());
+            companyOrgNrLabel.setText(currentCorporate.getOrgNumber());
         }
-        //addAccountAnchorPane.setVisible(false);
-        //contentAnchorPane.setVisible(true);
     }
 
     public void setCurrentLoan(){

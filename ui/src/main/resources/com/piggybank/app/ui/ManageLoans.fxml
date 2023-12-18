@@ -97,31 +97,64 @@
                   <Font name="Kodchasan Regular" size="10.0" />
                </font>
             </Button>
-            <Label fx:id="customerNameLabel" layoutY="14.0" prefHeight="23.0" prefWidth="179.0" text="Firstname Lastname" textAlignment="JUSTIFY" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="3.0" layoutY="37.0" text="Account ID:" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="37.0">
-               <font>
-                  <Font name="Kodchasan Regular" size="10.0" />
-               </font>
-            </Label>
-            <Label fx:id="customerIdLabel" layoutX="61.0" layoutY="37.0" prefHeight="13.0" prefWidth="115.0" text="##########" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="37.0">
-               <font>
-                  <Font name="Kodchasan Regular" size="10.0" />
-               </font>
-            </Label>
-            <Label layoutX="-2.0" layoutY="53.0" text="Social Security Nr." AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="52.0">
-               <font>
-                  <Font name="Kodchasan Regular" size="10.0" />
-               </font>
-            </Label>
-            <Label fx:id="customerSSNLabel" layoutX="86.0" layoutY="52.0" prefHeight="13.0" prefWidth="83.0" text="##########" AnchorPane.leftAnchor="86.0" AnchorPane.topAnchor="52.0">
-               <font>
-                  <Font name="Kodchasan Regular" size="10.0" />
-               </font>
-            </Label>
+            <AnchorPane fx:id="privateCustomerInfoAnchorPane" prefHeight="112.0" prefWidth="190.0" AnchorPane.bottomAnchor="205.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label fx:id="customerNameLabel" prefHeight="23.0" prefWidth="179.0" text="Firstname Lastname" textAlignment="JUSTIFY" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Account ID:" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="37.0">
+                     <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="customerIdLabel" prefHeight="13.0" prefWidth="115.0" text="##########" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="37.0">
+                     <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="customerSSNLabel" prefHeight="13.0" prefWidth="83.0" text="##########" AnchorPane.leftAnchor="86.0" AnchorPane.topAnchor="52.0">
+                     <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label text="Social Security Nr." AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="52.0">
+                     <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="corporateCustomerInfoAnchorPane" layoutX="20.0" layoutY="20.0" prefHeight="112.0" prefWidth="190.0" visible="false" AnchorPane.bottomAnchor="205.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label fx:id="companyNameLabel" prefHeight="23.0" prefWidth="179.0" text="Company" textAlignment="JUSTIFY" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Account ID:" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="37.0">
+                     <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="companyIdLabel" prefHeight="13.0" prefWidth="115.0" text="##########" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="37.0">
+                     <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="companyOrgNrLabel" layoutX="43.0" prefHeight="13.0" prefWidth="126.0" text="##########" AnchorPane.leftAnchor="43.0" AnchorPane.topAnchor="52.0">
+                     <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label text="Org.nr." AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="52.0">
+                     <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
     </children>

@@ -2,6 +2,7 @@ package com.piggybank.app.ui;
 
 import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.Customer;
+import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
 import com.piggybank.app.backend.employees.Employee;
 import javafx.beans.value.ChangeListener;
@@ -28,6 +29,14 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     @FXML
     private AnchorPane addAccountAnchorPane;
     @FXML
+    private AnchorPane creditAnchorPane;
+    @FXML
+    private AnchorPane loanAnchorPane;
+    @FXML
+    private AnchorPane privateCustomerInfoAnchorPane;
+    @FXML
+    private AnchorPane corporateCustomerInfoAnchorPane;
+    @FXML
     private Label empIdLabel;
     @FXML
     private Label empInitialsLabel;
@@ -38,9 +47,17 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     @FXML
     private Label customerNameLabel;
     @FXML
+    private Label companyNameLabel;
+    @FXML
+    private Label companyIdLabel;
+    @FXML
+    private Label companyOrgNrLabel;
+    @FXML
     private Label accountIdLabel;
     @FXML
     private Label accountBalanceLabel;
+    @FXML
+    private Label loanAmountLabel;
     @FXML
     private Button selectAccountButton;
     @FXML
@@ -51,6 +68,28 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     private Button saveNewAccountButton;
     @FXML
     private TextField newAccountNameField;
+    @FXML
+    private CheckBox loanCheckBox;
+    @FXML
+    private CheckBox creditCheckBox;
+    @FXML
+    private CheckBox standardCheckBox;
+    @FXML
+    private CheckBox halfMillionCheckBox;
+    @FXML
+    private CheckBox oneMillionCheckBox;
+    @FXML
+    private CheckBox twoHalfMillionCheckBox;
+    @FXML
+    private CheckBox fiveMillionCheckBox;
+    @FXML
+    private CheckBox fiveKCheckBox;
+    @FXML
+    private CheckBox tenKCheckBox;
+    @FXML
+    private CheckBox twentyFiveKCheckBox;
+    @FXML
+    private CheckBox fiftyKCheckBox;
     @FXML
     private CheckBox inTransactionCheckBox;
     @FXML
@@ -76,15 +115,26 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     }
 
     public void showCurrentCustomer() {
-        currentCustomer = EmpMainController.currentCustomer;
-        customerIdLabel.setText(currentCustomer.getUserId());
-        if(currentCustomer instanceof CustomerPrivate customerPrivate){
-            customerSSNLabel.setText(customerPrivate.getSsn());
-            customerNameLabel.setText(customerPrivate.getFullName());
+        if(EmpMainController.currentCustomer instanceof CustomerPrivate){
+            CustomerPrivate currentPrivate = (CustomerPrivate) EmpMainController.currentCustomer;
+            privateCustomerInfoAnchorPane.setVisible(true);
+            corporateCustomerInfoAnchorPane.setVisible(false);
+            customerSSNLabel.setText(currentPrivate.getSsn());
+            customerNameLabel.setText(currentPrivate.getFullName());
+            customerIdLabel.setText(currentPrivate.getUserId());
+        } else {
+            CustomerCorporate currentCorporate = (CustomerCorporate) EmpMainController.currentCustomer;
+            privateCustomerInfoAnchorPane.setVisible(true);
+            corporateCustomerInfoAnchorPane.setVisible(false);
+            companyNameLabel.setText(currentCorporate.getCompanyName());
+            companyIdLabel.setText(currentCorporate.getUserId());
+            companyOrgNrLabel.setText(currentCorporate.getOrgNumber());
         }
         addAccountAnchorPane.setVisible(false);
         contentAnchorPane.setVisible(true);
     }
+
+
 
     public void initialize(URL arg0, ResourceBundle arg1) { //Populates accountsListView with elements in accounts, selection "gets" an account
         accountsListView.getItems().addAll(currentCustomersAccounts.keySet());
@@ -108,19 +158,38 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     }
 
     public void addAccount(ActionEvent event) {
-        //create an account, set initial balance to 0. add to customer's account list.
-        //reload accountsListView
-        //Account createdAccount = new Account(currentCustomer.getUserId(), currentCustomerName);
-        //accountsListView.getItems().add(createdAccount.getAccountName());
-        //accountsListView.getItems().addAll(accounts);
         contentAnchorPane.setVisible(false);
         addAccountAnchorPane.setVisible(true);
+        loanAnchorPane.setVisible(false);
+        creditAnchorPane.setVisible(false);
+        standardCheckBox.setSelected(true);
     }
 
     public void saveNewAccount() throws Exception {
         bank.createAccount(currentCustomer.getUserId(), newAccountNameField.getText());
         contentAnchorPane.setVisible(true);
         addAccountAnchorPane.setVisible(false);
+    }
+
+    public void toggleLoan(){
+        loanAnchorPane.setVisible(true);
+        creditAnchorPane.setVisible(false);
+        creditCheckBox.setSelected(false);
+        standardCheckBox.setSelected(false);
+    }
+
+    public void toggleCredit(){
+        loanAnchorPane.setVisible(false);
+        creditAnchorPane.setVisible(true);
+        standardCheckBox.setSelected(false);
+        loanCheckBox.setSelected(false);
+    }
+
+    public void toggleStandard(){
+        loanAnchorPane.setVisible(false);
+        creditAnchorPane.setVisible(false);
+        creditCheckBox.setSelected(false);
+        loanCheckBox.setSelected(false);
     }
 
     public void makeTransaction(ActionEvent event) {
