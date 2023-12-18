@@ -64,6 +64,7 @@ public class EmpMainController {
     public void showCurrentEmployee(){
         empIdLabel.setText(currentEmployee.getUserId());
         empInitialsLabel.setText(currentEmployee.getInitials());
+        System.out.println("Employee Start Page. Logged in as: " + currentEmployee.getInitials());
     }
 
     public void logout(ActionEvent event) throws IOException { //logoutButton
@@ -71,6 +72,7 @@ public class EmpMainController {
         FileHandler.jsonSerializer(saveFile, bank);
 
         currentEmployee = null;
+        currentCustomer = null;
         System.out.println("Logged out. Have a nice day.");
         loader = new FXMLLoader(getClass().getResource("StartScene.fxml"));
         root = loader.load();
