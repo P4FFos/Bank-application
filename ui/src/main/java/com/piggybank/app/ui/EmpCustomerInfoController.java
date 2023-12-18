@@ -3,7 +3,6 @@ package com.piggybank.app.ui;
 import com.piggybank.app.backend.customers.Customer;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
-import com.piggybank.app.backend.employees.Employee;
 import com.piggybank.app.backend.exceptions.PasswordException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -57,13 +56,6 @@ public class EmpCustomerInfoController extends EmpMainController {
     @FXML
     private TextField emailField;
 
-    private Customer currentCustomer;
-
-    public void setCurrentEmployee(){
-        empIdLabel.setText(EmpMainController.currentEmployee.getUserId());
-        empInitialsLabel.setText(EmpMainController.currentEmployee.getInitials());
-        System.out.println("Customer Info Page. Logged in as: " + EmpMainController.currentEmployee.getInitials());
-    }
 
     public void streetEditable(){ //editStreetButton
         streetField.setEditable(true);
@@ -87,39 +79,39 @@ public class EmpCustomerInfoController extends EmpMainController {
     public void setNewStreet(){ //saveNewStreetButton
         String newStreet = streetField.getText();
         streetField.setText(newStreet);
-        currentCustomer.setStreet(newStreet);
+        EmpMainController.currentCustomer.setStreet(newStreet);
         streetField.setEditable(false);
     }
     //implement the "setNew" methods the same way as setNewStreet() and create the necessary setters in Customer and ContactCard
     public void setNewZip(){ //saveNewZipButton
         String newZip = zipField.getText();
         zipField.setText(newZip);
-        currentCustomer.setZipCode(newZip);
+        EmpMainController.currentCustomer.setZipCode(newZip);
         zipField.setEditable(true);
     }
     public void setNewCity(){ //saveNewCityButton
         String newCity = cityField.getText();
         cityField.setText(newCity);
-        currentCustomer.setCity(newCity);
+        EmpMainController.currentCustomer.setCity(newCity);
         cityField.setEditable(true);
     }
     public void setNewPhone(){ //saveNewPhoneButton
         String newPhone = phoneField.getText();
         phoneField.setText(newPhone);
-        currentCustomer.setPhoneNumber(newPhone);
+        EmpMainController.currentCustomer.setPhoneNumber(newPhone);
         phoneField.setEditable(true);
     }
     public void setNewEmail(){ //saveNewEmailButton
         String newEmail = emailField.getText();
         emailField.setText(newEmail);
-        currentCustomer.setEmail(newEmail);
+        EmpMainController.currentCustomer.setEmail(newEmail);
         emailField.setEditable(false);
     }
     public void setNewPassword() { //saveNewPasswordButton
         try {
             String newPassword = passwordField.getText();
             passwordField.setText(newPassword);
-            currentCustomer.setPassword(newPassword);
+            EmpMainController.currentCustomer.setPassword(newPassword);
             passwordField.setEditable(false);
         } catch (PasswordException passwordException) {
             System.out.println("Password must be at least 8 characters and include uppercase letters and numbers.");
@@ -130,15 +122,28 @@ public class EmpCustomerInfoController extends EmpMainController {
         //customer who has forgotten their password.
     }
 
-    public void displayCurrentCustomer(Customer currentCustomer){
-        customerIdLabel.setText(currentCustomer.getUserId());
-        if (currentCustomer instanceof CustomerPrivate) {
-            CustomerPrivate currentPrivate = (CustomerPrivate) currentCustomer;
-            customerNameLabel.setText(currentPrivate.getName());
+    public void showCurrentEmployee(){
+        empIdLabel.setText(EmpMainController.currentEmployee.getUserId());
+        empInitialsLabel.setText(EmpMainController.currentEmployee.getInitials());
+        System.out.println("Customer Info Page. Logged in as: " + EmpMainController.currentEmployee.getInitials());
+    }
+
+    public void showCurrentCustomer(){
+        customerIdLabel.setText(EmpMainController.currentCustomer.getUserId());
+        streetField.setText(EmpMainController.currentCustomer.getStreet());
+        zipField.setText(EmpMainController.currentCustomer.getZipCode());
+        cityField.setText(EmpMainController.currentCustomer.getCity());
+        phoneField.setText(EmpMainController.currentCustomer.getPhoneNumber());
+        emailField.setText(EmpMainController.currentCustomer.getEmail());
+        if (EmpMainController.currentCustomer instanceof CustomerPrivate) {
+            CustomerPrivate currentPrivate = (CustomerPrivate) EmpMainController.currentCustomer;
+            customerNameLabel.setText(currentPrivate.getFullName());
+            customerIdLabel.setText(currentPrivate.getUserId());
             //customerSsnLabel.setText(currentPrivate.getSSN());
-        } else if (currentCustomer instanceof CustomerCorporate) {
-            CustomerCorporate currentCorporate = (CustomerCorporate) currentCustomer;
+        } else if (EmpMainController.currentCustomer instanceof CustomerCorporate) {
+            CustomerCorporate currentCorporate = (CustomerCorporate) EmpMainController.currentCustomer;
             customerNameLabel.setText(currentCorporate.getCompanyName());
+            //customerOrgNrLabel.setText(currentCorporate.getOrgNumber());
             //customerSsnLabel.setText(currentCorporate.getOrgNumber());
         }
 

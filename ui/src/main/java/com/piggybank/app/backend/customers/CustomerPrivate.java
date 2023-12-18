@@ -1,5 +1,6 @@
 package com.piggybank.app.backend.customers;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.piggybank.app.backend.utils.ContactCard;
 
 public class CustomerPrivate extends Customer {
@@ -33,7 +34,8 @@ public class CustomerPrivate extends Customer {
     }
 
     // retrieve customer's full name
-    public String getName() {
+    @JsonIgnore
+    public String getFullName() {
         return firstName + " " + lastName;
     }
 
@@ -47,7 +49,6 @@ public class CustomerPrivate extends Customer {
 
     public void setInitials() {
         initials = firstName.substring(0, 1).toUpperCase() + lastName.substring(0, 1).toUpperCase();
-
     }
 
     public String getInitials() {return initials;}
@@ -71,5 +72,10 @@ public class CustomerPrivate extends Customer {
             isEqual = sameUserID;
         }
         return isEqual;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("userId: %s, firstName: %s, lastName: %s, ssn: %s", getUserId(), firstName, lastName, ssn);
     }
 }

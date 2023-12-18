@@ -1,7 +1,6 @@
 package com.piggybank.app.backend.utils;
 
 public class ContactCard {
-    private String name;
     private String email;
     private String phoneNumber;
     private String streetAddress;
@@ -56,20 +55,12 @@ public class ContactCard {
         return city;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setCity(String city) {
         this.city = city;
     }
     
     public String toString() {
-        return String.format("%s, %s, %s, %s, %s, %s", name, email, phoneNumber, streetAddress, zipCode, city);
+        return String.format("email: %s, phoneNumber: %s, streetAddress: %s, zipCode: %s, city: %s", email, phoneNumber, streetAddress, zipCode, city);
     }
 }
 
