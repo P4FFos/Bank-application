@@ -4,11 +4,19 @@ import com.piggybank.app.backend.customers.Customer;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
 import com.piggybank.app.backend.exceptions.PasswordException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class EmpCustomerInfoController extends EmpMainController {
     @FXML
@@ -87,19 +95,19 @@ public class EmpCustomerInfoController extends EmpMainController {
         String newZip = zipField.getText();
         zipField.setText(newZip);
         EmpMainController.currentCustomer.setZipCode(newZip);
-        zipField.setEditable(true);
+        zipField.setEditable(false);
     }
     public void setNewCity(){ //saveNewCityButton
         String newCity = cityField.getText();
         cityField.setText(newCity);
         EmpMainController.currentCustomer.setCity(newCity);
-        cityField.setEditable(true);
+        cityField.setEditable(false);
     }
     public void setNewPhone(){ //saveNewPhoneButton
         String newPhone = phoneField.getText();
         phoneField.setText(newPhone);
         EmpMainController.currentCustomer.setPhoneNumber(newPhone);
-        phoneField.setEditable(true);
+        phoneField.setEditable(false);
     }
     public void setNewEmail(){ //saveNewEmailButton
         String newEmail = emailField.getText();
@@ -147,6 +155,20 @@ public class EmpCustomerInfoController extends EmpMainController {
             //customerSsnLabel.setText(currentCorporate.getOrgNumber());
         }
 
+    }
+
+    public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
+        Parent root = loader.load();
+
+        EmpMainController controller = loader.getController();
+        controller.showCurrentEmployee();
+        EmpMainController.currentCustomer = null;
+
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 

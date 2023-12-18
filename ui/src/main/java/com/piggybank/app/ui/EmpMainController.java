@@ -163,7 +163,7 @@ public class EmpMainController {
             root = loader.load();
 
             ManageLoansController controller = loader.getController();
-            controller.setCurrentEmployee();
+            controller.showCurrentEmployee();
 
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
@@ -182,7 +182,7 @@ public class EmpMainController {
 
         AddCustomerController controller = loader.getController();
         controller.initialiseAddCustomer();
-        controller.setCurrentEmployee();
+        controller.showCurrentEmployee();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
