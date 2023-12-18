@@ -1,59 +1,29 @@
 package com.piggybank.app.backend;
 
-import java.util.Date;
+import com.piggybank.app.backend.utils.FileHandler;
 
-import com.piggybank.app.backend.utils.ContactCard;
+import java.time.LocalDate;
 
 public class BackendMain {
     public static void main(String[] args) throws Exception {
-        ContactCard CCJohnD = new ContactCard(
-                "johnd@student.gu.se",
-                "+46709876543",
-                "Kungsgatan 1",
-                41102,
-                "Gothenburg");
 
-        ContactCard CCJaneD = new ContactCard(
-                "janed@student.gu.se",
-                "+4670756634",
-                "Kungsgatan 1",
-                41102,
-                "Gothenburg");
+        String jsonFile = "ui/src/main/java/com/piggybank/app/backend/bankData.json";
+        Bank bank = FileHandler.jsonDeserializer(jsonFile);
 
-        Bank piggyBank = new Bank();
+        // testing the bank
+        System.out.println(bank.getCustomerByIdOrSsn("C001").getEmail());
+        System.out.println(bank);
+        System.out.println(bank.getCustomerByIdOrSsn("C002").getAccounts());
+        System.out.println(bank.getContactInfo());
+        System.out.println(bank.getTransactionHistory("A00001"));
 
-        piggyBank.createCustomerPrivate(
-                "c00001",
-                "8801011122",
-                "John",
-                "Doe",
-                "password",
-                CCJohnD);
-        piggyBank.createCustomerPrivate(
-                "c00002",
-                "8801013344",
-                "Jane",
-                "Doe",
-                "password",
-                CCJaneD);
+        // will add transaction in json file
+        bank.transfer("A00003", "A00001", 400,"Money from Jane", LocalDate.now());
 
-        piggyBank.createAccount("c00001", "Daily account");
-        piggyBank.createAccount("c00001", "Savings account");
+        String saveFile = "ui/src/main/java/com/piggybank/app/backend/bankDataBackendMain.json";
 
-        piggyBank.createAccount("c00002", "Savings account");
+        FileHandler.jsonSerializer(saveFile, bank);
 
-        // Deposit 1000
-        piggyBank.deposit("c00001", "a000000001", 1000.0, "", new Date());
-
-        // Transfer 400 to another account
-        piggyBank.transfer("a000000001", "a000000003", 400.0, "here you go!/JD", new Date());
-
-        System.out.println(piggyBank.getCustomer("c00001").getAccount("a000000001").getBalance());
-        System.out.println(piggyBank.getCustomer("c00002").getAccount("a000000003").getBalance());
-
-        // Two ways of operating, either in Bank methods or digging through methods trees
-        //System.out.println(piggyBank.getCustomer(janeDoe).getAccount(janeDoeAccount1).getTransactionHistory());
-        System.out.println(piggyBank.getTransactionHistory("a000000003"));
 
     }
 }

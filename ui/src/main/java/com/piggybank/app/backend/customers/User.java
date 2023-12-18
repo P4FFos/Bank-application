@@ -1,62 +1,91 @@
 package com.piggybank.app.backend.customers;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+import com.piggybank.app.backend.employees.Employee;
 import com.piggybank.app.backend.exceptions.PasswordException;
 import com.piggybank.app.backend.utils.ContactCard;
 
+// Used by Jackson-Databind for handling Json files with abstract classes, specifying which subclass an object belong to
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Employee.class, name = "employee"),
+        @JsonSubTypes.Type(value = Customer.class, name = "customer")
+})
 public abstract class User {
-    // user attributes
-    final String userId;
+    // user attributes:
+    private String userId;
     private String password;
     private ContactCard contactInfo;
 
-    // user class constructor:
-    // checks if password length in bigger than 8 symbols,
-    // if it contains at least one capital letter and at least one digit
-    public User(String userId, String password, ContactCard contactInfo) throws Exception {
-        this.userId = userId;
-        this.contactInfo = contactInfo;
-        if (password.length() >= 8 && password.matches(".*[A-Z].*") && password.matches(".*\\d.*")) {
-            this.password = password;
-        } else {
-            throw new Exception("Invalid password format");
-        }
+
+    public User() {
     }
 
-    // get user Id method
+    // user object constructor:
+    public User(String userId, String password, ContactCard contactInfo) throws PasswordException {
+        this.userId = userId;
+        this.contactInfo = contactInfo;
+        setPassword(password);
+    }
+
+    // getters for user information:
     public String getUserId() {
         return userId;
     }
-
-    // get contact Info method
     public ContactCard getContactInfo() {
         return contactInfo;
     }
-
-    // get password method
     public String getPassword() {
         return this.password;
     }
 
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public void setContactInfo(ContactCard contactInfo) {
+        this.contactInfo = contactInfo;
+    }
+
+    // getters for ContactCard information
+    @JsonIgnore
+    public String getEmail() {return contactInfo.getEmail();}
+    @JsonIgnore
+    public String getPhoneNumber() {return contactInfo.getPhoneNumber();}
+    @JsonIgnore
+    public String getStreet() {return contactInfo.getStreetAddress();}
+    @JsonIgnore
+    public String getZipCode() {return contactInfo.getZipCode();}
+    @JsonIgnore
+    public String getCity() {return contactInfo.getCity();}
+
     // change password method which checks:
-    // if new password length in bigger than 8 symbols,
-    // if it contains at least one capital letter and at least one digit
-    public void changePassword(String newPassword) throws PasswordException {
+    // new password must be longer than 8 symbols,
+    // new password must contain at least one capital letter and at least one digit
+    public void setPassword(String newPassword) throws PasswordException {
         if (newPassword.length() >= 8 && newPassword.matches(".*[A-Z].*") && newPassword.matches(".*\\d.*")) {
             this.password = newPassword;
         } else {
-            throw new PasswordException("New password has invalid format");
+            throw new PasswordException("Password has invalid format");
         }
     }
 
-    // updates the user's street address:
-    public void setStreet(String newStreet) {
-        contactInfo.setStreetAddress();
-    }
-
-    // updates the user's email:
+    // setters for ContactCard information
+    @JsonIgnore
     public void setEmail(String newEmail) {
-        contactInfo.setEmail();
+        contactInfo.setEmail(newEmail);
     }
-
-    //create methods for updating contact info (via forwarding from ContactCard once those methods are in place)
+    @JsonIgnore
+    public void setPhoneNumber(String newPhoneNr) {contactInfo.setPhoneNumber(newPhoneNr);}
+    @JsonIgnore
+    public void setStreet(String newStreet) {
+        contactInfo.setStreetAddress(newStreet);
+    }
+    @JsonIgnore
+    public void setZipCode(String newZip) {contactInfo.setZipCode(newZip);}
+    @JsonIgnore
+    public void setCity(String newCity) {contactInfo.setCity(newCity);}
 }

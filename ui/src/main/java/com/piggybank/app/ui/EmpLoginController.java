@@ -1,6 +1,7 @@
 package com.piggybank.app.ui;
 
 import com.piggybank.app.backend.Bank;
+import com.piggybank.app.backend.employees.Employee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,21 +22,17 @@ public class EmpLoginController {
     @FXML
     private Button loginButton;
 
-    //.................VARIABLES.............................................
-
-    private String password;
-    private String userId;
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-
-
     //..........................METHODS.............................
 
     public void login(ActionEvent event) throws Exception {
-        //do a try-catch. if exception -> display exception message in terminal (for now)
+        Stage stage;
+        Scene scene;
+        Parent root;
+        String password;
+        String userId;
+
         try {
-            Bank bank = UIMain.getBank();
+            Bank bank = UIMain.bank;
             userId = usernameTextField.getText();
             password = passwordField.getText();
 
@@ -44,8 +41,7 @@ public class EmpLoginController {
                 root = loader.load();
 
                 EmpMainController controller = loader.getController();
-                controller.initializeEmpoyeeSection("Emp123", userId);
-                controller.fillcustomers();
+                controller.setCurrentEmployee(bank.getEmployee(userId));
 
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
