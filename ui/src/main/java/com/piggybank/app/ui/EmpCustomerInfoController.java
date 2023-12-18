@@ -20,10 +20,6 @@ import java.io.IOException;
 
 public class EmpCustomerInfoController extends EmpMainController {
     @FXML
-    private Label empInitialsLabel;
-    @FXML
-    private Label empIdLabel;
-    @FXML
     private Button editStreetButton;
     @FXML
     private Button editZipButton;
@@ -48,9 +44,15 @@ public class EmpCustomerInfoController extends EmpMainController {
     @FXML
     private Button getSaveNewPasswordButton;
     @FXML
+    private Label empInitialsLabel;
+    @FXML
+    private Label empIdLabel;
+    @FXML
     private Label customerNameLabel;
     @FXML
     private Label customerIdLabel;
+    @FXML
+    private Label customerSSNLabel;
     @FXML
     private PasswordField passwordField;
     @FXML
@@ -147,7 +149,7 @@ public class EmpCustomerInfoController extends EmpMainController {
             CustomerPrivate currentPrivate = (CustomerPrivate) EmpMainController.currentCustomer;
             customerNameLabel.setText(currentPrivate.getFullName());
             customerIdLabel.setText(currentPrivate.getUserId());
-            //customerSsnLabel.setText(currentPrivate.getSSN());
+            customerSSNLabel.setText(currentPrivate.getSsn());
         } else if (EmpMainController.currentCustomer instanceof CustomerCorporate) {
             CustomerCorporate currentCorporate = (CustomerCorporate) EmpMainController.currentCustomer;
             customerNameLabel.setText(currentCorporate.getCompanyName());

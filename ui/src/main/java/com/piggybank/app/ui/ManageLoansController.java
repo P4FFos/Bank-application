@@ -1,5 +1,7 @@
 package com.piggybank.app.ui;
 
+import com.piggybank.app.backend.customers.Customer;
+import com.piggybank.app.backend.customers.CustomerPrivate;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +23,12 @@ public class ManageLoansController extends EmpMainController {
     @FXML
     private ListView loansListView;
     @FXML
+    private Label customerIdLabel;
+    @FXML
+    private Label customerSSNLabel;
+    @FXML
+    private Label customerNameLabel;
+    @FXML
     private Label empIdLabel;
     @FXML
     private Label empInitialsLabel;
@@ -35,6 +43,17 @@ public class ManageLoansController extends EmpMainController {
         empIdLabel.setText(EmpMainController.currentEmployee.getUserId());
         empInitialsLabel.setText(EmpMainController.currentEmployee.getInitials());
         System.out.println("Manage Loans Page. Logged in as: " + EmpMainController.currentEmployee.getInitials());
+    }
+
+    public void showCurrentCustomer() {
+        Customer currentCustomer = EmpMainController.currentCustomer;
+        customerIdLabel.setText(currentCustomer.getUserId());
+        if(currentCustomer instanceof CustomerPrivate customerPrivate){
+            customerSSNLabel.setText(customerPrivate.getSsn());
+            customerNameLabel.setText(customerPrivate.getFullName());
+        }
+        //addAccountAnchorPane.setVisible(false);
+        //contentAnchorPane.setVisible(true);
     }
 
     public void setCurrentLoan(){
