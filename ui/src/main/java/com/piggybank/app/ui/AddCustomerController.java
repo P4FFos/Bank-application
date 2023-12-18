@@ -23,8 +23,6 @@ public class AddCustomerController extends EmpMainController {
     @FXML
     private Button saveNewCustomerButton;
     @FXML
-    private Button empStartButton;
-    @FXML
     private CheckBox corporateCustomerCheckBox;
     @FXML
     private CheckBox privateCustomerCheckBox;
@@ -113,7 +111,7 @@ public class AddCustomerController extends EmpMainController {
 
 
     //-------------------FINISHED METHODS------------------------
-    public void setCurrentEmployee(){
+    public void showCurrentEmployee(){
         empIdLabel.setText(EmpMainController.currentEmployee.getUserId());
         empInitialsLabel.setText(EmpMainController.currentEmployee.getInitials());
         System.out.println("Add Customer Page. Logged in as: " + EmpMainController.currentEmployee.getInitials());
