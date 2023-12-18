@@ -137,7 +137,7 @@ public class EmpCustomerInfoController extends EmpMainController {
         emailField.setText(EmpMainController.currentCustomer.getEmail());
         if (EmpMainController.currentCustomer instanceof CustomerPrivate) {
             CustomerPrivate currentPrivate = (CustomerPrivate) EmpMainController.currentCustomer;
-            customerNameLabel.setText(currentPrivate.getName());
+            customerNameLabel.setText(currentPrivate.getFullName());
             customerIdLabel.setText(currentPrivate.getUserId());
             //customerSsnLabel.setText(currentPrivate.getSSN());
         } else if (EmpMainController.currentCustomer instanceof CustomerCorporate) {

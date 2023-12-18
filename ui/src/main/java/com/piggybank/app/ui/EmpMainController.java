@@ -4,6 +4,7 @@ import com.piggybank.app.backend.Bank;
 import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.Customer;
 import com.piggybank.app.backend.employees.Employee;
+import com.piggybank.app.backend.utils.FileHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,6 +67,9 @@ public class EmpMainController {
     }
 
     public void logout(ActionEvent event) throws IOException { //logoutButton
+        String saveFile = "ui/src/main/java/com/piggybank/app/backend/bankDataOnLogout.json";
+        FileHandler.jsonSerializer(saveFile, bank);
+
         currentEmployee = null;
         System.out.println("Logged out. Have a nice day.");
         loader = new FXMLLoader(getClass().getResource("StartScene.fxml"));
@@ -93,7 +97,7 @@ public class EmpMainController {
     public void searchCustomer(ActionEvent event) throws IOException { //searchButton
         String searchPhrase = searchCustomerTextField.getText();
         try{
-            currentCustomer = bank.getCustomerByIdOrSSN(searchPhrase);
+            currentCustomer = bank.getCustomerByIdOrSsn(searchPhrase);
             currentCustomersAccounts = currentCustomer.getAccounts();
             loader = new FXMLLoader(getClass().getResource("EmpCustomerOverView.fxml"));
             root = loader.load();

@@ -1,8 +1,11 @@
 package com.piggybank.app.backend;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.piggybank.app.backend.customers.*;
 import com.piggybank.app.backend.customers.debts.*;
-import com.piggybank.app.backend.customers.loans.*;
+import com.piggybank.app.backend.customers.loans.Loan;
 import com.piggybank.app.backend.employees.*;
 import com.piggybank.app.backend.exceptions.*;
 import com.piggybank.app.backend.utils.*;
@@ -17,38 +20,18 @@ public class Bank {
     private ContactCard contactInfo;
     private HashMap<String, Customer> customers;
     private HashMap<String, Employee> employees;
-    private String employeeIdCounter;
-    private String customerIdCounter;
-    private String accountIdCounter;
 
+    // Bare constructor used by Jackson-Databind for Json deserializing
+    public Bank() {
+    }
 
     public Bank(ContactCard contactInfo) {
         this.contactInfo = contactInfo;
         customers = new HashMap<>();
         employees = new HashMap<>();
-        employeeIdCounter = "E000";
-        customerIdCounter = "C000";
-        accountIdCounter = "A00000";
     }
-
-    // To simplify instantiation the Bank class
-    public Bank() {
-        contactInfo = null;
-        customers = new HashMap<>();
-        employees = new HashMap<>();
-        employeeIdCounter = "E000";
-        customerIdCounter = "C000";
-        accountIdCounter = "A00000";
-    }
-
-    //create methods for updating the bank's contact card info (via forwarding from ContactCard once those methods are in place)
-    //public void updateAddress(String newAddress){} ...etc
-
 
     //-----------------------GETTERS-----------------------
-    public String getCustomerIdCounter() {return customerIdCounter;}
-    public String getEmployeeIdCounter() {return employeeIdCounter;}
-    public String getAccountIdCounter() {return accountIdCounter;}
 
     //retrieve customer information:
     public Customer getCustomer(String userId) {
@@ -68,7 +51,7 @@ public class Bank {
     }
 
     //
-    public Customer getCustomerByIdOrSSN(String inputString) throws Exception {
+    public Customer getCustomerByIdOrSsn(String inputString) throws Exception {
         /* Checks for 10 characters, if it is then SSN,
         otherwise if it is 6 characters then it is a userId
         */
@@ -78,7 +61,7 @@ public class Bank {
         if(inputString.length() == 10) {
             for(Customer customer : customers.values()) {
                 if(customer instanceof CustomerPrivate privateCustomer) {
-                    if(privateCustomer.getSSN().equals(inputString)) {
+                    if(privateCustomer.getSsn().equals(inputString)) {
                         return customer;
                     }
                 }
@@ -91,6 +74,7 @@ public class Bank {
     }
 
     // returns a string of all transactions in specified account
+    //@JsonProperty("transactions")
     public ArrayList<Transaction> getTransactionHistory(String accountId) throws Exception {
         Account account = getAccountById(accountId);
         return account.getTransactionHistory();
@@ -102,17 +86,19 @@ public class Bank {
         return account.getBalance();
     }
 
-    //get bank information:
-    public ContactCard getBankInfo() {
-        return contactInfo;
-    }
-
     // below methods get information from user's ContactCard
     public ContactCard getContactInfo(User user) {return user.getContactInfo();}
+
+    // information is available in ContactCard, so let serializer ignore these below attributes with @JsonIgnore
+    @JsonIgnore
     public String getEmail(User user) {return user.getEmail();}
+    @JsonIgnore
     public String getPhoneNumber(User user) {return user.getPhoneNumber();}
+    @JsonIgnore
     public String getStreetAddress(User user) {return user.getStreet();}
+    @JsonIgnore
     public String getZipCode(User user) {return user.getZipCode();}
+    @JsonIgnore
     public String getCity(User user) {return user.getCity();}
 
     //get employee
@@ -120,38 +106,63 @@ public class Bank {
         return employees.get(userId);
     }
 
+    public HashMap<String, Employee> getEmployees() {
+        return employees;
+    }
+
     public HashMap<String, Customer> getCustomers(){
         return customers;
     }
 
+    public ContactCard getContactInfo() {
+        return contactInfo;
+    }
+
     //-----------------------SETTERS-----------------------
-    public void setCustomerIdCounter(String customerId) {customerIdCounter = customerId;}
-    public void setEmployeeIdCounter(String employeeId) {employeeIdCounter = employeeId;}
-    public void setAccountIdCounter(String accountId) {accountIdCounter = accountId;}
+    @JsonIgnore
     public void setStreetAddress(String newStreet, User user) {user.setStreet(newStreet);}
+    @JsonIgnore
+    public void setEmail(String newEmail, User user) {user.setStreet(newEmail);}
+    @JsonIgnore
     public void setZipCode(String newZipCode, User user) {user.setZipCode(newZipCode);}
+    @JsonIgnore
     public void setPhoneNumber(String newPhoneNr, User user) {user.setPhoneNumber(newPhoneNr);}
+    @JsonIgnore
     public void setCity(String newCity, User user) {user.setCity(newCity);}
 
+    public void setCustomers(HashMap<String, Customer> customers) {
+        this.customers = customers;
+    }
 
+    public void setEmployees(HashMap<String, Employee> employees) {
+        this.employees = employees;
+    }
 
-    //-----------------------CREATOR METHODS-----------------------
+    public void setContactInfo(ContactCard contactInfo) {
+        this.contactInfo = contactInfo;
+    }
+
+//-----------------------CREATOR METHODS-----------------------
 
     // creates new private customer and add it to customers hashmap:
-    public void createCustomerPrivate(String SSN, String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
-        // Generates a new ID for a customer, then updates customerIdCounter
-        String userId = IdGenerator.generateCustomerID(customerIdCounter);
-        setCustomerIdCounter(userId);
+    public void createCustomerPrivate(String ssn, String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
+        // finds the highest customerId in the HashMap customers
+        String customerHighestId = findHighestCustomerId();
 
-        CustomerPrivate newCustomer = new CustomerPrivate(SSN, firstName, lastName, userId, password, contactCard);
+        // generates a new ID for a customer, then updates customerIdCounter
+        String userId = IdGenerator.generateCustomerID(customerHighestId);
+
+        CustomerPrivate newCustomer = new CustomerPrivate(ssn, firstName, lastName, userId, password, contactCard);
         this.customers.put(userId, newCustomer);
         System.out.println("Private customer created: " + userId + " " + firstName + " " + lastName);
     }
     // creates new corporate customer and add it to customers hashmap:
     public void createCustomerCorporate(String orgNumber, String companyName, String password, ContactCard contactCard) throws Exception {
+        // finds the highest customerId in the HashMap customers
+        String customerHighestId = findHighestCustomerId();
+
         // Generates a new ID for a corporate customer, then updates customerIdCounter
-        String userId = IdGenerator.generateCustomerID(customerIdCounter);
-        setCustomerIdCounter(userId);
+        String userId = IdGenerator.generateCustomerID(customerHighestId);
 
         CustomerCorporate newCustomer = new CustomerCorporate(orgNumber, companyName, userId, password, contactCard);
         this.customers.put(userId, newCustomer);
@@ -159,27 +170,44 @@ public class Bank {
     }
 
     // creates new private employee and add it to employees hashmap:
-    public void createEmployee(String password, ContactCard contactCard, String initials) throws Exception {
-        // Generates a new ID for an employee, then updates employeeIdCounter
-        String userId = IdGenerator.generateEmployeeID(employeeIdCounter);
-        setEmployeeIdCounter(userId);
+    public void createEmployee(String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
+        // finds the highest employeeId in the HashMap employees
+        String employeeHighestId = findHighestEmployeeId();
 
-        Employee newEmployee = new Employee(userId, password, contactCard, initials);
+        // Generates a new ID for an employee
+        String userId = IdGenerator.generateEmployeeID(employeeHighestId);
+
+        Employee newEmployee = new Employee(firstName, lastName, userId, password, contactCard);
         this.employees.put(userId, newEmployee);
-        System.out.println("Employee created: " + userId + " " + initials);
+        System.out.println("Employee created: " + userId);
     }
 
     // creates a new account for customer:
-    public void createAccount(String userID, String accountName) throws Exception {
-        Customer customer = customers.get(userID);
+    public void createAccount(String userId, String accountName) throws Exception {
+        Customer customer = customers.get(userId);
+
+        // finds the highest accountId in the HashMap customers
+        String accountHighestId = findHighestAccountId();
 
         //Generates accountId
-        String accountId = IdGenerator.generateAccountId(accountIdCounter);
-        setAccountIdCounter(accountId);
+        String accountId = IdGenerator.generateAccountId(accountHighestId);
 
         Account newAccount = new Account(accountId, accountName);
         customer.addAccount(newAccount);
         System.out.println("New account: " + accountId + " " + accountName);
+    }
+
+    public void createLoanAccount(String userId, String accountName, double loanAmount) throws Exception {
+        Customer customer = customers.get(userId);
+
+        // finds the highest accountId in the HashMap customers
+        String accountHighestId = findHighestAccountId();
+
+        //Generates accountId
+        String accountId = IdGenerator.generateAccountId(accountHighestId);
+
+        Loan newLoan = new Loan(accountId, accountName, loanAmount);
+        customer.addAccount(newLoan);
     }
 
     //-----------------------REMOVAL METHODS-----------------------
@@ -198,8 +226,52 @@ public class Bank {
         customers.get(customerId).removeAccount(accountToRemove);
     }
 
-
     //-----------------------VARIOUS-----------------------
+
+    // loops through HashMap customers for their userIds and returns which is highest
+    public String findHighestCustomerId() {
+        int highestIdCount = 0;
+        String highestCustomerId = "C000";
+        for(Customer customer : customers.values()) {
+            int tempIdCount = Integer.parseInt(customer.getUserId().substring(1));
+            if(tempIdCount > highestIdCount) {
+                highestIdCount = tempIdCount;
+                highestCustomerId = customer.getUserId();
+            }
+        }
+        return highestCustomerId;
+    }
+
+    // loops through HashMap employees for their userIds and returns which is highest
+    public String findHighestEmployeeId() {
+        int highestIdCount = 0;
+        String highestEmployeeId = "E000";
+        for(Employee employee : employees.values()) {
+            int tempIdCount = Integer.parseInt(employee.getUserId().substring(1));
+            if(tempIdCount > highestIdCount) {
+                highestIdCount = tempIdCount;
+                highestEmployeeId = employee.getUserId();
+            }
+        }
+        return highestEmployeeId;
+    }
+
+    // loops through HashMap employees for their HashMap of accounts, then gets the highest accountId of them all
+    public String findHighestAccountId() {
+        int highestIdCount = 0;
+        String highestAccountId = "A00000";
+        for(Customer customer : customers.values()) {
+            HashMap<String, Account> customerAccounts = customer.getAccounts();
+            for(Account account : customerAccounts.values()) {
+                int tempIdCount = Integer.parseInt(account.getAccountId().substring(1));
+                if(tempIdCount > highestIdCount) {
+                    highestIdCount = tempIdCount;
+                    highestAccountId = customer.getUserId();
+                }
+            }
+        }
+        return highestAccountId;
+    }
 
     // deposits money into specified account
     public void deposit(String senderId, String accountId, double amount, String message, LocalDate date) throws Exception {
@@ -218,7 +290,7 @@ public class Bank {
         Account account = getAccountById(accountId);
         Account targetAccount = getAccountById(targetAccountId);
 
-        account.withdraw(amount, date);
+        account.withdraw(targetAccountId, amount, date);
         targetAccount.deposit(accountId, amount, message, date);
     }
 
@@ -277,5 +349,10 @@ public class Bank {
         Customer customer = customers.get(userId);
 		Account account = customer.getAccount(accountId);
 		account.removeCredit();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Bank{ contactInfo: %s, customers: %s, employees: %s", contactInfo, customers, employees);
     }
 }

@@ -10,6 +10,9 @@ public class Transaction {
     private String message;
     private LocalDate date;
 
+    // Bare constructor used by Jackson-Databind for Json deserializing
+    public Transaction() {}
+
     // Constructor for Transaction class
     public Transaction(String receiverAccountId, String senderAccountId, double amount, String message, LocalDate date) {
         this.receiverAccountId = receiverAccountId;
@@ -32,6 +35,30 @@ public class Transaction {
     // getAmount method
     public double getAmount() {
         return this.amount;
+    }
+
+    public void setReceiverAccountId(String receiverAccountId) {
+        this.receiverAccountId = receiverAccountId;
+    }
+
+    public void setSenderAccountId(String senderAccountId) {
+        this.senderAccountId = senderAccountId;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     // getMessage method

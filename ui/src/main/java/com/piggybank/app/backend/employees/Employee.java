@@ -5,14 +5,47 @@ import com.piggybank.app.backend.customers.User;
 import com.piggybank.app.backend.utils.ContactCard;
 
 public class Employee extends User {
+
+	private String firstName;
+	private String lastName;
 	private Customer currentCustomer;
 	private String initials;
 
-	public Employee(String userId, String password, ContactCard contactCard, String initials) throws Exception{
+	// Bare constructor used by Jackson-Databind for Json deserializing
+	public Employee() {
+	}
+
+	public Employee(String firstName, String lastName, String userId, String password, ContactCard contactCard) throws Exception{
 		super(userId, password, contactCard);
-		this.initials = initials;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		setInitials();
 		this.currentCustomer = null;
 
+	}
+
+	public void setInitials(String initials) {
+		this.initials = initials;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setInitials() {
+		initials = firstName.substring(0, 1).toUpperCase() + lastName.substring(0, 1).toUpperCase();
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public void setCurrentCustomer(Customer customer) {
