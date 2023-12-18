@@ -53,61 +53,11 @@
                 </Button>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="sideMenuAnchorPane" layoutY="75.0" prefHeight="313.0" prefWidth="179.0">
-            <children>
-                <Label fx:id="sideMenuLabel" layoutX="105.0" layoutY="20.0" text="MENU">
-                    <font>
-                        <Font name="Kodchasan Regular" size="20.0" />
-                    </font>
-                </Label>
-                <Button fx:id="empStartButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onAction="#goToEmpStart" prefHeight="25.0" prefWidth="155.0" text="START" textAlignment="RIGHT">
-                    <font>
-                        <Font name="Kodchasan Regular" size="10.0" />
-                    </font>
-                </Button>
-                <Button fx:id="viewCustomerButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="180.0" mnemonicParsing="false" onAction="#goToCustomer" prefHeight="25.0" prefWidth="155.0" text="VIEW CUSTOMER">
-                    <font>
-                        <Font name="Kodchasan Regular" size="10.0" />
-                    </font>
-                </Button>
-                <Button fx:id="customerInfoButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="210.0" mnemonicParsing="false" onAction="#goToCustomerInfo" prefHeight="25.0" prefWidth="155.0" text="CUSTOMER INFO">
-                    <font>
-                        <Font name="Kodchasan Regular" size="10.0" />
-                    </font>
-                </Button>
-                <Button fx:id="manageLoansButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="240.0" mnemonicParsing="false" onAction="#goToLoans" prefHeight="25.0" prefWidth="155.0" text="MANAGE LOANS">
-                    <font>
-                        <Font name="Kodchasan Regular" size="10.0" />
-                    </font>
-                </Button>
-                <Button fx:id="newCustomerButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="270.0" mnemonicParsing="false" onAction="#goToCustomerCreation" prefHeight="25.0" prefWidth="155.0" text="NEW CUSTOMER">
-                    <font>
-                        <Font name="Kodchasan Regular" size="10.0" />
-                    </font>
-                </Button>
-                <Button fx:id="searchButton" alignment="BOTTOM_RIGHT" layoutX="115.0" layoutY="120.0" mnemonicParsing="false" onAction="#searchCustomer" prefHeight="25.0" prefWidth="53.0" text="SEARCH" textAlignment="RIGHT">
-                    <font>
-                        <Font name="Kodchasan Regular" size="10.0" />
-                    </font>
-                </Button>
-                <TextField fx:id="searchCustomerTextField" layoutX="11.0" layoutY="85.0" promptText="Type SSN or userID" />
-            </children>
-        </AnchorPane>
         <AnchorPane fx:id="currentCustomerAnchorPane" layoutX="180.0" layoutY="75.0" prefHeight="75.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
             <children>
-                <Label fx:id="customerNameLabel" layoutX="10.0" layoutY="20.0" text="Firstname Lastname">
+                <Label fx:id="header" layoutX="10.0" layoutY="20.0" text="Edit Contact Information">
                     <font>
                         <Font name="Kodchasan Regular" size="20.0" />
-                    </font>
-                </Label>
-                <Label fx:id="infoAccountIdLabel" layoutX="10.0" layoutY="50.0" text="Account ID:">
-                    <font>
-                        <Font name="Kodchasan Regular" size="10.0" />
-                    </font>
-                </Label>
-                <Label fx:id="customerIdLabel" layoutX="80.0" layoutY="50.0" text="##########">
-                    <font>
-                        <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Label>
             </children>
@@ -139,5 +89,64 @@
             <Button fx:id="saveNewPasswordButton" layoutX="286.0" layoutY="199.0" mnemonicParsing="false" onAction="#setNewPassword" text="Save" />
             <PasswordField fx:id="passwordField" editable="false" layoutX="71.0" layoutY="197.0" promptText="******" />
          </children></AnchorPane>
+      <AnchorPane fx:id="sideMenuAnchorPane" layoutY="80.0" prefHeight="313.0" prefWidth="179.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="463.0" AnchorPane.topAnchor="75.0">
+         <children>
+            <Label fx:id="sideMenuLabel" layoutX="98.0" layoutY="120.0" prefHeight="26.0" prefWidth="66.0" text="MENU" textAlignment="RIGHT" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="120.0">
+               <font>
+                  <Font name="Kodchasan Regular" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="empStartButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="150.0" mnemonicParsing="false" onAction="#goToEmpStart" prefHeight="25.0" prefWidth="155.0" text="START" textAlignment="RIGHT">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Button>
+            <Button fx:id="viewCustomerButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="180.0" mnemonicParsing="false" onAction="#goToCustomer" prefHeight="25.0" prefWidth="155.0" text="VIEW CUSTOMER">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Button>
+            <Button fx:id="customerInfoButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="210.0" mnemonicParsing="false" onAction="#goToCustomerInfo" prefHeight="25.0" prefWidth="155.0" text="CUSTOMER INFO">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Button>
+            <Button fx:id="manageLoansButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="240.0" mnemonicParsing="false" onAction="#goToLoans" prefHeight="25.0" prefWidth="155.0" text="MANAGE LOANS">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Button>
+            <Button fx:id="newCustomerButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="270.0" mnemonicParsing="false" onAction="#goToCustomerCreation" prefHeight="25.0" prefWidth="155.0" text="NEW CUSTOMER">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Button>
+            <Label fx:id="customerNameLabel" layoutY="14.0" prefHeight="23.0" prefWidth="179.0" text="Firstname Lastname" textAlignment="JUSTIFY" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="3.0" layoutY="37.0" text="Account ID:" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="37.0">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="customerIdLabel" layoutX="61.0" layoutY="37.0" prefHeight="13.0" prefWidth="115.0" text="##########" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="37.0">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Label>
+            <Label layoutX="-2.0" layoutY="53.0" text="Social Security Nr." AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="52.0">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="customerSSNLabel" layoutX="86.0" layoutY="52.0" prefHeight="13.0" prefWidth="83.0" text="##########" AnchorPane.leftAnchor="86.0" AnchorPane.topAnchor="52.0">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>

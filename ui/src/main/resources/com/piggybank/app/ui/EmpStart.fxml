@@ -84,7 +84,7 @@
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Button>
-                <Button fx:id="searchButton" alignment="BOTTOM_RIGHT" layoutX="115.0" layoutY="120.0" mnemonicParsing="false" onAction="#searchCustomer" prefHeight="25.0" prefWidth="53.0" text="SEARCH" textAlignment="RIGHT">
+                <Button fx:id="searchButton" alignment="BOTTOM_RIGHT" defaultButton="true" layoutX="115.0" layoutY="120.0" mnemonicParsing="false" onAction="#searchCustomer" prefHeight="25.0" prefWidth="53.0" text="SEARCH" textAlignment="RIGHT">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>

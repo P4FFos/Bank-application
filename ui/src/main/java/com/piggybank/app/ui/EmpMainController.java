@@ -164,6 +164,7 @@ public class EmpMainController {
 
             ManageLoansController controller = loader.getController();
             controller.showCurrentEmployee();
+            controller.showCurrentCustomer();
 
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);

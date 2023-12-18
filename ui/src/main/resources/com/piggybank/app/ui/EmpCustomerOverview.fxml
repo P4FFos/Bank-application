@@ -54,7 +54,7 @@
                 </Button>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="sideMenuAnchorPane" layoutY="75.0" prefHeight="313.0" prefWidth="179.0">
+        <AnchorPane fx:id="sideMenuAnchorPane" layoutY="75.0" prefHeight="313.0" prefWidth="179.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="463.0" AnchorPane.topAnchor="75.0">
             <children>
                 <Label fx:id="sideMenuLabel" layoutX="98.0" layoutY="120.0" prefHeight="26.0" prefWidth="66.0" text="MENU" textAlignment="RIGHT" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="120.0">
                     <font>
