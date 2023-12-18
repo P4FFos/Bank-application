@@ -17,7 +17,7 @@ public class UIMain extends Application {
     public void start(Stage stage) throws Exception {
         bank = FileHandler.jsonDeserializer("ui/src/main/java/com/piggybank/app/backend/bankData.json");
 
-
+        /*
         ContactCard piggyWolvesbaneContactCard = new ContactCard("piggy@wolvesbane.com", "0735555555", "Big Brick Building", "12345", "Wolvesout");
         bank.createCustomerPrivate("5505051234", "Piggy", "Wolvesbane", "IATE5WOLVES", piggyWolvesbaneContactCard);
         bank.createAccount("C001", "Main Account");
@@ -28,6 +28,7 @@ public class UIMain extends Application {
         bank.createCustomerCorporate("12345", "Truffles Inc.", "123PIGLET", trufflesIncContactCard);
         bank.createAccount("C002", "Main Account");
         System.out.println("Company's account: " + bank.getCustomer("C002").getAccount("A00002").getAccountName());
+         */
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("StartScene.fxml"));

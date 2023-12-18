@@ -20,7 +20,7 @@ public class BackendMain {
         // will add transaction in json file
         bank.transfer("A00003", "A00001", 400,"Money from Jane", LocalDate.now());
 
-        String saveFile = "ui/src/main/java/com/piggybank/app/backend/bankData2.json";
+        String saveFile = "ui/src/main/java/com/piggybank/app/backend/bankDataBackendMain.json";
 
         FileHandler.jsonSerializer(saveFile, bank);
 
