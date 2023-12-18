@@ -53,6 +53,27 @@
         }
       }
     },
+    "C006" : {
+      "customerType" : "customerCorporate",
+      "userId" : "C006",
+      "password" : "MrRobot1",
+      "contactInfo" : {
+        "email" : "info@evilcorp.com",
+        "phoneNumber" : "031000001",
+        "streetAddress" : "Ecorp Street 1",
+        "zipCode" : "11010",
+        "city" : "Gothenburg"
+      },
+      "accounts" : {
+        "A00003" : {
+          "accountName" : "Account1",
+          "accountId" : "A00003",
+          "balance" : 0.0,
+          "transactions" : [ ]
+        },
+      "orgNumber" : "5566770001",
+      "companyName" : "E-Corp"
+    },
     "C002": {
       "customerType": "customerPrivate",
       "ssn": "0201010101",
