@@ -29,6 +29,10 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     @FXML
     private AnchorPane addAccountAnchorPane;
     @FXML
+    private AnchorPane creditAnchorPane;
+    @FXML
+    private AnchorPane loanAnchorPane;
+    @FXML
     private AnchorPane privateCustomerInfoAnchorPane;
     @FXML
     private AnchorPane corporateCustomerInfoAnchorPane;
@@ -53,6 +57,8 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     @FXML
     private Label accountBalanceLabel;
     @FXML
+    private Label loanAmountLabel;
+    @FXML
     private Button selectAccountButton;
     @FXML
     private Button addAccountButton;
@@ -62,6 +68,28 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     private Button saveNewAccountButton;
     @FXML
     private TextField newAccountNameField;
+    @FXML
+    private CheckBox loanCheckBox;
+    @FXML
+    private CheckBox creditCheckBox;
+    @FXML
+    private CheckBox standardCheckBox;
+    @FXML
+    private CheckBox halfMillionCheckBox;
+    @FXML
+    private CheckBox oneMillionCheckBox;
+    @FXML
+    private CheckBox twoHalfMillionCheckBox;
+    @FXML
+    private CheckBox fiveMillionCheckBox;
+    @FXML
+    private CheckBox fiveKCheckBox;
+    @FXML
+    private CheckBox tenKCheckBox;
+    @FXML
+    private CheckBox twentyFiveKCheckBox;
+    @FXML
+    private CheckBox fiftyKCheckBox;
     @FXML
     private CheckBox inTransactionCheckBox;
     @FXML
@@ -132,12 +160,36 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     public void addAccount(ActionEvent event) {
         contentAnchorPane.setVisible(false);
         addAccountAnchorPane.setVisible(true);
+        loanAnchorPane.setVisible(false);
+        creditAnchorPane.setVisible(false);
+        standardCheckBox.setSelected(true);
     }
 
     public void saveNewAccount() throws Exception {
         bank.createAccount(currentCustomer.getUserId(), newAccountNameField.getText());
         contentAnchorPane.setVisible(true);
         addAccountAnchorPane.setVisible(false);
+    }
+
+    public void toggleLoan(){
+        loanAnchorPane.setVisible(true);
+        creditAnchorPane.setVisible(false);
+        creditCheckBox.setSelected(false);
+        standardCheckBox.setSelected(false);
+    }
+
+    public void toggleCredit(){
+        loanAnchorPane.setVisible(false);
+        creditAnchorPane.setVisible(true);
+        standardCheckBox.setSelected(false);
+        loanCheckBox.setSelected(false);
+    }
+
+    public void toggleStandard(){
+        loanAnchorPane.setVisible(false);
+        creditAnchorPane.setVisible(false);
+        creditCheckBox.setSelected(false);
+        loanCheckBox.setSelected(false);
     }
 
     public void makeTransaction(ActionEvent event) {
