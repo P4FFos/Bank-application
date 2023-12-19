@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Calendar;
 import java.time.LocalDate;
-import java.util.NoSuchElementException;
 
 public class Bank {
     private ContactCard contactInfo;
@@ -70,7 +69,7 @@ public class Bank {
         } else if (inputString.length() == 4) {
             return  customers.get(inputString);
         }
-        throw new NoSuchElementException("Customer not found by ID or SSN.");
+        throw new Exception("Customer not found by ID or SSN.");
     }
 
     // returns a string of all transactions in specified account
@@ -331,24 +330,35 @@ public class Bank {
     }
 
     // getCredit method
-    public Credit getCredit(String userId, String accountId) {
+    public Credit getCredit(String userId, String accountId) throws Exception {
         Customer customer = customers.get(userId);
-		Account account = customer.getAccount(accountId);
-		return account.getCredit();
+        Account account = customer.getAccount(accountId);
+        if(account instanceof Credit credit) {
+            return credit;
+        }
+        throw new Exception("No credit account " + accountId + " found for userID: " + userId);
     }
 
-    // addCredit method
-    public void addCredit(String userId, String accountId, Calendar initialCreditDate, double amount) throws Exception{
+    // method to create credit in HashMap accounts in customer
+    public void createCredit(String userId, String accountName, Calendar initialCreditDate, double amount) throws Exception{
         Customer customer = customers.get(userId);
-		Account account = customer.getAccount(accountId);
-		account.addCredit(initialCreditDate, amount);
+
+        // finds the highest accountId in the HashMap customers
+        String accountHighestId = findHighestAccountId();
+
+        //Generates accountId
+        String accountId = IdGenerator.generateAccountId(accountHighestId);
+
+        Credit newAccount = new Credit(accountId, accountName, initialCreditDate, amount);
+        customer.addAccount(newAccount);
+        System.out.println("New credit account: " + accountId + " " + accountName);
     }
 
     // removeCredit method
     public void removeCredit(String userId, String accountId) throws Exception{
         Customer customer = customers.get(userId);
-		Account account = customer.getAccount(accountId);
-		account.removeCredit();
+        customer.removeAccount(accountId);
+        System.out.println("Account " + accountId + " removed for customer " + userId + ".");
     }
 
     @Override
