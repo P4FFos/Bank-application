@@ -176,21 +176,21 @@
                   <Font size="25.0" />
                </font>
             </Label>
-            <AnchorPane fx:id="creditAnchorPane" layoutX="14.0" layoutY="109.0" prefHeight="147.0" prefWidth="285.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="110.0">
+            <AnchorPane fx:id="creditAnchorPane" layoutX="14.0" layoutY="109.0" prefHeight="147.0" prefWidth="285.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="110.0">
                <children>
-                  <CheckBox fx:id="fiftyKCheckBox" layoutX="122.0" layoutY="106.0" mnemonicParsing="false" text="50.000 SEK" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="110.0" />
-                  <CheckBox fx:id="twentyFiveKCheckBox" layoutX="122.0" layoutY="80.0" mnemonicParsing="false" text="25.000 SEK" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="80.0" />
-                  <CheckBox fx:id="tenKCheckBox" layoutX="123.0" layoutY="48.0" mnemonicParsing="false" text="10.000 SEK" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="50.0" />
-                  <CheckBox fx:id="fiveKCheckBox" layoutX="122.0" layoutY="22.0" mnemonicParsing="false" text="5000 SEK" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="20.0" />
+                  <CheckBox fx:id="fiftyKCheckBox" layoutX="122.0" layoutY="106.0" mnemonicParsing="false" onAction="#toggleFiftyKCredit" text="50.000 SEK" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="110.0" />
+                  <CheckBox fx:id="twentyFiveKCheckBox" layoutX="122.0" layoutY="80.0" mnemonicParsing="false" onAction="#toggleTwentyFiveKCredit" text="25.000 SEK" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="80.0" />
+                  <CheckBox fx:id="tenKCheckBox" layoutX="123.0" layoutY="48.0" mnemonicParsing="false" onAction="#toggleTenKCredit" text="10.000 SEK" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="50.0" />
+                  <CheckBox fx:id="fiveKCheckBox" layoutX="122.0" layoutY="22.0" mnemonicParsing="false" onAction="#toggleFiveKCredit" text="5000 SEK" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="20.0" />
                   <Label fx:id="creditAmountLabel" layoutX="10.0" layoutY="23.0" text="CREDIT AMOUNT" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="23.0" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="loanAnchorPane" layoutX="4.0" layoutY="99.0" prefHeight="147.0" prefWidth="285.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="110.0">
+            <AnchorPane fx:id="loanAnchorPane" layoutX="4.0" layoutY="99.0" prefHeight="147.0" prefWidth="285.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="110.0">
                <children>
-                  <CheckBox fx:id="fiveMillionCheckBox" layoutX="122.0" layoutY="106.0" mnemonicParsing="false" text="5.000.000 SEK" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="110.0" />
-                  <CheckBox fx:id="twoHalfMillionCheckBox" layoutX="122.0" layoutY="80.0" mnemonicParsing="false" text="2.500.000 SEK" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="80.0" />
-                  <CheckBox fx:id="oneMillionCheckBox" layoutX="123.0" layoutY="48.0" mnemonicParsing="false" text="1.000.000 SEK" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="50.0" />
-                  <CheckBox fx:id="halfMillionCheckBox" layoutX="122.0" layoutY="22.0" mnemonicParsing="false" text="500.000 SEK" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="20.0" />
+                  <CheckBox fx:id="fiveMillionCheckBox" layoutX="122.0" layoutY="106.0" mnemonicParsing="false" onAction="#toggleFiveMillionLoan" text="5.000.000 SEK" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="110.0" />
+                  <CheckBox fx:id="twoHalfMillionCheckBox" layoutX="122.0" layoutY="80.0" mnemonicParsing="false" onAction="#toggleTwoHalfMillionLoan" text="2.500.000 SEK" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="80.0" />
+                  <CheckBox fx:id="oneMillionCheckBox" layoutX="123.0" layoutY="48.0" mnemonicParsing="false" onAction="#toggleOneMillionLoan" text="1.000.000 SEK" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="50.0" />
+                  <CheckBox fx:id="halfMillionCheckBox" layoutX="122.0" layoutY="22.0" mnemonicParsing="false" onAction="#toggleHalfMillionLoan" text="500.000 SEK" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="20.0" />
                   <Label fx:id="loanAmountLabel" layoutX="10.0" layoutY="23.0" text="LOAN AMOUNT" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="23.0" />
                </children>
             </AnchorPane>
