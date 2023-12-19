@@ -159,10 +159,10 @@ public class EmpMainController {
 
     public void goToLoans(ActionEvent event) throws IOException { //manageLoansButton
         if(currentCustomer != null){
-            loader = new FXMLLoader(getClass().getResource("ManageLoans.fxml"));
+            loader = new FXMLLoader(getClass().getResource("EmpManageLoans.fxml"));
             root = loader.load();
 
-            ManageLoansController controller = loader.getController();
+            EmpManageLoansController controller = loader.getController();
             controller.showCurrentEmployee();
             controller.showCurrentCustomer();
 
@@ -178,10 +178,10 @@ public class EmpMainController {
 
     public void goToCustomerCreation(ActionEvent event) throws IOException { //newCustomerButton
         currentCustomer = null;
-        loader = new FXMLLoader(getClass().getResource("AddCustomer.fxml"));
+        loader = new FXMLLoader(getClass().getResource("EmpAddCustomer.fxml"));
         root = loader.load();
 
-        AddCustomerController controller = loader.getController();
+        EmpAddCustomerController controller = loader.getController();
         controller.initialiseAddCustomer();
         controller.showCurrentEmployee();
 
