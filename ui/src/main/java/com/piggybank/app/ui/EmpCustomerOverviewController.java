@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class EmpCustomerOverviewController extends EmpMainController implements Initializable {
@@ -97,6 +98,8 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     private Account currentAccount;
     private double amount;
 
+    private Calendar initialCreditDate;
+
 
     //--------------- METHODS CONNECTED TO FXML ELEMENTS -------------------------
     public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
@@ -128,8 +131,8 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         if(standardCheckBox.isSelected()){
             bank.createAccount(currentCustomer.getUserId(), newAccountNameField.getText());
         } else if (creditCheckBox.isSelected()) {
-            //credit needs som reworking in backend before it can be implemented in ui.
-            System.out.println("In progress. Cannot save credit yet.");
+            initialCreditDate = Calendar.getInstance();
+            bank.createCredit(currentCustomer.getUserId(), newAccountNameField.getText(), initialCreditDate, amount);
         } else if (loanCheckBox.isSelected()){
             bank.createLoanAccount(currentCustomer.getUserId(), newAccountNameField.getText(), amount);
         }
@@ -157,25 +160,25 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         oneMillionCheckBox.setSelected(false);
         twoHalfMillionCheckBox.setSelected(false);
         fiveMillionCheckBox.setSelected(false);
-        amount = 500000.0;
+        amount = -500000.0;
     }
     public void toggleOneMillionLoan(){
         halfMillionCheckBox.setSelected(false);
         twoHalfMillionCheckBox.setSelected(false);
         fiveMillionCheckBox.setSelected(false);
-        amount = 1000000.0;
+        amount = -1000000.0;
     }
     public void toggleTwoHalfMillionLoan(){
         halfMillionCheckBox.setSelected(false);
         oneMillionCheckBox.setSelected(false);
         fiveMillionCheckBox.setSelected(false);
-        amount = 2500000.0;
+        amount = -2500000.0;
     }
     public void toggleFiveMillionLoan(){
         halfMillionCheckBox.setSelected(false);
         oneMillionCheckBox.setSelected(false);
         twoHalfMillionCheckBox.setSelected(false);
-        amount = 5000000.0;
+        amount = -5000000.0;
     }
 
     //------------Add Credit Account--------------
@@ -189,25 +192,25 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         tenKCheckBox.setSelected(false);
         twentyFiveKCheckBox.setSelected(false);
         fiftyKCheckBox.setSelected(false);
-        amount = 25000.0;
+        amount = -25000.0;
     }
     public void toggleTenKCredit(){
         fiveKCheckBox.setSelected(false);
         twentyFiveKCheckBox.setSelected(false);
         fiftyKCheckBox.setSelected(false);
-        amount = 10000.0;
+        amount = -10000.0;
     }
     public void toggleTwentyFiveKCredit(){
         fiveKCheckBox.setSelected(false);
         tenKCheckBox.setSelected(false);
         fiftyKCheckBox.setSelected(false);
-        amount = 25000.0;
+        amount = -25000.0;
     }
     public void toggleFiftyKCredit(){
         fiveKCheckBox.setSelected(false);
         tenKCheckBox.setSelected(false);
         twentyFiveKCheckBox.setSelected(false);
-        amount = 50000.0;
+        amount = -50000.0;
     }
 
 
