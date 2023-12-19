@@ -1,10 +1,8 @@
 package com.piggybank.app.ui;
 
 import com.piggybank.app.backend.customers.Account;
-import com.piggybank.app.backend.customers.Customer;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
-import com.piggybank.app.backend.employees.Employee;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -20,7 +18,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class EmpCustomerOverviewController extends EmpMainController implements Initializable {
@@ -99,54 +96,8 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     @FXML
     private ListView<String> transactionsListView; //will be list of the current account's transactions
 
-    //----------------VARIABLES------------------
-    private Customer currentCustomer;
-    //Change to HashMap<String, Account> and initialize as currentCustomer.getAccounts(). If no such method exists in Customer, create it and make it return the hashmap of accounts.
-    private HashMap<String, Account> accounts;
     private Account currentAccount;
-    private Employee currentEmployee;
 
-    //-----------------METHODS-------------------
-
-    public void showCurrentEmployee(){
-        empIdLabel.setText(EmpMainController.currentEmployee.getUserId());
-        empInitialsLabel.setText(EmpMainController.currentEmployee.getInitials());
-        System.out.println("Customer Overview (Accounts) Page. Logged in as: " + EmpMainController.currentEmployee.getInitials());
-    }
-
-    public void showCurrentCustomer() {
-        if(EmpMainController.currentCustomer instanceof CustomerPrivate){
-            CustomerPrivate currentPrivate = (CustomerPrivate) EmpMainController.currentCustomer;
-            privateCustomerInfoAnchorPane.setVisible(true);
-            corporateCustomerInfoAnchorPane.setVisible(false);
-            customerSSNLabel.setText(currentPrivate.getSsn());
-            customerNameLabel.setText(currentPrivate.getFullName());
-            customerIdLabel.setText(currentPrivate.getUserId());
-        } else {
-            CustomerCorporate currentCorporate = (CustomerCorporate) EmpMainController.currentCustomer;
-            privateCustomerInfoAnchorPane.setVisible(true);
-            corporateCustomerInfoAnchorPane.setVisible(false);
-            companyNameLabel.setText(currentCorporate.getCompanyName());
-            companyIdLabel.setText(currentCorporate.getUserId());
-            companyOrgNrLabel.setText(currentCorporate.getOrgNumber());
-        }
-        addAccountAnchorPane.setVisible(false);
-        contentAnchorPane.setVisible(true);
-    }
-
-
-
-    public void initialize(URL arg0, ResourceBundle arg1) { //Populates accountsListView with elements in accounts, selection "gets" an account
-        accountsListView.getItems().addAll(currentCustomersAccounts.keySet());
-        accountsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
-                String currentAccountId = accountsListView.getSelectionModel().getSelectedItem();
-                currentAccount = accounts.get(currentAccountId);
-                System.out.println("Balance of Current account: " + currentAccount.getBalance());
-            }
-        });
-    }
 
     //--------------- METHODS CONNECTED TO FXML ELEMENTS -------------------------
     public void setCurrentAccount(ActionEvent event) {
@@ -166,7 +117,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     }
 
     public void saveNewAccount() throws Exception {
-        bank.createAccount(currentCustomer.getUserId(), newAccountNameField.getText());
+        bank.createAccount(EmpMainController.currentCustomer.getUserId(), newAccountNameField.getText());
         contentAnchorPane.setVisible(true);
         addAccountAnchorPane.setVisible(false);
     }
@@ -209,4 +160,45 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         stage.setScene(scene);
         stage.show();
     }
+
+    //------------------------------------------------------------------------------------------
+
+    public void initialize(URL arg0, ResourceBundle arg1) { //Populates accountsListView with elements in accounts, selection "gets" an account
+        accountsListView.getItems().addAll(currentCustomersAccounts.keySet());
+        accountsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
+                String currentAccountId = accountsListView.getSelectionModel().getSelectedItem();
+                currentAccount = currentCustomersAccounts.get(currentAccountId);
+                System.out.println("Balance of Current account: " + currentAccount.getBalance());
+            }
+        });
+    }
+
+    public void showCurrentEmployee(){ //called from empMainController
+        empIdLabel.setText(EmpMainController.currentEmployee.getUserId());
+        empInitialsLabel.setText(EmpMainController.currentEmployee.getInitials());
+        System.out.println("Customer Overview (Accounts) Page. Logged in as: " + EmpMainController.currentEmployee.getInitials());
+    }
+
+    public void setCurrentCustomer() { //called from empMainController
+        if(EmpMainController.currentCustomer instanceof CustomerPrivate){
+            CustomerPrivate currentPrivate = (CustomerPrivate) EmpMainController.currentCustomer;
+            privateCustomerInfoAnchorPane.setVisible(true);
+            corporateCustomerInfoAnchorPane.setVisible(false);
+            customerSSNLabel.setText(currentPrivate.getSsn());
+            customerNameLabel.setText(currentPrivate.getFullName());
+            customerIdLabel.setText(currentPrivate.getUserId());
+        } else {
+            CustomerCorporate currentCorporate = (CustomerCorporate) EmpMainController.currentCustomer;
+            privateCustomerInfoAnchorPane.setVisible(false);
+            corporateCustomerInfoAnchorPane.setVisible(true);
+            companyNameLabel.setText(currentCorporate.getCompanyName());
+            companyIdLabel.setText(currentCorporate.getUserId());
+            companyOrgNrLabel.setText(currentCorporate.getOrgNumber());
+        }
+        addAccountAnchorPane.setVisible(false);
+        contentAnchorPane.setVisible(true);
+    }
+
 }

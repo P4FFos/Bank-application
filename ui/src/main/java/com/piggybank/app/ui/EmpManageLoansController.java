@@ -66,8 +66,8 @@ public class EmpManageLoansController extends EmpMainController {
             customerIdLabel.setText(currentPrivate.getUserId());
         } else {
             CustomerCorporate currentCorporate = (CustomerCorporate) EmpMainController.currentCustomer;
-            privateCustomerInfoAnchorPane.setVisible(true);
-            corporateCustomerInfoAnchorPane.setVisible(false);
+            privateCustomerInfoAnchorPane.setVisible(false);
+            corporateCustomerInfoAnchorPane.setVisible(true);
             companyNameLabel.setText(currentCorporate.getCompanyName());
             companyIdLabel.setText(currentCorporate.getUserId());
             companyOrgNrLabel.setText(currentCorporate.getOrgNumber());
