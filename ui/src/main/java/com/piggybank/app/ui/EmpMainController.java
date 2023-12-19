@@ -105,7 +105,7 @@ public class EmpMainController {
             root = loader.load();
 
             EmpCustomerOverviewController controller = loader.getController();
-            controller.setCurrentCustomer();
+            controller.showCurrentCustomer();
             controller.showCurrentEmployee();
 
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -124,7 +124,7 @@ public class EmpMainController {
             root = loader.load();
 
             EmpCustomerOverviewController controller = loader.getController();
-            controller.setCurrentCustomer();
+            controller.showCurrentCustomer();
             controller.showCurrentEmployee();
 
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
