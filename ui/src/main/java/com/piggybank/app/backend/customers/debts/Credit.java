@@ -10,14 +10,13 @@ public class Credit extends Account {
     // attributes:
     final double INTEREST_RATE = 5;
     private Calendar initialCreditDate;
-    private double creditAmount;
 
     // Constructor for Credit class
     public Credit() {}
     public Credit(String accountId, String accountName, Calendar initialCreditDate, double creditAmount) {
         super(accountId, accountName);
+        super.setBalance(creditAmount);
         this.initialCreditDate = initialCreditDate;
-        this.creditAmount = creditAmount;
     }
 
     // get methods to get initialCreditDate and creditAmount and interestRate
@@ -33,12 +32,9 @@ public class Credit extends Account {
         this.initialCreditDate = initialCreditDate;
     }
 
-    public void setCreditAmount(double creditAmount) {
-        this.creditAmount = creditAmount;
-    }
 
     public double getCreditAmount() {
-        return this.creditAmount;
+        return super.getBalance();
     }
 
     public double getInterestRate() {
