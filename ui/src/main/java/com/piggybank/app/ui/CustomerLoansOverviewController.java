@@ -8,7 +8,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-public class CustomerLoansOverviewController {
+public class CustomerLoansOverviewController extends CustomerStartController{
 
     @FXML
     private Button applyForNewLoanButton;

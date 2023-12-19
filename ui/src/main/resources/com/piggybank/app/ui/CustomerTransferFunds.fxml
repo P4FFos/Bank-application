@@ -50,7 +50,7 @@
                         <Font name="Kodchasan Regular" size="11.0" />
                     </font>
                 </Label>
-                <Button fx:id="headerLogoutButton" layoutX="525.0" layoutY="42.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="66.0" text="LOGOUT">
+                <Button fx:id="headerLogoutButton" layoutX="525.0" layoutY="42.0" mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="66.0" text="LOGOUT">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
@@ -64,37 +64,37 @@
                         <Font name="Kodchasan Regular" size="20.0" />
                     </font>
                 </Label>
-                <Button fx:id="sideMenuStartButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="40.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="START" textAlignment="RIGHT">
+                <Button fx:id="sideMenuStartButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="40.0" mnemonicParsing="false" onAction="#goToStart" prefHeight="27.0" prefWidth="155.0" text="START" textAlignment="RIGHT">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Button>
-                <Button fx:id="sideMenuAccountsOverviewButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="70.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="ACCOUNTS OVERVIEW">
+                <Button fx:id="sideMenuAccountsOverviewButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="70.0" mnemonicParsing="false" onAction="#goToAccountsOverview" prefHeight="27.0" prefWidth="155.0" text="ACCOUNTS OVERVIEW">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Button>
-                <Button fx:id="sideMenuTransferFundsButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="100.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="TRANSFER FUNDS">
+                <Button fx:id="sideMenuTransferFundsButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="100.0" mnemonicParsing="false" onAction="#goToTransferFunds" prefHeight="27.0" prefWidth="155.0" text="TRANSFER FUNDS">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Button>
-                <Button fx:id="sideMenuLoansButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="130.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="LOANS">
+                <Button fx:id="sideMenuLoansButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="130.0" mnemonicParsing="false" onAction="#goToLoans" prefHeight="27.0" prefWidth="155.0" text="LOANS">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Button>
-                <Button fx:id="sideMenuCreditsButton1" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="160.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="CREDITS">
+                <Button fx:id="sideMenuCreditsButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="160.0" mnemonicParsing="false" onAction="#goToCredits" prefHeight="27.0" prefWidth="155.0" text="CREDITS">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Button>
-                <Button fx:id="sideMenuFaqButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="190.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="FAQ">
+                <Button fx:id="sideMenuFaqButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="190.0" mnemonicParsing="false" onAction="#goToFaq" prefHeight="27.0" prefWidth="155.0" text="FAQ">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Button>
-                <Button fx:id="sideMenuSupportButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="220.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="SUPPORT" textAlignment="RIGHT">
+                <Button fx:id="sideMenuSupportButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="220.0" mnemonicParsing="false" onAction="#goToSupport" prefHeight="27.0" prefWidth="155.0" text="SUPPORT" textAlignment="RIGHT">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>

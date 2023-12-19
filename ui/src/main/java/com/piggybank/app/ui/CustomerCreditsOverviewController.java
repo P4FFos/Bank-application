@@ -8,7 +8,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-public class CustomerCreditsOverviewController {
+public class CustomerCreditsOverviewController extends CustomerStartController {
 
     @FXML
     private Button applyForNewCreditButton;
