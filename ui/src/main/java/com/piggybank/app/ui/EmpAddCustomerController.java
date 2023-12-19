@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AddCustomerController extends EmpMainController {
+public class EmpAddCustomerController extends EmpMainController {
     @FXML
     private AnchorPane privateCustomerAnchorPane;
     @FXML

@@ -1,6 +1,5 @@
 package com.piggybank.app.ui;
 
-import com.piggybank.app.backend.customers.Customer;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
 import javafx.event.ActionEvent;
@@ -17,7 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ManageLoansController extends EmpMainController {
+public class EmpManageLoansController extends EmpMainController {
     @FXML
     private AnchorPane privateCustomerInfoAnchorPane;
     @FXML
