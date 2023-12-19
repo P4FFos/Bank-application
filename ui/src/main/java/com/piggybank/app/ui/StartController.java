@@ -33,9 +33,14 @@ public class StartController {
         stage.show();
     }
 
-    public void customerLogin(ActionEvent event){
-        //Tanya will connect to customer login
-        System.out.println("Customer login not available yet.");
+    public void customerLogin(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("CustomerLoginScene.fxml"));
+        root = loader.load();
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }
