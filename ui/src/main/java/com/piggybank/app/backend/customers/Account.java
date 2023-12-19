@@ -16,10 +16,6 @@ public class Account {
     private double balance;
     private ArrayList<Transaction> transactions;
 
-    // credit attribute are currently not a part of the json file
-    @JsonIgnore
-	private Credit credit;
-
     public Account() {
     }
 
@@ -54,10 +50,6 @@ public class Account {
 
     public void setTransactions(ArrayList<Transaction> transactions) {
         this.transactions = transactions;
-    }
-
-    public void setCredit(Credit credit) {
-        this.credit = credit;
     }
 
     // get method to receive accountId
@@ -107,31 +99,10 @@ public class Account {
     public void withdraw(double amount, LocalDate date) throws Exception {
         if (balance >= amount) {
             balance -= TruncationUtil.truncate(amount);
-            Transaction withdraw = new Transaction("None", accountId, 0-amount, "", date);
+            Transaction withdraw = new Transaction("None", accountId, 0 - amount, "", date);
             transactions.add(withdraw);
         } else {
             throw new Exception("Not enough balance in account for this operation.");
         }
     }
-
-	public void addCredit(Calendar initialCreditDate, double creditAmount) throws Exception{
-		if(this.credit != null) {
-			throw new Exception("Credit already exists");
-		}
-		this.credit = new Credit(accountId, accountName, initialCreditDate, creditAmount);
-	}
-
-	public Credit getCredit() {
-		return this.credit;
-	}
-
-	public void removeCredit() throws Exception{
-		if(this.credit == null){
-			throw new Exception("Credit does not exist");
-		}
-		if(this.credit.getCreditAmountWithInterest() > balance){
-			throw new Exception("Not enough money to pay off credit");
-		}
-		this.credit = null;
-	}
 }
