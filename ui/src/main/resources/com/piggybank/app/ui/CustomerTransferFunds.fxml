@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.MotionBlur?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="baseAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.piggybank.app.ui.CustomerTransferFundsController">
+    <children>
+        <Separator fx:id="verticalSeparator" layoutX="173.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="320.0" prefWidth="15.0" />
+        <Separator fx:id="horisontalSeparator" layoutY="65.0" prefHeight="22.0" prefWidth="645.0" />
+        <AnchorPane fx:id="headerAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="645.0">
+            <children>
+                <ImageView fx:id="headerIconImageView" fitHeight="52.0" fitWidth="36.0" layoutX="304.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../img/PB_icon.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="headerIconShadedImageView" fitHeight="52.0" fitWidth="36.0" layoutX="306.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                    <image>
+                        <Image url="@../../../../img/PB_icon_shaded.png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="headerBankNameLabel" layoutX="265.0" layoutY="38.0" text="Piggy Bank" textFill="#ab3e56">
+                    <font>
+                        <Font name="Kodchasan Regular" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="headerIdLabel" layoutX="525.0" layoutY="10.0" text="ID">
+                    <font>
+                        <Font name="Kodchasan Regular" size="11.0" />
+                    </font>
+                </Label>
+                <Label fx:id="headerActualIdLabel" alignment="CENTER_RIGHT" contentDisplay="TOP" layoutX="540.0" layoutY="10.0" text="##########">
+                    <font>
+                        <Font name="Kodchasan Regular" size="11.0" />
+                    </font>
+                </Label>
+                <Label fx:id="headerCustomerNameLabel" layoutX="525.0" layoutY="25.0" text="Firstname Lastname">
+                    <font>
+                        <Font name="Kodchasan Regular" size="11.0" />
+                    </font>
+                </Label>
+                <Button fx:id="headerLogoutButton" layoutX="525.0" layoutY="42.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="66.0" text="LOGOUT">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="sideMenuAnchorPane" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="175.0">
+            <children>
+                <Label fx:id="sideMenuLabel" layoutX="105.0" layoutY="10.0" text="MENU">
+                    <font>
+                        <Font name="Kodchasan Regular" size="20.0" />
+                    </font>
+                </Label>
+                <Button fx:id="sideMenuStartButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="40.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="START" textAlignment="RIGHT">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Button>
+                <Button fx:id="sideMenuAccountsOverviewButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="70.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="ACCOUNTS OVERVIEW">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Button>
+                <Button fx:id="sideMenuTransferFundsButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="100.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="TRANSFER FUNDS">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Button>
+                <Button fx:id="sideMenuLoansButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="130.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="LOANS">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Button>
+                <Button fx:id="sideMenuCreditsButton1" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="160.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="CREDITS">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Button>
+                <Button fx:id="sideMenuFaqButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="190.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="FAQ">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Button>
+                <Button fx:id="sideMenuSupportButton" alignment="BOTTOM_RIGHT" layoutX="13.0" layoutY="220.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="SUPPORT" textAlignment="RIGHT">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="startAnchorPane" layoutX="175.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="470.0" visible="false">
+            <children>
+                <Label fx:id="start_Hello_Label" layoutX="20.0" layoutY="10.0" text="Hello, ">
+                    <font>
+                        <Font name="Kodchasan Regular" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="startNameLabel" layoutX="85.0" layoutY="10.0" text="Firstname Lastname">
+                    <font>
+                        <Font name="Kodchasan Regular" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="startAssetsLabel" layoutX="20.0" layoutY="50.0" text="ASSETS">
+                    <font>
+                        <Font name="Kodchasan Regular" size="13.0" />
+                    </font>
+                </Label>
+                <Label fx:id="startLoansLabel" layoutX="250.0" layoutY="50.0" text="DEBTS">
+                    <font>
+                        <Font name="Kodchasan Regular" size="13.0" />
+                    </font>
+                </Label>
+                <ListView fx:id="startAssetsListView" layoutX="20.0" layoutY="70.0" prefHeight="70.0" prefWidth="190.0" />
+                <ListView fx:id="startLoansListView" layoutX="250.0" layoutY="70.0" prefHeight="70.0" prefWidth="190.0" />
+                <Label fx:id="startTotalBalanceLabel" layoutX="70.0" layoutY="150.0" text="Total Balance:">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Label>
+                <Label fx:id="startActualTotalBalanceLabel" alignment="CENTER_RIGHT" centerShape="false" layoutX="144.0" layoutY="150.0" prefHeight="13.0" prefWidth="61.0" text="###">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Label>
+                <Label fx:id="startTotalDebtLabel" layoutX="320.0" layoutY="150.0" text="Total Debt:">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Label>
+                <Label fx:id="startActualTotalDebtLabel" alignment="CENTER_RIGHT" centerShape="false" layoutX="370.0" layoutY="150.0" prefHeight="13.0" prefWidth="68.0" text="###">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="infoAnchorPane" layoutX="175.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="470.0">
+            <children>
+                <Label fx:id="infoNameLabel" layoutX="10.0" layoutY="10.0" text="Firstname Lastname">
+                    <font>
+                        <Font name="Kodchasan Regular" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="infoAccountIdLabel" layoutX="10.0" layoutY="35.0" text="Account ID:">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Label>
+                <Label fx:id="infoActualAccountIdLabel" layoutX="75.0" layoutY="35.0" text="c####">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Label>
+                <Separator layoutX="5.0" layoutY="60.0" prefHeight="5.0" prefWidth="461.0" />
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="transferAnchorPane" layoutX="175.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="470.0">
+            <children>
+                <Label fx:id="transferNewTransferLabel" layoutX="20.0" layoutY="10.0" text="NEW TRANSFER">
+                    <font>
+                        <Font name="Kodchasan Regular" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="transferFromAccountLabel" layoutX="20.0" layoutY="50.0" text="FROM ACCOUNT">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Label>
+                <Label fx:id="transferFromHintLabel" layoutX="20.0" layoutY="60.0" text="CHOOSE BETWEEN YOUR ACCOUNTS FROM THE LIST BELOW" textFill="#323131">
+                    <font>
+                        <Font name="Kodchasan ExtraLight" size="5.0" />
+                    </font>
+                </Label>
+                <ListView fx:id="transferAccountListView" layoutX="20.0" layoutY="70.0" prefHeight="70.0" prefWidth="190.0" />
+                <Button fx:id="transferSelectAccountButton" layoutX="120.0" layoutY="145.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="90.0" text="SELECT ACCOUNT">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </Button>
+                <Label fx:id="transferToAccountLabel" layoutX="20.0" layoutY="170.0" text="TO ACCOUNT">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Label>
+                <Label fx:id="transferRecieverHintLabel" layoutX="20.0" layoutY="180.0" text="ENTER RECIEVER ACCOUNT (10 digits)" textFill="#323131">
+                    <font>
+                        <Font name="Kodchasan ExtraLight" size="5.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="transferEnterRecieverAccountTextField" alignment="CENTER_RIGHT" layoutX="20.0" layoutY="190.0" prefHeight="15.0" prefWidth="190.0" promptText="e.g. c123">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </TextField>
+                <Label fx:id="transferAmountLabel" layoutX="250.0" layoutY="50.0" text="AMOUNT">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Label>
+                <Label fx:id="transferAmountHintLabel" layoutX="250.0" layoutY="60.0" text="SELECT DEFAULT AMOUNT OR SPECIFY IN FIELD BELOW" textFill="#807c7c">
+                    <font>
+                        <Font name="Kodchasan ExtraLight" size="5.0" />
+                    </font>
+                </Label>
+                <CheckBox fx:id="transferFirstAmountCheckBox" layoutX="250.0" layoutY="70.0" mnemonicParsing="false" text="100">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </CheckBox>
+                <CheckBox fx:id="transferSecondAmountCheckBox" layoutX="290.0" layoutY="70.0" mnemonicParsing="false" text="200">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </CheckBox>
+                <CheckBox fx:id="transferThirdAmountCheckBox" layoutX="330.0" layoutY="70.0" mnemonicParsing="false" text="500">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </CheckBox>
+                <CheckBox fx:id="transferFourthAmountCheckBox" layoutX="370.0" layoutY="70.0" mnemonicParsing="false" text="1.000">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </CheckBox>
+                <TextField fx:id="transferEnterAmountTextField" alignment="CENTER_RIGHT" layoutX="250.0" layoutY="85.0" prefHeight="15.0" prefWidth="190.0" promptText="0.00">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </TextField>
+                <Label fx:id="transferSekLabel" layoutX="255.0" layoutY="85.0" text="SEK">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Label>
+                <Label fx:id="transferEnterPasswordLabel" layoutX="250.0" layoutY="120.0" text="PASSWORD">
+                    <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                    </font>
+                </Label>
+                <Label fx:id="transferPasswordHintLabel" layoutX="250.0" layoutY="130.0" text="ENTER YOUR ACCOUNT PASSWORD (4-6 DIGITS)" textFill="#807c7c">
+                    <font>
+                        <Font name="Kodchasan ExtraLight" size="5.0" />
+                    </font>
+                </Label>
+                <PasswordField fx:id="transferPasswordField" alignment="CENTER_RIGHT" layoutX="250.0" layoutY="140.0" prefHeight="15.0" prefWidth="190.0" promptText="******">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </PasswordField>
+                <CheckBox fx:id="transferUnderstandCheckBox" layoutX="250.0" layoutY="160.0" mnemonicParsing="false" text="I understand that it is my responsibility &#10;to verify that the information is correct." underline="true">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </CheckBox>
+                <Button fx:id="transferCompleteTransferButton" layoutX="250.0" layoutY="190.0" mnemonicParsing="false" prefHeight="5.0" prefWidth="190.0" text="COMPLETE TRANSFER">
+                    <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                    </font>
+                </Button>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="bodySeparatorsAnchorPane" layoutX="175.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="470.0">
+            <children>
+                <Separator layoutX="5.0" layoutY="38.0" opacity="0.25" prefHeight="5.0" prefWidth="460.0">
+                    <effect>
+                        <MotionBlur />
+                    </effect>
+                </Separator>
+                <Separator layoutX="230.0" layoutY="40.0" opacity="0.1" orientation="VERTICAL" prefHeight="250.0" prefWidth="0.0" visible="false">
+                    <effect>
+                        <Shadow blurType="GAUSSIAN" />
+                    </effect>
+                </Separator>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
