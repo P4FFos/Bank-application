@@ -146,24 +146,23 @@
             </AnchorPane>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="contentAnchorPane" layoutX="180.0" layoutY="150.0" prefHeight="232.0" prefWidth="458.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
+        <AnchorPane fx:id="contentAnchorPane" layoutX="180.0" layoutY="150.0" prefHeight="232.0" prefWidth="458.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
          <children>
-            <ListView fx:id="accountsListView" layoutX="16.0" layoutY="39.0" prefHeight="202.0" prefWidth="200.0" AnchorPane.leftAnchor="15.0" />
-            <ListView fx:id="transactionsListView" layoutX="249.0" layoutY="41.0" prefHeight="202.0" prefWidth="200.0" AnchorPane.leftAnchor="252.0" />
+            <ListView fx:id="accountsListView" layoutX="16.0" layoutY="39.0" prefHeight="202.0" prefWidth="200.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="41.0" />
+            <ListView fx:id="transactionsListView" layoutX="249.0" layoutY="41.0" prefHeight="202.0" prefWidth="200.0" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="41.0" />
             <Separator layoutX="230.0" layoutY="3.0" orientation="VERTICAL" prefHeight="211.0" prefWidth="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="229.0" AnchorPane.topAnchor="0.0" />
-            <Label layoutX="16.0" layoutY="14.0" text="ACCOUNTS" AnchorPane.leftAnchor="15.0" />
-            <Label layoutX="250.0" layoutY="14.0" text="TRANSACTIONS" AnchorPane.leftAnchor="252.0" />
-            <Button fx:id="selectAccountButton" layoutX="122.0" layoutY="10.0" mnemonicParsing="false" onAction="#setCurrentAccount" text="SELECT" />
-            <Button fx:id="addAccountButton" layoutX="191.0" layoutY="10.0" mnemonicParsing="false" onAction="#addAccount" text="+" />
-            <Label layoutX="19.0" layoutY="246.0" text="ACCOUNT ID:" AnchorPane.leftAnchor="15.0" />
-            <Label fx:id="accountIdLabel" layoutX="105.0" layoutY="246.0" text="####" AnchorPane.leftAnchor="110.0" />
-            <Label layoutX="20.0" layoutY="269.0" text="BALANCE:" AnchorPane.leftAnchor="15.0" />
-            <Label fx:id="accountBalanceLabel" layoutX="109.0" layoutY="269.0" text="€€€€" AnchorPane.leftAnchor="110.0" />
-            <Button fx:id="makeTransactionButton" layoutX="424.0" layoutY="10.0" mnemonicParsing="false" onAction="#makeTransaction" text="+" />
-            <CheckBox fx:id="inTransactionCheckBox" layoutX="250.0" layoutY="246.0" mnemonicParsing="false" text="INCOMING" AnchorPane.leftAnchor="252.0" />
-            <CheckBox fx:id="outTransactionCheckBox" layoutX="251.0" layoutY="271.0" mnemonicParsing="false" text="OUTGOING" AnchorPane.leftAnchor="252.0" />
+            <Label layoutX="16.0" layoutY="14.0" text="ACCOUNTS" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="14.0" />
+            <Label layoutX="250.0" layoutY="14.0" text="TRANSACTIONS" AnchorPane.leftAnchor="252.0" AnchorPane.topAnchor="14.0" />
+            <Button fx:id="addAccountButton" layoutX="191.0" layoutY="10.0" mnemonicParsing="false" onAction="#addAccount" text="+" AnchorPane.topAnchor="10.0" />
+            <Label layoutX="19.0" layoutY="246.0" text="ACCOUNT:" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="250.0" />
+            <Label fx:id="accountNameLabel" layoutX="105.0" layoutY="246.0" text="####" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="250.0" />
+            <Label layoutX="15.0" layoutY="274.0" text="BALANCE:" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="275.0" />
+            <Label fx:id="accountBalanceLabel" layoutX="109.0" layoutY="269.0" text="€€€€" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="275.0" />
+            <Button fx:id="makeTransactionButton" layoutX="424.0" layoutY="10.0" mnemonicParsing="false" onAction="#makeTransaction" text="+" AnchorPane.topAnchor="10.0" />
+            <CheckBox fx:id="inTransactionCheckBox" layoutX="250.0" layoutY="246.0" mnemonicParsing="false" text="INCOMING" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="250.0" />
+            <CheckBox fx:id="outTransactionCheckBox" layoutX="251.0" layoutY="271.0" mnemonicParsing="false" text="OUTGOING" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="275.0" />
          </children></AnchorPane>
-      <AnchorPane fx:id="addAccountAnchorPane" prefHeight="104.0" prefWidth="293.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
+      <AnchorPane fx:id="addAccountAnchorPane" prefHeight="104.0" prefWidth="293.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
          <children>
             <CheckBox fx:id="standardCheckBox" layoutX="327.0" layoutY="21.0" mnemonicParsing="false" onAction="#toggleStandard" text="STANDARD" AnchorPane.topAnchor="20.0" />
             <CheckBox fx:id="creditCheckBox" layoutX="327.0" layoutY="70.0" mnemonicParsing="false" onAction="#toggleCredit" text="CREDIT" AnchorPane.topAnchor="70.0" />
