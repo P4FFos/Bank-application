@@ -99,17 +99,152 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     @FXML
     private ListView<String> transactionsListView; //will be list of the current account's transactions
 
-    //----------------VARIABLES------------------
-    private Customer currentCustomer;
-    //Change to HashMap<String, Account> and initialize as currentCustomer.getAccounts(). If no such method exists in Customer, create it and make it return the hashmap of accounts.
-    private HashMap<String, Account> accounts;
     private Account currentAccount;
-    private Employee currentEmployee;
+    private double amount;
 
-    //-----------------METHODS-------------------
+
+    //--------------- METHODS CONNECTED TO FXML ELEMENTS -------------------------
+    public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
+        Parent root = loader.load();
+
+        EmpMainController controller = loader.getController();
+        controller.showCurrentEmployee();
+        EmpMainController.currentCustomer = null;
+
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void setCurrentAccount(ActionEvent event) {
+        //get selection from accountsListView, set this account as current account and
+        //load transactionsListView with the transaction list of current account
+        //currentAccount = accountsListView.getSelectionModel().getSelectedItem();
+        //Account selectedAccount = currentCustomer.getAccount(currentAccount);
+        transactionsListView.getItems().addAll(String.valueOf(currentAccount.getTransactionHistory()));
+    }
+
+    //-----------------ACCOUNTS MANAGEMENT----------------------------
+
+    public void addAccount(ActionEvent event) {
+        contentAnchorPane.setVisible(false);
+        addAccountAnchorPane.setVisible(true);
+        loanAnchorPane.setVisible(false);
+        creditAnchorPane.setVisible(false);
+        standardCheckBox.setSelected(true);
+    }
+
+    public void saveNewAccount() throws Exception {
+        if(standardCheckBox.isSelected()){
+            bank.createAccount(currentCustomer.getUserId(), newAccountNameField.getText());
+        } else if (creditCheckBox.isSelected()) {
+            //credit needs som reworking in backend before it can be implemented in ui.
+            System.out.println("In progress. Cannot save credit yet.");
+        } else if (loanCheckBox.isSelected()){
+            bank.createLoanAccount(currentCustomer.getUserId(), newAccountNameField.getText(), amount);
+        }
+        contentAnchorPane.setVisible(true);
+        addAccountAnchorPane.setVisible(false);
+    }
+
+    //------------ADD STANDARD ACCOUNT--------------
+    public void toggleStandard(){
+        loanAnchorPane.setVisible(false);
+        creditAnchorPane.setVisible(false);
+        creditCheckBox.setSelected(false);
+        loanCheckBox.setSelected(false);
+    }
+
+    //------------ADD LOAN ACCOUNT--------------
+    public void toggleLoan(){
+        loanAnchorPane.setVisible(true);
+        creditAnchorPane.setVisible(false);
+        creditCheckBox.setSelected(false);
+        standardCheckBox.setSelected(false);
+    }
+
+    public void toggleHalfMillionLoan(){
+        oneMillionCheckBox.setSelected(false);
+        twoHalfMillionCheckBox.setSelected(false);
+        fiveMillionCheckBox.setSelected(false);
+        amount = 500000.0;
+    }
+    public void toggleOneMillionLoan(){
+        halfMillionCheckBox.setSelected(false);
+        twoHalfMillionCheckBox.setSelected(false);
+        fiveMillionCheckBox.setSelected(false);
+        amount = 1000000.0;
+    }
+    public void toggleTwoHalfMillionLoan(){
+        halfMillionCheckBox.setSelected(false);
+        oneMillionCheckBox.setSelected(false);
+        fiveMillionCheckBox.setSelected(false);
+        amount = 2500000.0;
+    }
+    public void toggleFiveMillionLoan(){
+        halfMillionCheckBox.setSelected(false);
+        oneMillionCheckBox.setSelected(false);
+        twoHalfMillionCheckBox.setSelected(false);
+        amount = 5000000.0;
+    }
+
+    //------------ADD CREDIT ACCOUNT--------------
+    public void toggleCredit(){
+        loanAnchorPane.setVisible(false);
+        creditAnchorPane.setVisible(true);
+        standardCheckBox.setSelected(false);
+        loanCheckBox.setSelected(false);
+    }
+    public void toggleFiveKCredit(){
+        tenKCheckBox.setSelected(false);
+        twentyFiveKCheckBox.setSelected(false);
+        fiftyKCheckBox.setSelected(false);
+        amount = 25000.0;
+    }
+    public void toggleTenKCredit(){
+        fiveKCheckBox.setSelected(false);
+        twentyFiveKCheckBox.setSelected(false);
+        fiftyKCheckBox.setSelected(false);
+        amount = 10000.0;
+    }
+    public void toggleTwentyFiveKCredit(){
+        fiveKCheckBox.setSelected(false);
+        tenKCheckBox.setSelected(false);
+        fiftyKCheckBox.setSelected(false);
+        amount = 25000.0;
+    }
+    public void toggleFiftyKCredit(){
+        fiveKCheckBox.setSelected(false);
+        tenKCheckBox.setSelected(false);
+        twentyFiveKCheckBox.setSelected(false);
+        amount = 50000.0;
+    }
+
+
+//----------------MANAGE TRANSACTIONS--------------------------
+
+    public void makeTransaction(ActionEvent event) {
+        //wait until ui is built for this
+    }
+
+//----------------SETUP SCENE-------------------------------------
+
+    public void initialize(URL arg0, ResourceBundle arg1) { //Populates accountsListView with elements in accounts, selection "gets" an account
+        accountsListView.getItems().addAll(currentCustomersAccounts.keySet());
+        accountsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
+                String currentAccountId = accountsListView.getSelectionModel().getSelectedItem();
+                currentAccount = currentCustomersAccounts.get(currentAccountId);
+                System.out.println("Balance of Current account: " + currentAccount.getBalance());
+            }
+        });
+    }
 
     public void showCurrentEmployee(){
-        empIdLabel.setText(EmpMainController.currentEmployee.getUserId());
+        empIdLabel.setText(currentEmployee.getUserId());
         empInitialsLabel.setText(EmpMainController.currentEmployee.getInitials());
         System.out.println("Customer Overview (Accounts) Page. Logged in as: " + EmpMainController.currentEmployee.getInitials());
     }
@@ -124,89 +259,18 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
             customerIdLabel.setText(currentPrivate.getUserId());
         } else {
             CustomerCorporate currentCorporate = (CustomerCorporate) EmpMainController.currentCustomer;
-            privateCustomerInfoAnchorPane.setVisible(true);
-            corporateCustomerInfoAnchorPane.setVisible(false);
+            privateCustomerInfoAnchorPane.setVisible(false);
+            corporateCustomerInfoAnchorPane.setVisible(true);
             companyNameLabel.setText(currentCorporate.getCompanyName());
             companyIdLabel.setText(currentCorporate.getUserId());
             companyOrgNrLabel.setText(currentCorporate.getOrgNumber());
         }
+
         addAccountAnchorPane.setVisible(false);
         contentAnchorPane.setVisible(true);
     }
 
 
 
-    public void initialize(URL arg0, ResourceBundle arg1) { //Populates accountsListView with elements in accounts, selection "gets" an account
-        accountsListView.getItems().addAll(currentCustomersAccounts.keySet());
-        accountsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
-                String currentAccountId = accountsListView.getSelectionModel().getSelectedItem();
-                currentAccount = accounts.get(currentAccountId);
-                System.out.println("Balance of Current account: " + currentAccount.getBalance());
-            }
-        });
-    }
 
-    //--------------- METHODS CONNECTED TO FXML ELEMENTS -------------------------
-    public void setCurrentAccount(ActionEvent event) {
-        //get selection from accountsListView, set this account as current account and
-        //load transactionsListView with the transaction list of current account
-        //currentAccount = accountsListView.getSelectionModel().getSelectedItem();
-        //Account selectedAccount = currentCustomer.getAccount(currentAccount);
-        transactionsListView.getItems().addAll(String.valueOf(currentAccount.getTransactionHistory()));
-    }
-
-    public void addAccount(ActionEvent event) {
-        contentAnchorPane.setVisible(false);
-        addAccountAnchorPane.setVisible(true);
-        loanAnchorPane.setVisible(false);
-        creditAnchorPane.setVisible(false);
-        standardCheckBox.setSelected(true);
-    }
-
-    public void saveNewAccount() throws Exception {
-        bank.createAccount(currentCustomer.getUserId(), newAccountNameField.getText());
-        contentAnchorPane.setVisible(true);
-        addAccountAnchorPane.setVisible(false);
-    }
-
-    public void toggleLoan(){
-        loanAnchorPane.setVisible(true);
-        creditAnchorPane.setVisible(false);
-        creditCheckBox.setSelected(false);
-        standardCheckBox.setSelected(false);
-    }
-
-    public void toggleCredit(){
-        loanAnchorPane.setVisible(false);
-        creditAnchorPane.setVisible(true);
-        standardCheckBox.setSelected(false);
-        loanCheckBox.setSelected(false);
-    }
-
-    public void toggleStandard(){
-        loanAnchorPane.setVisible(false);
-        creditAnchorPane.setVisible(false);
-        creditCheckBox.setSelected(false);
-        loanCheckBox.setSelected(false);
-    }
-
-    public void makeTransaction(ActionEvent event) {
-        //wait until ui is built for this
-    }
-
-    public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
-        Parent root = loader.load();
-
-        EmpMainController controller = loader.getController();
-        controller.showCurrentEmployee();
-        EmpMainController.currentCustomer = null;
-
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 }
