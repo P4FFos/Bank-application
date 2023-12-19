@@ -3,6 +3,8 @@ package com.piggybank.app.ui;
 import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
+import com.piggybank.app.backend.customers.debts.Credit;
+import com.piggybank.app.backend.customers.loans.Loan;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -18,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
@@ -34,6 +37,8 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     private AnchorPane privateCustomerInfoAnchorPane;
     @FXML
     private AnchorPane corporateCustomerInfoAnchorPane;
+    @FXML
+    private AnchorPane selectAccountToCreditAnchorPane;
     @FXML
     private Label empIdLabel;
     @FXML
@@ -55,6 +60,10 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     @FXML
     private Label accountBalanceLabel;
     @FXML
+    private Label creditedAccountLabel;
+    @FXML
+    private Label creditAmountLabel;
+    @FXML
     private Label loanAmountLabel;
     @FXML
     private Button addAccountButton;
@@ -62,6 +71,8 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     private Button makeTransactionButton;
     @FXML
     private Button saveNewAccountButton;
+    @FXML
+    private ChoiceBox<String> accountsChoiceBox;
     @FXML
     private TextField newAccountNameField;
     @FXML
@@ -97,6 +108,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 
     private Account currentAccount;
     private double amount;
+    private Account accountToIncrement;
 
     private Calendar initialCreditDate;
 
@@ -133,6 +145,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         } else if (creditCheckBox.isSelected()) {
             initialCreditDate = Calendar.getInstance();
             bank.createCredit(currentCustomer.getUserId(), newAccountNameField.getText(), initialCreditDate, amount);
+            accountToIncrement.setBalance(accountToIncrement.getBalance() + Math.abs(amount));
         } else if (loanCheckBox.isSelected()){
             bank.createLoanAccount(currentCustomer.getUserId(), newAccountNameField.getText(), amount);
         }
@@ -144,6 +157,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     public void toggleStandard(){
         loanAnchorPane.setVisible(false);
         creditAnchorPane.setVisible(false);
+        selectAccountToCreditAnchorPane.setVisible(false);
         creditCheckBox.setSelected(false);
         loanCheckBox.setSelected(false);
     }
@@ -152,8 +166,10 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     public void toggleLoan(){
         loanAnchorPane.setVisible(true);
         creditAnchorPane.setVisible(false);
+        selectAccountToCreditAnchorPane.setVisible(true);
         creditCheckBox.setSelected(false);
         standardCheckBox.setSelected(false);
+
     }
 
     public void toggleHalfMillionLoan(){
@@ -185,6 +201,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     public void toggleCredit(){
         loanAnchorPane.setVisible(false);
         creditAnchorPane.setVisible(true);
+        selectAccountToCreditAnchorPane.setVisible(true);
         standardCheckBox.setSelected(false);
         loanCheckBox.setSelected(false);
     }
@@ -213,6 +230,13 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         amount = -50000.0;
     }
 
+//------------SELECT ACCOUNT TO CREDIT------------------
+    public void showAccountToCredit(ActionEvent event){
+        accountToIncrement = currentCustomersAccounts.get(accountsChoiceBox.getValue());
+        String amountStr = Double.toString(Math.abs(amount));
+        creditedAccountLabel.setText(accountToIncrement.getAccountName());
+        creditAmountLabel.setText(amountStr);
+    }
 
 //----------------MANAGE TRANSACTIONS--------------------------
 
@@ -234,6 +258,20 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
                 transactionsListView.getItems().addAll(String.valueOf(currentAccount.getTransactionHistory()));
             }
         });
+
+        String[] standardAccounts = new String[currentCustomersAccounts.size()]; //not pretty I know...
+        int counter = 0;
+        for(String key : currentCustomersAccounts.keySet()){
+            if(currentCustomersAccounts.get(key) instanceof Credit || currentCustomersAccounts.get(key) instanceof Loan) {
+                //NOTHING
+            } else {
+                standardAccounts[counter] = key;
+                counter++;
+            }
+
+        }
+        accountsChoiceBox.getItems().addAll(standardAccounts);
+        accountsChoiceBox.setOnAction(this::showAccountToCredit);
     }
 
     public void showCurrentEmployee(){
