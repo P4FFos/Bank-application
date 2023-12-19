@@ -7,7 +7,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-public class CustomerFaqController {
+public class CustomerFaqController extends CustomerStartController{
 
     @FXML
     private AnchorPane baseAnchorPane;

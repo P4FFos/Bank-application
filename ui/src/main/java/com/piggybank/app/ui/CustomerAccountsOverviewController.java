@@ -9,7 +9,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-public class CustomerAccountsOverviewController {
+public class CustomerAccountsOverviewController extends CustomerStartController {
 
     @FXML
     private Label accountsAccountHistoryLabel;

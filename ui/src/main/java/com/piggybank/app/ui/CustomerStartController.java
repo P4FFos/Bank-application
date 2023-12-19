@@ -1,12 +1,25 @@
 package com.piggybank.app.ui;
 
+import com.piggybank.app.backend.Bank;
+import com.piggybank.app.backend.customers.Account;
+import com.piggybank.app.backend.customers.Customer;
+import com.piggybank.app.backend.utils.FileHandler;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.HashMap;
 
 public class CustomerStartController {
 
@@ -47,7 +60,7 @@ public class CustomerStartController {
     private AnchorPane sideMenuAnchorPane;
 
     @FXML
-    private Button sideMenuCreditsButton1;
+    private Button sideMenuCreditsButton;
 
     @FXML
     private Button sideMenuFaqButton;
@@ -102,5 +115,102 @@ public class CustomerStartController {
 
     @FXML
     private Separator verticalSeparator;
+
+    private FXMLLoader loader;
+    private Parent root;
+    private Stage stage;
+    private Scene scene;
+
+    public static Bank bank = UIMain.bank;
+    public static Customer currentCustomer;
+    public static HashMap<String, Account> currentCustomersAccounts;
+
+
+    //-----------------SIDE MENU NAVIGATION----------------
+    public void goToStart(ActionEvent event) throws IOException { //sideMenuStartButton
+        loader = new FXMLLoader(getClass().getResource("CustomerStart.fxml"));
+        root = loader.load();
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void goToAccountsOverview(ActionEvent event) throws IOException { //sideMenuAccountsOverviewButton
+        loader = new FXMLLoader(getClass().getResource("CustomerAccountsOverview.fxml"));
+        root = loader.load();
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void goToTransferFunds(ActionEvent event) throws IOException { //sideMenuTransferFundsButton
+        loader = new FXMLLoader(getClass().getResource("CustomerTransferFunds.fxml"));
+        root = loader.load();
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void goToLoans(ActionEvent event) throws IOException { //sideMenuLoansButton
+        loader = new FXMLLoader(getClass().getResource("CustomerLoansOverview.fxml"));
+        root = loader.load();
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void goToCredits(ActionEvent event) throws IOException { //sideMenuCreditsButton
+        loader = new FXMLLoader(getClass().getResource("CustomerCreditsOverview.fxml"));
+        root = loader.load();
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void goToFaq(ActionEvent event) throws IOException { //sideMenuFaqButton
+        loader = new FXMLLoader(getClass().getResource("CustomerFaq.fxml"));
+        root = loader.load();
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void goToSupport(ActionEvent event) throws IOException { //sideMenuSupportButton
+        loader = new FXMLLoader(getClass().getResource("CustomerSupport.fxml"));
+        root = loader.load();
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+//-----------------HEADER MENU NAVIGATION----------------
+
+    public void logout(ActionEvent event) throws IOException { //headerLogoutButton
+        String saveFile = "ui/src/main/java/com/piggybank/app/backend/bankDataOnLogout.json";
+        FileHandler.jsonSerializer(saveFile, bank);
+
+        currentCustomer = null;
+        System.out.println("Logged out. Have a nice day.");
+        loader = new FXMLLoader(getClass().getResource("StartScene.fxml"));
+        root = loader.load();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
 }
