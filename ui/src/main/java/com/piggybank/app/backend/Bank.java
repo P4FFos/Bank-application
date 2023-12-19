@@ -265,7 +265,7 @@ public class Bank {
                 int tempIdCount = Integer.parseInt(account.getAccountId().substring(1));
                 if(tempIdCount > highestIdCount) {
                     highestIdCount = tempIdCount;
-                    highestAccountId = customer.getUserId();
+                    highestAccountId = account.getAccountId();
                 }
             }
         }
