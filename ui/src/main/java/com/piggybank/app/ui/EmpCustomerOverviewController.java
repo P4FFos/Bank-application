@@ -169,7 +169,6 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         selectAccountToCreditAnchorPane.setVisible(true);
         creditCheckBox.setSelected(false);
         standardCheckBox.setSelected(false);
-
     }
 
     public void toggleHalfMillionLoan(){
@@ -232,12 +231,27 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 
 //------------SELECT ACCOUNT TO CREDIT------------------
     public void showAccountToCredit(ActionEvent event){
-        accountToIncrement = currentCustomersAccounts.get(accountsChoiceBox.getValue());
-        String amountStr = Double.toString(Math.abs(amount));
-        creditedAccountLabel.setText(accountToIncrement.getAccountName());
-        creditAmountLabel.setText(amountStr);
+        if (accountsChoiceBox.getValue() == null || accountToIncrement == null || amount == 0.0){
+            System.out.println("Wrong data input.");
+        } else {
+            accountToIncrement = currentCustomersAccounts.get(accountsChoiceBox.getValue());
+            String amountStr = Double.toString(Math.abs(amount));
+            creditedAccountLabel.setText(accountToIncrement.getAccountName());
+            creditAmountLabel.setText(amountStr);
+        }
     }
 
+    //------------SELECT ACCOUNT TO LOAN------------------
+    public void showAccountToLoan(ActionEvent event){
+        if (accountsChoiceBox.getValue() == null || accountToIncrement == null || amount == 0.0){
+            System.out.println("Wrong data input.");
+        } else {
+            accountToIncrement = currentCustomersAccounts.get(accountsChoiceBox.getValue());
+            String amountString = Double.toString(Math.abs(amount));
+            loanAmountLabel.setText(accountToIncrement.getAccountName());
+            loanAmountLabel.setText(amountString);
+        }
+    }
 //----------------MANAGE TRANSACTIONS--------------------------
 
     public void makeTransaction(ActionEvent event) {
@@ -272,6 +286,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         }
         accountsChoiceBox.getItems().addAll(standardAccounts);
         accountsChoiceBox.setOnAction(this::showAccountToCredit);
+        accountsChoiceBox.setOnAction(this::showAccountToLoan);
     }
 
     public void showCurrentEmployee(){
