@@ -40,6 +40,10 @@ public class EmpMainController {
     private Label empInitialsLabel;
     @FXML
     private TextField searchCustomerTextField;
+    @FXML
+    private Label NameLabel;
+    @FXML
+    private Label infoActualUserIdLabel;
 
     private Parent root;
     private Stage stage;
@@ -58,12 +62,17 @@ public class EmpMainController {
         currentEmployee = employee;
         empIdLabel.setText(currentEmployee.getUserId());
         empInitialsLabel.setText(currentEmployee.getInitials());
+        NameLabel.setText(currentEmployee.getFullName());
+        infoActualUserIdLabel.setText(currentEmployee.getUserId());
+
         System.out.println("Employee Start Page. Logged in as: " + employee.getInitials());
     }
 
     public void showCurrentEmployee(){
         empIdLabel.setText(currentEmployee.getUserId());
         empInitialsLabel.setText(currentEmployee.getInitials());
+        NameLabel.setText(currentEmployee.getFullName());
+        infoActualUserIdLabel.setText(currentEmployee.getUserId());
         System.out.println("Employee Start Page. Logged in as: " + currentEmployee.getInitials());
     }
 
@@ -92,7 +101,6 @@ public class EmpMainController {
         stage.show();
 
         showCurrentEmployee();
-        currentCustomer = null;
         System.out.println("Employee Start Page. Logged in as: " + currentEmployee.getInitials());
     }
 
