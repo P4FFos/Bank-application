@@ -142,14 +142,12 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     public void saveNewAccount() throws Exception {
         if (standardCheckBox.isSelected()) {
             bank.createAccount(currentCustomer.getUserId(), newAccountNameField.getText());
-        } else if (creditCheckBox.isSelected()) {
-            initialCreditDate = Calendar.getInstance();
+        } else if (creditCheckBox.isSelected() && !newAccountNameField.getText().isBlank() && amount != 0.0) {
             bank.createCredit(currentCustomer.getUserId(), newAccountNameField.getText(), initialCreditDate, amount);
-            accountToIncrement.setBalance(accountToIncrement.getBalance() + Math.abs(amount));
-        } else if (loanCheckBox.isSelected()) {
+        } else if (loanCheckBox.isSelected() && !newAccountNameField.getText().isBlank() && amount != 0.0 ) {
             bank.createLoanAccount(currentCustomer.getUserId(), newAccountNameField.getText(), amount);
         } else {
-            System.out.println("No account type selected.");
+            System.out.println("Wrong data input.");
         }
         contentAnchorPane.setVisible(true);
         addAccountAnchorPane.setVisible(false);
@@ -240,30 +238,18 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 
     //------------SELECT ACCOUNT TO CREDIT------------------
     public void showAccountToCredit(ActionEvent event) {
-        if (!accountsChoiceBox.isPressed() || !creditCheckBox.isSelected() || newAccountNameField.getText() == null) {
-            System.out.println("Wrong data input.");
-            contentAnchorPane.setVisible(true);
-            addAccountAnchorPane.setVisible(false);
-        } else {
             accountToIncrement = currentCustomersAccounts.get(accountsChoiceBox.getValue());
             String amountStr = Double.toString(Math.abs(amount));
             creditedAccountLabel.setText(accountToIncrement.getAccountName());
             creditAmountLabel.setText(amountStr);
-        }
     }
 
     //------------SELECT ACCOUNT TO LOAN------------------
     public void showAccountToLoan(ActionEvent event) {
-        if (!accountsChoiceBox.isPressed() || !loanCheckBox.isSelected() || newAccountNameField.getText() == null) {
-            System.out.println("Wrong data input.");
-            contentAnchorPane.setVisible(true);
-            addAccountAnchorPane.setVisible(false);
-        } else {
             accountToIncrement = currentCustomersAccounts.get(accountsChoiceBox.getValue());
-            String amountString = Double.toString(Math.abs(amount));
+            String amountStr = Double.toString(Math.abs(amount));
             loanAmountLabel.setText(accountToIncrement.getAccountName());
-            loanAmountLabel.setText(amountString);
-        }
+            loanAmountLabel.setText(amountStr);
     }
 //----------------MANAGE TRANSACTIONS--------------------------
 
