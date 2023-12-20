@@ -74,14 +74,6 @@ public class EmpManageLoansController extends EmpMainController {
         }
     }
 
-    public void setCurrentLoan(){
-
-    }
-
-    public void addLoan(ActionEvent event){
-
-    }
-
     public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
         FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
         Parent root = loader.load();
