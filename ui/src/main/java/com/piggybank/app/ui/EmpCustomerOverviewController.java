@@ -122,7 +122,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         controller.showCurrentEmployee();
         EmpMainController.currentCustomer = null;
 
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -140,21 +140,21 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     }
 
     public void saveNewAccount() throws Exception {
-        if(standardCheckBox.isSelected()){
+        if (standardCheckBox.isSelected()) {
             bank.createAccount(currentCustomer.getUserId(), newAccountNameField.getText());
-        } else if (creditCheckBox.isSelected()) {
-            initialCreditDate = Calendar.getInstance();
+        } else if (creditCheckBox.isSelected() && !newAccountNameField.getText().isBlank() && amount != 0.0) {
             bank.createCredit(currentCustomer.getUserId(), newAccountNameField.getText(), initialCreditDate, amount);
-            accountToIncrement.setBalance(accountToIncrement.getBalance() + Math.abs(amount));
-        } else if (loanCheckBox.isSelected()){
+        } else if (loanCheckBox.isSelected() && !newAccountNameField.getText().isBlank() && amount != 0.0 ) {
             bank.createLoanAccount(currentCustomer.getUserId(), newAccountNameField.getText(), amount);
+        } else {
+            System.out.println("Wrong data input.");
         }
         contentAnchorPane.setVisible(true);
         addAccountAnchorPane.setVisible(false);
     }
 
     //------------Add Standard Account--------------
-    public void toggleStandard(){
+    public void toggleStandard() {
         loanAnchorPane.setVisible(false);
         creditAnchorPane.setVisible(false);
         selectAccountToCreditAnchorPane.setVisible(false);
@@ -163,34 +163,36 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     }
 
     //------------Add Loan Account--------------
-    public void toggleLoan(){
+    public void toggleLoan() {
         loanAnchorPane.setVisible(true);
         creditAnchorPane.setVisible(false);
         selectAccountToCreditAnchorPane.setVisible(true);
         creditCheckBox.setSelected(false);
         standardCheckBox.setSelected(false);
-
     }
 
-    public void toggleHalfMillionLoan(){
+    public void toggleHalfMillionLoan() {
         oneMillionCheckBox.setSelected(false);
         twoHalfMillionCheckBox.setSelected(false);
         fiveMillionCheckBox.setSelected(false);
         amount = -500000.0;
     }
-    public void toggleOneMillionLoan(){
+
+    public void toggleOneMillionLoan() {
         halfMillionCheckBox.setSelected(false);
         twoHalfMillionCheckBox.setSelected(false);
         fiveMillionCheckBox.setSelected(false);
         amount = -1000000.0;
     }
-    public void toggleTwoHalfMillionLoan(){
+
+    public void toggleTwoHalfMillionLoan() {
         halfMillionCheckBox.setSelected(false);
         oneMillionCheckBox.setSelected(false);
         fiveMillionCheckBox.setSelected(false);
         amount = -2500000.0;
     }
-    public void toggleFiveMillionLoan(){
+
+    public void toggleFiveMillionLoan() {
         halfMillionCheckBox.setSelected(false);
         oneMillionCheckBox.setSelected(false);
         twoHalfMillionCheckBox.setSelected(false);
@@ -198,46 +200,57 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     }
 
     //------------Add Credit Account--------------
-    public void toggleCredit(){
+    public void toggleCredit() {
         loanAnchorPane.setVisible(false);
         creditAnchorPane.setVisible(true);
         selectAccountToCreditAnchorPane.setVisible(true);
         standardCheckBox.setSelected(false);
         loanCheckBox.setSelected(false);
     }
-    public void toggleFiveKCredit(){
+
+    public void toggleFiveKCredit() {
         tenKCheckBox.setSelected(false);
         twentyFiveKCheckBox.setSelected(false);
         fiftyKCheckBox.setSelected(false);
         amount = -25000.0;
     }
-    public void toggleTenKCredit(){
+
+    public void toggleTenKCredit() {
         fiveKCheckBox.setSelected(false);
         twentyFiveKCheckBox.setSelected(false);
         fiftyKCheckBox.setSelected(false);
         amount = -10000.0;
     }
-    public void toggleTwentyFiveKCredit(){
+
+    public void toggleTwentyFiveKCredit() {
         fiveKCheckBox.setSelected(false);
         tenKCheckBox.setSelected(false);
         fiftyKCheckBox.setSelected(false);
         amount = -25000.0;
     }
-    public void toggleFiftyKCredit(){
+
+    public void toggleFiftyKCredit() {
         fiveKCheckBox.setSelected(false);
         tenKCheckBox.setSelected(false);
         twentyFiveKCheckBox.setSelected(false);
         amount = -50000.0;
     }
 
-//------------SELECT ACCOUNT TO CREDIT------------------
-    public void showAccountToCredit(ActionEvent event){
-        accountToIncrement = currentCustomersAccounts.get(accountsChoiceBox.getValue());
-        String amountStr = Double.toString(Math.abs(amount));
-        creditedAccountLabel.setText(accountToIncrement.getAccountName());
-        creditAmountLabel.setText(amountStr);
+    //------------SELECT ACCOUNT TO CREDIT------------------
+    public void showAccountToCredit(ActionEvent event) {
+            accountToIncrement = currentCustomersAccounts.get(accountsChoiceBox.getValue());
+            String amountStr = Double.toString(Math.abs(amount));
+            creditedAccountLabel.setText(accountToIncrement.getAccountName());
+            creditAmountLabel.setText(amountStr);
     }
 
+    //------------SELECT ACCOUNT TO LOAN------------------
+    public void showAccountToLoan(ActionEvent event) {
+            accountToIncrement = currentCustomersAccounts.get(accountsChoiceBox.getValue());
+            String amountStr = Double.toString(Math.abs(amount));
+            loanAmountLabel.setText(accountToIncrement.getAccountName());
+            loanAmountLabel.setText(amountStr);
+    }
 //----------------MANAGE TRANSACTIONS--------------------------
 
     public void makeTransaction(ActionEvent event) {
@@ -261,8 +274,8 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 
         String[] standardAccounts = new String[currentCustomersAccounts.size()]; //not pretty I know...
         int counter = 0;
-        for(String key : currentCustomersAccounts.keySet()){
-            if(currentCustomersAccounts.get(key) instanceof Credit || currentCustomersAccounts.get(key) instanceof Loan) {
+        for (String key : currentCustomersAccounts.keySet()) {
+            if (currentCustomersAccounts.get(key) instanceof Credit || currentCustomersAccounts.get(key) instanceof Loan) {
                 //NOTHING
             } else {
                 standardAccounts[counter] = key;
@@ -272,16 +285,17 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         }
         accountsChoiceBox.getItems().addAll(standardAccounts);
         accountsChoiceBox.setOnAction(this::showAccountToCredit);
+        accountsChoiceBox.setOnAction(this::showAccountToLoan);
     }
 
-    public void showCurrentEmployee(){
+    public void showCurrentEmployee() {
         empIdLabel.setText(currentEmployee.getUserId());
         empInitialsLabel.setText(EmpMainController.currentEmployee.getInitials());
         System.out.println("Customer Overview (Accounts) Page. Logged in as: " + EmpMainController.currentEmployee.getInitials());
     }
 
     public void showCurrentCustomer() {
-        if(EmpMainController.currentCustomer instanceof CustomerPrivate){
+        if (EmpMainController.currentCustomer instanceof CustomerPrivate) {
             CustomerPrivate currentPrivate = (CustomerPrivate) EmpMainController.currentCustomer;
             privateCustomerInfoAnchorPane.setVisible(true);
             corporateCustomerInfoAnchorPane.setVisible(false);
@@ -300,8 +314,6 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         addAccountAnchorPane.setVisible(false);
         contentAnchorPane.setVisible(true);
     }
-
-
 
 
 }
