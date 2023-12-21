@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.piggybank.app.backend.customers.debts.Credit;
 import com.piggybank.app.backend.utils.TruncationUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Account {
     // attributes for account class
@@ -44,8 +46,8 @@ public class Account {
         this.balance = balance;
     }
 
-    public ArrayList<Transaction> getTransactions() {
-        return transactions;
+    public ObservableList<Transaction> getTransactions() {
+        return FXCollections.observableArrayList(transactions);
     }
 
     public void setTransactions(ArrayList<Transaction> transactions) {
