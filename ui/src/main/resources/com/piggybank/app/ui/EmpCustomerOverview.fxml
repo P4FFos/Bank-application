@@ -35,26 +35,6 @@
                         <Font name="Kodchasan Regular" size="15.0" />
                     </font>
                 </Label>
-                <Label fx:id="headerIdLabel" layoutX="525.0" layoutY="10.0" text="ID">
-                    <font>
-                        <Font name="Kodchasan Regular" size="11.0" />
-                    </font>
-                </Label>
-                <Label fx:id="empIdLabel" alignment="CENTER_RIGHT" contentDisplay="TOP" layoutX="540.0" layoutY="10.0" text="##########">
-                    <font>
-                        <Font name="Kodchasan Regular" size="11.0" />
-                    </font>
-                </Label>
-                <Label fx:id="empInitialsLabel" layoutX="525.0" layoutY="25.0" text="Firstname Lastname">
-                    <font>
-                        <Font name="Kodchasan Regular" size="11.0" />
-                    </font>
-                </Label>
-                <Button fx:id="logoutButton" layoutX="525.0" layoutY="42.0" mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="66.0" text="LOGOUT">
-                    <font>
-                        <Font name="Kodchasan Regular" size="10.0" />
-                    </font>
-                </Button>
             </children>
         </AnchorPane>
         <AnchorPane fx:id="sideMenuAnchorPane" layoutY="75.0" prefHeight="313.0" prefWidth="179.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="463.0" AnchorPane.topAnchor="75.0">
@@ -155,12 +135,12 @@
             <Separator layoutX="173.0" orientation="VERTICAL" prefHeight="320.0" prefWidth="11.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="173.0" AnchorPane.topAnchor="0.0" />
             <Label layoutX="29.0" layoutY="14.0" text="ACCOUNTS" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="14.0" />
             <Label layoutX="199.0" layoutY="14.0" text="TRANSACTIONS" AnchorPane.leftAnchor="199.0" AnchorPane.topAnchor="14.0" />
-            <Button fx:id="addAccountButton" layoutX="100.0" layoutY="10.0" mnemonicParsing="false" onAction="#addAccount" text="+" AnchorPane.topAnchor="10.0" />
+            <Button fx:id="addAccountButton" layoutX="130.0" layoutY="10.0" mnemonicParsing="false" onAction="#addAccount" text="+" AnchorPane.topAnchor="10.0" />
             <Label layoutX="29.0" layoutY="254.0" text="ACCOUNT:" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="254.0" />
             <Label fx:id="accountNameLabel" layoutX="90.0" layoutY="254.0" text="####" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="254.0" />
             <Label layoutX="29.0" layoutY="279.0" text="BALANCE:" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="279.0" />
             <Label fx:id="accountBalanceLabel" layoutX="90.0" layoutY="279.0" text="€€€€" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="279.0" />
-            <Button fx:id="makeTransactionButton" layoutX="293.0" layoutY="10.0" mnemonicParsing="false" onAction="#makeTransaction" text="+" AnchorPane.topAnchor="10.0" />
+            <Button fx:id="makeTransactionButton" layoutX="580.0" layoutY="10.0" mnemonicParsing="false" onAction="#makeTransaction" text="+" AnchorPane.topAnchor="10.0" />
             <CheckBox fx:id="inTransactionCheckBox" layoutX="201.0" layoutY="250.0" mnemonicParsing="false" text="INCOMING" AnchorPane.leftAnchor="201.0" AnchorPane.topAnchor="250.0" />
             <CheckBox fx:id="outTransactionCheckBox" layoutX="200.0" layoutY="275.0" mnemonicParsing="false" text="OUTGOING" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="275.0" />
             <TableView fx:id="transactionsTable" editable="true" layoutX="199.0" layoutY="41.0" prefHeight="202.0" prefWidth="406.0">
@@ -219,5 +199,25 @@
             </AnchorPane>
          </children>
       </AnchorPane>
+          <Label fx:id="headerIdLabel" layoutX="696.0" layoutY="11.0" text="ID">
+              <font>
+                  <Font name="Kodchasan Regular" size="11.0" />
+              </font>
+          </Label>
+          <Label fx:id="empIdLabel" alignment="CENTER_RIGHT" contentDisplay="TOP" layoutX="711.0" layoutY="11.0" text="##########">
+              <font>
+                  <Font name="Kodchasan Regular" size="11.0" />
+              </font>
+          </Label>
+          <Label fx:id="empInitialsLabel" layoutX="696.0" layoutY="26.0" text="Firstname Lastname">
+              <font>
+                  <Font name="Kodchasan Regular" size="11.0" />
+              </font>
+          </Label>
+          <Button fx:id="logoutButton" layoutX="696.0" layoutY="43.0" mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="66.0" text="LOGOUT">
+              <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+              </font>
+          </Button>
     </children>
 </AnchorPane>
