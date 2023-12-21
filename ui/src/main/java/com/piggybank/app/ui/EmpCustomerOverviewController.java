@@ -286,20 +286,14 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
                 accountNameLabel.setText(currentAccount.getAccountName());
                 accountBalanceLabel.setText(currentAccount.getBalance() + " SEK");
 
-                // old solution:
-                //transactionsListView.getItems().addAll(String.valueOf(currentAccount.getTransactionHistory()));
 
-                // new:
                 senderColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("senderAccountId"));
                 receiverColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("receiverAccountId"));
                 amountColumn.setCellValueFactory(new PropertyValueFactory<Transaction, Double>("amount"));
                 messageColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("message"));
                 dateColumn.setCellValueFactory(new PropertyValueFactory<Transaction, LocalDate>("date"));
 
-                //ObservableList<Transaction> transactions = currentAccount.getTransactions();
                 transactionsTable.setItems(currentAccount.getTransactions());
-                //transactionsTable.getColumns().addAll(senderColumn, receiverColumn, amountColumn, messageColumn, dateColumn);
-                System.out.println(transactionsTable);
             }
         });
 
@@ -317,14 +311,6 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         accountsChoiceBox.getItems().addAll(standardAccounts);
         accountsChoiceBox.setOnAction(this::showAccountToCredit);
         accountsChoiceBox.setOnAction(this::showAccountToLoan);
-    }
-
-    public ObservableList<Transaction> getTransactions() {
-        ObservableList<Transaction> transactions = FXCollections.observableArrayList();
-        transactions.add(new Transaction("A00001", "A00002", 300, "", LocalDate.now()));
-        transactions.add(new Transaction("A00002", "A00003", 400, "", LocalDate.of(2023, Month.DECEMBER, 20)));
-
-        return transactions;
     }
 
     public void showCurrentEmployee() {
