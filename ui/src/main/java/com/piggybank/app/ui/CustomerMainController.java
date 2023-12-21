@@ -1,5 +1,12 @@
 package com.piggybank.app.ui;
 
+import com.piggybank.app.backend.customers.Customer;
+import com.piggybank.app.backend.customers.CustomerCorporate;
+import com.piggybank.app.backend.customers.CustomerPrivate;
+import com.piggybank.app.backend.Bank;
+import com.piggybank.app.backend.customers.Account;
+import java.util.HashMap;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -248,6 +255,42 @@ public class CustomerMainController implements Initializable {
         // accountTableColumn.setCellFactory(new PropertyValueFactory<Customer, String>("account"));
         // balanceTableColumn.setCellFactory(new PropertyValueFactory<Customer, Double>("balance"));
 
+    }
+
+    public static Bank bank = UIMain.bank;
+    public static Customer currentCustomer;
+    public static HashMap<String, Account> currentCustomersAccounts; //to be able to populate accountsListview
+
+    public void setCurrentCustomer(Customer customer){ //Method called from CustomerLoginController
+        currentCustomer = customer;
+
+        //if there is a customer ID label:
+        //customerIdLabel.setText(currentCustomer.getUserId());
+
+        if (customer instanceof CustomerPrivate) {
+            CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
+            headerCustomerNameLabel.setText(privateCustomer.getFirstName() + " " + privateCustomer.getLastName());
+            System.out.println("Customer Start Page. Logged in as: " + privateCustomer.getFirstName() + " " + privateCustomer.getLastName());
+        } else {
+            CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
+            headerCustomerNameLabel.setText(corporateCustomer.getCompanyName());
+            System.out.println("Customer Start Page. Logged in as: " + corporateCustomer.getCompanyName() + " " + corporateCustomer.getCompanyName());
+        }
+    }
+
+    public void showCurrentCustomer(){
+        //if there is a customer ID label:
+        //customerIdLabel.setText(currentCustomer.getUserId());
+
+        if (currentCustomer instanceof CustomerPrivate) {
+            CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
+            headerCustomerNameLabel.setText(privateCustomer.getFirstName() + " " + privateCustomer.getLastName());
+            System.out.println("Customer Start Page. Logged in as: " + privateCustomer.getFirstName() + " " + privateCustomer.getLastName());
+        } else {
+            CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
+            headerCustomerNameLabel.setText(corporateCustomer.getCompanyName());
+            System.out.println("Customer Start Page. Logged in as: " + corporateCustomer.getCompanyName() + " " + corporateCustomer.getCompanyName());
+        }
     }
 
 }
