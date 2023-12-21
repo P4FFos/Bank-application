@@ -95,12 +95,14 @@ public class EmpMainController {
         loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
         root = loader.load();
 
+        EmpMainController controller = loader.getController();
+        controller.showCurrentEmployee();
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
 
-        showCurrentEmployee();
         System.out.println("Employee Start Page. Logged in as: " + currentEmployee.getInitials());
     }
 
