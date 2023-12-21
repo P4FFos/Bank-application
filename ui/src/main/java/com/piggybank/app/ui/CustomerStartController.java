@@ -3,6 +3,8 @@ package com.piggybank.app.ui;
 import com.piggybank.app.backend.Bank;
 import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.Customer;
+import com.piggybank.app.backend.customers.CustomerCorporate;
+import com.piggybank.app.backend.customers.CustomerPrivate;
 import com.piggybank.app.backend.utils.FileHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -125,6 +127,37 @@ public class CustomerStartController {
     public static Customer currentCustomer;
     public static HashMap<String, Account> currentCustomersAccounts;
 
+    public void setCurrentCustomer(Customer customer){ //Method called from CustomerLoginController
+        currentCustomer = customer;
+
+        //if there is a customer ID label:
+        //customerIdLabel.setText(currentCustomer.getUserId());
+
+        if (customer instanceof CustomerPrivate) {
+            CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
+            headerCustomerNameLabel.setText(privateCustomer.getFullName());
+            System.out.println("Customer Start Page. Logged in as: " + privateCustomer.getFullName());
+        } else {
+            CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
+            headerCustomerNameLabel.setText(corporateCustomer.getCompanyName());
+            System.out.println("Customer Start Page. Logged in as: " + corporateCustomer.getCompanyName());
+        }
+    }
+
+    public void showCurrentCustomer(){
+        //if there is a customer ID label:
+        //customerIdLabel.setText(currentCustomer.getUserId());
+
+        if (currentCustomer instanceof CustomerPrivate) {
+            CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
+            headerCustomerNameLabel.setText(privateCustomer.getFirstName() + " " + privateCustomer.getLastName());
+            System.out.println("Customer Start Page. Logged in as: " + privateCustomer.getFirstName() + " " + privateCustomer.getLastName());
+        } else {
+            CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
+            headerCustomerNameLabel.setText(corporateCustomer.getCompanyName());
+            System.out.println("Customer Start Page. Logged in as: " + corporateCustomer.getCompanyName() + " " + corporateCustomer.getCompanyName());
+        }
+    }
 
     //-----------------SIDE MENU NAVIGATION----------------
     public void goToStart(ActionEvent event) throws IOException { //sideMenuStartButton
