@@ -1,4 +1,4 @@
-package com.piggybank.app.ui;
+/*package com.piggybank.app.ui;
 
 import com.piggybank.app.backend.customers.Customer;
 import com.piggybank.app.backend.customers.CustomerCorporate;
@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 
 public class CustomerMainController implements Initializable {
 
-    /* 1.0 BASE [GENERAL] : INCL. SEPARATORS */
+    /* 1.0 BASE [GENERAL] : INCL. SEPARATORS
     @FXML
     private AnchorPane baseAnchorPane;
 
@@ -36,7 +36,7 @@ public class CustomerMainController implements Initializable {
     private Separator verticalSeparator;
 
 
-    /* 1.1 HEADER */
+    /* 1.1 HEADER
     @FXML
     private AnchorPane headerAnchorPane;
 
@@ -65,7 +65,7 @@ public class CustomerMainController implements Initializable {
     private Button headerLogoutButton;
 
 
-    /* 1.2 MENU */
+    /* 1.2 MENU
     @FXML
     private AnchorPane sideMenuAnchorPane;
 
@@ -91,7 +91,7 @@ public class CustomerMainController implements Initializable {
     private Button sideMenuSupportButton;
 
 
-    /* 1.3 CUSTOMER INFO */
+    /* 1.3 CUSTOMER INFO
     @FXML
     private AnchorPane infoAnchorPane;
 
@@ -105,12 +105,12 @@ public class CustomerMainController implements Initializable {
     private Label infoActualAccountIdLabel;
 
 
-    /* 1.4 BODY [GENERAL] : PARENT FOR BODY SIZING */
+    /* 1.4 BODY [GENERAL] : PARENT FOR BODY SIZING
     @FXML
     private AnchorPane bodyAnchorPane;
 
 
-    /* 1.4.1 BODY [START] */
+    /* 1.4.1 BODY [START]
     @FXML
     private AnchorPane startAnchorPane;
 
@@ -139,7 +139,7 @@ public class CustomerMainController implements Initializable {
     private Label startActualTotalDebtLabel;
 
 
-    /* 1.4.2 BODY [ACCOUNT OVERVIEW] */
+    /* 1.4.2 BODY [ACCOUNT OVERVIEW]
     @FXML
     private AnchorPane accountsAnchorPane;
 
@@ -180,17 +180,17 @@ public class CustomerMainController implements Initializable {
 
 
 
-    /* 1.4.3 BODY [TRANSFER FUNDS] */
+    /* 1.4.3 BODY [TRANSFER FUNDS]
     @FXML
     private AnchorPane transferAnchorPane;
 
 
-    /* 1.4.4 BODY [LOANS] */
+    /* 1.4.4 BODY [LOANS]
     @FXML
     private AnchorPane loansAnchorPane;
 
 
-    /* 1.4.5 BODY [FAQ] */
+    /* 1.4.5 BODY [FAQ]
     @FXML
     private Label faqHeaderLabel;
 
@@ -244,12 +244,12 @@ public class CustomerMainController implements Initializable {
 
 
 
-    /* 1.4.6 BODY [SUPPORT] */
+    /* 1.4.6 BODY [SUPPORT]
     @FXML
     private AnchorPane supportAnchorPane;
 
 
-    /* METHODS */
+    /* METHODS
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // accountTableColumn.setCellFactory(new PropertyValueFactory<Customer, String>("account"));
@@ -274,7 +274,7 @@ public class CustomerMainController implements Initializable {
         } else {
             CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
             headerCustomerNameLabel.setText(corporateCustomer.getCompanyName());
-            System.out.println("Customer Start Page. Logged in as: " + corporateCustomer.getCompanyName() + " " + corporateCustomer.getCompanyName());
+            System.out.println("Customer Start Page. Logged in as: " + corporateCustomer.getCompanyName());
         }
     }
 
@@ -294,3 +294,6 @@ public class CustomerMainController implements Initializable {
     }
 
 }
+
+
+ */

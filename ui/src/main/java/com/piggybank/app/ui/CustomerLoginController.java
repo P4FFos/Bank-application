@@ -39,7 +39,7 @@ public class CustomerLoginController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("CustomerStart.fxml"));
                 root = loader.load();
 
-                CustomerMainController controller = loader.getController();
+                CustomerStartController controller = loader.getController();
                 controller.setCurrentCustomer(bank.getCustomer(userId));
 
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
