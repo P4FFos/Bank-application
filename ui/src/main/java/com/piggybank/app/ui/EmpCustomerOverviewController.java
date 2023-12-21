@@ -26,7 +26,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
@@ -272,6 +271,38 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     public void makeTransaction(ActionEvent event) {
         //wait until ui is built for this
     }
+
+	public void toggleIncomingTransactions(){ // filters transactions to only show incoming
+		if(inTransactionCheckBox.isSelected()){
+			outTransactionCheckBox.setSelected(false);
+			ObservableList<Transaction> incomingTransactions = FXCollections.observableArrayList();
+			for(Transaction transaction : currentAccount.getTransactions()){
+				if(transaction.getAmount() > 0){
+					incomingTransactions.add(transaction);
+				}
+			}
+			transactionsTable.setItems(incomingTransactions);
+		}
+		else{
+			transactionsTable.setItems(currentAccount.getTransactions());
+		}
+	}
+
+	public void toggleOutgoingTransactions(){ // filters transactions to only show outgoing
+		if(outTransactionCheckBox.isSelected()){
+			inTransactionCheckBox.setSelected(false);
+			ObservableList<Transaction> outgoingTransactions = FXCollections.observableArrayList();
+			for(Transaction transaction : currentAccount.getTransactions()){
+				if(transaction.getAmount() < 0){
+					outgoingTransactions.add(transaction);
+				}
+			}
+			transactionsTable.setItems(outgoingTransactions);
+		}
+		else{
+			transactionsTable.setItems(currentAccount.getTransactions());
+		}
+	}
 
 //----------------SETUP SCENE-------------------------------------
 

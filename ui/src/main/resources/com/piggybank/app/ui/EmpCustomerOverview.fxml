@@ -161,8 +161,8 @@
             <Label layoutX="29.0" layoutY="279.0" text="BALANCE:" AnchorPane.leftAnchor="29.0" AnchorPane.topAnchor="279.0" />
             <Label fx:id="accountBalanceLabel" layoutX="90.0" layoutY="279.0" text="€€€€" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="279.0" />
             <Button fx:id="makeTransactionButton" layoutX="293.0" layoutY="10.0" mnemonicParsing="false" onAction="#makeTransaction" text="+" AnchorPane.topAnchor="10.0" />
-            <CheckBox fx:id="inTransactionCheckBox" layoutX="201.0" layoutY="250.0" mnemonicParsing="false" text="INCOMING" AnchorPane.leftAnchor="201.0" AnchorPane.topAnchor="250.0" />
-            <CheckBox fx:id="outTransactionCheckBox" layoutX="200.0" layoutY="275.0" mnemonicParsing="false" text="OUTGOING" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="275.0" />
+            <CheckBox fx:id="inTransactionCheckBox" layoutX="201.0" layoutY="250.0" mnemonicParsing="false" onAction="#toggleIncomingTransactions" text="INCOMING" AnchorPane.leftAnchor="201.0" AnchorPane.topAnchor="250.0" />
+            <CheckBox fx:id="outTransactionCheckBox" layoutX="200.0" layoutY="275.0" mnemonicParsing="false" onAction="#toggleOutgoingTransactions" text="OUTGOING" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="275.0" />
             <TableView fx:id="transactionsTable" editable="true" layoutX="199.0" layoutY="41.0" prefHeight="202.0" prefWidth="406.0">
               <columns>
                 <TableColumn fx:id="senderColumn" prefWidth="56.0" text="Sender" />
