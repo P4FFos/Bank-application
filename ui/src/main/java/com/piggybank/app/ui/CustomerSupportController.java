@@ -113,12 +113,12 @@ public class CustomerSupportController extends CustomerStartController {
     @FXML
     private Text phoneNumberText;
 
-    public void sendSupportRequest(ActionEvent event){
-        if (explanationText == null ) {
+    public void sendSupportRequest(ActionEvent event) {
+        if (textArea.getText().isEmpty()) {
             System.out.println("Please explain your problem/question in the text area.");
-        } else if (explanationText != null) {
-            explanationText.setText(null);
+        } else {
             System.out.println("Your request has been sent.");
+            textArea.clear();
         }
     }
 
