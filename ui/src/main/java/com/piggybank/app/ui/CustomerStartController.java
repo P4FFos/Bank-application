@@ -9,6 +9,7 @@ import com.piggybank.app.backend.utils.FileHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,9 +22,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
-public class CustomerStartController {
+
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.shape.Circle;
+
+public class CustomerStartController implements Initializable {
 
     @FXML
     private AnchorPane baseAnchorPane;
@@ -118,10 +127,145 @@ public class CustomerStartController {
     @FXML
     private Separator verticalSeparator;
 
+
+    @FXML
+    private Circle headerBankLogotype;
+
+
+
+    /* 1.3 CUSTOMER INFO */
+    @FXML
+    private AnchorPane infoAnchorPane;
+
+    @FXML
+    private Label infoNameLabel;
+
+    @FXML
+    private Label infoAccountIdLabel;
+
+    @FXML
+    private Label infoActualAccountIdLabel;
+
+
+    /* 1.4 BODY [GENERAL] : PARENT FOR BODY SIZING */
+    @FXML
+    private AnchorPane bodyAnchorPane;
+
+
+    /* 1.4.2 BODY [ACCOUNT OVERVIEW] */
+    @FXML
+    private AnchorPane accountsAnchorPane;
+
+    @FXML
+    private Label accountsMyAccountsLabel;
+
+    @FXML
+    private Label accountsAccountHistoryLabel;
+
+    @FXML
+    private Label displayLabel;
+
+    @FXML
+    private CheckBox allCheckBox;
+
+    @FXML
+    private CheckBox incomingCheckBox;
+
+    @FXML
+    private CheckBox outgoingCheckBox;
+
+    // OPTION 1: LIST VIEW
+    @FXML
+    private ListView<?> accountsListView;
+
+    @FXML
+    private ListView<?> accountsListView1;
+
+    // OPTION 2: TABLE VIEW
+    @FXML
+    private TableView<?> accountsTableView;
+
+    @FXML
+    private TableColumn<?, String> accountTableColumn;
+
+    @FXML
+    private TableColumn<?, Double> balanceTableColumn;
+
+
+
+    /* 1.4.3 BODY [TRANSFER FUNDS] */
+    @FXML
+    private AnchorPane transferAnchorPane;
+
+
+    /* 1.4.4 BODY [LOANS] */
+    @FXML
+    private AnchorPane loansAnchorPane;
+
+
+    /* 1.4.5 BODY [FAQ] */
+    @FXML
+    private Label faqHeaderLabel;
+
+    @FXML
+    private AnchorPane faqAnchorPane;
+
+    @FXML
+    private Label faqQuestion1Label;
+
+    @FXML
+    private Label faqQuestion2Label;
+
+    @FXML
+    private Label faqQuestion3Label;
+
+    @FXML
+    private Label faqQuestion4Label;
+
+    @FXML
+    private Label faqQuestion5Label;
+
+    @FXML
+    private Label faqQuestion6Label;
+
+    @FXML
+    private Label faqQuestion7Label;
+
+    @FXML
+    private Label faqAnswer1Label;
+
+    @FXML
+    private Label faqAnswer2Label;
+
+    @FXML
+    private Label faqAnswer3Label;
+
+    @FXML
+    private Label faqAnswer4Label;
+
+    @FXML
+    private Label faqAnswer5Label;
+
+    @FXML
+    private Label faqAnswer5Label1;
+
+    @FXML
+    private Label faqAnswer6Label;
+
+    @FXML
+    private Label faqAnswer7Label;
+
     private FXMLLoader loader;
     private Parent root;
     private Stage stage;
     private Scene scene;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // accountTableColumn.setCellFactory(new PropertyValueFactory<Customer, String>("account"));
+        // balanceTableColumn.setCellFactory(new PropertyValueFactory<Customer, Double>("balance"));
+
+    }
 
     public static Bank bank = UIMain.bank;
     public static Customer currentCustomer;
