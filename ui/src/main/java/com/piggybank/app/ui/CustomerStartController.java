@@ -125,7 +125,6 @@ public class CustomerStartController {
 
     public static Bank bank = UIMain.bank;
     public static Customer currentCustomer;
-    public static HashMap<String, Account> currentCustomersAccounts;
 
     public void setCurrentCustomer(Customer customer){ //Method called from CustomerLoginController
         currentCustomer = customer;
@@ -136,26 +135,36 @@ public class CustomerStartController {
         if (customer instanceof CustomerPrivate) {
             CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
             headerCustomerNameLabel.setText(privateCustomer.getFullName());
+            startNameLabel.setText(privateCustomer.getFullName());
+            headerActualIdLabel.setText(privateCustomer.getUserId());
+
             System.out.println("Customer Start Page. Logged in as: " + privateCustomer.getFullName());
         } else {
             CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
             headerCustomerNameLabel.setText(corporateCustomer.getCompanyName());
+            startNameLabel.setText(corporateCustomer.getCompanyName());
+            headerActualIdLabel.setText(corporateCustomer.getUserId());
+
             System.out.println("Customer Start Page. Logged in as: " + corporateCustomer.getCompanyName());
         }
     }
 
     public void showCurrentCustomer(){
-        //if there is a customer ID label:
-        //customerIdLabel.setText(currentCustomer.getUserId());
 
         if (currentCustomer instanceof CustomerPrivate) {
             CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
-            headerCustomerNameLabel.setText(privateCustomer.getFirstName() + " " + privateCustomer.getLastName());
-            System.out.println("Customer Start Page. Logged in as: " + privateCustomer.getFirstName() + " " + privateCustomer.getLastName());
+            headerCustomerNameLabel.setText(privateCustomer.getFullName());
+            startNameLabel.setText(privateCustomer.getFullName());
+            headerActualIdLabel.setText(privateCustomer.getUserId());
+
+            System.out.println("Customer Start Page. Logged in as: " + privateCustomer.getFullName());
         } else {
             CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
             headerCustomerNameLabel.setText(corporateCustomer.getCompanyName());
-            System.out.println("Customer Start Page. Logged in as: " + corporateCustomer.getCompanyName() + " " + corporateCustomer.getCompanyName());
+            startNameLabel.setText(corporateCustomer.getCompanyName());
+            headerActualIdLabel.setText(corporateCustomer.getUserId());
+
+            System.out.println("Customer Start Page. Logged in as: " + corporateCustomer.getCompanyName());
         }
     }
 
@@ -163,6 +172,9 @@ public class CustomerStartController {
     public void goToStart(ActionEvent event) throws IOException { //sideMenuStartButton
         loader = new FXMLLoader(getClass().getResource("CustomerStart.fxml"));
         root = loader.load();
+
+        CustomerStartController controller = loader.getController();
+        controller.showCurrentCustomer();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -174,6 +186,9 @@ public class CustomerStartController {
         loader = new FXMLLoader(getClass().getResource("CustomerAccountsOverview.fxml"));
         root = loader.load();
 
+        CustomerAccountsOverviewController controller = loader.getController();
+        controller.showCurrentCustomer();
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -183,6 +198,9 @@ public class CustomerStartController {
     public void goToTransferFunds(ActionEvent event) throws IOException { //sideMenuTransferFundsButton
         loader = new FXMLLoader(getClass().getResource("CustomerTransferFunds.fxml"));
         root = loader.load();
+
+        CustomerTransferFundsController controller = loader.getController();
+        controller.showCurrentCustomer();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -194,6 +212,9 @@ public class CustomerStartController {
         loader = new FXMLLoader(getClass().getResource("CustomerLoansOverview.fxml"));
         root = loader.load();
 
+        CustomerLoansOverviewController controller = loader.getController();
+        controller.showCurrentCustomer();
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -203,6 +224,9 @@ public class CustomerStartController {
     public void goToCredits(ActionEvent event) throws IOException { //sideMenuCreditsButton
         loader = new FXMLLoader(getClass().getResource("CustomerCreditsOverview.fxml"));
         root = loader.load();
+
+        CustomerCreditsOverviewController controller = loader.getController();
+        controller.showCurrentCustomer();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -214,6 +238,9 @@ public class CustomerStartController {
         loader = new FXMLLoader(getClass().getResource("CustomerFaq.fxml"));
         root = loader.load();
 
+        CustomerFaqController controller = loader.getController();
+        controller.showCurrentCustomer();
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -223,6 +250,9 @@ public class CustomerStartController {
     public void goToSupport(ActionEvent event) throws IOException { //sideMenuSupportButton
         loader = new FXMLLoader(getClass().getResource("CustomerSupport.fxml"));
         root = loader.load();
+
+        CustomerSupportController controller = loader.getController();
+        controller.showCurrentCustomer();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

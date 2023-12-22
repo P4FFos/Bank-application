@@ -1,5 +1,7 @@
 package com.piggybank.app.ui;
 
+import com.piggybank.app.backend.customers.CustomerCorporate;
+import com.piggybank.app.backend.customers.CustomerPrivate;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -119,5 +121,24 @@ public class CustomerFaqController extends CustomerStartController{
 
     @FXML
     private Separator verticalSeparator;
+
+    public void showCurrentCustomer(){
+        //if there is a customer ID label:
+        //customerIdLabel.setText(currentCustomer.getUserId());
+
+        if (currentCustomer instanceof CustomerPrivate) {
+            CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
+            headerCustomerNameLabel.setText(privateCustomer.getFullName());
+            headerActualIdLabel.setText(privateCustomer.getUserId());
+
+            System.out.println("Customer Start Page. Logged in as: " + privateCustomer.getFullName());
+        } else {
+            CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
+            headerCustomerNameLabel.setText(corporateCustomer.getCompanyName());
+            headerActualIdLabel.setText(corporateCustomer.getUserId());
+
+            System.out.println("Customer Start Page. Logged in as: " + corporateCustomer.getCompanyName());
+        }
+    }
 
 }

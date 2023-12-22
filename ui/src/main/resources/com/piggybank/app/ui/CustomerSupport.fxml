@@ -106,12 +106,12 @@
                         <Font name="Kodchasan Regular" size="20.0" />
                     </font>
                 </Label>
-                <Label fx:id="infoAccountIdLabel" layoutX="10.0" layoutY="35.0" text="Account ID:">
+                <Label fx:id="infoAccountIdLabel" layoutX="10.0" layoutY="35.0" text="User ID:">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Label>
-                <Label fx:id="infoActualAccountIdLabel" layoutX="75.0" layoutY="35.0" text="c####">
+                <Label fx:id="infoActualUserIdLabel" layoutX="52.0" layoutY="35.0" text="c####">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
@@ -146,7 +146,7 @@
                   <Font size="12.0" />
                </font>
             </Text>
-            <Button layoutX="20.0" layoutY="172.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="230.0" text="SEND A SUPPORT REQUEST" onAction="#sendSupportRequest"/>
+            <Button layoutX="20.0" layoutY="172.0" mnemonicParsing="false" onAction="#sendSupportRequest" prefHeight="26.0" prefWidth="230.0" text="SEND A SUPPORT REQUEST" />
             <Text layoutX="283.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CONTACT INFORMATION:" wrappingWidth="211.1931292458869">
                <font>
                   <Font size="12.0" />
