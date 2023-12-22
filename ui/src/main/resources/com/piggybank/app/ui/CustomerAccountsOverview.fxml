@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.MotionBlur?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
@@ -12,10 +14,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="baseAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.piggybank.app.ui.CustomerAccountsOverviewController">
+<AnchorPane fx:id="baseAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.piggybank.app.ui.CustomerAccountsOverviewController">
     <children>
         <Separator fx:id="verticalSeparator" layoutX="173.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="320.0" prefWidth="15.0" />
-        <Separator fx:id="horisontalSeparator" layoutY="65.0" prefHeight="22.0" prefWidth="645.0" />
+        <Separator fx:id="horisontalSeparator" layoutY="65.0" prefHeight="22.0" prefWidth="826.0" />
         <AnchorPane fx:id="headerAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="645.0">
             <children>
                 <ImageView fx:id="headerIconImageView" fitHeight="52.0" fitWidth="36.0" layoutX="304.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
@@ -33,26 +35,6 @@
                         <Font name="Kodchasan Regular" size="20.0" />
                     </font>
                 </Label>
-                <Label fx:id="headerIdLabel" layoutX="525.0" layoutY="10.0" text="ID">
-                    <font>
-                        <Font name="Kodchasan Regular" size="11.0" />
-                    </font>
-                </Label>
-                <Label fx:id="headerActualIdLabel" alignment="CENTER_RIGHT" contentDisplay="TOP" layoutX="540.0" layoutY="10.0" text="##########">
-                    <font>
-                        <Font name="Kodchasan Regular" size="11.0" />
-                    </font>
-                </Label>
-                <Label fx:id="headerCustomerNameLabel" layoutX="525.0" layoutY="25.0" text="Firstname Lastname">
-                    <font>
-                        <Font name="Kodchasan Regular" size="11.0" />
-                    </font>
-                </Label>
-                <Button fx:id="headerLogoutButton" layoutX="525.0" layoutY="42.0" mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="66.0" text="LOGOUT">
-                    <font>
-                        <Font name="Kodchasan Regular" size="10.0" />
-                    </font>
-                </Button>
             </children>
         </AnchorPane>
         <AnchorPane fx:id="sideMenuAnchorPane" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="175.0">
@@ -99,27 +81,27 @@
                 </Button>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="infoAnchorPane" layoutX="175.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="470.0">
+        <AnchorPane fx:id="infoAnchorPane" layoutX="175.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="66.0" prefWidth="654.0">
             <children>
                 <Label fx:id="infoNameLabel" layoutX="10.0" layoutY="10.0" text="Firstname Lastname">
                     <font>
                         <Font name="Kodchasan Regular" size="20.0" />
                     </font>
                 </Label>
-                <Label fx:id="infoAccountIdLabel" layoutX="10.0" layoutY="35.0" text="Account ID:">
+                <Label fx:id="infoAccountIdLabel" layoutX="10.0" layoutY="35.0" text="User ID:">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Label>
-                <Label fx:id="infoActualAccountIdLabel" layoutX="75.0" layoutY="35.0" text="c####">
+                <Label fx:id="infoActualUserIdLabel" layoutX="52.0" layoutY="35.0" text="c####">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Label>
-                <Separator layoutX="5.0" layoutY="60.0" prefHeight="5.0" prefWidth="461.0" />
+                <Separator layoutX="5.0" layoutY="54.0" prefHeight="12.0" prefWidth="646.0" />
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="accountsOverviewAnchorPane" layoutX="175.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="470.0">
+        <AnchorPane fx:id="accountsOverviewAnchorPane" layoutX="175.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="637.0">
             <children>
                 <Label fx:id="accountsAccountsOverviewLabel" layoutX="20.0" layoutY="10.0" text="ACCOUNTS OVERVIEW">
                     <font>
@@ -132,11 +114,6 @@
                     </font>
                 </Label>
                 <ListView fx:id="accountsListView" layoutX="20.0" layoutY="70.0" prefHeight="70.0" prefWidth="190.0" />
-                <Button fx:id="accountsSelectButton" layoutX="120.0" layoutY="145.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="90.0" text="SELECT ACCOUNT">
-                    <font>
-                        <Font name="Kodchasan Regular" size="8.0" />
-                    </font>
-                </Button>
                 <Label fx:id="accountsAccountHistoryLabel" layoutX="250.0" layoutY="50.0" text="RECENT TRANSACTIONS">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
@@ -162,10 +139,18 @@
                         <Font name="Kodchasan Regular" size="8.0" />
                     </font>
                 </CheckBox>
-                <ListView fx:id="accountsTransactionsListView" layoutX="250.0" layoutY="80.0" prefHeight="120.0" prefWidth="190.0" />
+            <TableView fx:id="transactionsTable" layoutX="250.0" layoutY="80.0" prefHeight="146.0" prefWidth="378.0">
+              <columns>
+                <TableColumn fx:id="senderColumn" prefWidth="54.4000244140625" text="Sender" />
+                <TableColumn fx:id="receiverColumn" prefWidth="52.79998779296875" text="Receiver" />
+                  <TableColumn fx:id="amountColumn" prefWidth="52.79998779296875" text="Amount" />
+                  <TableColumn fx:id="messageColumn" prefWidth="120.79998779296875" text="Message" />
+                  <TableColumn fx:id="dateColumn" prefWidth="96.800048828125" text="Date" />
+              </columns>
+            </TableView>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="bodySeparatorsAnchorPane" layoutX="175.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="470.0">
+        <AnchorPane fx:id="bodySeparatorsAnchorPane" layoutX="175.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="470.0" visible="false">
             <children>
                 <Separator layoutX="5.0" layoutY="38.0" opacity="0.25" prefHeight="5.0" prefWidth="460.0">
                     <effect>
@@ -179,5 +164,25 @@
                 </Separator>
             </children>
         </AnchorPane>
+          <Label fx:id="headerIdLabel" layoutX="719.0" layoutY="10.0" text="ID">
+              <font>
+                  <Font name="Kodchasan Regular" size="11.0" />
+              </font>
+          </Label>
+          <Label fx:id="headerActualIdLabel" alignment="CENTER_RIGHT" contentDisplay="TOP" layoutX="734.0" layoutY="10.0" text="##########">
+              <font>
+                  <Font name="Kodchasan Regular" size="11.0" />
+              </font>
+          </Label>
+          <Label fx:id="headerCustomerNameLabel" layoutX="719.0" layoutY="25.0" text="Firstname Lastname">
+              <font>
+                  <Font name="Kodchasan Regular" size="11.0" />
+              </font>
+          </Label>
+          <Button fx:id="headerLogoutButton" layoutX="719.0" layoutY="42.0" mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="66.0" text="LOGOUT">
+              <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+              </font>
+          </Button>
     </children>
 </AnchorPane>

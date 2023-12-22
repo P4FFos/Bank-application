@@ -1,5 +1,6 @@
 package com.piggybank.app.backend.employees;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.piggybank.app.backend.customers.Customer;
 import com.piggybank.app.backend.customers.User;
 import com.piggybank.app.backend.utils.ContactCard;
@@ -30,6 +31,11 @@ public class Employee extends User {
 
 	public void setInitials() {
 		initials = firstName.substring(0, 1).toUpperCase() + lastName.substring(0, 1).toUpperCase();
+	}
+
+	@JsonIgnore
+	public String getFullName() {
+		return getFirstName() + " " + getLastName();
 	}
 
 	public String getFirstName() {

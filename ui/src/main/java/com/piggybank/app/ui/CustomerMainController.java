@@ -23,7 +23,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class CustomerMainController implements Initializable {
+public class CustomerMainController {
 
     /* 1.0 BASE [GENERAL] : INCL. SEPARATORS
     @FXML
@@ -269,8 +269,8 @@ public class CustomerMainController implements Initializable {
 
         if (customer instanceof CustomerPrivate) {
             CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
-            headerCustomerNameLabel.setText(privateCustomer.getFirstName() + " " + privateCustomer.getLastName());
-            System.out.println("Customer Start Page. Logged in as: " + privateCustomer.getFirstName() + " " + privateCustomer.getLastName());
+            headerCustomerNameLabel.setText(privateCustomer.getFullName());
+            System.out.println("Customer Start Page. Logged in as: " + privateCustomer.getFullName());
         } else {
             CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
             headerCustomerNameLabel.setText(corporateCustomer.getCompanyName());
