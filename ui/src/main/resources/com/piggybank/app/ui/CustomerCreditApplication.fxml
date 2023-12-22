@@ -107,12 +107,12 @@
                         <Font name="Kodchasan Regular" size="20.0" />
                     </font>
                 </Label>
-                <Label fx:id="infoAccountIdLabel" layoutX="10.0" layoutY="35.0" text="Account ID:">
+                <Label fx:id="infoAccountIdLabel" layoutX="10.0" layoutY="35.0" text="User ID:">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Label>
-                <Label fx:id="infoActualAccountIdLabel" layoutX="75.0" layoutY="35.0" text="c####">
+                <Label fx:id="infoActualUserIdLabel" layoutX="52.0" layoutY="35.0" text="c####">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
