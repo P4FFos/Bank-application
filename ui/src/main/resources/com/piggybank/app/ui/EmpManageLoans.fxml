@@ -104,22 +104,22 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Account ID:" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="37.0">
+                  <Label layoutX="50.2" layoutY="36.0" text="User ID:" AnchorPane.leftAnchor="50.2" AnchorPane.topAnchor="36.0">
                      <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                      </font>
                   </Label>
-                  <Label fx:id="customerIdLabel" prefHeight="13.0" prefWidth="115.0" text="##########" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="37.0">
+                  <Label fx:id="customerIdLabel" layoutX="88.2" layoutY="36.0" prefHeight="13.0" prefWidth="115.0" text="####" AnchorPane.leftAnchor="88.2" AnchorPane.rightAnchor="-22.600000000000023" AnchorPane.topAnchor="36.0">
                      <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                      </font>
                   </Label>
-                  <Label fx:id="customerSSNLabel" prefHeight="13.0" prefWidth="83.0" text="##########" AnchorPane.leftAnchor="86.0" AnchorPane.topAnchor="52.0">
+                  <Label fx:id="customerSSNLabel" layoutX="88.2" layoutY="52.0" prefHeight="13.0" prefWidth="83.0" text="##########" AnchorPane.leftAnchor="88.2" AnchorPane.topAnchor="52.0">
                      <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                      </font>
                   </Label>
-                  <Label text="Social Security Nr." AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="52.0">
+                  <Label text="Social Security Nr.:" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="52.0">
                      <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                      </font>

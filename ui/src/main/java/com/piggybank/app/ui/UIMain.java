@@ -17,7 +17,7 @@ public class UIMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        loadPath = "ui/src/main/java/com/piggybank/app/backend/bankData.json";
+        loadPath = "ui/src/main/java/com/piggybank/app/backend/bankDataOnLogout.json";
         savePath = "ui/src/main/java/com/piggybank/app/backend/bankDataOnLogout.json"; // used in EmpMainController:logout()
 
         bank = FileHandler.jsonDeserializer(loadPath);

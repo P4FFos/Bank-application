@@ -56,7 +56,7 @@ public class EmpMainController {
     public static Employee currentEmployee;
     public static Customer currentCustomer;
     public static HashMap<String, Account> currentCustomersAccounts; //to be able to populate accountsListview
-
+    public String saveFile = UIMain.savePath;
 
     public void setCurrentEmployee(Employee employee){ //Method called from EmpLoginController
         currentEmployee = employee;
@@ -77,12 +77,13 @@ public class EmpMainController {
     }
 
     public void logout(ActionEvent event) throws IOException { //logoutButton
-        String saveFile = UIMain.savePath;
         FileHandler.jsonSerializer(saveFile, bank);
 
         currentEmployee = null;
         currentCustomer = null;
+
         System.out.println("Logged out. Have a nice day.");
+
         loader = new FXMLLoader(getClass().getResource("StartScene.fxml"));
         root = loader.load();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

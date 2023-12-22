@@ -120,7 +120,7 @@ public class EmpCustomerInfoController extends EmpMainController {
         EmpMainController.currentCustomer.setPhoneNumber(newPhone);
         phoneField.setEditable(false);
     }
-    public void setNewEmail(){ //saveNewEmailButton
+    public void setNewEmail() throws Exception { //saveNewEmailButton
         String newEmail = emailField.getText();
         emailField.setText(newEmail);
         EmpMainController.currentCustomer.setEmail(newEmail);
