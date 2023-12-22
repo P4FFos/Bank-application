@@ -23,8 +23,14 @@ public class ContactCard {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String email) throws Exception {
+        boolean isAddressValid = email.matches("^(.+)@(\\S+)$"); // regex to match email. Checks if @ is present
+        if(isAddressValid) {
+            this.email = email;
+        } else {
+            throw new Exception("Email address is not valid.");
+        }
+
     }
 
     public String getPhoneNumber() {
