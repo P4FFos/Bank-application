@@ -77,7 +77,7 @@ public class EmpMainController {
     }
 
     public void logout(ActionEvent event) throws IOException { //logoutButton
-        String saveFile = "ui/src/main/java/com/piggybank/app/backend/bankDataOnLogout.json";
+        String saveFile = UIMain.savePath;
         FileHandler.jsonSerializer(saveFile, bank);
 
         currentEmployee = null;

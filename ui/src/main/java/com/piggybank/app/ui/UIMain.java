@@ -12,10 +12,15 @@ import com.piggybank.app.backend.utils.ContactCard;
 
 public class UIMain extends Application {
     public static Bank bank;
+    public static String loadPath;
+    public static String savePath;
 
     @Override
     public void start(Stage stage) throws Exception {
-        bank = FileHandler.jsonDeserializer("ui/src/main/java/com/piggybank/app/backend/bankData.json");
+        loadPath = "ui/src/main/java/com/piggybank/app/backend/bankData.json";
+        savePath = "ui/src/main/java/com/piggybank/app/backend/bankDataOnLogout.json"; // used in EmpMainController:logout()
+
+        bank = FileHandler.jsonDeserializer(loadPath);
 
         /*
         ContactCard piggyWolvesbaneContactCard = new ContactCard("piggy@wolvesbane.com", "0735555555", "Big Brick Building", "12345", "Wolvesout");
