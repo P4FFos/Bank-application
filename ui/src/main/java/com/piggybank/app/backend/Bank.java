@@ -146,7 +146,7 @@ public class Bank {
 //-----------------------CREATOR METHODS-----------------------
 
     // creates new private customer and add it to customers hashmap:
-    public void createCustomerPrivate(String ssn, String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
+    public String createCustomerPrivate(String ssn, String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
         // finds the highest customerId in the HashMap customers
         String customerHighestId = findHighestCustomerId();
 
@@ -156,9 +156,10 @@ public class Bank {
         CustomerPrivate newCustomer = new CustomerPrivate(ssn, firstName, lastName, userId, password, contactCard);
         this.customers.put(userId, newCustomer);
         System.out.println("Private customer created: " + userId + " " + firstName + " " + lastName);
+        return userId;
     }
     // creates new corporate customer and add it to customers hashmap:
-    public void createCustomerCorporate(String orgNumber, String companyName, String password, ContactCard contactCard) throws Exception {
+    public String createCustomerCorporate(String orgNumber, String companyName, String password, ContactCard contactCard) throws Exception {
         // finds the highest customerId in the HashMap customers
         String customerHighestId = findHighestCustomerId();
 
@@ -168,6 +169,7 @@ public class Bank {
         CustomerCorporate newCustomer = new CustomerCorporate(orgNumber, companyName, userId, password, contactCard);
         this.customers.put(userId, newCustomer);
         System.out.println("Corporate customer created: " + userId + " " + companyName);
+        return userId;
     }
 
     // creates new private employee and add it to employees hashmap:

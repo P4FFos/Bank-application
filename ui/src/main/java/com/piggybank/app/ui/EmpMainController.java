@@ -201,11 +201,4 @@ public class EmpMainController {
         stage.show();
     }
 
-
-
-
-
-
-
-
 }

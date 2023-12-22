@@ -35,6 +35,8 @@ public class EmpAddCustomerController extends EmpMainController {
     @FXML
     private Pane onSavePane;
     @FXML
+    private Pane wrongPasswordPane;
+    @FXML
     private TextField companyNameField;
     @FXML
     private TextField firstNameField;
@@ -70,8 +72,6 @@ public class EmpAddCustomerController extends EmpMainController {
         cityField.setEditable(false);
         phoneField.setEditable(false);
         emailField.setEditable(false);
-        passwordField.setEditable(false);
-        saveNewCustomerButton.setVisible(false);
 
 		String companyName = companyNameField.getText();
 		String firstName = firstNameField.getText();
@@ -85,30 +85,41 @@ public class EmpAddCustomerController extends EmpMainController {
 		String email = emailField.getText();
 		String password = passwordField.getText();
 
+        String userId;
         if(privateCustomerCheckBox.isSelected()){
+
 			ContactCard newContactCard = new ContactCard(email, phone, street, zip, city);
 			try{
-				UIMain.bank.createCustomerPrivate(ssn, firstName, lastName, password, newContactCard);
+				userId = UIMain.bank.createCustomerPrivate(ssn, firstName, lastName, password, newContactCard);
+                successFulSave(userId);
 			} catch (Exception e){
 				System.out.println(e.getMessage());
+                wrongPasswordPane.setVisible(true);
 			}
         } else if(corporateCustomerCheckBox.isSelected()){
 			ContactCard newContactCard = new ContactCard(email, phone, street, zip, city);
 			try{
-				UIMain.bank.createCustomerCorporate(orgNumber, companyName, password, newContactCard);
+				userId = UIMain.bank.createCustomerCorporate(orgNumber, companyName, password, newContactCard);
+                successFulSave(userId);
 			} catch (Exception e){
 				System.out.println(e.getMessage());
+                wrongPasswordPane.setVisible(true);
 			}
         }
 
+    }
+
+    public void successFulSave(String userId){
+        newCustomerIdLabel.setText(userId);
         privateCustomerCheckBox.setVisible(false);
         corporateCustomerCheckBox.setVisible(false);
         onSavePane.setVisible(true);
-
-        //newCustomerIdLabel.setText(bank.getCurrentCustomer.getId()); or whatever method applies
-        //Tanya will create logic for setting currentCustomer to the newly created customer
+        wrongPasswordPane.setVisible(false);
+        saveNewCustomerButton.setVisible(false);
+        passwordField.setEditable(false);
+        currentCustomer = bank.getCustomer(userId);
+        currentCustomersAccounts = currentCustomer.getAccounts();
     }
-
 
     //-------------------FINISHED METHODS------------------------
     public void showCurrentEmployee(){
@@ -131,6 +142,7 @@ public class EmpAddCustomerController extends EmpMainController {
 
     public void initialiseAddCustomer(){
         onSavePane.setVisible(false);
+        wrongPasswordPane.setVisible(false);
         privateCustomerCheckBox.setSelected(true);
         togglePrivate();
     }
