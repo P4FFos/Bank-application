@@ -1,5 +1,6 @@
 package com.piggybank.app.ui;
 
+import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
 import javafx.event.ActionEvent;
@@ -26,7 +27,7 @@ public class EmpManageLoansController extends EmpMainController {
     @FXML
     private Button addLoanButton;
     @FXML
-    private ListView loansListView;
+    private ListView<Account> loansListView;
     @FXML
     private Label customerIdLabel;
     @FXML
@@ -74,6 +75,7 @@ public class EmpManageLoansController extends EmpMainController {
         }
     }
 
+    /*
     public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
         FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
         Parent root = loader.load();
@@ -87,5 +89,12 @@ public class EmpManageLoansController extends EmpMainController {
         stage.setScene(scene);
         stage.show();
     }
+     */
+    public void setCurrentLoan() {
 
+    }
+
+    public void addLoan() {
+
+    }
 }
