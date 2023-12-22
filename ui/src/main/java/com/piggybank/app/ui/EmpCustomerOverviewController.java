@@ -43,8 +43,6 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     @FXML
     private AnchorPane corporateCustomerInfoAnchorPane;
     @FXML
-    private AnchorPane selectAccountToCreditAnchorPane;
-    @FXML
     private Label empIdLabel;
     @FXML
     private Label empInitialsLabel;
@@ -65,11 +63,9 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     @FXML
     private Label accountBalanceLabel;
     @FXML
-    private Label creditedAccountLabel;
-    @FXML
-    private Label creditAmountLabel;
-    @FXML
     private Label loanAmountLabel;
+    @FXML
+    private Label toAccountLabel;
     @FXML
     private Button addAccountButton;
     @FXML
@@ -152,6 +148,8 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         loanAnchorPane.setVisible(false);
         creditAnchorPane.setVisible(false);
         standardCheckBox.setSelected(true);
+        toAccountLabel.setVisible(false);
+        accountsChoiceBox.setVisible(false);
     }
 
     public void saveNewAccount() throws Exception {
@@ -172,18 +170,20 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     public void toggleStandard() {
         loanAnchorPane.setVisible(false);
         creditAnchorPane.setVisible(false);
-        selectAccountToCreditAnchorPane.setVisible(false);
         creditCheckBox.setSelected(false);
         loanCheckBox.setSelected(false);
+        toAccountLabel.setVisible(false);
+        accountsChoiceBox.setVisible(false);
     }
 
     //------------Add Loan Account--------------
     public void toggleLoan() {
         loanAnchorPane.setVisible(true);
         creditAnchorPane.setVisible(false);
-        selectAccountToCreditAnchorPane.setVisible(true);
         creditCheckBox.setSelected(false);
         standardCheckBox.setSelected(false);
+        toAccountLabel.setVisible(true);
+        accountsChoiceBox.setVisible(true);
     }
 
     public void toggleHalfMillionLoan() {
@@ -218,9 +218,10 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     public void toggleCredit() {
         loanAnchorPane.setVisible(false);
         creditAnchorPane.setVisible(true);
-        selectAccountToCreditAnchorPane.setVisible(true);
         standardCheckBox.setSelected(false);
         loanCheckBox.setSelected(false);
+        toAccountLabel.setVisible(true);
+        accountsChoiceBox.setVisible(true);
     }
 
     public void toggleFiveKCredit() {
@@ -255,8 +256,6 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     public void showAccountToCredit(ActionEvent event) {
             accountToIncrement = currentCustomersAccounts.get(accountsChoiceBox.getValue());
             String amountStr = Double.toString(Math.abs(amount));
-            creditedAccountLabel.setText(accountToIncrement.getAccountName());
-            creditAmountLabel.setText(amountStr);
     }
 
     //------------SELECT ACCOUNT TO LOAN------------------
