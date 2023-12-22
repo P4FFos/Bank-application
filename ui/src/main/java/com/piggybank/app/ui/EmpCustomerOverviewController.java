@@ -25,7 +25,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
@@ -42,8 +41,6 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     private AnchorPane privateCustomerInfoAnchorPane;
     @FXML
     private AnchorPane corporateCustomerInfoAnchorPane;
-    @FXML
-    private AnchorPane selectAccountToCreditAnchorPane;
     @FXML
     private Label empIdLabel;
     @FXML
@@ -65,11 +62,21 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     @FXML
     private Label accountBalanceLabel;
     @FXML
-    private Label creditedAccountLabel;
-    @FXML
-    private Label creditAmountLabel;
-    @FXML
     private Label loanAmountLabel;
+    @FXML
+    private Label toAccountLabel;
+    @FXML
+    private Label balanceDebtLabel;
+    @FXML
+    private Label interestLabel;
+    @FXML
+    private Label interestRateLabel;
+    @FXML
+    private Label initialLabel;
+    @FXML
+    private Label initialAmountLabel;
+    @FXML
+    private Label accountTypeLabel;
     @FXML
     private Button addAccountButton;
     @FXML
@@ -107,7 +114,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     @FXML
     private CheckBox outTransactionCheckBox;
     @FXML
-    private ListView<String> accountsListView; //will be list of current customer's accounts
+    private ListView<String> accountsListView;
     @FXML
     private TableView<Transaction> transactionsTable;
     @FXML
@@ -124,8 +131,6 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     private Account currentAccount;
     private double amount;
     private Account accountToIncrement;
-
-    private Calendar initialCreditDate;
 
 
     //--------------- METHODS CONNECTED TO FXML ELEMENTS -------------------------
@@ -152,13 +157,15 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         loanAnchorPane.setVisible(false);
         creditAnchorPane.setVisible(false);
         standardCheckBox.setSelected(true);
+        toAccountLabel.setVisible(false);
+        accountsChoiceBox.setVisible(false);
     }
 
     public void saveNewAccount() throws Exception {
         if (standardCheckBox.isSelected()) {
             bank.createAccount(currentCustomer.getUserId(), newAccountNameField.getText());
         } else if (creditCheckBox.isSelected() && !newAccountNameField.getText().isBlank() && amount != 0.0) {
-            bank.createCredit(currentCustomer.getUserId(), newAccountNameField.getText(), initialCreditDate, amount);
+            bank.createCredit(currentCustomer.getUserId(), newAccountNameField.getText(), Calendar.getInstance(), amount);
         } else if (loanCheckBox.isSelected() && !newAccountNameField.getText().isBlank() && amount != 0.0 ) {
             bank.createLoanAccount(currentCustomer.getUserId(), newAccountNameField.getText(), amount);
         } else {
@@ -172,18 +179,20 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     public void toggleStandard() {
         loanAnchorPane.setVisible(false);
         creditAnchorPane.setVisible(false);
-        selectAccountToCreditAnchorPane.setVisible(false);
         creditCheckBox.setSelected(false);
         loanCheckBox.setSelected(false);
+        toAccountLabel.setVisible(false);
+        accountsChoiceBox.setVisible(false);
     }
 
     //------------Add Loan Account--------------
     public void toggleLoan() {
         loanAnchorPane.setVisible(true);
         creditAnchorPane.setVisible(false);
-        selectAccountToCreditAnchorPane.setVisible(true);
         creditCheckBox.setSelected(false);
         standardCheckBox.setSelected(false);
+        toAccountLabel.setVisible(true);
+        accountsChoiceBox.setVisible(true);
     }
 
     public void toggleHalfMillionLoan() {
@@ -218,9 +227,10 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     public void toggleCredit() {
         loanAnchorPane.setVisible(false);
         creditAnchorPane.setVisible(true);
-        selectAccountToCreditAnchorPane.setVisible(true);
         standardCheckBox.setSelected(false);
         loanCheckBox.setSelected(false);
+        toAccountLabel.setVisible(true);
+        accountsChoiceBox.setVisible(true);
     }
 
     public void toggleFiveKCredit() {
@@ -255,8 +265,6 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     public void showAccountToCredit(ActionEvent event) {
             accountToIncrement = currentCustomersAccounts.get(accountsChoiceBox.getValue());
             String amountStr = Double.toString(Math.abs(amount));
-            creditedAccountLabel.setText(accountToIncrement.getAccountName());
-            creditAmountLabel.setText(amountStr);
     }
 
     //------------SELECT ACCOUNT TO LOAN------------------
@@ -308,6 +316,10 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 
     public void initialize(URL arg0, ResourceBundle arg1) { //Populates accountsListView with elements in accounts, selection "gets" an account
         accountsListView.getItems().addAll(currentCustomersAccounts.keySet());
+        interestLabel.setVisible(false);
+        interestRateLabel.setVisible(false);
+        initialLabel.setVisible(false);
+        initialAmountLabel.setVisible(false);
 
         accountsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -316,6 +328,32 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
                 currentAccount = currentCustomersAccounts.get(currentAccountId);
                 accountNameLabel.setText(currentAccount.getAccountName());
                 accountBalanceLabel.setText(currentAccount.getBalance() + " SEK");
+
+                if(currentAccount instanceof Credit){
+                    Credit currentCredit = (Credit) currentAccount;
+                    accountTypeLabel.setText("CREDIT:");
+                    balanceDebtLabel.setText("DEBT:");
+                    interestLabel.setVisible(true);
+                    interestRateLabel.setVisible(true);
+                    interestRateLabel.setText(Double.toString(currentCredit.getInterestRate()));
+                } else if(currentAccount instanceof Loan){
+                    Loan currentLoan = (Loan) currentAccount;
+                    accountTypeLabel.setText("LOAN:");
+                    balanceDebtLabel.setText("DEBT");
+                    interestLabel.setVisible(true);
+                    interestRateLabel.setVisible(true);
+                    interestRateLabel.setText(Double.toString(currentLoan.getInterestRate()));
+                    initialLabel.setVisible(true);
+                    initialAmountLabel.setVisible(true);
+                    initialAmountLabel.setText(Double.toString(currentLoan.getInitialAmount()));
+                } else {
+                    accountTypeLabel.setText("ACCOUNT:");
+                    balanceDebtLabel.setText("BALANCE:");
+                    interestLabel.setVisible(false);
+                    interestRateLabel.setVisible(false);
+                    initialLabel.setVisible(false);
+                    initialAmountLabel.setVisible(false);
+                }
 
 
                 senderColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("senderAccountId"));
@@ -370,6 +408,5 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         addAccountAnchorPane.setVisible(false);
         contentAnchorPane.setVisible(true);
     }
-
 
 }
