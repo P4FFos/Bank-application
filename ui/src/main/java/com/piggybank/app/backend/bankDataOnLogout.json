@@ -109,6 +109,23 @@
       "lastName" : "Doe",
       "initials" : "JD"
     },
+    "C007" : {
+      "customerType" : "customerPrivate",
+      "userId" : "C007",
+      "password" : "DaiShan1",
+      "contactInfo" : {
+        "email" : "lan.mandragoran@malkier.com",
+        "phoneNumber" : "0709012345",
+        "streetAddress" : "Malkier street 1",
+        "zipCode" : "11001",
+        "city" : "Seven Towers"
+      },
+      "accounts" : { },
+      "ssn" : "1001010101",
+      "firstName" : "Lan",
+      "lastName" : "Mandragoran",
+      "initials" : "LM"
+    },
     "C006" : {
       "customerType" : "customerCorporate",
       "userId" : "C006",

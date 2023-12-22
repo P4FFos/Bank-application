@@ -75,7 +75,7 @@ public abstract class User {
 
     // setters for ContactCard information
     @JsonIgnore
-    public void setEmail(String newEmail) {
+    public void setEmail(String newEmail) throws Exception {
         contactInfo.setEmail(newEmail);
     }
     @JsonIgnore
