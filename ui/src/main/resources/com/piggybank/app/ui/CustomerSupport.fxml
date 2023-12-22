@@ -140,7 +140,7 @@
                         <Shadow blurType="GAUSSIAN" />
                     </effect>
                 </Separator>
-            <TextArea layoutX="19.0" layoutY="66.0" prefHeight="100.0" prefWidth="232.0" />
+            <TextArea fx:id="textArea" layoutX="19.0" layoutY="66.0" prefHeight="100.0" prefWidth="232.0" />
             <Text layoutX="20.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EXPLAIN YOUR PROBLEM/QUESTION:" wrappingWidth="211.1931292458869">
                <font>
                   <Font size="12.0" />
