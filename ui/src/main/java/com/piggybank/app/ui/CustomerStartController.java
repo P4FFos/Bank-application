@@ -5,13 +5,12 @@ import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.Customer;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
-import com.piggybank.app.backend.customers.Transaction;
 import com.piggybank.app.backend.customers.debts.Credit;
 import com.piggybank.app.backend.customers.loans.Loan;
 import com.piggybank.app.backend.utils.FileHandler;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +28,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 
@@ -179,13 +177,22 @@ public class CustomerStartController implements Initializable {
     private CheckBox outgoingCheckBox;
 
     @FXML
-    private TableView<Account> accountsTableView;
+    private TableView<Account> assetsTableView;
 
     @FXML
-    private TableColumn<Account, String> accountsTableColumn;
+    private TableColumn<Account, String> assetsNameTableColumn;
 
     @FXML
-    private TableColumn<Account, Double> balanceTableColumn;
+    private TableColumn<Account, Double> assetsBalanceTableColumn;
+
+	@FXML
+    private TableView<Account> debtsTableView;
+
+    @FXML
+    private TableColumn<Account, String> debtsNameTableColumn;
+
+    @FXML
+    private TableColumn<Account, Double> debtsBalanceTableColumn;
 
 
 
@@ -288,24 +295,46 @@ public class CustomerStartController implements Initializable {
         }
     }
 
-	public void showAssetsOverview() {
-		// set table columns
-		accountsTableColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountName"));
-		balanceTableColumn.setCellValueFactory(new PropertyValueFactory<Account, Double>("balance"));
-		accountsTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
+	public void showStartAccountOverviews() {
+		// set table columns and placeholder
+		assetsNameTableColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountName"));
+		assetsBalanceTableColumn.setCellValueFactory(new PropertyValueFactory<Account, Double>("balance"));
+		assetsTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
+		assetsTableView.setPlaceholder(new Label("No assets"));
 
-		// fill assets table
-		accountsTableView.setItems(currentCustomer.getAccountsOL());
+		debtsNameTableColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountName"));
+		debtsBalanceTableColumn.setCellValueFactory(new PropertyValueFactory<Account, Double>("balance"));
+		debtsTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
+		debtsTableView.setPlaceholder(new Label("No debts"));
 
-		// set total assets balance
+		// fill the tables with data
+		ObservableList<Account> assetsOL = FXCollections.observableArrayList();
+		ObservableList<Account> debtsOL = FXCollections.observableArrayList();
+
+		for(Account account : currentCustomer.getAccounts().values()){
+			if(account instanceof Credit || account instanceof Loan){
+				debtsOL.add(account);
+			}else{
+				assetsOL.add(account);
+			}
+		}
+
+		assetsTableView.setItems(assetsOL);
+		debtsTableView.setItems(debtsOL);
+
+		// set total account balances (label below the tables)
 		double totalAssetsBalance = 0;
+		double totalDebtsBalance = 0;
 		for(Account account : currentCustomer.getAccounts().values()){
 			if(!(account instanceof Credit) && !(account instanceof Loan)){
 				totalAssetsBalance = totalAssetsBalance + account.getBalance();
+			}else{
+				totalDebtsBalance = totalDebtsBalance + account.getBalance();
 			}
 		}
 
 		startActualTotalBalanceLabel.setText(String.format("%.2f SEK", totalAssetsBalance));
+		startActualTotalDebtLabel.setText(String.format("%.2f SEK", totalDebtsBalance));
 	}
 
     //-----------------SIDE MENU NAVIGATION----------------
@@ -315,7 +344,7 @@ public class CustomerStartController implements Initializable {
 
         CustomerStartController controller = loader.getController();
         controller.showCurrentCustomer();
-		controller.showAssetsOverview();
+		controller.showStartAccountOverviews();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

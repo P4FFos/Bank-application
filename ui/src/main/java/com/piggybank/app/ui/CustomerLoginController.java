@@ -41,7 +41,7 @@ public class CustomerLoginController {
 
                 CustomerStartController controller = loader.getController();
                 controller.setCurrentCustomer(bank.getCustomer(userId));
-				controller.showAssetsOverview();
+				controller.showStartAccountOverviews();
 
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);

@@ -9,7 +9,6 @@ import com.piggybank.app.backend.utils.ContactCard;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 // Used by Jackson-Databind for handling Json files with abstract classes, specifying which subclass an object belong to
@@ -47,10 +46,7 @@ public abstract class Customer extends User {
 
 	@JsonIgnore
 	public ObservableList<Account> getAccountsOL() {
-		return FXCollections.observableArrayList(new ArrayList<>(accounts.values()));
-		// ObservableList<HashMap<String, Account>> accounts = FXCollections.observableArrayList();
-		// accounts.add(this.accounts);
-		// return accounts;
+		return FXCollections.observableArrayList(accounts.values());
 	}
 
     // checks if account exist in HashMap and returns boolean value
