@@ -5,6 +5,8 @@ import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.Customer;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
+import com.piggybank.app.backend.customers.debts.Credit;
+import com.piggybank.app.backend.customers.loans.Loan;
 import com.piggybank.app.backend.utils.FileHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,13 +25,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
 
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.shape.Circle;
 
 public class CustomerStartController implements Initializable {
@@ -104,9 +106,6 @@ public class CustomerStartController implements Initializable {
     private Label startAssetsLabel;
 
     @FXML
-    private ListView<?> startAssetsListView;
-
-    @FXML
     private Label startLoansLabel;
 
     @FXML
@@ -174,22 +173,14 @@ public class CustomerStartController implements Initializable {
     @FXML
     private CheckBox outgoingCheckBox;
 
-    // OPTION 1: LIST VIEW
     @FXML
-    private ListView<?> accountsListView;
+    private TableView<Account> accountsTableView;
 
     @FXML
-    private ListView<?> accountsListView1;
-
-    // OPTION 2: TABLE VIEW
-    @FXML
-    private TableView<?> accountsTableView;
+    private TableColumn<Account, String> accountsTableColumn;
 
     @FXML
-    private TableColumn<?, String> accountTableColumn;
-
-    @FXML
-    private TableColumn<?, Double> balanceTableColumn;
+    private TableColumn<Account, Double> balanceTableColumn;
 
 
 
@@ -260,40 +251,39 @@ public class CustomerStartController implements Initializable {
     private Stage stage;
     private Scene scene;
 
-    @Override
+    public static Bank bank = UIMain.bank;
+    public static Customer currentCustomer;
+
+	@Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // accountTableColumn.setCellFactory(new PropertyValueFactory<Customer, String>("account"));
         // balanceTableColumn.setCellFactory(new PropertyValueFactory<Customer, Double>("balance"));
-
+		accountsTableColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountName"));
+		balanceTableColumn.setCellValueFactory(new PropertyValueFactory<Account, Double>("balance"));
+		accountsTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
+		accountsTableView.setPlaceholder(null);
     }
-
-    public static Bank bank = UIMain.bank;
-    public static Customer currentCustomer;
 
     public void setCurrentCustomer(Customer customer){ //Method called from CustomerLoginController
         currentCustomer = customer;
 
-        //if there is a customer ID label:
-        //customerIdLabel.setText(currentCustomer.getUserId());
-
-        if (customer instanceof CustomerPrivate) {
-            CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
-            headerCustomerNameLabel.setText(privateCustomer.getFullName());
-            startNameLabel.setText(privateCustomer.getFullName());
-            headerActualIdLabel.setText(privateCustomer.getUserId());
-
-            System.out.println("Customer Start Page. Logged in as: " + privateCustomer.getFullName());
-        } else {
-            CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
-            headerCustomerNameLabel.setText(corporateCustomer.getCompanyName());
-            startNameLabel.setText(corporateCustomer.getCompanyName());
-            headerActualIdLabel.setText(corporateCustomer.getUserId());
-
-            System.out.println("Customer Start Page. Logged in as: " + corporateCustomer.getCompanyName());
-        }
+        showCurrentCustomer();
     }
 
     public void showCurrentCustomer(){
+
+		// fill assets table
+		accountsTableView.setItems(bank.getCustomer(currentCustomer.getUserId()).getAccountsOL());
+
+		// set total assets balance
+		double totalAssetsBalance = 0;
+		for(Account account : currentCustomer.getAccounts().values()){
+			if(!(account instanceof Credit) && !(account instanceof Loan)){
+				totalAssetsBalance = totalAssetsBalance + account.getBalance();
+			}
+		}
+
+		startActualTotalBalanceLabel.setText(String.format("%.2f SEK", totalAssetsBalance));
 
         if (currentCustomer instanceof CustomerPrivate) {
             CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
