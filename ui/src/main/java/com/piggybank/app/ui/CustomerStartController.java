@@ -5,9 +5,13 @@ import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.Customer;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
+import com.piggybank.app.backend.customers.Transaction;
 import com.piggybank.app.backend.customers.debts.Credit;
 import com.piggybank.app.backend.customers.loans.Loan;
 import com.piggybank.app.backend.utils.FileHandler;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +29,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 
@@ -258,33 +263,14 @@ public class CustomerStartController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // accountTableColumn.setCellFactory(new PropertyValueFactory<Customer, String>("account"));
         // balanceTableColumn.setCellFactory(new PropertyValueFactory<Customer, Double>("balance"));
-		accountsTableColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountName"));
-		balanceTableColumn.setCellValueFactory(new PropertyValueFactory<Account, Double>("balance"));
-		accountsTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
-		accountsTableView.setPlaceholder(null);
     }
 
     public void setCurrentCustomer(Customer customer){ //Method called from CustomerLoginController
         currentCustomer = customer;
-
         showCurrentCustomer();
     }
 
     public void showCurrentCustomer(){
-
-		// fill assets table
-		accountsTableView.setItems(bank.getCustomer(currentCustomer.getUserId()).getAccountsOL());
-
-		// set total assets balance
-		double totalAssetsBalance = 0;
-		for(Account account : currentCustomer.getAccounts().values()){
-			if(!(account instanceof Credit) && !(account instanceof Loan)){
-				totalAssetsBalance = totalAssetsBalance + account.getBalance();
-			}
-		}
-
-		startActualTotalBalanceLabel.setText(String.format("%.2f SEK", totalAssetsBalance));
-
         if (currentCustomer instanceof CustomerPrivate) {
             CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
             headerCustomerNameLabel.setText(privateCustomer.getFullName());
@@ -302,6 +288,26 @@ public class CustomerStartController implements Initializable {
         }
     }
 
+	public void showAssetsOverview() {
+		// set table columns
+		accountsTableColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountName"));
+		balanceTableColumn.setCellValueFactory(new PropertyValueFactory<Account, Double>("balance"));
+		accountsTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
+
+		// fill assets table
+		accountsTableView.setItems(currentCustomer.getAccountsOL());
+
+		// set total assets balance
+		double totalAssetsBalance = 0;
+		for(Account account : currentCustomer.getAccounts().values()){
+			if(!(account instanceof Credit) && !(account instanceof Loan)){
+				totalAssetsBalance = totalAssetsBalance + account.getBalance();
+			}
+		}
+
+		startActualTotalBalanceLabel.setText(String.format("%.2f SEK", totalAssetsBalance));
+	}
+
     //-----------------SIDE MENU NAVIGATION----------------
     public void goToStart(ActionEvent event) throws IOException { //sideMenuStartButton
         loader = new FXMLLoader(getClass().getResource("CustomerStart.fxml"));
@@ -309,6 +315,7 @@ public class CustomerStartController implements Initializable {
 
         CustomerStartController controller = loader.getController();
         controller.showCurrentCustomer();
+		controller.showAssetsOverview();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
