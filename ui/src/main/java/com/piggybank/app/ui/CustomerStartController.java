@@ -20,7 +20,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -29,7 +28,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
@@ -110,9 +108,6 @@ public class CustomerStartController implements Initializable {
 
     @FXML
     private Label startLoansLabel;
-
-    @FXML
-    private ListView<?> startLoansListView;
 
     @FXML
     private Label startNameLabel;
@@ -268,8 +263,7 @@ public class CustomerStartController implements Initializable {
 
 	@Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // accountTableColumn.setCellFactory(new PropertyValueFactory<Customer, String>("account"));
-        // balanceTableColumn.setCellFactory(new PropertyValueFactory<Customer, Double>("balance"));
+        
     }
 
     public void setCurrentCustomer(Customer customer){ //Method called from CustomerLoginController
@@ -301,11 +295,13 @@ public class CustomerStartController implements Initializable {
 		assetsBalanceTableColumn.setCellValueFactory(new PropertyValueFactory<Account, Double>("balance"));
 		assetsTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
 		assetsTableView.setPlaceholder(new Label("No assets"));
+		assetsTableView.setSelectionModel(null);
 
 		debtsNameTableColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountName"));
 		debtsBalanceTableColumn.setCellValueFactory(new PropertyValueFactory<Account, Double>("balance"));
 		debtsTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
 		debtsTableView.setPlaceholder(new Label("No debts"));
+		debtsTableView.setSelectionModel(null);
 
 		// fill the tables with data
 		ObservableList<Account> assetsOL = FXCollections.observableArrayList();
@@ -326,10 +322,10 @@ public class CustomerStartController implements Initializable {
 		double totalAssetsBalance = 0;
 		double totalDebtsBalance = 0;
 		for(Account account : currentCustomer.getAccounts().values()){
-			if(!(account instanceof Credit) && !(account instanceof Loan)){
-				totalAssetsBalance = totalAssetsBalance + account.getBalance();
-			}else{
+			if(account instanceof Credit || account instanceof Loan){
 				totalDebtsBalance = totalDebtsBalance + account.getBalance();
+			}else{
+				totalAssetsBalance = totalAssetsBalance + account.getBalance();
 			}
 		}
 
