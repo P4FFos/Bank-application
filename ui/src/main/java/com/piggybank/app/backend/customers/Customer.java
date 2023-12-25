@@ -1,9 +1,13 @@
 package com.piggybank.app.backend.customers;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import com.piggybank.app.backend.utils.ContactCard;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.HashMap;
 
@@ -39,6 +43,11 @@ public abstract class Customer extends User {
     public HashMap<String, Account> getAccounts(){
         return accounts;
     }
+
+	@JsonIgnore
+	public ObservableList<Account> getAccountsOL() {
+		return FXCollections.observableArrayList(accounts.values());
+	}
 
     // checks if account exist in HashMap and returns boolean value
     public boolean checkIfAccountExists(String accountId) {

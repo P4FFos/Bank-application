@@ -8,6 +8,8 @@
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -120,24 +122,34 @@
                         <Font name="Kodchasan Regular" size="13.0" />
                     </font>
                 </Label>
-                <ListView fx:id="startAssetsListView" layoutX="20.0" layoutY="70.0" prefHeight="70.0" prefWidth="190.0" />
-                <ListView fx:id="startLoansListView" layoutX="250.0" layoutY="70.0" prefHeight="70.0" prefWidth="190.0" />
-                <Label fx:id="startTotalBalanceLabel" layoutX="70.0" layoutY="150.0" text="Total Balance:">
+				<TableView fx:id="assetsTableView" layoutX="20.0" layoutY="70.0" prefHeight="120.0" prefWidth="190.0" >
+					<columns>
+						<TableColumn fx:id="assetsNameTableColumn" prefWidth="120.0" text="Account name" />
+						<TableColumn fx:id="assetsBalanceTableColumn" prefWidth="69.0" text="Balance" />
+					</columns>
+				</TableView>
+				<TableView fx:id="debtsTableView" layoutX="250.0" layoutY="70.0" prefHeight="120.0" prefWidth="190.0" >
+					<columns>
+						<TableColumn fx:id="debtsNameTableColumn" prefWidth="120.0" text="Account name" />
+						<TableColumn fx:id="debtsBalanceTableColumn" prefWidth="69.0" text="Balance" />
+					</columns>
+				</TableView>
+                <Label fx:id="startTotalBalanceLabel" layoutX="70.0" layoutY="200.0" text="Total Balance:">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Label>
-                <Label fx:id="startActualTotalBalanceLabel" alignment="CENTER_RIGHT" centerShape="false" layoutX="144.0" layoutY="150.0" prefHeight="13.0" prefWidth="61.0" text="###">
+                <Label fx:id="startActualTotalBalanceLabel" alignment="CENTER_RIGHT" centerShape="false" layoutX="144.0" layoutY="200.0" prefHeight="13.0" prefWidth="61.0" text="0 SEK">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Label>
-                <Label fx:id="startTotalDebtLabel" layoutX="320.0" layoutY="150.0" text="Total Debt:">
+                <Label fx:id="startTotalDebtLabel" layoutX="320.0" layoutY="200.0" text="Total Debt:">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Label>
-                <Label fx:id="startActualTotalDebtLabel" alignment="CENTER_RIGHT" centerShape="false" layoutX="370.0" layoutY="150.0" prefHeight="13.0" prefWidth="68.0" text="###">
+                <Label fx:id="startActualTotalDebtLabel" alignment="CENTER_RIGHT" centerShape="false" layoutX="370.0" layoutY="200.0" prefHeight="13.0" prefWidth="68.0" text="0 SEK">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
