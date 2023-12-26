@@ -82,6 +82,8 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     @FXML
     private Button makeTransactionButton;
     @FXML
+    private Button manageFundsButton;
+    @FXML
     private Button saveNewAccountButton;
     @FXML
     private ChoiceBox<String> accountsChoiceBox;
@@ -128,7 +130,9 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     @FXML
     private TableColumn<Transaction, LocalDate> dateColumn;
 
-    private Account currentAccount;
+    private Parent root;
+    private Stage stage;
+
     private double amount;
     private Account accountToIncrement;
 
@@ -136,13 +140,13 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     //--------------- METHODS CONNECTED TO FXML ELEMENTS -------------------------
     public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
         FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
-        Parent root = loader.load();
+        root = loader.load();
 
         EmpMainController controller = loader.getController();
         controller.showCurrentEmployee();
         EmpMainController.currentCustomer = null;
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -150,6 +154,21 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 
 
     //-----------------ACCOUNTS MANAGEMENT----------------------------
+
+
+    public void manageFunds(ActionEvent event) throws IOException {
+        if(currentAccount == null){
+            System.out.println("You must select an account.");
+        } else {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpManageFunds.fxml"));
+            root = loader.load();
+
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
 
     public void addAccount(ActionEvent event) {
         contentAnchorPane.setVisible(false);
@@ -314,7 +333,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 
 //----------------SETUP SCENE-------------------------------------
 
-    public void initialize(URL arg0, ResourceBundle arg1) { //Populates accountsListView with elements in accounts, selection "gets" an account
+    public void initialize(URL arg0, ResourceBundle arg1) {
         accountsListView.getItems().addAll(currentCustomersAccounts.keySet());
         interestLabel.setVisible(false);
         interestRateLabel.setVisible(false);

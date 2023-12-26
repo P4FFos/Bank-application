@@ -131,11 +131,11 @@
         </AnchorPane>
         <AnchorPane fx:id="contentAnchorPane" layoutX="180.0" layoutY="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
          <children>
-            <ListView fx:id="accountsListView" layoutX="14.0" layoutY="41.0" prefHeight="202.0" prefWidth="126.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="40.0" />
+            <ListView fx:id="accountsListView" layoutX="14.0" layoutY="41.0" prefHeight="202.0" prefWidth="155.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="40.0" />
             <Separator layoutX="173.0" orientation="VERTICAL" prefHeight="320.0" prefWidth="11.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="173.0" AnchorPane.topAnchor="0.0" />
             <Label layoutX="14.0" layoutY="14.0" text="ACCOUNTS" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
             <Label layoutX="189.2" layoutY="14.4" text="TRANSACTIONS" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="15.0" />
-            <Button fx:id="addAccountButton" layoutX="115.0" layoutY="10.0" mnemonicParsing="false" onAction="#addAccount" text="+" AnchorPane.topAnchor="10.0" />
+            <Button fx:id="addAccountButton" layoutX="88.0" layoutY="11.0" mnemonicParsing="false" onAction="#addAccount" text="NEW" AnchorPane.leftAnchor="88.0" AnchorPane.topAnchor="11.0" />
             <Label fx:id="accountTypeLabel" layoutX="14.0" layoutY="254.0" text="ACCOUNT:" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="255.0" />
             <Label fx:id="accountNameLabel" layoutX="82.0" layoutY="255.0" text="####" AnchorPane.leftAnchor="82.0" AnchorPane.topAnchor="255.0" />
             <Label fx:id="balanceDebtLabel" layoutX="14.0" layoutY="279.0" text="BALANCE:" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="280.0" />
@@ -156,6 +156,7 @@
             <Label fx:id="initialLabel" layoutX="20.0" layoutY="325.0" text="INITIAL:" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="330.0" />
             <Label fx:id="interestRateLabel" layoutX="82.0" layoutY="305.0" text="€€€€" AnchorPane.leftAnchor="82.0" AnchorPane.topAnchor="305.0" />
             <Label fx:id="initialAmountLabel" layoutX="82.0" layoutY="330.0" text="€€€€" AnchorPane.leftAnchor="82.0" AnchorPane.topAnchor="330.0" />
+            <Button fx:id="manageFundsButton" layoutX="137.0" layoutY="11.0" mnemonicParsing="false" onAction="#manageFunds" text="+/-" AnchorPane.leftAnchor="137.0" AnchorPane.topAnchor="11.0" />
          </children></AnchorPane>
       <AnchorPane fx:id="addAccountAnchorPane" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
          <children>
