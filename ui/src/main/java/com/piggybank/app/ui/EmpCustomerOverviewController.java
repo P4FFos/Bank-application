@@ -132,6 +132,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 
     private Parent root;
     private Stage stage;
+    private FXMLLoader loader;
 
     private double amount;
     private Account accountToIncrement;
@@ -139,7 +140,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 
     //--------------- METHODS CONNECTED TO FXML ELEMENTS -------------------------
     public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
+        loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
         root = loader.load();
 
         EmpMainController controller = loader.getController();
@@ -160,7 +161,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         if(currentAccount == null){
             System.out.println("You must select an account.");
         } else {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpManageFunds.fxml"));
+            loader = new FXMLLoader(getClass().getResource("EmpManageFunds.fxml"));
             root = loader.load();
 
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -295,8 +296,14 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     }
 //----------------MANAGE TRANSACTIONS--------------------------
 
-    public void makeTransaction(ActionEvent event) {
-        //wait until ui is built for this
+    public void makeTransaction(ActionEvent event) throws IOException {
+        loader = new FXMLLoader(getClass().getResource("EmpMakeTransaction.fxml"));
+        root = loader.load();
+
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 	public void toggleIncomingTransactions(){ // filters transactions to only show incoming
