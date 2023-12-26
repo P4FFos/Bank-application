@@ -170,14 +170,21 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         }
     }
 
-    public void addAccount(ActionEvent event) {
-        contentAnchorPane.setVisible(false);
+    public void addAccount(ActionEvent event) throws IOException { //addAccountButton
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpAddAccount.fxml"));
+        root = loader.load();
+
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        /*contentAnchorPane.setVisible(false);
         addAccountAnchorPane.setVisible(true);
         loanAnchorPane.setVisible(false);
         creditAnchorPane.setVisible(false);
         standardCheckBox.setSelected(true);
         toAccountLabel.setVisible(false);
-        accountsChoiceBox.setVisible(false);
+        accountsChoiceBox.setVisible(false);*/
     }
 
     public void saveNewAccount() throws Exception {
