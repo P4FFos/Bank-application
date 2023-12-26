@@ -56,10 +56,6 @@ public class EmpAddAccountController extends EmpMainController implements Initia
     @FXML
     private ChoiceBox<String> accountsChoiceBox;
     @FXML
-    private Label creditAmountLabel;
-    @FXML
-    private Label loanAmountLabel;
-    @FXML
     private Label toAccountLabel;
     @FXML
     private TextField newAccountNameField;
@@ -83,8 +79,8 @@ public class EmpAddAccountController extends EmpMainController implements Initia
 
         }
         accountsChoiceBox.getItems().addAll(standardAccounts);
-        accountsChoiceBox.setOnAction(this::setAccountToCredit);
-        accountsChoiceBox.setOnAction(this::showAccountToLoan);
+        accountsChoiceBox.setOnAction(this::setAccountToIncrement);
+        accountsChoiceBox.setOnAction(this::setAccountToIncrement);
     }
 
     public void adjustFunds(Account account, double amount){ // okButton
@@ -99,11 +95,11 @@ public class EmpAddAccountController extends EmpMainController implements Initia
             backToOverview(event);
         } else if (creditCheckBox.isSelected() && !newAccountNameField.getText().isBlank() && amount != 0.0) {
             bank.createCredit(currentCustomer.getUserId(), newAccountNameField.getText(), Calendar.getInstance(), amount);
-            adjustFunds(currentCustomersAccounts.get(accountsChoiceBox.getValue()), amount);
+            adjustFunds(accountToIncrement, amount);
             backToOverview(event);
         } else if (loanCheckBox.isSelected() && !newAccountNameField.getText().isBlank() && amount != 0.0 ) {
             bank.createLoanAccount(currentCustomer.getUserId(), newAccountNameField.getText(), amount);
-            adjustFunds(currentCustomersAccounts.get(accountsChoiceBox.getValue()), amount);
+            adjustFunds(accountToIncrement, amount);
             backToOverview(event);
         } else {
             System.out.println("Wrong data input.");
@@ -206,18 +202,11 @@ public class EmpAddAccountController extends EmpMainController implements Initia
         amount = -50000.0;
     }
 
-    //------------SELECT ACCOUNT TO CREDIT------------------
-    public void setAccountToCredit(ActionEvent event) {
+    //------------SELECT ACCOUNT TO INCREMENT------------------
+    public void setAccountToIncrement(ActionEvent event) {
         accountToIncrement = currentCustomersAccounts.get(accountsChoiceBox.getValue());
     }
 
-    //------------SELECT ACCOUNT TO LOAN------------------
-    public void showAccountToLoan(ActionEvent event) {
-        accountToIncrement = currentCustomersAccounts.get(accountsChoiceBox.getValue());
-        String amountStr = Double.toString(Math.abs(amount));
-        loanAmountLabel.setText(accountToIncrement.getAccountName());
-        loanAmountLabel.setText(amountStr);
-    }
 
     public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
         FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
