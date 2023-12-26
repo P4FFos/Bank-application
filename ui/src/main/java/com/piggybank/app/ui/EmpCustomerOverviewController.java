@@ -90,6 +90,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 
     private Parent root;
     private Stage stage;
+    private FXMLLoader loader;
 
 
     //-----------------ACCOUNTS MANAGEMENT----------------------------
@@ -98,7 +99,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         if(currentAccount == null){
             System.out.println("You must select an account.");
         } else {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpManageFunds.fxml"));
+            loader = new FXMLLoader(getClass().getResource("EmpManageFunds.fxml"));
             root = loader.load();
 
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -119,8 +120,15 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     }
 
 //----------------MANAGE TRANSACTIONS--------------------------
-    public void makeTransaction(ActionEvent event) {
-        //wait until ui is built for this
+
+    public void makeTransaction(ActionEvent event) throws IOException {
+        loader = new FXMLLoader(getClass().getResource("EmpMakeTransaction.fxml"));
+        root = loader.load();
+
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 	public void toggleIncomingTransactions(){ // filters transactions to only show incoming
@@ -156,6 +164,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 	}
 
 //----------------SETUP SCENE-------------------------------------
+
     public void initialize(URL arg0, ResourceBundle arg1) {
         accountsListView.getItems().addAll(currentCustomersAccounts.keySet());
         interestLabel.setVisible(false);
