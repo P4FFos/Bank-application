@@ -110,16 +110,7 @@
                         <Shadow blurType="GAUSSIAN" />
                      </effect>
                   </Separator>
-                  <Label layoutX="18.0" layoutY="222.0" text="AMOUNT" AnchorPane.leftAnchor="15.0">
-                     <font>
-                        <Font name="Kodchasan Regular" size="10.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="18.0" layoutY="232.0" text="SELECT DEFAULT AMOUNT OR SPECIFY IN FIELD BELOW" textFill="#807c7c">
-                     <font>
-                        <Font name="Kodchasan ExtraLight" size="5.0" />
-                     </font>
-                  </Label>
+                  <Label layoutX="15.0" layoutY="225.0" text="AMOUNT" AnchorPane.leftAnchor="15.0" />
                   <CheckBox fx:id="oneHundredCheckBox" layoutX="18.0" layoutY="242.0" mnemonicParsing="false" onAction="#toggleOneHundred" text="100" AnchorPane.leftAnchor="15.0">
                      <font>
                         <Font name="Kodchasan Regular" size="8.0" />
@@ -140,7 +131,7 @@
                         <Font name="Kodchasan Regular" size="8.0" />
                      </font>
                   </CheckBox>
-                  <TextField fx:id="amountTextField" alignment="CENTER_RIGHT" layoutX="18.0" layoutY="257.0" prefHeight="15.0" prefWidth="190.0" promptText="0.00" AnchorPane.leftAnchor="15.0">
+                  <TextField fx:id="amountTextField" alignment="BOTTOM_LEFT" layoutX="18.0" layoutY="257.0" prefHeight="15.0" prefWidth="190.0" promptText="SEK" AnchorPane.leftAnchor="15.0">
                      <font>
                         <Font name="Kodchasan Regular" size="8.0" />
                      </font>
@@ -150,9 +141,9 @@
                         <Font name="Kodchasan Regular" size="8.0" />
                      </font>
                   </Button>
-                  <Button fx:id="selectSendingAccountButton" layoutX="115.0" layoutY="145.0" mnemonicParsing="false" onAction="#selectSendingAccount" prefHeight="15.0" prefWidth="90.0" text="SELECT ACCOUNT" AnchorPane.rightAnchor="265.0">
+                  <Button fx:id="selectSendingAccountButton" layoutX="115.0" layoutY="145.0" mnemonicParsing="false" onAction="#selectSendingAccount" prefHeight="20.0" prefWidth="119.0" text="SELECT ACCOUNT" AnchorPane.rightAnchor="265.0">
                      <font>
-                        <Font name="Kodchasan Regular" size="8.0" />
+                        <Font size="10.0" />
                      </font>
                   </Button>
                </children>
@@ -162,28 +153,10 @@
                   <Font name="Kodchasan Regular" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="20.0" layoutY="50.0" text="FROM ACCOUNT" AnchorPane.leftAnchor="15.0">
-               <font>
-                  <Font name="Kodchasan Regular" size="10.0" />
-               </font>
-            </Label>
-            <Label layoutX="20.0" layoutY="60.0" text="CHOOSE BETWEEN YOUR ACCOUNTS FROM THE LIST BELOW" textFill="#323131" AnchorPane.leftAnchor="15.0">
-               <font>
-                  <Font name="Kodchasan ExtraLight" size="5.0" />
-               </font>
-            </Label>
+            <Label layoutX="15.0" layoutY="53.0" text="FROM ACCOUNT" AnchorPane.leftAnchor="15.0" />
             <ListView fx:id="accountsListView" layoutX="20.0" layoutY="70.0" prefHeight="70.0" prefWidth="190.0" AnchorPane.leftAnchor="15.0" />
-            <Label layoutX="20.0" layoutY="170.0" text="TO ACCOUNT" AnchorPane.leftAnchor="15.0">
-               <font>
-                  <Font name="Kodchasan Regular" size="10.0" />
-               </font>
-            </Label>
-            <Label layoutX="20.0" layoutY="180.0" text="ENTER RECIEVER ACCOUNT (10 digits)" textFill="#323131" AnchorPane.leftAnchor="15.0">
-               <font>
-                  <Font name="Kodchasan ExtraLight" size="5.0" />
-               </font>
-            </Label>
-            <TextField fx:id="recieverAccountTextField" alignment="CENTER_RIGHT" layoutX="20.0" layoutY="190.0" prefHeight="15.0" prefWidth="190.0" promptText="e.g. c123" AnchorPane.leftAnchor="15.0">
+            <Label layoutX="15.0" layoutY="184.0" text="TO ACCOUNT" AnchorPane.leftAnchor="15.0" />
+            <TextField fx:id="recieverAccountTextField" alignment="BOTTOM_LEFT" layoutX="15.0" layoutY="200.0" prefHeight="15.0" prefWidth="190.0" promptText="Enter account id" AnchorPane.leftAnchor="15.0">
                <font>
                   <Font name="Kodchasan Regular" size="8.0" />
                </font>
