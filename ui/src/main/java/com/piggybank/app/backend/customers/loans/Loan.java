@@ -1,6 +1,10 @@
 package com.piggybank.app.backend.customers.loans;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.piggybank.app.backend.customers.Account;
+
+@JsonTypeName("loan")
 public class Loan extends Account {
     //loan type where we can give out larger amounts of money (such as mortgages)
 
@@ -25,6 +29,7 @@ public class Loan extends Account {
         this.initialAmount = initialAmount;
     }
 
+    @JsonIgnore
     //calculating the minimum monthly payment:
     public void setPaymentAmount() {
         //minimum payment amount:
@@ -84,8 +89,5 @@ public class Loan extends Account {
     public double getMinPaymentAmount() {
         return this.minPaymentAmount;
     }
-
-
-
 
 }

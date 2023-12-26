@@ -260,7 +260,7 @@ public class Bank {
     }
 
     // loops through HashMap employees for their HashMap of accounts, then gets the highest accountId of them all
-    public String findHighestAccountId() {
+    public String findHighestAccountId() throws Exception {
         int highestIdCount = 0;
         String highestAccountId = "A00000";
         for(Customer customer : customers.values()) {

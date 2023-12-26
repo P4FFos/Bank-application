@@ -25,6 +25,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
@@ -133,6 +134,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     private Account accountToIncrement;
 
 
+
     //--------------- METHODS CONNECTED TO FXML ELEMENTS -------------------------
     public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
         FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
@@ -173,6 +175,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         }
         contentAnchorPane.setVisible(true);
         addAccountAnchorPane.setVisible(false);
+        accountsListView.refresh();
     }
 
     //------------Add Standard Account--------------
@@ -355,7 +358,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
                     initialAmountLabel.setVisible(false);
                 }
 
-
+                // creates factory method used when populating transactionsTable
                 senderColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("senderAccountId"));
                 receiverColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("receiverAccountId"));
                 amountColumn.setCellValueFactory(new PropertyValueFactory<Transaction, Double>("amount"));

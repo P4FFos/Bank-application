@@ -2,15 +2,24 @@ package com.piggybank.app.backend.customers;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.piggybank.app.backend.customers.debts.Credit;
+import com.piggybank.app.backend.customers.loans.Loan;
+import com.piggybank.app.backend.exceptions.AccountNotFoundException;
 import com.piggybank.app.backend.utils.TruncationUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "accountType")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Loan.class, name = "loan"),
+        @JsonSubTypes.Type(value = Credit.class, name = "credit"),
+        @JsonSubTypes.Type(value = Account.class, name = "account")
+})
 public class Account {
     // attributes for account class
     private String accountName;

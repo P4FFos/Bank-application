@@ -5,6 +5,8 @@ import com.piggybank.app.backend.customers.debts.Credit;
 import com.piggybank.app.backend.customers.loans.Loan;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -140,13 +142,19 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
     @FXML
     private TableColumn<Transaction, LocalDate> dateColumn;
 
+    @FXML
+    private TableView<Account> accountsTableView;
+    @FXML
+    private TableColumn<Account, String> accountIdColumn;
+    @FXML
+    private TableColumn<Account, String> accountNameColumn;
+    @FXML
+    private TableColumn<Account, Double> accountBalanceColumn;
+
     private Account currentAccount;
 
     public void setCurrentCustomer(Customer customer){ //Method called from CustomerLoginController
         currentCustomer = customer;
-
-        //if there is a customer ID label:
-        //customerIdLabel.setText(currentCustomer.getUserId());
 
         if (customer instanceof CustomerPrivate) {
             CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
@@ -168,8 +176,6 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
     }
 
     public void showCurrentCustomer(){
-        //if there is a customer ID label:
-        //customerIdLabel.setText(currentCustomer.getUserId());
 
         if (currentCustomer instanceof CustomerPrivate) {
             CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
@@ -191,13 +197,25 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
     }
 
     public void initialize(URL arg0, ResourceBundle arg1) { //Populates accountsListView with elements in accounts, selection "gets" an account
-        accountsListView.getItems().addAll(currentCustomer.getAccounts().keySet());
+        accountNameColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountName"));
+        accountIdColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountId"));
+        accountBalanceColumn.setCellValueFactory(new PropertyValueFactory<Account, Double>("balance"));
 
-        accountsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+        accountsTableView.setItems(currentCustomer.getAccountsList());
+
+        // sort tableView on balance with descending values
+        accountBalanceColumn.setSortType(TableColumn.SortType.DESCENDING);
+        accountsTableView.getSortOrder().add(accountBalanceColumn);
+
+        // checkbox for all accounts should be automatically checked
+        accountsAllCheckBox.setSelected(true);
+
+        /* gets the selected row (account) in the TableView of accounts. Based on what is selected
+        * updates the transactions TableView */
+        accountsTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Account>() {
             @Override
-            public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
-                String currentAccountId = accountsListView.getSelectionModel().getSelectedItem();
-                currentAccount = currentCustomer.getAccount(currentAccountId);
+            public void changed(ObservableValue<? extends Account> observableValue, Account account, Account t1) {
+                currentAccount = accountsTableView.getSelectionModel().selectedItemProperty().getValue();
 
                 senderColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("senderAccountId"));
                 receiverColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("receiverAccountId"));
@@ -208,5 +226,56 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
                 transactionsTable.setItems(currentAccount.getTransactions());
             }
         });
+    }
+
+    // filter transactions to show all transactions
+    public void toggleAllTransactions() {
+        if(accountsAllCheckBox.isSelected()) {
+            accountsAllCheckBox.setSelected(true);
+            accountsIncomingCheckBox.setSelected(false);
+            accountsOutgoingCheckBox.setSelected(false);
+
+            transactionsTable.setItems(currentAccount.getTransactions());
+        } else {
+            transactionsTable.setItems(currentAccount.getTransactions());
+        }
+    }
+
+    // filter transactions to only show incoming (amount > 0)
+    public void toggleIncomingTransactions() {
+        if(accountsIncomingCheckBox.isSelected()) {
+            accountsIncomingCheckBox.setSelected(true);
+            accountsAllCheckBox.setSelected(false);
+            accountsOutgoingCheckBox.setSelected(false);
+
+            ObservableList<Transaction> incomingTransactions = FXCollections.observableArrayList();
+            for(Transaction transaction : currentAccount.getTransactions()) {
+                if (transaction.getAmount() > 0) {
+                    incomingTransactions.add(transaction);
+                }
+            }
+            transactionsTable.setItems(incomingTransactions);
+        } else {
+            transactionsTable.setItems(currentAccount.getTransactions());
+        }
+    }
+
+    // filter transactions to only show outgoing (amount < 0)
+    public void toggleOutgoingTransactions() {
+        if(accountsOutgoingCheckBox.isSelected()) {
+            accountsOutgoingCheckBox.setSelected(true);
+            accountsAllCheckBox.setSelected(false);
+            accountsIncomingCheckBox.setSelected(false);
+
+            ObservableList<Transaction> outgoingTransactions = FXCollections.observableArrayList();
+            for(Transaction transaction : currentAccount.getTransactions()) {
+                if (transaction.getAmount() < 0) {
+                    outgoingTransactions.add(transaction);
+                }
+            }
+            transactionsTable.setItems(outgoingTransactions);
+        } else {
+            transactionsTable.setItems(currentAccount.getTransactions());
+        }
     }
 }

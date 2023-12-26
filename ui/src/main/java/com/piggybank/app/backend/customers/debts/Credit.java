@@ -2,9 +2,11 @@ package com.piggybank.app.backend.customers.debts;
 
 import java.util.Calendar;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.utils.TruncationUtil;
 
+@JsonTypeName("credit")
 public class Credit extends Account {
 
     // attributes:

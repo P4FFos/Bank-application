@@ -1,17 +1,22 @@
 package com.piggybank.app.ui;
 
+import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
+import com.piggybank.app.backend.exceptions.AccountNotFoundException;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.Separator;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
+
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 public class CustomerTransferFundsController extends CustomerStartController{
 
@@ -188,10 +193,23 @@ public class CustomerTransferFundsController extends CustomerStartController{
 
     @FXML
     private Separator verticalSeparator;
+    @FXML
+    private TextField transferEnterMessageTextField;
+    @FXML
+    private DatePicker transferEnterDatePicker;
+
+    @FXML
+    private TableView<Account> accountsTableView;
+    @FXML
+    private TableColumn<Account, String> accountIdColumn;
+    @FXML
+    private TableColumn<Account, String> accountNameColumn;
+    @FXML
+    private TableColumn<Account, Double> accountBalanceColumn;
+
+    private Account currentAccount;
 
     public void showCurrentCustomer(){
-        //if there is a customer ID label:
-        //customerIdLabel.setText(currentCustomer.getUserId());
 
         if (currentCustomer instanceof CustomerPrivate) {
             CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
@@ -209,6 +227,151 @@ public class CustomerTransferFundsController extends CustomerStartController{
             headerActualIdLabel.setText(corporateCustomer.getUserId());
 
             System.out.println("Customer Start Page. Logged in as: " + corporateCustomer.getCompanyName());
+        }
+    }
+
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        accountNameColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountName"));
+        accountIdColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountId"));
+        accountBalanceColumn.setCellValueFactory(new PropertyValueFactory<Account, Double>("balance"));
+
+        accountsTableView.setItems(currentCustomer.getAccountsList());
+
+        // filter on balance column in descending order
+        accountBalanceColumn.setSortType(TableColumn.SortType.DESCENDING);
+        accountsTableView.getSortOrder().add(accountBalanceColumn);
+
+        transferEnterDatePicker.setValue(LocalDate.now());
+    }
+
+    public void completeTransfer(ActionEvent event) throws Exception {
+        // first remove any unwanted styling (if run before)
+        clearAllInvalidStyles();
+
+        String receiverAccountId = transferEnterRecieverAccountTextField.getText();
+
+        if(!validateInputs(receiverAccountId)) {
+            return; // stop execution if validation fail
+        }
+
+        // attempts to transfer
+        try{
+            double amount = Double.parseDouble(transferEnterAmountTextField.getText());
+            LocalDate date = transferEnterDatePicker.getValue();
+            String message = transferEnterMessageTextField.getText();
+
+            bank.transfer(currentAccount.getAccountId(), receiverAccountId, amount, message, date);
+            accountsTableView.refresh();
+        } catch(NumberFormatException e) {
+            transferEnterAmountTextField.getStyleClass().add("text-field-invalid");
+            e.printStackTrace();
+        } catch(AccountNotFoundException e) {
+            transferEnterRecieverAccountTextField.getStyleClass().add("text-field-invalid");
+            e.printStackTrace();
+        }
+
+    }
+
+    private boolean validateInputs(String receiverAccountId) {
+        boolean isTermsChecked = transferUnderstandCheckBox.isSelected();
+        boolean isPasswordValid = currentCustomer.validatePassword(transferPasswordField.getText());
+        boolean isAmountEmpty = transferEnterAmountTextField.getText().isBlank();
+
+        currentAccount = accountsTableView.getSelectionModel().getSelectedItem();
+
+        // check if objects are null before checking isSameAccount
+        if (currentAccount == null) {
+            accountsTableView.getStyleClass().add("text-field-invalid");
+            applyInvalidStyle(isAmountEmpty, transferEnterAmountTextField);
+            applyInvalidStyle(isTermsChecked, transferUnderstandCheckBox);
+            applyInvalidStyle(isPasswordValid, transferPasswordField);
+            return false;
+        }
+
+        if(receiverAccountId == null) {
+            applyInvalidStyle(isAmountEmpty, transferEnterAmountTextField);
+            applyInvalidStyle(isTermsChecked, transferUnderstandCheckBox);
+            applyInvalidStyle(isPasswordValid, transferPasswordField);
+            return false;
+        }
+        boolean isSameAccount = receiverAccountId.equals(currentAccount.getAccountId());
+
+        // to avoid repetitive code, applying one method
+        applyInvalidStyle(isTermsChecked, transferUnderstandCheckBox);
+        applyInvalidStyle(isPasswordValid, transferPasswordField);
+        applyInvalidStyle(isAmountEmpty, transferEnterAmountTextField);
+        applyInvalidStyle(isSameAccount, transferEnterRecieverAccountTextField);
+
+        return isTermsChecked && isPasswordValid && !isAmountEmpty && !isSameAccount;
+    }
+
+    private void applyInvalidStyle(boolean condition, Control control) {
+        if(condition) {
+            control.getStyleClass().add("text-field-invalid");
+        }
+    }
+
+    private void clearAllInvalidStyles() {
+        transferUnderstandCheckBox.getStyleClass().clear();
+        transferPasswordField.getStyleClass().clear();
+        transferEnterAmountTextField.getStyleClass().clear();
+        transferEnterRecieverAccountTextField.getStyleClass().clear();
+        accountsTableView.getStyleClass().clear();
+    }
+
+    // toggle button in CustomerTransferFunds.fxml file
+    public void toggleAmountOneHundred() {
+        if(transferFirstAmountCheckBox.isSelected()) {
+            transferEnterAmountTextField.clear();
+            transferEnterAmountTextField.setText("100.0");
+
+            transferSecondAmountCheckBox.setSelected(false);
+            transferThirdAmountCheckBox.setSelected(false);
+            transferFourthAmountCheckBox.setSelected(false);
+        } else {
+            transferEnterAmountTextField.clear();
+        }
+    }
+
+    // toggle button in CustomerTransferFunds.fxml file
+    public void toggleAmountTwoHundred() {
+        if(transferSecondAmountCheckBox.isSelected()) {
+            transferEnterAmountTextField.clear();
+            transferEnterAmountTextField.setText("200.0");
+
+            transferFirstAmountCheckBox.setSelected(false);
+            transferThirdAmountCheckBox.setSelected(false);
+            transferFourthAmountCheckBox.setSelected(false);
+        } else {
+            transferEnterAmountTextField.clear();
+        }
+    }
+
+    // toggle button in CustomerTransferFunds.fxml file
+    public void toggleAmountFiveHundred() {
+        if(transferThirdAmountCheckBox.isSelected()) {
+            transferEnterAmountTextField.clear();
+            transferEnterAmountTextField.setText("500.0");
+
+            transferFirstAmountCheckBox.setSelected(false);
+            transferSecondAmountCheckBox.setSelected(false);
+            transferFourthAmountCheckBox.setSelected(false);
+        } else {
+            transferEnterAmountTextField.clear();
+        }
+    }
+
+    // toggle button in CustomerTransferFunds.fxml file
+    public void toggleAmountOneThousand() {
+        if(transferFourthAmountCheckBox.isSelected()) {
+            transferEnterAmountTextField.clear();
+            transferEnterAmountTextField.setText("1000.0");
+
+            transferFirstAmountCheckBox.setSelected(false);
+            transferSecondAmountCheckBox.setSelected(false);
+            transferThirdAmountCheckBox.setSelected(false);
+        } else {
+            transferEnterAmountTextField.clear();
         }
     }
 }

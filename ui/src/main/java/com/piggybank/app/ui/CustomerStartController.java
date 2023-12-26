@@ -1,11 +1,12 @@
 package com.piggybank.app.ui;
 
 import com.piggybank.app.backend.Bank;
-import com.piggybank.app.backend.customers.Account;
-import com.piggybank.app.backend.customers.Customer;
-import com.piggybank.app.backend.customers.CustomerCorporate;
-import com.piggybank.app.backend.customers.CustomerPrivate;
+import com.piggybank.app.backend.customers.*;
+import com.piggybank.app.backend.customers.debts.Credit;
+import com.piggybank.app.backend.customers.loans.Loan;
 import com.piggybank.app.backend.utils.FileHandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -174,22 +176,21 @@ public class CustomerStartController implements Initializable {
     @FXML
     private CheckBox outgoingCheckBox;
 
-    // OPTION 1: LIST VIEW
+    // TABLE VIEWS
     @FXML
-    private ListView<?> accountsListView;
+    private TableView<Account> startAssetsTableView;
+    @FXML
+    private TableView<Account> startLoansTableView;
 
     @FXML
-    private ListView<?> accountsListView1;
-
-    // OPTION 2: TABLE VIEW
+    private TableColumn<Account, String> startAssetNameColumn;
     @FXML
-    private TableView<?> accountsTableView;
+    private TableColumn<Account, Double> startAssetBalanceColumn;
 
     @FXML
-    private TableColumn<?, String> accountTableColumn;
-
+    private TableColumn<Account, String> startLoansNameColumn;
     @FXML
-    private TableColumn<?, Double> balanceTableColumn;
+    private TableColumn<Account, Double> startLoansBalanceColumn;
 
 
 
@@ -260,21 +261,56 @@ public class CustomerStartController implements Initializable {
     private Stage stage;
     private Scene scene;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // accountTableColumn.setCellFactory(new PropertyValueFactory<Customer, String>("account"));
-        // balanceTableColumn.setCellFactory(new PropertyValueFactory<Customer, Double>("balance"));
-
-    }
+    public ObservableList<Account> assets = FXCollections.observableArrayList();
+    public ObservableList<Account> loans = FXCollections.observableArrayList();
 
     public static Bank bank = UIMain.bank;
     public static Customer currentCustomer;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+
+    // method cannot be moved into initialize as currentCustomer is null
+    private void updateUI() {
+        // save different types of accounts into different lists and calculate their sums
+        if(currentCustomer != null) {
+            double sumOfAssets = 0.0;
+            double sumOfDebts = 0.0;
+            for(Account account : currentCustomer.getAccounts().values()) {
+                if (account.getClass().equals(Loan.class)) {
+                    loans.add(account);
+                    sumOfDebts += account.getBalance();
+                } else if (account.getClass().equals(Credit.class)) {
+                    loans.add(account);
+                    sumOfDebts += account.getBalance();
+                } else {
+                    assets.add(account);
+                    sumOfAssets += account.getBalance();
+                }
+            }
+
+            startAssetNameColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountName"));
+            startAssetBalanceColumn.setCellValueFactory(new PropertyValueFactory<Account, Double>("balance"));
+            startAssetBalanceColumn.setSortType(TableColumn.SortType.DESCENDING);
+
+            startLoansNameColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountName"));
+            startLoansBalanceColumn.setCellValueFactory(new PropertyValueFactory<Account, Double>("balance"));
+            startLoansBalanceColumn.setSortType(TableColumn.SortType.DESCENDING);
+
+            startAssetsTableView.setItems(assets);
+            startAssetsTableView.getSortOrder().add(startAssetBalanceColumn);
+            startLoansTableView.setItems(loans);
+            startLoansTableView.getSortOrder().add(startLoansBalanceColumn);
+
+            startActualTotalBalanceLabel.setText(String.valueOf(sumOfAssets));
+            startActualTotalDebtLabel.setText(String.valueOf(sumOfDebts));
+        }
+    }
+
     public void setCurrentCustomer(Customer customer){ //Method called from CustomerLoginController
         currentCustomer = customer;
-
-        //if there is a customer ID label:
-        //customerIdLabel.setText(currentCustomer.getUserId());
 
         if (customer instanceof CustomerPrivate) {
             CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
@@ -291,6 +327,8 @@ public class CustomerStartController implements Initializable {
 
             System.out.println("Customer Start Page. Logged in as: " + corporateCustomer.getCompanyName());
         }
+        updateUI();
+
     }
 
     public void showCurrentCustomer(){
@@ -310,6 +348,7 @@ public class CustomerStartController implements Initializable {
 
             System.out.println("Customer Start Page. Logged in as: " + corporateCustomer.getCompanyName());
         }
+        updateUI();
     }
 
     //-----------------SIDE MENU NAVIGATION----------------
