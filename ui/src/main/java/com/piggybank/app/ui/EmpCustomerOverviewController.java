@@ -1,6 +1,5 @@
 package com.piggybank.app.ui;
 
-import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
 import com.piggybank.app.backend.customers.Transaction;
@@ -25,18 +24,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class EmpCustomerOverviewController extends EmpMainController implements Initializable {
-    @FXML
-    private AnchorPane contentAnchorPane;
-    @FXML
-    private AnchorPane addAccountAnchorPane;
-    @FXML
-    private AnchorPane creditAnchorPane;
-    @FXML
-    private AnchorPane loanAnchorPane;
     @FXML
     private AnchorPane privateCustomerInfoAnchorPane;
     @FXML
@@ -62,10 +52,6 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     @FXML
     private Label accountBalanceLabel;
     @FXML
-    private Label loanAmountLabel;
-    @FXML
-    private Label toAccountLabel;
-    @FXML
     private Label balanceDebtLabel;
     @FXML
     private Label interestLabel;
@@ -83,34 +69,6 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     private Button makeTransactionButton;
     @FXML
     private Button manageFundsButton;
-    @FXML
-    private Button saveNewAccountButton;
-    @FXML
-    private ChoiceBox<String> accountsChoiceBox;
-    @FXML
-    private TextField newAccountNameField;
-    @FXML
-    private CheckBox loanCheckBox;
-    @FXML
-    private CheckBox creditCheckBox;
-    @FXML
-    private CheckBox standardCheckBox;
-    @FXML
-    private CheckBox halfMillionCheckBox;
-    @FXML
-    private CheckBox oneMillionCheckBox;
-    @FXML
-    private CheckBox twoHalfMillionCheckBox;
-    @FXML
-    private CheckBox fiveMillionCheckBox;
-    @FXML
-    private CheckBox fiveKCheckBox;
-    @FXML
-    private CheckBox tenKCheckBox;
-    @FXML
-    private CheckBox twentyFiveKCheckBox;
-    @FXML
-    private CheckBox fiftyKCheckBox;
     @FXML
     private CheckBox inTransactionCheckBox;
     @FXML
@@ -133,28 +91,8 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     private Parent root;
     private Stage stage;
 
-    private double amount;
-    private Account accountToIncrement;
-
-
-    //--------------- METHODS CONNECTED TO FXML ELEMENTS -------------------------
-    public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
-        root = loader.load();
-
-        EmpMainController controller = loader.getController();
-        controller.showCurrentEmployee();
-        EmpMainController.currentCustomer = null;
-
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
 
     //-----------------ACCOUNTS MANAGEMENT----------------------------
-
 
     public void manageFunds(ActionEvent event) throws IOException {
         if(currentAccount == null){
@@ -170,131 +108,17 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         }
     }
 
-    public void addAccount(ActionEvent event) {
-        contentAnchorPane.setVisible(false);
-        addAccountAnchorPane.setVisible(true);
-        loanAnchorPane.setVisible(false);
-        creditAnchorPane.setVisible(false);
-        standardCheckBox.setSelected(true);
-        toAccountLabel.setVisible(false);
-        accountsChoiceBox.setVisible(false);
+    public void addAccount(ActionEvent event) throws IOException { //addAccountButton
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpAddAccount.fxml"));
+        root = loader.load();
+
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
-    public void saveNewAccount() throws Exception {
-        if (standardCheckBox.isSelected()) {
-            bank.createAccount(currentCustomer.getUserId(), newAccountNameField.getText());
-        } else if (creditCheckBox.isSelected() && !newAccountNameField.getText().isBlank() && amount != 0.0) {
-            bank.createCredit(currentCustomer.getUserId(), newAccountNameField.getText(), Calendar.getInstance(), amount);
-        } else if (loanCheckBox.isSelected() && !newAccountNameField.getText().isBlank() && amount != 0.0 ) {
-            bank.createLoanAccount(currentCustomer.getUserId(), newAccountNameField.getText(), amount);
-        } else {
-            System.out.println("Wrong data input.");
-        }
-        contentAnchorPane.setVisible(true);
-        addAccountAnchorPane.setVisible(false);
-    }
-
-    //------------Add Standard Account--------------
-    public void toggleStandard() {
-        loanAnchorPane.setVisible(false);
-        creditAnchorPane.setVisible(false);
-        creditCheckBox.setSelected(false);
-        loanCheckBox.setSelected(false);
-        toAccountLabel.setVisible(false);
-        accountsChoiceBox.setVisible(false);
-    }
-
-    //------------Add Loan Account--------------
-    public void toggleLoan() {
-        loanAnchorPane.setVisible(true);
-        creditAnchorPane.setVisible(false);
-        creditCheckBox.setSelected(false);
-        standardCheckBox.setSelected(false);
-        toAccountLabel.setVisible(true);
-        accountsChoiceBox.setVisible(true);
-    }
-
-    public void toggleHalfMillionLoan() {
-        oneMillionCheckBox.setSelected(false);
-        twoHalfMillionCheckBox.setSelected(false);
-        fiveMillionCheckBox.setSelected(false);
-        amount = -500000.0;
-    }
-
-    public void toggleOneMillionLoan() {
-        halfMillionCheckBox.setSelected(false);
-        twoHalfMillionCheckBox.setSelected(false);
-        fiveMillionCheckBox.setSelected(false);
-        amount = -1000000.0;
-    }
-
-    public void toggleTwoHalfMillionLoan() {
-        halfMillionCheckBox.setSelected(false);
-        oneMillionCheckBox.setSelected(false);
-        fiveMillionCheckBox.setSelected(false);
-        amount = -2500000.0;
-    }
-
-    public void toggleFiveMillionLoan() {
-        halfMillionCheckBox.setSelected(false);
-        oneMillionCheckBox.setSelected(false);
-        twoHalfMillionCheckBox.setSelected(false);
-        amount = -5000000.0;
-    }
-
-    //------------Add Credit Account--------------
-    public void toggleCredit() {
-        loanAnchorPane.setVisible(false);
-        creditAnchorPane.setVisible(true);
-        standardCheckBox.setSelected(false);
-        loanCheckBox.setSelected(false);
-        toAccountLabel.setVisible(true);
-        accountsChoiceBox.setVisible(true);
-    }
-
-    public void toggleFiveKCredit() {
-        tenKCheckBox.setSelected(false);
-        twentyFiveKCheckBox.setSelected(false);
-        fiftyKCheckBox.setSelected(false);
-        amount = -25000.0;
-    }
-
-    public void toggleTenKCredit() {
-        fiveKCheckBox.setSelected(false);
-        twentyFiveKCheckBox.setSelected(false);
-        fiftyKCheckBox.setSelected(false);
-        amount = -10000.0;
-    }
-
-    public void toggleTwentyFiveKCredit() {
-        fiveKCheckBox.setSelected(false);
-        tenKCheckBox.setSelected(false);
-        fiftyKCheckBox.setSelected(false);
-        amount = -25000.0;
-    }
-
-    public void toggleFiftyKCredit() {
-        fiveKCheckBox.setSelected(false);
-        tenKCheckBox.setSelected(false);
-        twentyFiveKCheckBox.setSelected(false);
-        amount = -50000.0;
-    }
-
-    //------------SELECT ACCOUNT TO CREDIT------------------
-    public void showAccountToCredit(ActionEvent event) {
-            accountToIncrement = currentCustomersAccounts.get(accountsChoiceBox.getValue());
-            String amountStr = Double.toString(Math.abs(amount));
-    }
-
-    //------------SELECT ACCOUNT TO LOAN------------------
-    public void showAccountToLoan(ActionEvent event) {
-            accountToIncrement = currentCustomersAccounts.get(accountsChoiceBox.getValue());
-            String amountStr = Double.toString(Math.abs(amount));
-            loanAmountLabel.setText(accountToIncrement.getAccountName());
-            loanAmountLabel.setText(amountStr);
-    }
 //----------------MANAGE TRANSACTIONS--------------------------
-
     public void makeTransaction(ActionEvent event) {
         //wait until ui is built for this
     }
@@ -332,7 +156,6 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 	}
 
 //----------------SETUP SCENE-------------------------------------
-
     public void initialize(URL arg0, ResourceBundle arg1) {
         accountsListView.getItems().addAll(currentCustomersAccounts.keySet());
         interestLabel.setVisible(false);
@@ -374,7 +197,6 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
                     initialAmountLabel.setVisible(false);
                 }
 
-
                 senderColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("senderAccountId"));
                 receiverColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("receiverAccountId"));
                 amountColumn.setCellValueFactory(new PropertyValueFactory<Transaction, Double>("amount"));
@@ -384,21 +206,20 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
                 transactionsTable.setItems(currentAccount.getTransactions());
             }
         });
+    }
 
-        String[] standardAccounts = new String[currentCustomersAccounts.size()]; //not pretty I know...
-        int counter = 0;
-        for (String key : currentCustomersAccounts.keySet()) {
-            if (currentCustomersAccounts.get(key) instanceof Credit || currentCustomersAccounts.get(key) instanceof Loan) {
-                //NOTHING
-            } else {
-                standardAccounts[counter] = key;
-                counter++;
-            }
+    public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
+        root = loader.load();
 
-        }
-        accountsChoiceBox.getItems().addAll(standardAccounts);
-        accountsChoiceBox.setOnAction(this::showAccountToCredit);
-        accountsChoiceBox.setOnAction(this::showAccountToLoan);
+        EmpMainController controller = loader.getController();
+        controller.showCurrentEmployee();
+        EmpMainController.currentCustomer = null;
+
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void showCurrentEmployee() {
@@ -423,9 +244,6 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
             companyIdLabel.setText(currentCorporate.getUserId());
             companyOrgNrLabel.setText(currentCorporate.getOrgNumber());
         }
-
-        addAccountAnchorPane.setVisible(false);
-        contentAnchorPane.setVisible(true);
     }
 
 }
