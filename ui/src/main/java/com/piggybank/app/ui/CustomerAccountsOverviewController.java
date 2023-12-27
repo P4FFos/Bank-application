@@ -23,15 +23,8 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
     private CheckBox accountsIncomingCheckBox;
     @FXML
     private CheckBox accountsOutgoingCheckBox;
-
-    @FXML
-    private Label headerActualIdLabel;
-    @FXML
-    private Label headerCustomerNameLabel;
     @FXML
     private Label infoActualUserIdLabel;
-    @FXML
-    private Label infoNameLabel;
     @FXML
     private TableView<Transaction> transactionsTable;
     @FXML
@@ -56,6 +49,20 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
     public void initialize(URL arg0, ResourceBundle arg1) { //Populates accountsListView with elements in accounts, selection "gets" an account
         showCurrentCustomer();
         initializeTables();
+    }
+
+    @Override
+    public void showCurrentCustomer(){
+        super.showCurrentCustomer();
+        if (currentCustomer instanceof CustomerPrivate) {
+            CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
+            infoActualUserIdLabel.setText(privateCustomer.getUserId());
+            System.out.println("Customer Accounts Overview Page. Logged in as: " + privateCustomer.getFullName());
+        } else {
+            CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
+            infoActualUserIdLabel.setText(corporateCustomer.getUserId());
+            System.out.println("Customer Accounts Overview Page. Logged in as: " + corporateCustomer.getCompanyName());
+        }
     }
 
     public void initializeTables(){
@@ -89,51 +96,6 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
             }
         });
     }
-
-    public void setCurrentCustomer(Customer customer){ //Method called from CustomerLoginController
-        currentCustomer = customer;
-
-        if (customer instanceof CustomerPrivate) {
-            CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
-            headerCustomerNameLabel.setText(privateCustomer.getFullName());
-            infoNameLabel.setText(privateCustomer.getFullName());
-            infoActualUserIdLabel.setText(privateCustomer.getUserId());
-            headerActualIdLabel.setText(privateCustomer.getUserId());
-
-            System.out.println("Customer Start Page. Logged in as: " + privateCustomer.getFullName());
-        } else {
-            CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
-            headerCustomerNameLabel.setText(corporateCustomer.getCompanyName());
-            infoNameLabel.setText(corporateCustomer.getCompanyName());
-            infoActualUserIdLabel.setText(corporateCustomer.getUserId());
-            headerActualIdLabel.setText(corporateCustomer.getUserId());
-
-            System.out.println("Customer Start Page. Logged in as: " + corporateCustomer.getCompanyName());
-        }
-    }
-
-    public void showCurrentCustomer(){
-
-        if (currentCustomer instanceof CustomerPrivate) {
-            CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
-            headerCustomerNameLabel.setText(privateCustomer.getFullName());
-            infoNameLabel.setText(privateCustomer.getFullName());
-            infoActualUserIdLabel.setText(privateCustomer.getUserId());
-            headerActualIdLabel.setText(privateCustomer.getUserId());
-
-            System.out.println("Customer Start Page. Logged in as: " + privateCustomer.getFullName());
-        } else {
-            CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
-            headerCustomerNameLabel.setText(corporateCustomer.getCompanyName());
-            infoNameLabel.setText(corporateCustomer.getCompanyName());
-            infoActualUserIdLabel.setText(corporateCustomer.getUserId());
-            headerActualIdLabel.setText(corporateCustomer.getUserId());
-
-            System.out.println("Customer Start Page. Logged in as: " + corporateCustomer.getCompanyName());
-        }
-    }
-
-
 
     // filter transactions to show all transactions
     public void toggleAllTransactions() {

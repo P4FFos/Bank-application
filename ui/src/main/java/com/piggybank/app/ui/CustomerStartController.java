@@ -56,7 +56,7 @@ public class CustomerStartController implements Initializable {
     @FXML
     private Label startActualTotalDebtLabel;
     @FXML
-    private Label startNameLabel;
+    private Label infoNameLabel;
     @FXML
     private TableView<Account> assetsTableView;
     @FXML
@@ -90,14 +90,14 @@ public class CustomerStartController implements Initializable {
         if (currentCustomer instanceof CustomerPrivate) {
             CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
             headerCustomerNameLabel.setText(privateCustomer.getFullName());
-            startNameLabel.setText(privateCustomer.getFullName());
+            infoNameLabel.setText(privateCustomer.getFullName());
             headerActualIdLabel.setText(privateCustomer.getUserId());
 
             System.out.println("Customer Start Page. Logged in as: " + privateCustomer.getFullName());
         } else {
             CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
             headerCustomerNameLabel.setText(corporateCustomer.getCompanyName());
-            startNameLabel.setText(corporateCustomer.getCompanyName());
+            infoNameLabel.setText(corporateCustomer.getCompanyName());
             headerActualIdLabel.setText(corporateCustomer.getUserId());
 
             System.out.println("Customer Start Page. Logged in as: " + corporateCustomer.getCompanyName());
@@ -172,9 +172,6 @@ public class CustomerStartController implements Initializable {
     public void goToTransferFunds(ActionEvent event) throws IOException { //sideMenuTransferFundsButton
         loader = new FXMLLoader(getClass().getResource("CustomerTransferFunds.fxml"));
         root = loader.load();
-
-        CustomerTransferFundsController controller = loader.getController();
-        controller.showCurrentCustomer();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

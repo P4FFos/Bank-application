@@ -4,7 +4,6 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -102,52 +101,6 @@
                 </Button>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="startAnchorPane" layoutX="175.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="470.0" visible="false">
-            <children>
-                <Label fx:id="start_Hello_Label" layoutX="20.0" layoutY="10.0" text="Hello, ">
-                    <font>
-                        <Font name="Kodchasan Regular" size="20.0" />
-                    </font>
-                </Label>
-                <Label fx:id="startNameLabel" layoutX="85.0" layoutY="10.0" text="Firstname Lastname">
-                    <font>
-                        <Font name="Kodchasan Regular" size="20.0" />
-                    </font>
-                </Label>
-                <Label fx:id="startAssetsLabel" layoutX="20.0" layoutY="50.0" text="ASSETS">
-                    <font>
-                        <Font name="Kodchasan Regular" size="13.0" />
-                    </font>
-                </Label>
-                <Label fx:id="startLoansLabel" layoutX="250.0" layoutY="50.0" text="DEBTS">
-                    <font>
-                        <Font name="Kodchasan Regular" size="13.0" />
-                    </font>
-                </Label>
-                <ListView fx:id="startAssetsListView" layoutX="20.0" layoutY="70.0" prefHeight="70.0" prefWidth="190.0" />
-                <ListView fx:id="startLoansListView" layoutX="250.0" layoutY="70.0" prefHeight="70.0" prefWidth="190.0" />
-                <Label fx:id="startTotalBalanceLabel" layoutX="70.0" layoutY="150.0" text="Total Balance:">
-                    <font>
-                        <Font name="Kodchasan Regular" size="10.0" />
-                    </font>
-                </Label>
-                <Label fx:id="startActualTotalBalanceLabel" alignment="CENTER_RIGHT" centerShape="false" layoutX="144.0" layoutY="150.0" prefHeight="13.0" prefWidth="61.0" text="###">
-                    <font>
-                        <Font name="Kodchasan Regular" size="10.0" />
-                    </font>
-                </Label>
-                <Label fx:id="startTotalDebtLabel" layoutX="320.0" layoutY="150.0" text="Total Debt:">
-                    <font>
-                        <Font name="Kodchasan Regular" size="10.0" />
-                    </font>
-                </Label>
-                <Label fx:id="startActualTotalDebtLabel" alignment="CENTER_RIGHT" centerShape="false" layoutX="370.0" layoutY="150.0" prefHeight="13.0" prefWidth="68.0" text="###">
-                    <font>
-                        <Font name="Kodchasan Regular" size="10.0" />
-                    </font>
-                </Label>
-            </children>
-        </AnchorPane>
         <AnchorPane fx:id="infoAnchorPane" layoutX="175.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="65.0" prefWidth="470.0">
             <children>
                 <Label fx:id="infoNameLabel" layoutX="10.0" layoutY="10.0" text="Firstname Lastname">
@@ -168,7 +121,7 @@
                 <Separator layoutX="5.0" layoutY="60.0" prefHeight="5.0" prefWidth="461.0" />
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="transferAnchorPane" layoutX="175.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="470.0" xmlns:fx="http://javafx.com/fxml" stylesheets="/style.css">
+        <AnchorPane fx:id="transferAnchorPane" layoutX="175.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="470.0" stylesheets="/style.css" xmlns:fx="http://javafx.com/fxml">
             <children>
                 <Label fx:id="transferNewTransferLabel" layoutX="14.0" layoutY="-4.0" text="NEW TRANSFER">
                     <font>
