@@ -102,6 +102,9 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         initialLabel.setVisible(false);
         initialAmountLabel.setVisible(false);
 
+		inTransactionCheckBox.setSelected(true);
+		outTransactionCheckBox.setSelected(true);
+
         accountsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
@@ -184,25 +187,8 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         stage.show();
     }
 
-	public void toggleIncomingTransactions(){ // filters transactions to only show incoming
-		if(inTransactionCheckBox.isSelected()){
-			outTransactionCheckBox.setSelected(false);
-			ObservableList<Transaction> incomingTransactions = FXCollections.observableArrayList();
-			for(Transaction transaction : currentAccount.getTransactions()){
-				if(transaction.getAmount() > 0){
-					incomingTransactions.add(transaction);
-				}
-			}
-			transactionsTable.setItems(incomingTransactions);
-		}
-		else{
-			transactionsTable.setItems(currentAccount.getTransactions());
-		}
-	}
-
-	public void toggleOutgoingTransactions(){ // filters transactions to only show outgoing
-		if(outTransactionCheckBox.isSelected()){
-			inTransactionCheckBox.setSelected(false);
+	public void toggleIncomingTransactions(){
+		if((!inTransactionCheckBox.isSelected() && outTransactionCheckBox.isSelected())){
 			ObservableList<Transaction> outgoingTransactions = FXCollections.observableArrayList();
 			for(Transaction transaction : currentAccount.getTransactions()){
 				if(transaction.getAmount() < 0){
@@ -210,8 +196,25 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 				}
 			}
 			transactionsTable.setItems(outgoingTransactions);
+		}else if(!inTransactionCheckBox.isSelected() && !outTransactionCheckBox.isSelected()){
+			inTransactionCheckBox.setSelected(true);
+		}else{
+			transactionsTable.setItems(currentAccount.getTransactions());
 		}
-		else{
+	}
+
+	public void toggleOutgoingTransactions(){
+		if(!outTransactionCheckBox.isSelected() && inTransactionCheckBox.isSelected()){
+			ObservableList<Transaction> incomingTransactions = FXCollections.observableArrayList();
+			for(Transaction transaction : currentAccount.getTransactions()){
+				if(transaction.getAmount() > 0){
+					incomingTransactions.add(transaction);
+				}
+			}
+			transactionsTable.setItems(incomingTransactions);
+		} else if(!outTransactionCheckBox.isSelected() && !inTransactionCheckBox.isSelected()){
+			outTransactionCheckBox.setSelected(true);
+		}else{
 			transactionsTable.setItems(currentAccount.getTransactions());
 		}
 	}
