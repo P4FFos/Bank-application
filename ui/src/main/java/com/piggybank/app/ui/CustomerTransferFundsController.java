@@ -3,6 +3,7 @@ package com.piggybank.app.ui;
 import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
+import com.piggybank.app.backend.exceptions.InsufficientBalanceException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -98,11 +99,14 @@ public class CustomerTransferFundsController extends CustomerStartController imp
         double amount = Double.parseDouble(transferEnterAmountTextField.getText());
         LocalDate date = transferEnterDatePicker.getValue();
         String message = transferEnterMessageTextField.getText();
-
-        bank.transfer(currentAccount.getAccountId(), receiverAccountId, amount, message, date);
-        accountsTableView.refresh();
-        transferCompleteTransferButton.setDisable(true);
-        transferCompleteTransferButton.getStyleClass().add("button-all-green");
+        try {
+            bank.transfer(currentAccount.getAccountId(), receiverAccountId, amount, message, date);
+            accountsTableView.refresh();
+            transferCompleteTransferButton.setDisable(true);
+            transferCompleteTransferButton.getStyleClass().add("button-all-green");
+        } catch(InsufficientBalanceException e) {
+            transferEnterAmountTextField.getStyleClass().add("text-field-invalid");
+        }
     }
 
     private boolean validateInputs(String receiverAccountId) {

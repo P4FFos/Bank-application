@@ -1,7 +1,9 @@
 package com.piggybank.app.ui;
 
+import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
+import com.piggybank.app.backend.exceptions.InsufficientBalanceException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -51,7 +53,10 @@ public class EmpMakeTransactionController extends EmpMainController implements I
     private Label transferDoneLabel;
     @FXML
     private Label incorrectDetailsLabel;
+    @FXML
+    private Label insufficientBalanceLabel;
 
+    private Account senderAccount;
 
     public void initialize(URL arg0, ResourceBundle arg1) {
         transferDoneLabel.setVisible(false);
@@ -67,27 +72,64 @@ public class EmpMakeTransactionController extends EmpMainController implements I
     }
 
     public void selectSendingAccount(){
-
+        String accountId = accountsListView.getSelectionModel().getSelectedItem();
+        if(accountId != null) {
+            senderAccount = currentCustomer.getAccount(accountId);
+        }
     }
     public void toggleOneHundred(){
+        if(oneHundredCheckBox.isSelected()) {
+            amountTextField.setText("100.0");
 
+            twoHundredCheckBox.setSelected(false);
+            fiveHundredCheckBox.setSelected(false);
+            oneThousandCheckBox.setSelected(false);
+        } else {
+            amountTextField.clear();
+        }
     }
     public void toggleTwoHundred(){
+        if(twoHundredCheckBox.isSelected()) {
+            amountTextField.setText("200.0");
 
+            oneHundredCheckBox.setSelected(false);
+            fiveHundredCheckBox.setSelected(false);
+            oneThousandCheckBox.setSelected(false);
+        } else {
+            amountTextField.clear();
+        }
     }
     public void toggleFiveHundred(){
+        if(fiveHundredCheckBox.isSelected()) {
+            amountTextField.setText("500.0");
 
+            oneHundredCheckBox.setSelected(false);
+            twoHundredCheckBox.setSelected(false);
+            oneThousandCheckBox.setSelected(false);
+        } else {
+            amountTextField.clear();
+        }
     }
     public void toggleOneThousand(){
+        if(oneThousandCheckBox.isSelected()) {
+            amountTextField.setText("1000.0");
+
+            oneHundredCheckBox.setSelected(false);
+            twoHundredCheckBox.setSelected(false);
+            fiveHundredCheckBox.setSelected(false);
+        } else {
+            amountTextField.clear();
+        }
 
     }
     public void transferFunds() {
         transferDoneLabel.setVisible(false);
         incorrectDetailsLabel.setVisible(false);
+        insufficientBalanceLabel.setVisible(false);
 
         try {
             // prepare parameters for transfer between accounts
-            String accountId = accountsListView.getSelectionModel().getSelectedItem();
+            String accountId = senderAccount.getAccountId();
             String targetAccountId = recieverAccountTextField.getText();
             double amount = Double.parseDouble(amountTextField.getText());
             String message = String.format("Handled by employee: %s", currentEmployee.getUserId());
@@ -95,7 +137,9 @@ public class EmpMakeTransactionController extends EmpMainController implements I
 
             bank.transfer(accountId, targetAccountId, amount, message, date);
             transferDoneLabel.setVisible(true);
-
+        } catch(InsufficientBalanceException e) {
+            insufficientBalanceLabel.setVisible(true);
+            insufficientBalanceLabel.setText(String.format("Insufficient balance on account. Only %.2f available.", senderAccount.getBalance()));
         } catch (Exception e) {
             incorrectDetailsLabel.setVisible(true);
         }

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.piggybank.app.backend.customers.debts.Credit;
 import com.piggybank.app.backend.customers.loans.Loan;
 import com.piggybank.app.backend.exceptions.AccountNotFoundException;
+import com.piggybank.app.backend.exceptions.InsufficientBalanceException;
 import com.piggybank.app.backend.utils.TruncationUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -103,7 +104,7 @@ public class Account {
             Transaction withdraw = new Transaction(receiverAccountId, accountId, 0-amount, "", date);
             transactions.add(withdraw);
         } else {
-            throw new Exception("Not enough balance in account for this operation.");
+            throw new InsufficientBalanceException("Not enough balance in account for this operation.");
         }
     }
     // used for only withdrawing
@@ -113,7 +114,7 @@ public class Account {
             Transaction withdraw = new Transaction("None", accountId, 0 - amount, "", date);
             transactions.add(withdraw);
         } else {
-            throw new Exception("Not enough balance in account for this operation.");
+            throw new InsufficientBalanceException("Not enough balance in account for this operation.");
         }
     }
 }
