@@ -17,30 +17,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.shape.Circle;
+
 
 public class CustomerStartController implements Initializable {
 
-    @FXML
-    private AnchorPane sideMenuAnchorPane;
-    @FXML
-    private AnchorPane headerAnchorPane;
-    @FXML
-    private AnchorPane startAnchorPane;
     @FXML
     private Button headerLogoutButton;
     @FXML
@@ -58,167 +48,27 @@ public class CustomerStartController implements Initializable {
     @FXML
     private Button sideMenuTransferFundsButton;
     @FXML
-    private Circle headerBankLogotype;
-    @FXML
-    private ImageView headerIconImageView;
-    @FXML
-    private ImageView headerIconShadedImageView;
-    @FXML
-    private Label headerBankNameLabel;
-    @FXML
     private Label headerActualIdLabel;
     @FXML
     private Label headerCustomerNameLabel;
-    @FXML
-    private Label headerIdLabel;
-    @FXML
-    private Label sideMenuLabel;
     @FXML
     private Label startActualTotalBalanceLabel;
     @FXML
     private Label startActualTotalDebtLabel;
     @FXML
-    private Label startAssetsLabel;
-    @FXML
-    private Label startLoansLabel;
-    @FXML
     private Label startNameLabel;
     @FXML
-    private Label start_Hello_Label;
-    @FXML
-    private Label startTotalBalanceLabel;
-    @FXML
-    private Label startTotalDebtLabel;
-    @FXML
-    private Separator horisontalSeparator;
-    @FXML
-    private Separator verticalSeparator;
-
-
-
-
-    /* 1.3 CUSTOMER INFO */
-    @FXML
-    private AnchorPane infoAnchorPane;
-
-    @FXML
-    private Label infoNameLabel;
-
-    @FXML
-    private Label infoAccountIdLabel;
-
-    @FXML
-    private Label infoActualAccountIdLabel;
-
-
-    /* 1.4 BODY [GENERAL] : PARENT FOR BODY SIZING */
-    @FXML
-    private AnchorPane bodyAnchorPane;
-
-
-    /* 1.4.2 BODY [ACCOUNT OVERVIEW] */
-    @FXML
-    private AnchorPane accountsAnchorPane;
-
-    @FXML
-    private Label accountsMyAccountsLabel;
-
-    @FXML
-    private Label accountsAccountHistoryLabel;
-
-    @FXML
-    private Label displayLabel;
-
-    @FXML
-    private CheckBox allCheckBox;
-
-    @FXML
-    private CheckBox incomingCheckBox;
-
-    @FXML
-    private CheckBox outgoingCheckBox;
-
-    @FXML
     private TableView<Account> assetsTableView;
-
     @FXML
     private TableColumn<Account, String> assetsNameTableColumn;
-
     @FXML
     private TableColumn<Account, Double> assetsBalanceTableColumn;
-
 	@FXML
     private TableView<Account> debtsTableView;
-
     @FXML
     private TableColumn<Account, String> debtsNameTableColumn;
-
     @FXML
     private TableColumn<Account, Double> debtsBalanceTableColumn;
-
-
-
-    /* 1.4.3 BODY [TRANSFER FUNDS] */
-    @FXML
-    private AnchorPane transferAnchorPane;
-
-
-    /* 1.4.4 BODY [LOANS] */
-    @FXML
-    private AnchorPane loansAnchorPane;
-
-
-    /* 1.4.5 BODY [FAQ] */
-    @FXML
-    private Label faqHeaderLabel;
-
-    @FXML
-    private AnchorPane faqAnchorPane;
-
-    @FXML
-    private Label faqQuestion1Label;
-
-    @FXML
-    private Label faqQuestion2Label;
-
-    @FXML
-    private Label faqQuestion3Label;
-
-    @FXML
-    private Label faqQuestion4Label;
-
-    @FXML
-    private Label faqQuestion5Label;
-
-    @FXML
-    private Label faqQuestion6Label;
-
-    @FXML
-    private Label faqQuestion7Label;
-
-    @FXML
-    private Label faqAnswer1Label;
-
-    @FXML
-    private Label faqAnswer2Label;
-
-    @FXML
-    private Label faqAnswer3Label;
-
-    @FXML
-    private Label faqAnswer4Label;
-
-    @FXML
-    private Label faqAnswer5Label;
-
-    @FXML
-    private Label faqAnswer5Label1;
-
-    @FXML
-    private Label faqAnswer6Label;
-
-    @FXML
-    private Label faqAnswer7Label;
 
     private FXMLLoader loader;
     private Parent root;
@@ -272,7 +122,7 @@ public class CustomerStartController implements Initializable {
 		ObservableList<Account> assetsOL = FXCollections.observableArrayList();
 		ObservableList<Account> debtsOL = FXCollections.observableArrayList();
 
-		for(Account account : currentCustomer.getAccounts().values()){
+		for(Account account : currentCustomersAccounts.values()){
 			if(account instanceof Credit || account instanceof Loan){
 				debtsOL.add(account);
 			}else{
@@ -286,7 +136,7 @@ public class CustomerStartController implements Initializable {
 		// set total account balances (label below the tables)
 		double totalAssetsBalance = 0;
 		double totalDebtsBalance = 0;
-		for(Account account : currentCustomer.getAccounts().values()){
+		for(Account account : currentCustomersAccounts.values()){
 			if(account instanceof Credit || account instanceof Loan){
 				totalDebtsBalance = totalDebtsBalance + account.getBalance();
 			}else{
@@ -303,10 +153,6 @@ public class CustomerStartController implements Initializable {
         loader = new FXMLLoader(getClass().getResource("CustomerStart.fxml"));
         root = loader.load();
 
-        CustomerStartController controller = loader.getController();
-        controller.showCurrentCustomer();
-		controller.showStartAccountOverviews();
-
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -316,9 +162,6 @@ public class CustomerStartController implements Initializable {
     public void goToAccountsOverview(ActionEvent event) throws IOException { //sideMenuAccountsOverviewButton
         loader = new FXMLLoader(getClass().getResource("CustomerAccountsOverview.fxml"));
         root = loader.load();
-
-        CustomerAccountsOverviewController controller = loader.getController();
-        controller.showCurrentCustomer();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
