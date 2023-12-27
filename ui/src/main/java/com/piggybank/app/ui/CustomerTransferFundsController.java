@@ -240,6 +240,7 @@ public class CustomerTransferFundsController extends CustomerStartController{
         accountsTableView.getSortOrder().add(accountBalanceColumn);
 
         transferEnterDatePicker.setValue(LocalDate.now());
+        transferCompleteTransferButton.setDisable(false);
     }
 
     public void completeTransfer(ActionEvent event) throws Exception {
@@ -248,6 +249,7 @@ public class CustomerTransferFundsController extends CustomerStartController{
 
         String receiverAccountId = transferEnterRecieverAccountTextField.getText();
 
+        // checks and validates all fields in transaction window
         if(!validateInputs(receiverAccountId)) {
             return; // stop execution if validation fail
         }
@@ -258,17 +260,24 @@ public class CustomerTransferFundsController extends CustomerStartController{
 
         bank.transfer(currentAccount.getAccountId(), receiverAccountId, amount, message, date);
         accountsTableView.refresh();
+        transferCompleteTransferButton.setDisable(true);
+        transferCompleteTransferButton.getStyleClass().add("button-all-green");
     }
 
     private boolean validateInputs(String receiverAccountId) {
         boolean isTermsChecked = transferUnderstandCheckBox.isSelected();
         boolean isPasswordValid = currentCustomer.validatePassword(transferPasswordField.getText());
         boolean isAmountNotEmpty = !transferEnterAmountTextField.getText().isEmpty();
-        boolean isOtherAccount = !transferEnterRecieverAccountTextField.getText().isEmpty();
+        boolean isReceiverAccount = !transferEnterRecieverAccountTextField.getText().isEmpty(); // if receiver account has an input
 
-        // since account is not selected automatically, then check with Optional that may be null or not
+        // since account is not selected automatically in TableView, then check with Optional that may be null or not
         Optional<Account> selectedAccount = Optional.ofNullable(accountsTableView.getSelectionModel().getSelectedItem());
-        boolean isCurrentAccount = selectedAccount.isPresent();
+        boolean isSelectedAccount = selectedAccount.isPresent();
+
+        // if an account is selected in TableView, get the account ID
+        if(selectedAccount.isPresent()) {
+            currentAccount = currentCustomer.getAccount(selectedAccount.get().getAccountId());
+        }
 
         boolean isNotSameAccount = true;
         // when an account is selected in TableView & account name specified, then check if strings are equal
@@ -277,14 +286,14 @@ public class CustomerTransferFundsController extends CustomerStartController{
         }
 
         // to avoid further repetitive code, applying one method updateValidationStyle
-        updateValidationStyle(isCurrentAccount, accountsTableView);
-        updateValidationStyle(isOtherAccount, transferEnterRecieverAccountTextField);
-        updateValidationStyle(isNotSameAccount, transferEnterRecieverAccountTextField);
+        updateValidationStyle(isSelectedAccount, accountsTableView);
+        updateValidationStyle(isReceiverAccount, transferEnterRecieverAccountTextField); // needs to run before isNotSameAccount
+        updateValidationStyle(isNotSameAccount, transferEnterRecieverAccountTextField); // they operate on the same field
         updateValidationStyle(isTermsChecked, transferUnderstandCheckBox);
         updateValidationStyle(isPasswordValid, transferPasswordField);
         updateValidationStyle(isAmountNotEmpty, transferEnterAmountTextField);
 
-        return isCurrentAccount && isOtherAccount && isNotSameAccount && isTermsChecked && isPasswordValid && isAmountNotEmpty;
+        return isSelectedAccount && isReceiverAccount && isNotSameAccount && isTermsChecked && isPasswordValid && isAmountNotEmpty;
     }
 
     private void updateValidationStyle(boolean condition, Control control) {
@@ -304,6 +313,8 @@ public class CustomerTransferFundsController extends CustomerStartController{
         removeInvalidStyle(transferEnterAmountTextField);
         removeInvalidStyle(transferEnterRecieverAccountTextField);
         removeInvalidStyle(accountsTableView);
+        transferCompleteTransferButton.getStyleClass().remove("button-all-green");
+
     }
 
     // toggle button in CustomerTransferFunds.fxml file
