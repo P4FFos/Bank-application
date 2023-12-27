@@ -3,12 +3,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.MotionBlur?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -106,7 +106,7 @@
                         <Font name="Kodchasan Regular" size="20.0" />
                     </font>
                 </Label>
-                <Label fx:id="startNameLabel" layoutX="85.0" layoutY="10.0" text="Firstname Lastname">
+                <Label fx:id="infoNameLabel" layoutX="85.0" layoutY="10.0" text="Firstname Lastname">
                     <font>
                         <Font name="Kodchasan Regular" size="20.0" />
                     </font>
@@ -121,13 +121,13 @@
                         <Font name="Kodchasan Regular" size="13.0" />
                     </font>
                 </Label>
-				<TableView fx:id="assetsTableView" layoutX="20.0" layoutY="70.0" prefHeight="120.0" prefWidth="190.0" >
+				<TableView fx:id="assetsTableView" layoutX="20.0" layoutY="70.0" prefHeight="120.0" prefWidth="190.0">
 					<columns>
 						<TableColumn fx:id="assetsNameTableColumn" prefWidth="120.0" text="Account name" />
 						<TableColumn fx:id="assetsBalanceTableColumn" prefWidth="69.0" text="Balance" />
 					</columns>
 				</TableView>
-				<TableView fx:id="debtsTableView" layoutX="250.0" layoutY="70.0" prefHeight="120.0" prefWidth="190.0" >
+				<TableView fx:id="debtsTableView" layoutX="250.0" layoutY="70.0" prefHeight="120.0" prefWidth="190.0">
 					<columns>
 						<TableColumn fx:id="debtsNameTableColumn" prefWidth="120.0" text="Account name" />
 						<TableColumn fx:id="debtsBalanceTableColumn" prefWidth="69.0" text="Balance" />
