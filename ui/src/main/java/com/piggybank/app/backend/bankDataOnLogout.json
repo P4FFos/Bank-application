@@ -19,10 +19,22 @@
         "city" : "Gothenburg"
       },
       "accounts" : {
+        "A00005" : {
+          "accountType" : "loan",
+          "accountName" : "House loan account",
+          "accountId" : "A00005",
+          "balance" : -1000000.0,
+          "transactions" : [ ],
+          "initialAmount" : -1000000.0,
+          "interestRate" : 5.0,
+          "minPaymentPercent" : 1.0,
+          "minPaymentAmount" : -60000.0
+        },
         "A00002" : {
+          "accountType" : "account",
           "accountName" : "Savings account",
           "accountId" : "A00002",
-          "balance" : 1000.0,
+          "balance" : 1300.0,
           "transactions" : [ {
             "receiverAccountId" : "A00002",
             "senderAccountId" : "A00001",
@@ -41,12 +53,26 @@
             "amount" : -400.0,
             "message" : "",
             "date" : [ 2023, 12, 12 ]
+          }, {
+            "receiverAccountId" : "A00002",
+            "senderAccountId" : "A00003",
+            "amount" : 300.0,
+            "message" : "",
+            "date" : [ 2023, 12, 25 ]
           } ]
         },
+        "A00004" : {
+          "accountType" : "account",
+          "accountName" : "Test Acc",
+          "accountId" : "A00004",
+          "balance" : 0.0,
+          "transactions" : [ ]
+        },
         "A00003" : {
+          "accountType" : "account",
           "accountName" : "Test account",
           "accountId" : "A00003",
-          "balance" : 2500.0,
+          "balance" : 2200.0,
           "transactions" : [ {
             "receiverAccountId" : "A00003",
             "senderAccountId" : "A00002",
@@ -59,6 +85,12 @@
             "amount" : 300.0,
             "message" : "Money from John",
             "date" : [ 2023, 12, 11 ]
+          }, {
+            "receiverAccountId" : "A00002",
+            "senderAccountId" : "A00003",
+            "amount" : -300.0,
+            "message" : "",
+            "date" : [ 2023, 12, 25 ]
           } ]
         }
       },
@@ -80,6 +112,7 @@
       },
       "accounts" : {
         "A00001" : {
+          "accountType" : "account",
           "accountName" : "Daily account",
           "accountId" : "A00001",
           "balance" : 600.0,

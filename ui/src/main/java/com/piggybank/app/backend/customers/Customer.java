@@ -44,6 +44,12 @@ public abstract class Customer extends User {
         return accounts;
     }
 
+    // Used for displaying changes in customer accounts layout
+    @JsonIgnore
+    public ObservableList<Account> getAccountsList() {
+        return FXCollections.observableArrayList(accounts.values());
+    }
+
 	@JsonIgnore
 	public ObservableList<Account> getAccountsOL() {
 		return FXCollections.observableArrayList(accounts.values());

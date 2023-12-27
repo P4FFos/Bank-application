@@ -1,10 +1,7 @@
 package com.piggybank.app.ui;
 
 import com.piggybank.app.backend.Bank;
-import com.piggybank.app.backend.customers.Account;
-import com.piggybank.app.backend.customers.Customer;
-import com.piggybank.app.backend.customers.CustomerCorporate;
-import com.piggybank.app.backend.customers.CustomerPrivate;
+import com.piggybank.app.backend.customers.*;
 import com.piggybank.app.backend.customers.debts.Credit;
 import com.piggybank.app.backend.customers.loans.Loan;
 import com.piggybank.app.backend.utils.FileHandler;
@@ -263,7 +260,7 @@ public class CustomerStartController implements Initializable {
 
 	@Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        
+
     }
 
     public void setCurrentCustomer(Customer customer){ //Method called from CustomerLoginController

@@ -206,6 +206,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
                     initialAmountLabel.setVisible(false);
                 }
 
+                // creates factory method used when populating transactionsTable
                 senderColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("senderAccountId"));
                 receiverColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("receiverAccountId"));
                 amountColumn.setCellValueFactory(new PropertyValueFactory<Transaction, Double>("amount"));

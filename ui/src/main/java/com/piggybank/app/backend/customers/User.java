@@ -73,6 +73,10 @@ public abstract class User {
         }
     }
 
+    public boolean validatePassword(String inputString) {
+        return password.equals(inputString);
+    }
+
     // setters for ContactCard information
     @JsonIgnore
     public void setEmail(String newEmail) throws Exception {
