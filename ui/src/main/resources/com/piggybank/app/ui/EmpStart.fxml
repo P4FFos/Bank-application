@@ -90,6 +90,7 @@
                     </font>
                 </Button>
                 <TextField fx:id="searchCustomerTextField" layoutX="11.0" layoutY="85.0" promptText="Type SSN or userID" />
+            <Label fx:id="noSelectedCustomerLabel" layoutX="14.0" layoutY="48.0" prefHeight="35.0" prefWidth="125.0" text="No selected customer. Do a search." textFill="RED" visible="false" wrapText="true" />
             </children>
         </AnchorPane>
         <AnchorPane fx:id="currentCustomerAnchorPane" layoutX="180.0" layoutY="75.0" prefHeight="75.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">

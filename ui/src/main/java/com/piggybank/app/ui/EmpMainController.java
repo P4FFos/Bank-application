@@ -47,6 +47,8 @@ public class EmpMainController implements Initializable {
     private Label NameLabel;
     @FXML
     private Label infoActualUserIdLabel;
+    @FXML
+    private Label noSelectedCustomerLabel;
 
     private Parent root;
     private Stage stage;
@@ -61,6 +63,7 @@ public class EmpMainController implements Initializable {
     public String saveFile = UIMain.savePath;
 
     public void initialize(URL arg0, ResourceBundle arg1) {
+        noSelectedCustomerLabel.setVisible(false);
         showCurrentEmployee();
         System.out.println("Employee Start Page. Logged in as: " + currentEmployee.getInitials());
         NameLabel.setText(currentEmployee.getFullName());
@@ -91,6 +94,9 @@ public class EmpMainController implements Initializable {
     }
 
     public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
+        if(noSelectedCustomerLabel != null) {
+            noSelectedCustomerLabel.setVisible(false);
+        }
         currentCustomer = null;
         currentCustomersAccounts = null;
 
@@ -104,6 +110,9 @@ public class EmpMainController implements Initializable {
     }
 
     public void searchCustomer(ActionEvent event) throws IOException { //searchButton
+        if(noSelectedCustomerLabel != null) {
+            noSelectedCustomerLabel.setVisible(false);
+        }
         String searchPhrase = searchCustomerTextField.getText();
         try{
             currentCustomer = bank.getCustomerByIdOrSsn(searchPhrase);
@@ -123,6 +132,9 @@ public class EmpMainController implements Initializable {
     }
 
     public void goToCustomerAccounts(ActionEvent event) throws IOException { //viewCustomerButton
+        if(noSelectedCustomerLabel != null) {
+            noSelectedCustomerLabel.setVisible(false);
+        }
         if(currentCustomer != null) {
             loader = new FXMLLoader(getClass().getResource("EmpCustomerOverview.fxml"));
             root = loader.load();
@@ -132,12 +144,15 @@ public class EmpMainController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } else {
-            System.out.println("No selected customer. Do a search.");
+            noSelectedCustomerLabel.setVisible(true);
         }
 
     }
 
     public void goToCustomerInfo(ActionEvent event) throws IOException { //customerInfoButton
+        if(noSelectedCustomerLabel != null) {
+            noSelectedCustomerLabel.setVisible(false);
+        }
         if(currentCustomer != null){
             loader = new FXMLLoader(getClass().getResource("EmpCustomerInfo.fxml"));
             root = loader.load();
@@ -147,11 +162,14 @@ public class EmpMainController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } else {
-            System.out.println("No selected customer. Do a search.");
+            noSelectedCustomerLabel.setVisible(true);
         }
     }
 
     public void goToLoans(ActionEvent event) throws IOException { //manageLoansButton
+        if(noSelectedCustomerLabel != null) {
+            noSelectedCustomerLabel.setVisible(false);
+        }
         if(currentCustomer != null){
             loader = new FXMLLoader(getClass().getResource("EmpManageLoans.fxml"));
             root = loader.load();
@@ -161,12 +179,14 @@ public class EmpMainController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } else {
-            System.out.println("No selected customer. Do a search.");
+            noSelectedCustomerLabel.setVisible(true);
         }
-
     }
 
     public void goToAddCustomer(ActionEvent event) throws IOException { //newCustomerButton
+        if(noSelectedCustomerLabel != null) {
+            noSelectedCustomerLabel.setVisible(false);
+        }
         currentCustomer = null;
         currentCustomersAccounts = null;
 

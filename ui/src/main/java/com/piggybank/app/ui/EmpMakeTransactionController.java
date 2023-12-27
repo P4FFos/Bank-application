@@ -2,12 +2,14 @@ package com.piggybank.app.ui;
 
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class EmpMakeTransactionController extends EmpMainController implements Initializable{
@@ -45,13 +47,21 @@ public class EmpMakeTransactionController extends EmpMainController implements I
     private TextField recieverAccountTextField;
     @FXML
     private TextField amountTextField;
+    @FXML
+    private Label transferDoneLabel;
+    @FXML
+    private Label incorrectDetailsLabel;
 
 
     public void initialize(URL arg0, ResourceBundle arg1) {
+        transferDoneLabel.setVisible(false);
+        incorrectDetailsLabel.setVisible(false);
+
         super.showCurrentEmployee();
         showCurrentCustomer();
 
         //Populate accountsListView with accountIDs from currentCustomersAccounts
+        accountsListView.getItems().addAll(currentCustomer.getAccounts().keySet());
 
         System.out.println("Employee Make Transaction Page. Logged in as: " + currentEmployee.getInitials());
     }
@@ -71,8 +81,24 @@ public class EmpMakeTransactionController extends EmpMainController implements I
     public void toggleOneThousand(){
 
     }
-    public void transferFunds(){
+    public void transferFunds() {
+        transferDoneLabel.setVisible(false);
+        incorrectDetailsLabel.setVisible(false);
 
+        try {
+            // prepare parameters for transfer between accounts
+            String accountId = accountsListView.getSelectionModel().getSelectedItem();
+            String targetAccountId = recieverAccountTextField.getText();
+            double amount = Double.parseDouble(amountTextField.getText());
+            String message = String.format("Handled by employee: %s", currentEmployee.getUserId());
+            LocalDate date = LocalDate.now();
+
+            bank.transfer(accountId, targetAccountId, amount, message, date);
+            transferDoneLabel.setVisible(true);
+
+        } catch (Exception e) {
+            incorrectDetailsLabel.setVisible(true);
+        }
     }
 
     public void showCurrentCustomer() {
