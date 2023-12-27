@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import javafx.scene.control.CheckBox;
@@ -35,95 +36,64 @@ import javafx.scene.shape.Circle;
 public class CustomerStartController implements Initializable {
 
     @FXML
-    private AnchorPane baseAnchorPane;
-
-    @FXML
-    private Label headerActualIdLabel;
-
+    private AnchorPane sideMenuAnchorPane;
     @FXML
     private AnchorPane headerAnchorPane;
-
-    @FXML
-    private Label headerBankNameLabel;
-
-    @FXML
-    private Label headerCustomerNameLabel;
-
-    @FXML
-    private ImageView headerIconImageView;
-
-    @FXML
-    private ImageView headerIconShadedImageView;
-
-    @FXML
-    private Label headerIdLabel;
-
-    @FXML
-    private Button headerLogoutButton;
-
-    @FXML
-    private Separator horisontalSeparator;
-
-    @FXML
-    private Button sideMenuAccountsOverviewButton;
-
-    @FXML
-    private AnchorPane sideMenuAnchorPane;
-
-    @FXML
-    private Button sideMenuCreditsButton;
-
-    @FXML
-    private Button sideMenuFaqButton;
-
-    @FXML
-    private Label sideMenuLabel;
-
-    @FXML
-    private Button sideMenuLoansButton;
-
-    @FXML
-    private Button sideMenuStartButton;
-
-    @FXML
-    private Button sideMenuSupportButton;
-
-    @FXML
-    private Button sideMenuTransferFundsButton;
-
-    @FXML
-    private Label startActualTotalBalanceLabel;
-
-    @FXML
-    private Label startActualTotalDebtLabel;
-
     @FXML
     private AnchorPane startAnchorPane;
-
+    @FXML
+    private Button headerLogoutButton;
+    @FXML
+    private Button sideMenuAccountsOverviewButton;
+    @FXML
+    private Button sideMenuCreditsButton;
+    @FXML
+    private Button sideMenuFaqButton;
+    @FXML
+    private Button sideMenuLoansButton;
+    @FXML
+    private Button sideMenuStartButton; //keep
+    @FXML
+    private Button sideMenuSupportButton;
+    @FXML
+    private Button sideMenuTransferFundsButton;
+    @FXML
+    private Circle headerBankLogotype;
+    @FXML
+    private ImageView headerIconImageView;
+    @FXML
+    private ImageView headerIconShadedImageView;
+    @FXML
+    private Label headerBankNameLabel;
+    @FXML
+    private Label headerActualIdLabel;
+    @FXML
+    private Label headerCustomerNameLabel;
+    @FXML
+    private Label headerIdLabel;
+    @FXML
+    private Label sideMenuLabel;
+    @FXML
+    private Label startActualTotalBalanceLabel;
+    @FXML
+    private Label startActualTotalDebtLabel;
     @FXML
     private Label startAssetsLabel;
-
     @FXML
     private Label startLoansLabel;
-
     @FXML
     private Label startNameLabel;
-
-    @FXML
-    private Label startTotalBalanceLabel;
-
-    @FXML
-    private Label startTotalDebtLabel;
-
     @FXML
     private Label start_Hello_Label;
-
+    @FXML
+    private Label startTotalBalanceLabel;
+    @FXML
+    private Label startTotalDebtLabel;
+    @FXML
+    private Separator horisontalSeparator;
     @FXML
     private Separator verticalSeparator;
 
-
-    @FXML
-    private Circle headerBankLogotype;
 
 
 
@@ -257,15 +227,13 @@ public class CustomerStartController implements Initializable {
 
     public static Bank bank = UIMain.bank;
     public static Customer currentCustomer;
+    public static Account currentAccount;
+    public static HashMap<String, Account> currentCustomersAccounts;
 
 	@Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
-
-    public void setCurrentCustomer(Customer customer){ //Method called from CustomerLoginController
-        currentCustomer = customer;
         showCurrentCustomer();
+        showStartAccountOverviews();
     }
 
     public void showCurrentCustomer(){
