@@ -65,7 +65,7 @@
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Button>
-                <Button fx:id="viewCustomerButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="180.0" mnemonicParsing="false" onAction="#goToCustomer" prefHeight="25.0" prefWidth="155.0" text="VIEW CUSTOMER">
+                <Button fx:id="viewCustomerButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="180.0" mnemonicParsing="false" onAction="#goToCustomerAccounts" prefHeight="25.0" prefWidth="155.0" text="VIEW CUSTOMER">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
@@ -80,7 +80,7 @@
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Button>
-                <Button fx:id="newCustomerButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="270.0" mnemonicParsing="false" onAction="#goToCustomerCreation" prefHeight="25.0" prefWidth="155.0" text="NEW CUSTOMER">
+                <Button fx:id="newCustomerButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="270.0" mnemonicParsing="false" onAction="#goToAddCustomer" prefHeight="25.0" prefWidth="155.0" text="NEW CUSTOMER">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>

@@ -92,80 +92,10 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     private Stage stage;
     private FXMLLoader loader;
 
-
-    //-----------------ACCOUNTS MANAGEMENT----------------------------
-
-    public void manageFunds(ActionEvent event) throws IOException {
-        if(currentAccount == null){
-            System.out.println("You must select an account.");
-        } else {
-            loader = new FXMLLoader(getClass().getResource("EmpManageFunds.fxml"));
-            root = loader.load();
-
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
-    }
-
-    public void addAccount(ActionEvent event) throws IOException { //addAccountButton
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpAddAccount.fxml"));
-        root = loader.load();
-
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-//----------------MANAGE TRANSACTIONS--------------------------
-
-    public void makeTransaction(ActionEvent event) throws IOException {
-        loader = new FXMLLoader(getClass().getResource("EmpMakeTransaction.fxml"));
-        root = loader.load();
-
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-	public void toggleIncomingTransactions(){ // filters transactions to only show incoming
-		if(inTransactionCheckBox.isSelected()){
-			outTransactionCheckBox.setSelected(false);
-			ObservableList<Transaction> incomingTransactions = FXCollections.observableArrayList();
-			for(Transaction transaction : currentAccount.getTransactions()){
-				if(transaction.getAmount() > 0){
-					incomingTransactions.add(transaction);
-				}
-			}
-			transactionsTable.setItems(incomingTransactions);
-		}
-		else{
-			transactionsTable.setItems(currentAccount.getTransactions());
-		}
-	}
-
-	public void toggleOutgoingTransactions(){ // filters transactions to only show outgoing
-		if(outTransactionCheckBox.isSelected()){
-			inTransactionCheckBox.setSelected(false);
-			ObservableList<Transaction> outgoingTransactions = FXCollections.observableArrayList();
-			for(Transaction transaction : currentAccount.getTransactions()){
-				if(transaction.getAmount() < 0){
-					outgoingTransactions.add(transaction);
-				}
-			}
-			transactionsTable.setItems(outgoingTransactions);
-		}
-		else{
-			transactionsTable.setItems(currentAccount.getTransactions());
-		}
-	}
-
-//----------------SETUP SCENE-------------------------------------
-
     public void initialize(URL arg0, ResourceBundle arg1) {
+        super.showCurrentEmployee();
+        showCurrentCustomer();
+
         accountsListView.getItems().addAll(currentCustomersAccounts.keySet());
         interestLabel.setVisible(false);
         interestRateLabel.setVisible(false);
@@ -216,15 +146,27 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
                 transactionsTable.setItems(currentAccount.getTransactions());
             }
         });
+
+        System.out.println("Employee Customer Accounts Overview Page. Logged in as: " + currentEmployee.getInitials());
     }
 
-    public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
-        root = loader.load();
+    public void manageFunds(ActionEvent event) throws IOException {
+        if(currentAccount == null){
+            System.out.println("You must select an account.");
+        } else {
+            loader = new FXMLLoader(getClass().getResource("EmpManageFunds.fxml"));
+            root = loader.load();
 
-        EmpMainController controller = loader.getController();
-        controller.showCurrentEmployee();
-        EmpMainController.currentCustomer = null;
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+
+    public void addAccount(ActionEvent event) throws IOException { //addAccountButton
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpAddAccount.fxml"));
+        root = loader.load();
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -232,22 +174,60 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         stage.show();
     }
 
-    public void showCurrentEmployee() {
-        empIdLabel.setText(currentEmployee.getUserId());
-        empInitialsLabel.setText(EmpMainController.currentEmployee.getInitials());
-        System.out.println("Customer Overview (Accounts) Page. Logged in as: " + EmpMainController.currentEmployee.getInitials());
+    public void makeTransaction(ActionEvent event) throws IOException { // makeTransactionButton
+        loader = new FXMLLoader(getClass().getResource("EmpMakeTransaction.fxml"));
+        root = loader.load();
+
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
+	public void toggleIncomingTransactions(){ // filters transactions to only show incoming
+		if(inTransactionCheckBox.isSelected()){
+			outTransactionCheckBox.setSelected(false);
+			ObservableList<Transaction> incomingTransactions = FXCollections.observableArrayList();
+			for(Transaction transaction : currentAccount.getTransactions()){
+				if(transaction.getAmount() > 0){
+					incomingTransactions.add(transaction);
+				}
+			}
+			transactionsTable.setItems(incomingTransactions);
+		}
+		else{
+			transactionsTable.setItems(currentAccount.getTransactions());
+		}
+	}
+
+	public void toggleOutgoingTransactions(){ // filters transactions to only show outgoing
+		if(outTransactionCheckBox.isSelected()){
+			inTransactionCheckBox.setSelected(false);
+			ObservableList<Transaction> outgoingTransactions = FXCollections.observableArrayList();
+			for(Transaction transaction : currentAccount.getTransactions()){
+				if(transaction.getAmount() < 0){
+					outgoingTransactions.add(transaction);
+				}
+			}
+			transactionsTable.setItems(outgoingTransactions);
+		}
+		else{
+			transactionsTable.setItems(currentAccount.getTransactions());
+		}
+	}
+
+
+
     public void showCurrentCustomer() {
-        if (EmpMainController.currentCustomer instanceof CustomerPrivate) {
-            CustomerPrivate currentPrivate = (CustomerPrivate) EmpMainController.currentCustomer;
+        if (currentCustomer instanceof CustomerPrivate) {
+            CustomerPrivate currentPrivate = (CustomerPrivate) currentCustomer;
             privateCustomerInfoAnchorPane.setVisible(true);
             corporateCustomerInfoAnchorPane.setVisible(false);
             customerSSNLabel.setText(currentPrivate.getSsn());
             customerNameLabel.setText(currentPrivate.getFullName());
             customerIdLabel.setText(currentPrivate.getUserId());
         } else {
-            CustomerCorporate currentCorporate = (CustomerCorporate) EmpMainController.currentCustomer;
+            CustomerCorporate currentCorporate = (CustomerCorporate) currentCustomer;
             privateCustomerInfoAnchorPane.setVisible(false);
             corporateCustomerInfoAnchorPane.setVisible(true);
             companyNameLabel.setText(currentCorporate.getCompanyName());

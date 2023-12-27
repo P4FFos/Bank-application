@@ -3,21 +3,16 @@ package com.piggybank.app.ui;
 import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-import java.io.IOException;
-
-public class EmpManageLoansController extends EmpMainController {
+public class EmpManageLoansController extends EmpMainController implements Initializable {
     @FXML
     private AnchorPane privateCustomerInfoAnchorPane;
     @FXML
@@ -51,10 +46,20 @@ public class EmpManageLoansController extends EmpMainController {
     @FXML
     private Label loanAmountLabel;
 
-    public void showCurrentEmployee(){
-        empIdLabel.setText(EmpMainController.currentEmployee.getUserId());
-        empInitialsLabel.setText(EmpMainController.currentEmployee.getInitials());
-        System.out.println("Manage Loans Page. Logged in as: " + EmpMainController.currentEmployee.getInitials());
+
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        super.showCurrentEmployee();
+        showCurrentCustomer();
+
+        System.out.println("Employee Pending Loan/Credit Applications Page. Logged in as: " + currentEmployee.getInitials());
+    }
+
+    public void setCurrentLoan() {
+
+    }
+
+    public void addLoan() {
+
     }
 
     public void showCurrentCustomer() {
@@ -73,28 +78,5 @@ public class EmpManageLoansController extends EmpMainController {
             companyIdLabel.setText(currentCorporate.getUserId());
             companyOrgNrLabel.setText(currentCorporate.getOrgNumber());
         }
-    }
-
-    /*
-    public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
-        Parent root = loader.load();
-
-        EmpMainController controller = loader.getController();
-        controller.showCurrentEmployee();
-        EmpMainController.currentCustomer = null;
-
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-     */
-    public void setCurrentLoan() {
-
-    }
-
-    public void addLoan() {
-
     }
 }
