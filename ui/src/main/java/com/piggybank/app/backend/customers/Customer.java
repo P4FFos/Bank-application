@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import com.piggybank.app.backend.utils.ContactCard;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -49,13 +50,18 @@ public abstract class Customer extends User {
         return FXCollections.observableArrayList(accounts.values());
     }
 
+	@JsonIgnore
+	public ObservableList<Account> getAccountsOL() {
+		return FXCollections.observableArrayList(accounts.values());
+	}
+
     // checks if account exist in HashMap and returns boolean value
     public boolean checkIfAccountExists(String accountId) {
         return accounts.containsKey(accountId);
     }
 
     // addCustomer method
-    public void addAccount(Account account) throws Exception {
+    public void addAccount(Account account) {
         this.accounts.put(account.getAccountId(), account);
     }
 

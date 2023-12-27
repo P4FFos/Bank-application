@@ -55,6 +55,7 @@ public class EmpMainController {
     public static Bank bank = UIMain.bank;
     public static Employee currentEmployee;
     public static Customer currentCustomer;
+    public static Account currentAccount;
     public static HashMap<String, Account> currentCustomersAccounts; //to be able to populate accountsListview
     public String saveFile = UIMain.savePath;
 

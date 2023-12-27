@@ -3,12 +3,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.MotionBlur?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -121,22 +121,34 @@
                         <Font name="Kodchasan Regular" size="13.0" />
                     </font>
                 </Label>
-                <Label fx:id="startTotalBalanceLabel" layoutX="85.0" layoutY="197.0" text="Total Balance:">
+				<TableView fx:id="assetsTableView" layoutX="20.0" layoutY="70.0" prefHeight="120.0" prefWidth="190.0" >
+					<columns>
+						<TableColumn fx:id="assetsNameTableColumn" prefWidth="120.0" text="Account name" />
+						<TableColumn fx:id="assetsBalanceTableColumn" prefWidth="69.0" text="Balance" />
+					</columns>
+				</TableView>
+				<TableView fx:id="debtsTableView" layoutX="250.0" layoutY="70.0" prefHeight="120.0" prefWidth="190.0" >
+					<columns>
+						<TableColumn fx:id="debtsNameTableColumn" prefWidth="120.0" text="Account name" />
+						<TableColumn fx:id="debtsBalanceTableColumn" prefWidth="69.0" text="Balance" />
+					</columns>
+				</TableView>
+                <Label fx:id="startTotalBalanceLabel" layoutX="70.0" layoutY="200.0" text="Total Balance:">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Label>
-                <Label fx:id="startActualTotalBalanceLabel" alignment="CENTER_RIGHT" centerShape="false" layoutX="161.0" layoutY="197.0" prefHeight="15.0" prefWidth="49.0" text="0.0">
+                <Label fx:id="startActualTotalBalanceLabel" alignment="CENTER_RIGHT" centerShape="false" layoutX="144.0" layoutY="200.0" prefHeight="13.0" prefWidth="61.0" text="0 SEK">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Label>
-                <Label fx:id="startTotalDebtLabel" layoutX="321.0" layoutY="197.0" text="Total Debt:">
+                <Label fx:id="startTotalDebtLabel" layoutX="320.0" layoutY="200.0" text="Total Debt:">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Label>
-                <Label fx:id="startActualTotalDebtLabel" alignment="CENTER_RIGHT" centerShape="false" layoutX="381.0" layoutY="197.0" prefHeight="15.0" prefWidth="57.0" text="0.0">
+                <Label fx:id="startActualTotalDebtLabel" alignment="CENTER_RIGHT" centerShape="false" layoutX="370.0" layoutY="200.0" prefHeight="13.0" prefWidth="68.0" text="0 SEK">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
@@ -151,18 +163,6 @@
                         <Shadow blurType="GAUSSIAN" />
                     </effect>
                 </Separator>
-            <TableView fx:id="startAssetsTableView" layoutX="20.0" layoutY="78.0" prefHeight="111.0" prefWidth="190.0">
-              <columns>
-                <TableColumn fx:id="startAssetNameColumn" prefWidth="123.20008850097656" text="Name" />
-                <TableColumn fx:id="startAssetBalanceColumn" prefWidth="64.7999267578125" text="Balance" />
-              </columns>
-            </TableView>
-            <TableView fx:id="startLoansTableView" layoutX="250.0" layoutY="78.0" prefHeight="111.0" prefWidth="190.0">
-               <columns>
-                  <TableColumn fx:id="startLoansNameColumn" prefWidth="123.20008850097656" text="Name" />
-                  <TableColumn fx:id="startLoansBalanceColumn" prefWidth="64.7999267578125" text="Balance" />
-               </columns>
-            </TableView>
             </children>
         </AnchorPane>
     </children>
