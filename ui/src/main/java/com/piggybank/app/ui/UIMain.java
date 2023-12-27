@@ -18,22 +18,10 @@ public class UIMain extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         loadPath = "ui/src/main/java/com/piggybank/app/backend/bankDataOnLogout.json";
-        savePath = "ui/src/main/java/com/piggybank/app/backend/bankDataOnLogout.json"; // used in EmpMainController:logout()
-
         bank = FileHandler.jsonDeserializer(loadPath);
 
-        /*
-        ContactCard piggyWolvesbaneContactCard = new ContactCard("piggy@wolvesbane.com", "0735555555", "Big Brick Building", "12345", "Wolvesout");
-        bank.createCustomerPrivate("5505051234", "Piggy", "Wolvesbane", "IATE5WOLVES", piggyWolvesbaneContactCard);
-        bank.createAccount("C001", "Main Account");
-        System.out.println("Piggy's account: " + bank.getCustomer("C001").getAccount("A00001").getAccountName());
-
-
-        ContactCard trufflesIncContactCard = new ContactCard("contact@trufflesinc.com", "0101234567", "Muddy Basement", "12345", "Wolvesout");
-        bank.createCustomerCorporate("12345", "Truffles Inc.", "123PIGLET", trufflesIncContactCard);
-        bank.createAccount("C002", "Main Account");
-        System.out.println("Company's account: " + bank.getCustomer("C002").getAccount("A00002").getAccountName());
-         */
+        // used in EmpMainController:logout() and CustomerStartController:logout()
+        savePath = "ui/src/main/java/com/piggybank/app/backend/bankDataOnLogout.json";
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("StartScene.fxml"));

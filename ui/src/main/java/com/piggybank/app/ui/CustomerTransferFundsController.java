@@ -4,18 +4,16 @@ import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
 import com.piggybank.app.backend.exceptions.AccountNotFoundException;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Border;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CustomerTransferFundsController extends CustomerStartController{
@@ -246,7 +244,7 @@ public class CustomerTransferFundsController extends CustomerStartController{
 
     public void completeTransfer(ActionEvent event) throws Exception {
         // first remove any unwanted styling (if run before)
-        clearAllInvalidStyles();
+        resetStyles();
 
         String receiverAccountId = transferEnterRecieverAccountTextField.getText();
 
@@ -254,69 +252,58 @@ public class CustomerTransferFundsController extends CustomerStartController{
             return; // stop execution if validation fail
         }
 
-        // attempts to transfer
-        try{
-            double amount = Double.parseDouble(transferEnterAmountTextField.getText());
-            LocalDate date = transferEnterDatePicker.getValue();
-            String message = transferEnterMessageTextField.getText();
+        double amount = Double.parseDouble(transferEnterAmountTextField.getText());
+        LocalDate date = transferEnterDatePicker.getValue();
+        String message = transferEnterMessageTextField.getText();
 
-            bank.transfer(currentAccount.getAccountId(), receiverAccountId, amount, message, date);
-            accountsTableView.refresh();
-        } catch(NumberFormatException e) {
-            transferEnterAmountTextField.getStyleClass().add("text-field-invalid");
-            e.printStackTrace();
-        } catch(AccountNotFoundException e) {
-            transferEnterRecieverAccountTextField.getStyleClass().add("text-field-invalid");
-            e.printStackTrace();
-        }
-
+        bank.transfer(currentAccount.getAccountId(), receiverAccountId, amount, message, date);
+        accountsTableView.refresh();
     }
 
     private boolean validateInputs(String receiverAccountId) {
         boolean isTermsChecked = transferUnderstandCheckBox.isSelected();
         boolean isPasswordValid = currentCustomer.validatePassword(transferPasswordField.getText());
-        boolean isAmountEmpty = transferEnterAmountTextField.getText().isBlank();
+        boolean isAmountNotEmpty = !transferEnterAmountTextField.getText().isEmpty();
+        boolean isOtherAccount = !transferEnterRecieverAccountTextField.getText().isEmpty();
 
-        currentAccount = accountsTableView.getSelectionModel().getSelectedItem();
+        // since account is not selected automatically, then check with Optional that may be null or not
+        Optional<Account> selectedAccount = Optional.ofNullable(accountsTableView.getSelectionModel().getSelectedItem());
+        boolean isCurrentAccount = selectedAccount.isPresent();
 
-        // check if objects are null before checking isSameAccount
-        if (currentAccount == null) {
-            accountsTableView.getStyleClass().add("text-field-invalid");
-            applyInvalidStyle(isAmountEmpty, transferEnterAmountTextField);
-            applyInvalidStyle(isTermsChecked, transferUnderstandCheckBox);
-            applyInvalidStyle(isPasswordValid, transferPasswordField);
-            return false;
+        boolean isNotSameAccount = true;
+        // when an account is selected in TableView & account name specified, then check if strings are equal
+        if (selectedAccount.isPresent() && receiverAccountId != null) {
+            isNotSameAccount = !selectedAccount.get().getAccountId().equals(receiverAccountId);
         }
 
-        if(receiverAccountId == null) {
-            applyInvalidStyle(isAmountEmpty, transferEnterAmountTextField);
-            applyInvalidStyle(isTermsChecked, transferUnderstandCheckBox);
-            applyInvalidStyle(isPasswordValid, transferPasswordField);
-            return false;
-        }
-        boolean isSameAccount = receiverAccountId.equals(currentAccount.getAccountId());
+        // to avoid further repetitive code, applying one method updateValidationStyle
+        updateValidationStyle(isCurrentAccount, accountsTableView);
+        updateValidationStyle(isOtherAccount, transferEnterRecieverAccountTextField);
+        updateValidationStyle(isNotSameAccount, transferEnterRecieverAccountTextField);
+        updateValidationStyle(isTermsChecked, transferUnderstandCheckBox);
+        updateValidationStyle(isPasswordValid, transferPasswordField);
+        updateValidationStyle(isAmountNotEmpty, transferEnterAmountTextField);
 
-        // to avoid repetitive code, applying one method
-        applyInvalidStyle(isTermsChecked, transferUnderstandCheckBox);
-        applyInvalidStyle(isPasswordValid, transferPasswordField);
-        applyInvalidStyle(isAmountEmpty, transferEnterAmountTextField);
-        applyInvalidStyle(isSameAccount, transferEnterRecieverAccountTextField);
-
-        return isTermsChecked && isPasswordValid && !isAmountEmpty && !isSameAccount;
+        return isCurrentAccount && isOtherAccount && isNotSameAccount && isTermsChecked && isPasswordValid && isAmountNotEmpty;
     }
 
-    private void applyInvalidStyle(boolean condition, Control control) {
-        if(condition) {
+    private void updateValidationStyle(boolean condition, Control control) {
+        if(!condition) {
             control.getStyleClass().add("text-field-invalid");
+        } else {
+            control.getStyleClass().remove("text-field-invalid");
         }
     }
+    private void removeInvalidStyle(Control control) {
+        control.getStyleClass().remove("text-field-invalid");
+    }
 
-    private void clearAllInvalidStyles() {
-        transferUnderstandCheckBox.getStyleClass().clear();
-        transferPasswordField.getStyleClass().clear();
-        transferEnterAmountTextField.getStyleClass().clear();
-        transferEnterRecieverAccountTextField.getStyleClass().clear();
-        accountsTableView.getStyleClass().clear();
+    private void resetStyles() {
+        removeInvalidStyle(transferUnderstandCheckBox);
+        removeInvalidStyle(transferPasswordField);
+        removeInvalidStyle(transferEnterAmountTextField);
+        removeInvalidStyle(transferEnterRecieverAccountTextField);
+        removeInvalidStyle(accountsTableView);
     }
 
     // toggle button in CustomerTransferFunds.fxml file
