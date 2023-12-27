@@ -6,12 +6,6 @@ import com.piggybank.app.backend.customers.loans.Loan;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.Calendar;
-import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -23,6 +17,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Calendar;
+import java.util.ResourceBundle;
 
 public class EmpAddAccountController extends EmpMainController implements Initializable {
     @FXML
@@ -60,13 +58,11 @@ public class EmpAddAccountController extends EmpMainController implements Initia
     @FXML
     private TextField newAccountNameField;
 
-    private Parent root;
-    private Stage stage;
     private double amount;
     private Account accountToIncrement;
 
     public void initialize(URL arg0, ResourceBundle arg1) {
-        System.out.println("EmpAddAccount Page. Logged in as: " + currentEmployee.getInitials());
+        super.showCurrentEmployee();
         String[] standardAccounts = new String[currentCustomersAccounts.size()]; //not pretty I know...
         int counter = 0;
         for (String key : currentCustomersAccounts.keySet()) {
@@ -81,7 +77,14 @@ public class EmpAddAccountController extends EmpMainController implements Initia
         accountsChoiceBox.getItems().addAll(standardAccounts);
         accountsChoiceBox.setOnAction(this::setAccountToIncrement);
         accountsChoiceBox.setOnAction(this::setAccountToIncrement);
+
+        System.out.println("Employee Add Account Page. Logged in as: " + currentEmployee.getInitials());
     }
+
+    public void setAccountToIncrement(ActionEvent event) {
+        accountToIncrement = currentCustomersAccounts.get(accountsChoiceBox.getValue());
+    }
+
 
     public void adjustFunds(Account account, double amount){ // okButton
         double currentBalance = account.getBalance();
@@ -108,15 +111,15 @@ public class EmpAddAccountController extends EmpMainController implements Initia
 
     public void backToOverview(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpCustomerOverview.fxml"));
-        root = loader.load();
+        Parent root = loader.load();
 
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
-    //------------Add Standard Account--------------
+    //------------Standard Account--------------
     public void toggleStandard() {
         loanAnchorPane.setVisible(false);
         creditAnchorPane.setVisible(false);
@@ -126,7 +129,7 @@ public class EmpAddAccountController extends EmpMainController implements Initia
         loanCheckBox.setSelected(false);
     }
 
-    //------------Add Loan Account--------------
+    //------------Loan Account--------------
     public void toggleLoan() {
         loanAnchorPane.setVisible(true);
         creditAnchorPane.setVisible(false);
@@ -164,7 +167,7 @@ public class EmpAddAccountController extends EmpMainController implements Initia
         amount = -5000000.0;
     }
 
-    //------------Add Credit Account--------------
+    //------------Credit Account--------------
     public void toggleCredit() {
         loanAnchorPane.setVisible(false);
         creditAnchorPane.setVisible(true);
@@ -202,24 +205,5 @@ public class EmpAddAccountController extends EmpMainController implements Initia
         amount = -50000.0;
     }
 
-    //------------SELECT ACCOUNT TO INCREMENT------------------
-    public void setAccountToIncrement(ActionEvent event) {
-        accountToIncrement = currentCustomersAccounts.get(accountsChoiceBox.getValue());
-    }
-
-
-    public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
-        root = loader.load();
-
-        EmpMainController controller = loader.getController();
-        controller.showCurrentEmployee();
-        EmpMainController.currentCustomer = null;
-
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 }
 

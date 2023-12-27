@@ -1,21 +1,15 @@
 package com.piggybank.app.ui;
 
 import com.piggybank.app.backend.utils.ContactCard;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-import java.io.IOException;
-
-public class EmpAddCustomerController extends EmpMainController {
+public class EmpAddCustomerController extends EmpMainController implements Initializable {
     @FXML
     private AnchorPane privateCustomerAnchorPane;
     @FXML
@@ -28,10 +22,6 @@ public class EmpAddCustomerController extends EmpMainController {
     private CheckBox privateCustomerCheckBox;
     @FXML
     private Label newCustomerIdLabel;
-    @FXML
-    private Label empIdLabel;
-    @FXML
-    private Label empInitialsLabel;
     @FXML
     private Pane onSavePane;
     @FXML
@@ -58,8 +48,15 @@ public class EmpAddCustomerController extends EmpMainController {
     private TextField emailField;
     @FXML
     private PasswordField passwordField;
-	
-	//-----------------METHODS THAT NEED FURTHER IMPLEMENTATION-----------
+
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        super.showCurrentEmployee();
+        onSavePane.setVisible(false);
+        wrongPasswordPane.setVisible(false);
+        privateCustomerCheckBox.setSelected(true);
+        togglePrivate();
+        System.out.println("Employee Add Customer Page. Logged in as: " + currentEmployee.getInitials());
+    }
 
     public void addCustomer(){ // saveNewCustomerButton
         companyNameField.setEditable(false);
@@ -121,13 +118,6 @@ public class EmpAddCustomerController extends EmpMainController {
         currentCustomersAccounts = currentCustomer.getAccounts();
     }
 
-    //-------------------FINISHED METHODS------------------------
-    public void showCurrentEmployee(){
-        empIdLabel.setText(EmpMainController.currentEmployee.getUserId());
-        empInitialsLabel.setText(EmpMainController.currentEmployee.getInitials());
-        System.out.println("Add Customer Page. Logged in as: " + EmpMainController.currentEmployee.getInitials());
-    }
-
     public void togglePrivate(){ //privateCustomerCheckBox
         privateCustomerAnchorPane.setVisible(true);
         corporateCustomerAnchorPane.setVisible(false);
@@ -140,25 +130,5 @@ public class EmpAddCustomerController extends EmpMainController {
         privateCustomerCheckBox.setSelected(false);
     }
 
-    public void initialiseAddCustomer(){
-        onSavePane.setVisible(false);
-        wrongPasswordPane.setVisible(false);
-        privateCustomerCheckBox.setSelected(true);
-        togglePrivate();
-    }
-
-    public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
-        Parent root = loader.load();
-
-        EmpMainController controller = loader.getController();
-        controller.showCurrentEmployee();
-        EmpMainController.currentCustomer = null;
-
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 }
 

@@ -1,25 +1,19 @@
 package com.piggybank.app.ui;
 
-import com.piggybank.app.backend.customers.Customer;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
 import com.piggybank.app.backend.exceptions.PasswordException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-import java.io.IOException;
-
-public class EmpCustomerInfoController extends EmpMainController {
+public class EmpCustomerInfoController extends EmpMainController implements Initializable {
     @FXML
     private AnchorPane privateCustomerInfoAnchorPane;
     @FXML
@@ -47,11 +41,7 @@ public class EmpCustomerInfoController extends EmpMainController {
     @FXML
     private Button saveNewEmailButton;
     @FXML
-    private Button getSaveNewPasswordButton;
-    @FXML
-    private Label empInitialsLabel;
-    @FXML
-    private Label empIdLabel;
+    private Button saveNewPasswordButton;
     @FXML
     private Label customerNameLabel;
     @FXML
@@ -76,6 +66,12 @@ public class EmpCustomerInfoController extends EmpMainController {
     private TextField phoneField;
     @FXML
     private TextField emailField;
+
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        super.showCurrentEmployee();
+        showCurrentCustomer();
+        System.out.println("Employee Customer Info Page. Logged in as: " + currentEmployee.getInitials());
+    }
 
 
     public void streetEditable(){ //editStreetButton
@@ -136,25 +132,6 @@ public class EmpCustomerInfoController extends EmpMainController {
             System.out.println("Password must be at least 8 characters and include uppercase letters and numbers.");
         }
     }
-    public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
-        Parent root = loader.load();
-
-        EmpMainController controller = loader.getController();
-        controller.showCurrentEmployee();
-        EmpMainController.currentCustomer = null;
-
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public void showCurrentEmployee(){
-        empIdLabel.setText(EmpMainController.currentEmployee.getUserId());
-        empInitialsLabel.setText(EmpMainController.currentEmployee.getInitials());
-        System.out.println("Customer Info Page. Logged in as: " + EmpMainController.currentEmployee.getInitials());
-    }
 
     public void showCurrentCustomer(){
         customerIdLabel.setText(EmpMainController.currentCustomer.getUserId());
@@ -180,7 +157,5 @@ public class EmpCustomerInfoController extends EmpMainController {
         }
 
     }
-
-
 
 }
