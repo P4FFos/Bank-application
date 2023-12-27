@@ -19,5 +19,6 @@
             <Font size="24.0" />
          </font>
       </Label>
+      <Label fx:id="incorrectDetailsLabel" alignment="TOP_LEFT" layoutX="14.0" layoutY="146.0" prefHeight="68.0" prefWidth="171.0" text="Invalid user ID or password. Please try again." textFill="RED" visible="false" wrapText="true" />
    </children>
 </AnchorPane>
