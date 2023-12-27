@@ -426,8 +426,7 @@ public class CustomerStartController implements Initializable {
 //-----------------HEADER MENU NAVIGATION----------------
 
     public void logout(ActionEvent event) throws IOException { //headerLogoutButton
-        String saveFile = "ui/src/main/java/com/piggybank/app/backend/bankDataOnLogout.json";
-        FileHandler.jsonSerializer(saveFile, bank);
+        FileHandler.jsonSerializer(UIMain.savePath, bank);
 
         currentCustomer = null;
         System.out.println("Logged out. Have a nice day.");
