@@ -57,7 +57,7 @@ public class EmpMainController implements Initializable {
     public static Employee currentEmployee;
     public static Customer currentCustomer;
     public static Account currentAccount;
-    public static HashMap<String, Account> currentCustomersAccounts; //to be able to populate accountsListview
+    public static HashMap<String, Account> currentCustomersAccounts;
     public String saveFile = UIMain.savePath;
 
     public void initialize(URL arg0, ResourceBundle arg1) {

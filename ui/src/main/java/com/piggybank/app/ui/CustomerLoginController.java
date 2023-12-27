@@ -36,12 +36,11 @@ public class CustomerLoginController {
             password = passwordField.getText();
 
             if (bank.verifyCustomer(userId, password)) { //using method from bank
+                CustomerStartController.currentCustomer = bank.getCustomer(userId);
+                CustomerStartController.currentCustomersAccounts = CustomerStartController.currentCustomer.getAccounts();
+
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("CustomerStart.fxml"));
                 root = loader.load();
-
-                CustomerStartController controller = loader.getController();
-                controller.setCurrentCustomer(bank.getCustomer(userId));
-				controller.showStartAccountOverviews();
 
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
