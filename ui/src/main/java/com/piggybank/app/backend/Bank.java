@@ -187,30 +187,38 @@ public class Bank {
 
     // creates a new account for customer:
     public void createAccount(String userId, String accountName) throws Exception {
-        Customer customer = customers.get(userId);
+        if(accountName.isBlank()) {
+            throw new Exception("ERROR: INCORRECTLY ENTERED CRITERIA FOR ACCOUNT CREATION");
+        } else if (!accountName.isBlank()) {
+            Customer customer = customers.get(userId);
 
-        // finds the highest accountId in the HashMap customers
-        String accountHighestId = findHighestAccountId();
+            // finds the highest accountId in the HashMap customers
+            String accountHighestId = findHighestAccountId();
 
-        //Generates accountId
-        String accountId = IdGenerator.generateAccountId(accountHighestId);
+            //Generates accountId
+            String accountId = IdGenerator.generateAccountId(accountHighestId);
 
-        Account newAccount = new Account(accountId, accountName);
-        customer.addAccount(newAccount);
-        System.out.println("New account: " + accountId + " " + accountName);
+            Account newAccount = new Account(accountId, accountName);
+            customer.addAccount(newAccount);
+            System.out.println("New account: " + accountId + " " + accountName);
+        }
     }
 
     public void createLoanAccount(String userId, String accountName, double loanAmount) throws Exception {
-        Customer customer = customers.get(userId);
+        if(userId.isBlank() && accountName.isBlank() && loanAmount == 0) {
+            throw new Exception("ERROR: INCORRECTLY ENTERED CRITERIA FOR ACCOUNT CREATION");
+        } else if (!userId.isBlank() && !accountName.isBlank() && loanAmount != 0) {
+            Customer customer = customers.get(userId);
 
-        // finds the highest accountId in the HashMap customers
-        String accountHighestId = findHighestAccountId();
+            // finds the highest accountId in the HashMap customers
+            String accountHighestId = findHighestAccountId();
 
-        //Generates accountId
-        String accountId = IdGenerator.generateAccountId(accountHighestId);
+            //Generates accountId
+            String accountId = IdGenerator.generateAccountId(accountHighestId);
 
-        Loan newLoan = new Loan(accountId, accountName, loanAmount);
-        customer.addAccount(newLoan);
+            Loan newLoan = new Loan(accountId, accountName, loanAmount);
+            customer.addAccount(newLoan);
+        }
     }
 
     //-----------------------REMOVAL METHODS-----------------------
@@ -345,17 +353,22 @@ public class Bank {
 
     // method to create credit in HashMap accounts in customer
     public void createCredit(String userId, String accountName, Calendar initialCreditDate, double amount) throws Exception{
-        Customer customer = customers.get(userId);
+        if(userId.isBlank() && accountName.isBlank() && amount == 0) {
+            throw new Exception("ERROR: INCORRECTLY ENTERED CRITERIA FOR ACCOUNT CREATION");
 
-        // finds the highest accountId in the HashMap customers
-        String accountHighestId = findHighestAccountId();
+        } else if (!userId.isBlank() && !accountName.isBlank() && amount != 0){
+            Customer customer = customers.get(userId);
 
-        //Generates accountId
-        String accountId = IdGenerator.generateAccountId(accountHighestId);
+            // finds the highest accountId in the HashMap customers
+            String accountHighestId = findHighestAccountId();
 
-        Credit newAccount = new Credit(accountId, accountName, initialCreditDate, amount);
-        customer.addAccount(newAccount);
-        System.out.println("New credit account: " + accountId + " " + accountName);
+            //Generates accountId
+            String accountId = IdGenerator.generateAccountId(accountHighestId);
+
+            Credit newAccount = new Credit(accountId, accountName, initialCreditDate, amount);
+            customer.addAccount(newAccount);
+            System.out.println("New credit account: " + accountId + " " + accountName);
+        }
     }
 
     // removeCredit method
