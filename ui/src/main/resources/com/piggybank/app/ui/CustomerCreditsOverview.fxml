@@ -15,6 +15,20 @@
     <children>
         <Separator fx:id="verticalSeparator" layoutX="173.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="320.0" prefWidth="15.0" />
         <Separator fx:id="horisontalSeparator" layoutY="65.0" prefHeight="22.0" prefWidth="645.0" />
+        <AnchorPane fx:id="bodySeparatorsAnchorPane" layoutX="175.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="470.0">
+            <children>
+                <Separator layoutX="5.0" layoutY="38.0" opacity="0.25" prefHeight="5.0" prefWidth="460.0">
+                    <effect>
+                        <MotionBlur />
+                    </effect>
+                </Separator>
+                <Separator layoutX="230.0" layoutY="40.0" opacity="0.1" orientation="VERTICAL" prefHeight="250.0" prefWidth="0.0" visible="false">
+                    <effect>
+                        <Shadow blurType="GAUSSIAN" />
+                    </effect>
+                </Separator>
+            </children>
+        </AnchorPane>
         <AnchorPane fx:id="headerAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="645.0">
             <children>
                 <ImageView fx:id="headerIconImageView" fitHeight="52.0" fitWidth="36.0" layoutX="304.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
@@ -131,31 +145,17 @@
                     </font>
                 </Label>
                 <ListView fx:id="creditsListView" layoutX="20.0" layoutY="70.0" prefHeight="70.0" prefWidth="190.0" />
-                <Button fx:id="selectCreditButton" layoutX="120.0" layoutY="145.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="90.0" text="SELECT CREDIT">
+                <Button fx:id="selectCreditButton" layoutX="120.0" layoutY="145.0" mnemonicParsing="false" onAction="#selectCredit" prefHeight="15.0" prefWidth="90.0" text="SELECT CREDIT">
                     <font>
                         <Font name="Kodchasan Regular" size="8.0" />
                     </font>
                 </Button>
-                <Button fx:id="applyForNewCreditButton" layoutX="20.0" layoutY="169.0" mnemonicParsing="false" prefWidth="190.0" text="APPLY FOR A NEW CREDIT" />
+                <Button fx:id="applyForNewCreditButton" layoutX="20.0" layoutY="169.0" mnemonicParsing="false" onAction="#apply" prefWidth="190.0" text="APPLY FOR A NEW CREDIT" />
                 <Label fx:id="detailsLabel" layoutX="250.0" layoutY="50.0" text="DETAILS">
                     <font>
                         <Font name="Kodchasan Regular" size="13.0" />
                     </font>
                 </Label>
-            </children>
-        </AnchorPane>
-        <AnchorPane fx:id="bodySeparatorsAnchorPane" layoutX="175.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="470.0">
-            <children>
-                <Separator layoutX="5.0" layoutY="38.0" opacity="0.25" prefHeight="5.0" prefWidth="460.0">
-                    <effect>
-                        <MotionBlur />
-                    </effect>
-                </Separator>
-                <Separator layoutX="230.0" layoutY="40.0" opacity="0.1" orientation="VERTICAL" prefHeight="250.0" prefWidth="0.0" visible="false">
-                    <effect>
-                        <Shadow blurType="GAUSSIAN" />
-                    </effect>
-                </Separator>
             </children>
         </AnchorPane>
     </children>
