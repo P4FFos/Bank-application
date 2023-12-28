@@ -131,31 +131,32 @@
                     </font>
                 </Label>
                 <ListView fx:id="loansListView" layoutX="20.0" layoutY="70.0" prefHeight="70.0" prefWidth="190.0" />
-                <Button fx:id="selectLoanButton" layoutX="120.0" layoutY="145.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="90.0" text="SELECT LOAN">
+                <Button fx:id="selectLoanButton" layoutX="120.0" layoutY="145.0" mnemonicParsing="false" onAction="#selectLoan" prefHeight="15.0" prefWidth="90.0" text="SELECT LOAN">
                     <font>
                         <Font name="Kodchasan Regular" size="8.0" />
                     </font>
                 </Button>
                 <Button fx:id="applyForNewLoanButton" layoutX="20.0" layoutY="169.0" mnemonicParsing="false" prefWidth="190.0" text="APPLY FOR A NEW LOAN" />
-                <Label fx:id="detailsLabel" layoutX="250.0" layoutY="50.0" text="DETAILS">
+                <Label fx:id="detailsLabel" layoutX="225.0" layoutY="50.0" text="DETAILS">
                     <font>
                         <Font name="Kodchasan Regular" size="13.0" />
                     </font>
                 </Label>
-            </children>
-        </AnchorPane>
-        <AnchorPane fx:id="bodySeparatorsAnchorPane" layoutX="175.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="470.0">
-            <children>
-                <Separator layoutX="5.0" layoutY="38.0" opacity="0.25" prefHeight="5.0" prefWidth="460.0">
-                    <effect>
-                        <MotionBlur />
-                    </effect>
-                </Separator>
-                <Separator layoutX="230.0" layoutY="40.0" opacity="0.1" orientation="VERTICAL" prefHeight="250.0" prefWidth="0.0" visible="false">
-                    <effect>
-                        <Shadow blurType="GAUSSIAN" />
-                    </effect>
-                </Separator>
+                <Label fx:id="detailsField" alignment="TOP_LEFT" layoutX="225.0" layoutY="67.0" prefHeight="186.0" prefWidth="228.0" text="details field" visible="false" wrapText="true" />
+              <!-- <AnchorPane fx:id="bodySeparatorsAnchorPane" layoutX="175.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="470.0">
+                  <children>
+                      <Separator layoutX="5.0" layoutY="38.0" opacity="0.25" prefHeight="5.0" prefWidth="460.0">
+                          <effect>
+                              <MotionBlur />
+                          </effect>
+                      </Separator>
+                      <Separator layoutX="230.0" layoutY="40.0" opacity="0.1" orientation="VERTICAL" prefHeight="250.0" prefWidth="0.0" visible="false">
+                          <effect>
+                              <Shadow blurType="GAUSSIAN" />
+                          </effect>
+                      </Separator>
+                  </children>
+              </AnchorPane> -->
             </children>
         </AnchorPane>
     </children>
