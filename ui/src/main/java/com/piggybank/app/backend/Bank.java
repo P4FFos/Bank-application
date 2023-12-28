@@ -205,7 +205,7 @@ public class Bank {
     }
 
     public void createLoanAccount(String userId, String accountName, double loanAmount) throws Exception {
-        if(userId.isBlank() && accountName.isBlank() && loanAmount == 0) {
+        if(userId.isBlank() || accountName.isBlank() || loanAmount == 0) {
             throw new Exception("ERROR: INCORRECTLY ENTERED CRITERIA FOR ACCOUNT CREATION");
         } else if (!userId.isBlank() && !accountName.isBlank() && loanAmount != 0) {
             Customer customer = customers.get(userId);
@@ -353,7 +353,7 @@ public class Bank {
 
     // method to create credit in HashMap accounts in customer
     public void createCredit(String userId, String accountName, Calendar initialCreditDate, double amount) throws Exception{
-        if(userId.isBlank() && accountName.isBlank() && amount == 0) {
+        if(userId.isBlank() || accountName.isBlank() || amount == 0) {
             throw new Exception("ERROR: INCORRECTLY ENTERED CRITERIA FOR ACCOUNT CREATION");
 
         } else if (!userId.isBlank() && !accountName.isBlank() && amount != 0){
