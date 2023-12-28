@@ -2,139 +2,77 @@ package com.piggybank.app.ui;
 
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
+import com.piggybank.app.backend.customers.debts.Credit;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Separator;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 
-public class CustomerCreditsOverviewController extends CustomerStartController {
+public class CustomerCreditsOverviewController extends CustomerStartController implements Initializable {
 
     @FXML
     private Button applyForNewCreditButton;
-
-    @FXML
-    private AnchorPane baseAnchorPane;
-
-    @FXML
-    private AnchorPane bodySeparatorsAnchorPane;
-
-    @FXML
-    private ListView<?> creditsListView;
-
-    @FXML
-    private AnchorPane creditsOverviewAnchorPane;
-
-    @FXML
-    private Label creditsOverviewLabel;
-
-    @FXML
-    private Label currentCreditsLabel;
-
-    @FXML
-    private Label detailsLabel;
-
-    @FXML
-    private Label headerActualIdLabel;
-
-    @FXML
-    private AnchorPane headerAnchorPane;
-
-    @FXML
-    private Label headerBankNameLabel;
-
-    @FXML
-    private Label headerCustomerNameLabel;
-
-    @FXML
-    private ImageView headerIconImageView;
-
-    @FXML
-    private ImageView headerIconShadedImageView;
-
-    @FXML
-    private Label headerIdLabel;
-
-    @FXML
-    private Button headerLogoutButton;
-
-    @FXML
-    private Separator horisontalSeparator;
-
-    @FXML
-    private Label infoAccountIdLabel;
-
-    @FXML
-    private Label infoActualUserIdLabel;
-
-    @FXML
-    private AnchorPane infoAnchorPane;
-
-    @FXML
-    private Label infoNameLabel;
-
     @FXML
     private Button selectCreditButton;
-
     @FXML
-    private Button sideMenuAccountsOverviewButton;
-
+    private Label infoActualUserIdLabel;
     @FXML
-    private AnchorPane sideMenuAnchorPane;
-
-    @FXML
-    private Button sideMenuCreditsButton1;
-
-    @FXML
-    private Button sideMenuFaqButton;
-
-    @FXML
-    private Label sideMenuLabel;
-
-    @FXML
-    private Button sideMenuLoansButton;
-
-    @FXML
-    private Button sideMenuStartButton;
-
-    @FXML
-    private Button sideMenuSupportButton;
-
-    @FXML
-    private Button sideMenuTransferFundsButton;
-
-    @FXML
-    private Separator verticalSeparator;
+    private ListView<String> creditsListView;
 
     public void initialize(URL arg0, ResourceBundle arg1) {
         showCurrentCustomer();
+        initializeListView();
     }
 
+    @Override
     public void showCurrentCustomer(){
-        //if there is a customer ID label:
-        //customerIdLabel.setText(currentCustomer.getUserId());
-
+        super.showCurrentCustomer();
         if (currentCustomer instanceof CustomerPrivate) {
             CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
-            headerCustomerNameLabel.setText(privateCustomer.getFullName());
-            infoNameLabel.setText(privateCustomer.getFullName());
             infoActualUserIdLabel.setText(privateCustomer.getUserId());
-            headerActualIdLabel.setText(privateCustomer.getUserId());
-
-            System.out.println("Customer Start Page. Logged in as: " + privateCustomer.getFullName());
+            System.out.println("Customer Credits Overview Page. Logged in as: " + privateCustomer.getFullName());
         } else {
             CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
-            headerCustomerNameLabel.setText(corporateCustomer.getCompanyName());
-            infoNameLabel.setText(corporateCustomer.getCompanyName());
             infoActualUserIdLabel.setText(corporateCustomer.getUserId());
-            headerActualIdLabel.setText(corporateCustomer.getUserId());
-
-            System.out.println("Customer Start Page. Logged in as: " + corporateCustomer.getCompanyName());
+            System.out.println("Customer Credits Overview Page. Logged in as: " + corporateCustomer.getCompanyName());
         }
     }
+
+    public void initializeListView(){
+        Set<String> currentCustomerCreditAccounts = new HashSet<>();
+        for(String key : currentCustomersAccounts.keySet()){
+            if(currentCustomersAccounts.get(key) instanceof Credit){
+                currentCustomerCreditAccounts.add(key);
+            }
+        }
+        creditsListView.getItems().addAll(currentCustomerCreditAccounts);
+    }
+
+    public void selectCredit(){ //selectCreditButton
+
+    }
+
+    public void apply(ActionEvent event) throws IOException { //applyForNewCreditButton
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("CustomerCreditApplication.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }
