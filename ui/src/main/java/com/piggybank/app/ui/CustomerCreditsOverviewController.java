@@ -43,11 +43,11 @@ public class CustomerCreditsOverviewController extends CustomerStartController i
         if (currentCustomer instanceof CustomerPrivate) {
             CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
             infoActualUserIdLabel.setText(privateCustomer.getUserId());
-            System.out.println("Customer Accounts Overview Page. Logged in as: " + privateCustomer.getFullName());
+            System.out.println("Customer Credits Overview Page. Logged in as: " + privateCustomer.getFullName());
         } else {
             CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
             infoActualUserIdLabel.setText(corporateCustomer.getUserId());
-            System.out.println("Customer Accounts Overview Page. Logged in as: " + corporateCustomer.getCompanyName());
+            System.out.println("Customer Credits Overview Page. Logged in as: " + corporateCustomer.getCompanyName());
         }
     }
 
