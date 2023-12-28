@@ -9,6 +9,9 @@ import javafx.scene.control.Separator;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class CustomerFaqController extends CustomerStartController{
 
     @FXML
@@ -121,6 +124,10 @@ public class CustomerFaqController extends CustomerStartController{
 
     @FXML
     private Separator verticalSeparator;
+
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        showCurrentCustomer();
+    }
 
     public void showCurrentCustomer(){
         //if there is a customer ID label:
