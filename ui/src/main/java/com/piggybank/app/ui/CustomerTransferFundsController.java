@@ -101,8 +101,18 @@ public class CustomerTransferFundsController extends CustomerStartController imp
 
         bank.transfer(currentAccount.getAccountId(), receiverAccountId, amount, message, date);
         accountsTableView.refresh();
-        transferCompleteTransferButton.setDisable(true);
         transferCompleteTransferButton.getStyleClass().add("button-all-green");
+
+        // reset all buttons once transfer is completed so customer can make a new transfer
+        transferEnterAmountTextField.clear();
+        transferEnterMessageTextField.clear();
+        transferEnterRecieverAccountTextField.clear();
+        transferFirstAmountCheckBox.setSelected(false);
+        transferSecondAmountCheckBox.setSelected(false);
+        transferThirdAmountCheckBox.setSelected(false);
+        transferFourthAmountCheckBox.setSelected(false);
+        transferUnderstandCheckBox.setSelected(false);
+        transferPasswordField.clear();
     }
 
     private boolean validateInputs(String receiverAccountId) {
