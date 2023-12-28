@@ -138,8 +138,10 @@ public class CustomerTransferFundsController extends CustomerStartController imp
 
         // to avoid further repetitive code, applying one method updateValidationStyle
         updateValidationStyle(isSelectedAccount, accountsTableView);
-        updateValidationStyle(isReceiverAccount, transferEnterRecieverAccountTextField); // needs to run before isNotSameAccount
-        updateValidationStyle(isNotSameAccount, transferEnterRecieverAccountTextField); // they operate on the same field
+        updateValidationStyle(isReceiverAccount, transferEnterRecieverAccountTextField);
+        if (isReceiverAccount) {
+            updateValidationStyle(isNotSameAccount, transferEnterRecieverAccountTextField);
+        }
         updateValidationStyle(isTermsChecked, transferUnderstandCheckBox);
         updateValidationStyle(isPasswordValid, transferPasswordField);
         updateValidationStyle(isAmountNotEmpty, transferEnterAmountTextField);
