@@ -106,6 +106,9 @@
                         <Font size="10.0" />
                      </font>
                   </Button>
+                  <Label fx:id="incorrectDetailsLabel" layoutX="9.0" layoutY="296.0" prefHeight="18.0" prefWidth="314.0" text="Something went wrong, please check values and try again." textFill="RED" visible="false" />
+                  <Label fx:id="transferDoneLabel" layoutX="72.0" layoutY="297.0" text="Transfer done!" textFill="#1f8600" visible="false" />
+                  <Label fx:id="insufficientBalanceLabel" layoutX="15.0" layoutY="296.0" prefHeight="18.0" prefWidth="376.0" text="Insufficient balance on account. Only xxxx.xx available." textFill="RED" visible="false" />
                </children>
             </AnchorPane>
             <Label layoutX="20.0" layoutY="10.0" text="MAKE TRANSACTION" AnchorPane.leftAnchor="15.0">

@@ -170,7 +170,15 @@
         "zipCode" : "11010",
         "city" : "Gothenburg"
       },
-      "accounts" : { },
+      "accounts" : {
+        "A00006" : {
+          "accountType" : "account",
+          "accountName" : "Corporate account",
+          "accountId" : "A00006",
+          "balance" : 50000.0,
+          "transactions" : [ ]
+        }
+      },
       "orgNumber" : "5566770001",
       "companyName" : "E-Corp"
     },

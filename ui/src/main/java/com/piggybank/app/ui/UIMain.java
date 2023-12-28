@@ -7,8 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import com.piggybank.app.backend.Bank;
-import com.piggybank.app.backend.employees.Employee;
-import com.piggybank.app.backend.utils.ContactCard;
 
 public class UIMain extends Application {
     public static Bank bank;
