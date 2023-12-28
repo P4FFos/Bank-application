@@ -99,11 +99,22 @@ public class CustomerTransferFundsController extends CustomerStartController imp
         double amount = Double.parseDouble(transferEnterAmountTextField.getText());
         LocalDate date = transferEnterDatePicker.getValue();
         String message = transferEnterMessageTextField.getText();
+
         try {
             bank.transfer(currentAccount.getAccountId(), receiverAccountId, amount, message, date);
             accountsTableView.refresh();
-            transferCompleteTransferButton.setDisable(true);
             transferCompleteTransferButton.getStyleClass().add("button-all-green");
+
+            // reset all buttons once transfer is completed so customer can make a new transfer
+            transferEnterAmountTextField.clear();
+            transferEnterMessageTextField.clear();
+            transferEnterRecieverAccountTextField.clear();
+            transferFirstAmountCheckBox.setSelected(false);
+            transferSecondAmountCheckBox.setSelected(false);
+            transferThirdAmountCheckBox.setSelected(false);
+            transferFourthAmountCheckBox.setSelected(false);
+            transferUnderstandCheckBox.setSelected(false);
+            transferPasswordField.clear();
         } catch(InsufficientBalanceException e) {
             transferEnterAmountTextField.getStyleClass().add("text-field-invalid");
         }
@@ -132,8 +143,10 @@ public class CustomerTransferFundsController extends CustomerStartController imp
 
         // to avoid further repetitive code, applying one method updateValidationStyle
         updateValidationStyle(isSelectedAccount, accountsTableView);
-        updateValidationStyle(isReceiverAccount, transferEnterRecieverAccountTextField); // needs to run before isNotSameAccount
-        updateValidationStyle(isNotSameAccount, transferEnterRecieverAccountTextField); // they operate on the same field
+        updateValidationStyle(isReceiverAccount, transferEnterRecieverAccountTextField);
+        if (isReceiverAccount) {
+            updateValidationStyle(isNotSameAccount, transferEnterRecieverAccountTextField);
+        }
         updateValidationStyle(isTermsChecked, transferUnderstandCheckBox);
         updateValidationStyle(isPasswordValid, transferPasswordField);
         updateValidationStyle(isAmountNotEmpty, transferEnterAmountTextField);
