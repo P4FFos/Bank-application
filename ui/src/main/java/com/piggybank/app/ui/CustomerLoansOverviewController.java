@@ -1,12 +1,13 @@
 package com.piggybank.app.ui;
 
+import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
+import com.piggybank.app.backend.customers.loans.Loan;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,13 +20,36 @@ public class CustomerLoansOverviewController extends CustomerStartController imp
     private Button selectLoanButton;
     @FXML
     private Label infoActualUserIdLabel;
-    //@FXML
-    //private ListView<?> loansListView;
+    @FXML
+    private ListView<Account> loansListView;
+	@FXML
+	private Label detailsField;
 
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        showCurrentCustomer();
-        //initialize loansListView. populate with current customer's loans.
-    }
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		showCurrentCustomer();
+
+		
+		// fill loansListView with current customer's loans
+		for(Account account : currentCustomer.getAccountsList()){
+			if(account instanceof Loan){
+				loansListView.getItems().add(account);
+			}
+		}
+		
+	}
+
+	public void selectLoan(){ // show details of selected loan on button click
+		Loan selectedLoan = (Loan) loansListView.getSelectionModel().getSelectedItem();
+		String details = "";
+		details += "Account ID: " + selectedLoan.getAccountId() + "\n";
+		details += "Balance: " + selectedLoan.getBalance() + " SEK" + "\n";
+		details += "Initial Amount: " + selectedLoan.getInitialAmount() + " SEK" + "\n";
+		details += "Interest Rate: " + selectedLoan.getInterestRate() + " %" + "\n";
+		details += "Min Payment Percent: " + selectedLoan.getMinPaymentPercent() + " %" + "\n";
+		details += "Min Payment Amount: " + selectedLoan.getMinPaymentAmount() + " SEK" + "\n";
+		detailsField.setText(details);
+		detailsField.setVisible(true);
+	}
 
     @Override
     public void showCurrentCustomer(){

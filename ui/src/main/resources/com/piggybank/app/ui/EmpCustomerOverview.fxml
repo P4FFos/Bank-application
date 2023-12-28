@@ -47,7 +47,7 @@
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Button>
-                <Button fx:id="viewCustomerButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="180.0" mnemonicParsing="false" onAction="#goToCustomerAccounts" prefHeight="25.0" prefWidth="155.0" text="VIEW CUSTOMER">
+                <Button fx:id="viewCustomerButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="180.0" mnemonicParsing="false" onAction="#goToCustomerAccounts" prefHeight="25.0" prefWidth="155.0" text="VIEW ACCOUNTS">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>

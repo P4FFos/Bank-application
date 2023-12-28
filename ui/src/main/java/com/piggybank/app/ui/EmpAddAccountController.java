@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Calendar;
@@ -57,6 +58,8 @@ public class EmpAddAccountController extends EmpMainController implements Initia
     private Label toAccountLabel;
     @FXML
     private TextField newAccountNameField;
+    @FXML
+    private Label wrongDetailsLabel;
 
     private double amount;
     private Account accountToIncrement;
@@ -86,26 +89,29 @@ public class EmpAddAccountController extends EmpMainController implements Initia
     }
 
 
-    public void adjustFunds(Account account, double amount){ // okButton
+    public void adjustFunds(Account account, double amount) { // okButton
         double currentBalance = account.getBalance();
         account.setBalance(currentBalance + Math.abs(amount));
         System.out.println("New balance: " + account.getBalance());
     }
 
-    public void saveNewAccount(ActionEvent event) throws Exception { // saveNewAccountButton
-        if (standardCheckBox.isSelected()) {
-            bank.createAccount(currentCustomer.getUserId(), newAccountNameField.getText());
-            backToOverview(event);
-        } else if (creditCheckBox.isSelected() && !newAccountNameField.getText().isBlank() && amount != 0.0) {
-            bank.createCredit(currentCustomer.getUserId(), newAccountNameField.getText(), Calendar.getInstance(), amount);
-            adjustFunds(accountToIncrement, amount);
-            backToOverview(event);
-        } else if (loanCheckBox.isSelected() && !newAccountNameField.getText().isBlank() && amount != 0.0 ) {
-            bank.createLoanAccount(currentCustomer.getUserId(), newAccountNameField.getText(), amount);
-            adjustFunds(accountToIncrement, amount);
-            backToOverview(event);
-        } else {
-            System.out.println("Wrong data input.");
+    public void saveNewAccount(ActionEvent event) throws Exception {
+        try {
+            if (standardCheckBox.isSelected()) {
+                bank.createAccount(currentCustomer.getUserId(), newAccountNameField.getText());
+                backToOverview(event);
+            } else if (creditCheckBox.isSelected()) {
+                bank.createCredit(currentCustomer.getUserId(), newAccountNameField.getText(), Calendar.getInstance(), amount);
+                adjustFunds(accountToIncrement, amount);
+                backToOverview(event);
+            } else if (loanCheckBox.isSelected()) {
+                bank.createLoanAccount(currentCustomer.getUserId(), newAccountNameField.getText(), amount);
+                adjustFunds(accountToIncrement, amount);
+                backToOverview(event);
+            }
+        } catch (Exception e) {
+            wrongDetailsLabel.setText(wrongDetailsLabel.getText());
+            wrongDetailsLabel.setVisible(true);
         }
     }
 

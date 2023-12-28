@@ -46,7 +46,7 @@
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Button>
-                <Button fx:id="viewCustomerButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="180.0" mnemonicParsing="false" onAction="#goToCustomerAccounts" prefHeight="25.0" prefWidth="155.0" text="VIEW CUSTOMER">
+                <Button fx:id="viewCustomerButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="180.0" mnemonicParsing="false" onAction="#goToCustomerAccounts" prefHeight="25.0" prefWidth="155.0" text="VIEW ACCOUNTS">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
@@ -133,6 +133,7 @@
                 <CheckBox fx:id="loanCheckBox" layoutX="20.0" layoutY="192.0" mnemonicParsing="false" onAction="#toggleLoan" text="LOAN" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="192.0" />
                 <Label layoutX="20.0" layoutY="62.0" text="ACCOUNT NAME:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="62.0" />
                 <TextField fx:id="newAccountNameField" layoutX="17.0" layoutY="88.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="88.0" />
+                <Label fx:id="wrongDetailsLabel" layoutX="22.0" layoutY="291.0" prefHeight="35.0" prefWidth="212.0" text="ERROR: INCORRECTLY ENTERED CRITERIA FOR ACCOUNT CREATION" textFill="RED" visible="false" wrapText="true" />
                 <Button fx:id="saveNewAccountButton" layoutX="270.0" layoutY="286.0" mnemonicParsing="false" onAction="#saveNewAccount" prefHeight="45.0" prefWidth="90.0" text="SAVE" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="270.0">
                     <font>
                         <Font size="21.0" />

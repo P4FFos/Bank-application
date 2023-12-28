@@ -90,4 +90,9 @@ public class Loan extends Account {
         return this.minPaymentAmount;
     }
 
+	@Override
+	public String toString() {
+		return this.getAccountName();
+	}
+
 }
