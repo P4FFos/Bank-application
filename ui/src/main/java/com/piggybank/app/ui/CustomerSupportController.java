@@ -12,6 +12,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class CustomerSupportController extends CustomerStartController {
 
     @FXML
@@ -112,6 +115,10 @@ public class CustomerSupportController extends CustomerStartController {
 
     @FXML
     private Text phoneNumberText;
+
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        showCurrentCustomer();
+    }
 
     public void sendSupportRequest(ActionEvent event) {
         if (textArea.getText().isEmpty()) {
