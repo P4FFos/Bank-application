@@ -46,7 +46,7 @@ public class EmpMainController implements Initializable {
     @FXML
     private TextField searchCustomerTextField;
     @FXML
-    private Label NameLabel;
+    private Label nameLabel;
     @FXML
     private Label infoActualUserIdLabel;
     @FXML
@@ -80,7 +80,7 @@ public class EmpMainController implements Initializable {
 
         showCurrentEmployee();
         System.out.println("Employee Start Page. Logged in as: " + currentEmployee.getInitials());
-        NameLabel.setText(currentEmployee.getFullName());
+        nameLabel.setText(currentEmployee.getFullName());
         infoActualUserIdLabel.setText(currentEmployee.getUserId());
         System.out.println("Employee Start Page. Logged in as: " + currentEmployee.getInitials());
     }
