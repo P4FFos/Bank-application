@@ -27,10 +27,7 @@ public class CustomerLoginController {
 
     //..........................METHODS.............................
 
-    public void login(ActionEvent event) throws Exception {
-        Stage stage;
-        Scene scene;
-        Parent root;
+    public void login(ActionEvent event) throws Exception { //loginButton
         String password;
         String userId;
 
@@ -39,24 +36,23 @@ public class CustomerLoginController {
             userId = usernameTextField.getText();
             password = passwordField.getText();
 
-            if (bank.verifyCustomer(userId, password)) { //using method from bank
+            if (bank.verifyCustomer(userId, password)) {
                 CustomerStartController.currentCustomer = bank.getCustomer(userId);
                 CustomerStartController.currentCustomersAccounts = CustomerStartController.currentCustomer.getAccounts();
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("CustomerStart.fxml"));
-                root = loader.load();
+                Parent root = loader.load();
 
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
             }
         } catch (Exception e) {
             if(e instanceof PasswordException) {
-                incorrectDetailsLabel.setText(e.getMessage());
                 incorrectDetailsLabel.setVisible(true);
             }
-            System.out.println(e.getMessage()); // remove at prod
+            System.out.println(incorrectDetailsLabel.getText()); // remove at prod
         }
     }
 }

@@ -52,7 +52,6 @@ public class EmpLoginController {
             }
         } catch (Exception e) {
 			if(e instanceof PasswordException) {
-                incorrectDetailsLabel.setText(incorrectDetailsLabel.getText());
                 incorrectDetailsLabel.setVisible(true);
 			}
             System.out.println(incorrectDetailsLabel.getText()); // remove at prod
