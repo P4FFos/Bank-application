@@ -25,9 +25,10 @@ public class CustomerLoginController {
     @FXML
     private Label incorrectDetailsLabel;
 
+
     //..........................METHODS.............................
 
-    public void login(ActionEvent event) throws Exception {
+    public void login(ActionEvent event) throws Exception { //loginButton
         Stage stage;
         Scene scene;
         Parent root;
@@ -39,7 +40,7 @@ public class CustomerLoginController {
             userId = usernameTextField.getText();
             password = passwordField.getText();
 
-            if (bank.verifyCustomer(userId, password)) { //using method from bank
+            if (bank.verifyCustomer(userId, password)) {
                 CustomerStartController.currentCustomer = bank.getCustomer(userId);
                 CustomerStartController.currentCustomersAccounts = CustomerStartController.currentCustomer.getAccounts();
 
@@ -53,10 +54,10 @@ public class CustomerLoginController {
             }
         } catch (Exception e) {
             if(e instanceof PasswordException) {
-                incorrectDetailsLabel.setText(e.getMessage());
                 incorrectDetailsLabel.setVisible(true);
             }
-            System.out.println(e.getMessage()); // remove at prod
+            //System.out.println(incorrectDetailsLabel.getText()); // remove at prod
+            e.printStackTrace();
         }
     }
 }
