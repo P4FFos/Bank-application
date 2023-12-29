@@ -1,5 +1,6 @@
 package com.piggybank.app.ui.customer_controllers.loan_controllers;
 
+import com.piggybank.app.ui.customer_controllers.CustomerStartController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -10,7 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-public class CustomerLoansApplicationController {
+public class CustomerLoansApplicationController extends CustomerStartController {
 
     @FXML
     private CheckBox agreeCheckBox;
