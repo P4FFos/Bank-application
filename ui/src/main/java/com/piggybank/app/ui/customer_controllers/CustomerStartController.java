@@ -153,7 +153,7 @@ public class CustomerStartController implements Initializable {
 
     //-----------------SIDE MENU NAVIGATION----------------
     public void goToStart(ActionEvent event) throws IOException { //sideMenuStartButton
-        loader = new FXMLLoader(getClass().getResource("CustomerStart.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/customer_controllers/CustomerStart.fxml"));
         root = loader.load();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -163,7 +163,7 @@ public class CustomerStartController implements Initializable {
     }
 
     public void goToAccountsOverview(ActionEvent event) throws IOException { //sideMenuAccountsOverviewButton
-        loader = new FXMLLoader(getClass().getResource("CustomerAccountsOverview.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/customer_controllers/CustomerAccountsOverview.fxml"));
         root = loader.load();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -173,7 +173,7 @@ public class CustomerStartController implements Initializable {
     }
 
     public void goToTransferFunds(ActionEvent event) throws IOException { //sideMenuTransferFundsButton
-        loader = new FXMLLoader(getClass().getResource("CustomerTransferFunds.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/customer_controllers/CustomerTransferFunds.fxml"));
         root = loader.load();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -183,7 +183,7 @@ public class CustomerStartController implements Initializable {
     }
 
     public void goToLoans(ActionEvent event) throws IOException { //sideMenuLoansButton
-        loader = new FXMLLoader(getClass().getResource("CustomerLoansOverview.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/customer_controllers/loan_controllers/CustomerLoansOverview.fxml"));
         root = loader.load();
 
         CustomerLoansOverviewController controller = loader.getController();
@@ -196,7 +196,7 @@ public class CustomerStartController implements Initializable {
     }
 
     public void goToCredits(ActionEvent event) throws IOException { //sideMenuCreditsButton
-        loader = new FXMLLoader(getClass().getResource("CustomerCreditsOverview.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/customer_controllers/credit_controllers/CustomerCreditsOverview.fxml"));
         root = loader.load();
 
         CustomerCreditsOverviewController controller = loader.getController();
@@ -209,7 +209,7 @@ public class CustomerStartController implements Initializable {
     }
 
     public void goToFaq(ActionEvent event) throws IOException { //sideMenuFaqButton
-        loader = new FXMLLoader(getClass().getResource("CustomerFaq.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/customer_controllers/CustomerFaq.fxml"));
         root = loader.load();
 
         CustomerFaqController controller = loader.getController();
@@ -222,7 +222,7 @@ public class CustomerStartController implements Initializable {
     }
 
     public void goToSupport(ActionEvent event) throws IOException { //sideMenuSupportButton
-        loader = new FXMLLoader(getClass().getResource("CustomerSupport.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/customer_controllers/CustomerSupport.fxml"));
         root = loader.load();
 
         CustomerSupportController controller = loader.getController();
@@ -241,7 +241,7 @@ public class CustomerStartController implements Initializable {
 
         currentCustomer = null;
         System.out.println("Logged out. Have a nice day.");
-        loader = new FXMLLoader(getClass().getResource("StartScene.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/StartScene.fxml"));
         root = loader.load();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

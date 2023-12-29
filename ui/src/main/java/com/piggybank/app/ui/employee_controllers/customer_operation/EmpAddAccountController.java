@@ -117,7 +117,7 @@ public class EmpAddAccountController extends EmpMainController implements Initia
     }
 
     public void backToOverview(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpCustomerOverview.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_controllers/customer_operation/EmpCustomerOverview.fxml"));
         Parent root = loader.load();
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

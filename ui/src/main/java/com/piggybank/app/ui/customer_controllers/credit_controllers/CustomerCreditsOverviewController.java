@@ -67,7 +67,7 @@ public class CustomerCreditsOverviewController extends CustomerStartController i
     }
 
     public void apply(ActionEvent event) throws IOException { //applyForNewCreditButton
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("CustomerCreditApplication.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/customer_controllers/credit_controllers/CustomerCreditApplication.fxml"));
         Parent root = loader.load();
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

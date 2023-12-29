@@ -22,7 +22,7 @@ public class UIMain extends Application {
         savePath = "ui/src/main/java/com/piggybank/app/backend/data_base/bankDataOnLogout.json";
 
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("StartScene.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/com/piggybank/app/ui/StartScene.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

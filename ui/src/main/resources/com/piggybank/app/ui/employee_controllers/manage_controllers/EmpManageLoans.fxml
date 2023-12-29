@@ -2,15 +2,14 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="baseAnchorPane" prefHeight="395.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.piggybank.app.ui.employee_controllers.customer_operation.EmpCustomerInfoController">
+<AnchorPane fx:id="baseAnchorPane" prefHeight="395.0" prefWidth="635.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.piggybank.app.ui.employee_controllers.manage_controllers.EmpManageLoansController">
     <children>
         <Separator fx:id="verticalSeparator" layoutX="173.0" layoutY="75.0" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="173.0" AnchorPane.rightAnchor="457.0" AnchorPane.topAnchor="75.0" />
         <Separator fx:id="horisontalSeparator" layoutY="65.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0" />
@@ -18,12 +17,12 @@
             <children>
                 <ImageView fx:id="headerIconImageView" fitHeight="52.0" fitWidth="36.0" layoutX="306.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../../img/PB_icon.png" />
+                        <Image url="@../../../../../../img/PB_icon.png" />
                     </image>
                 </ImageView>
                 <ImageView fx:id="headerIconShadedImageView" fitHeight="52.0" fitWidth="36.0" layoutX="306.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" visible="false">
                     <image>
-                        <Image url="@../../../../img/PB_icon_shaded.png" />
+                        <Image url="@../../../../../../img/PB_icon_shaded.png" />
                     </image>
                 </ImageView>
                 <Label fx:id="headerBankNameLabel" layoutX="284.0" layoutY="39.0" text="Piggy Bank" textFill="#ab3e56">
@@ -53,43 +52,20 @@
                 </Button>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="currentCustomerAnchorPane" layoutX="180.0" layoutY="75.0" prefHeight="75.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
+        <AnchorPane fx:id="contentAnchorPane" layoutX="180.0" layoutY="150.0" prefHeight="232.0" prefWidth="458.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
             <children>
-                <Label fx:id="header" layoutX="10.0" layoutY="20.0" text="Contact Information">
-                    <font>
-                        <Font name="Kodchasan Regular" size="20.0" />
-                    </font>
-                </Label>
-            </children>
-        </AnchorPane>
-        <AnchorPane fx:id="contentAnchorPane" layoutX="180.0" layoutY="150.0" prefHeight="232.0" prefWidth="458.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
-         <children>
-            <Label layoutX="30.0" layoutY="5.0" text="STREET" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="5.0" />
-            <Label layoutX="30.0" layoutY="45.0" text="ZIP" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="45.0" />
-            <Label layoutX="10.0" layoutY="83.0" text="CITY" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="85.0" />
-            <Label layoutX="10.0" layoutY="124.0" text="PHONE" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="125.0" />
-            <Label layoutX="10.0" layoutY="162.0" text="EMAIL" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="165.0" />
-            <TextField fx:id="streetField" editable="false" layoutX="64.0" layoutY="6.0" promptText="porke lane 123" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="0.0" />
-            <Button fx:id="editStreetButton" layoutX="234.0" layoutY="2.0" mnemonicParsing="false" onAction="#streetEditable" text="Edit" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="0.0" />
-            <Button fx:id="saveNewStreetButton" layoutX="278.0" layoutY="3.0" mnemonicParsing="false" onAction="#setNewStreet" text="Save" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="0.0" />
-            <Button fx:id="editZipButton" layoutX="234.0" layoutY="43.0" mnemonicParsing="false" onAction="#zipEditable" text="Edit" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="40.0" />
-            <Button fx:id="saveNewZipButton" layoutX="278.0" layoutY="44.0" mnemonicParsing="false" onAction="#setNewZip" text="Save" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="40.0" />
-            <Button fx:id="editCityButton" layoutX="242.0" layoutY="78.0" mnemonicParsing="false" onAction="#cityEditable" text="Edit" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="80.0" />
-            <Button fx:id="saveNewCityButton" layoutX="286.0" layoutY="79.0" mnemonicParsing="false" onAction="#setNewCity" text="Save" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="80.0" />
-            <TextField fx:id="zipField" editable="false" layoutX="64.0" layoutY="43.0" promptText="35355" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="40.0" />
-            <TextField fx:id="cityField" editable="false" layoutX="64.0" layoutY="79.0" promptText="Chops Town" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="80.0" />
-            <TextField fx:id="phoneField" editable="false" layoutX="64.0" layoutY="120.0" promptText="0731234567" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="120.0" />
-            <TextField fx:id="emailField" editable="false" layoutX="64.0" layoutY="158.0" promptText="trufflepointer@oink.com" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="160.0" />
-            <Button fx:id="editPhoneButton" layoutX="236.0" layoutY="119.0" mnemonicParsing="false" onAction="#phoneEditable" text="Edit" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="120.0" />
-            <Button fx:id="saveNewPhoneButton" layoutX="280.0" layoutY="120.0" mnemonicParsing="false" onAction="#setNewPhone" text="Save" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="120.0" />
-            <Button fx:id="editEmailButton" layoutX="242.0" layoutY="157.0" mnemonicParsing="false" onAction="#emailEditable" text="Edit" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="160.0" />
-            <Button fx:id="saveNewEmailButton" layoutX="286.0" layoutY="158.0" mnemonicParsing="false" onAction="#setNewEmail" text="Save" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="160.0" />
-            <Label layoutX="10.0" layoutY="203.0" text="PASSWORD" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="205.0" />
-            <Button fx:id="editPasswordButton" layoutX="242.0" layoutY="198.0" mnemonicParsing="false" onAction="#passwordEditable" text="Edit" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="200.0" />
-            <Button fx:id="saveNewPasswordButton" layoutX="286.0" layoutY="199.0" mnemonicParsing="false" onAction="#setNewPassword" text="Save" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="200.0" />
-            <PasswordField fx:id="passwordField" editable="false" layoutX="85.0" layoutY="200.0" promptText="******" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="200.0" />
-         </children></AnchorPane>
-      <AnchorPane fx:id="sideMenuAnchorPane" layoutY="80.0" prefHeight="313.0" prefWidth="179.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="463.0" AnchorPane.topAnchor="75.0">
+                <ListView fx:id="loansListView" layoutX="16.0" layoutY="39.0" prefHeight="202.0" prefWidth="200.0" AnchorPane.leftAnchor="15.0" />
+                <Label layoutX="16.0" layoutY="14.0" text="LOANS" AnchorPane.leftAnchor="15.0" />
+                <Button fx:id="selectLoanButton" layoutX="119.0" layoutY="10.0" mnemonicParsing="false" onAction="#setCurrentLoan" text="SELECT" />
+                <Button fx:id="addLoanButton" layoutX="189.0" layoutY="10.0" mnemonicParsing="false" onAction="#addLoan" text="+" />
+                <Label layoutX="19.0" layoutY="246.0" text="LOAN ID:" AnchorPane.leftAnchor="15.0" />
+                <Label fx:id="loanIdLabel" layoutX="116.0" layoutY="246.0" text="####" AnchorPane.leftAnchor="125.0" />
+                <Label layoutX="16.0" layoutY="266.0" text="CURRENT DEBT: " AnchorPane.leftAnchor="15.0" />
+                <Label fx:id="debtLabel" layoutX="115.0" layoutY="266.0" text="€€€€" AnchorPane.leftAnchor="125.0" />
+            <Label layoutX="15.0" layoutY="288.0" text="LOAN AMOUNT:" AnchorPane.leftAnchor="15.0" />
+            <Label fx:id="loanAmountLabel" layoutX="115.0" layoutY="289.0" text="€€€€" AnchorPane.leftAnchor="125.0" />
+            </children></AnchorPane>
+      <AnchorPane fx:id="sideMenuAnchorPane" layoutX="10.0" layoutY="90.0" prefHeight="313.0" prefWidth="179.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="463.0" AnchorPane.topAnchor="75.0">
          <children>
             <Label fx:id="sideMenuLabel" layoutX="98.0" layoutY="120.0" prefHeight="26.0" prefWidth="66.0" text="MENU" textAlignment="RIGHT" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="120.0">
                <font>
@@ -121,19 +97,19 @@
                   <Font name="Kodchasan Regular" size="10.0" />
                </font>
             </Button>
-            <AnchorPane fx:id="privateCustomerInfoAnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="112.0" prefWidth="190.0" AnchorPane.bottomAnchor="205.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="privateCustomerInfoAnchorPane" prefHeight="112.0" prefWidth="190.0" AnchorPane.bottomAnchor="205.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label fx:id="customerNameLabel" prefHeight="23.0" prefWidth="179.0" text="Firstname Lastname" textAlignment="JUSTIFY" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="50.0" layoutY="36.0" text="User ID:" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="36.0">
+                  <Label layoutX="50.2" layoutY="36.0" text="User ID:" AnchorPane.leftAnchor="50.2" AnchorPane.topAnchor="36.0">
                      <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                      </font>
                   </Label>
-                  <Label fx:id="customerIdLabel" layoutX="88.0" layoutY="36.0" prefHeight="13.0" prefWidth="115.0" text="####" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="-24.0" AnchorPane.topAnchor="36.0">
+                  <Label fx:id="customerIdLabel" layoutX="88.2" layoutY="36.0" prefHeight="13.0" prefWidth="115.0" text="####" AnchorPane.leftAnchor="88.2" AnchorPane.rightAnchor="-22.600000000000023" AnchorPane.topAnchor="36.0">
                      <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                      </font>
@@ -150,7 +126,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="corporateCustomerInfoAnchorPane" prefHeight="112.0" prefWidth="190.0" visible="false" AnchorPane.bottomAnchor="205.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="corporateCustomerInfoAnchorPane" layoutX="20.0" layoutY="20.0" prefHeight="112.0" prefWidth="190.0" visible="false" AnchorPane.bottomAnchor="205.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label fx:id="companyNameLabel" prefHeight="23.0" prefWidth="179.0" text="Company" textAlignment="JUSTIFY" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
                      <font>

@@ -68,7 +68,7 @@ public class Bank {
         } else if (inputString.length() == 4) {
             return  customers.get(inputString);
         }
-        throw new Exception("Customer not found by ID or SSN.");
+        throw new UserNotFoundException("Customer not found by ID or SSN.");
     }
 
     // returns a string of all transactions in specified account

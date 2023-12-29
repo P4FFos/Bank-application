@@ -43,7 +43,7 @@ public class EmpLoginController {
             if (bank.verifyEmployee(userId, password)) { //using method from bank
                 EmpMainController.currentEmployee = bank.getEmployee(userId);
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_controllers/EmpStart.fxml"));
                 root = loader.load();
 
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -51,12 +51,12 @@ public class EmpLoginController {
                 stage.setScene(scene);
                 stage.show();
             }
+        } catch(PasswordException e) {
+            incorrectDetailsLabel.setText(incorrectDetailsLabel.getText());
+            incorrectDetailsLabel.setVisible(true);
+
         } catch (Exception e) {
-			if(e instanceof PasswordException) {
-                incorrectDetailsLabel.setText(incorrectDetailsLabel.getText());
-                incorrectDetailsLabel.setVisible(true);
-			}
-            System.out.println(incorrectDetailsLabel.getText());
+            e.printStackTrace();
         }
     }
 }

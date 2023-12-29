@@ -51,11 +51,15 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
     @FXML
     private PasswordField passwordField;
 
+    private Label noCustomerFoundLabel;
+
     public void initialize(URL arg0, ResourceBundle arg1) {
         super.showCurrentEmployee();
+
         onSavePane.setVisible(false);
         wrongPasswordPane.setVisible(false);
         privateCustomerCheckBox.setSelected(true);
+
         togglePrivate();
         System.out.println("Employee Add Customer Page. Logged in as: " + currentEmployee.getInitials());
     }
@@ -105,7 +109,6 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
                 wrongPasswordPane.setVisible(true);
 			}
         }
-
     }
 
     public void successFulSave(String userId){

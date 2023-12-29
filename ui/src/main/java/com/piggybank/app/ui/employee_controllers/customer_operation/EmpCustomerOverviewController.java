@@ -158,7 +158,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         if(currentAccount == null){
             System.out.println("You must select an account.");
         } else {
-            loader = new FXMLLoader(getClass().getResource("EmpManageFunds.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_controllers/manage_controllers/EmpManageFunds.fxml"));
             root = loader.load();
 
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -169,7 +169,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     }
 
     public void addAccount(ActionEvent event) throws IOException { //addAccountButton
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpAddAccount.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_controllers/customer_operation/EmpAddAccount.fxml"));
         root = loader.load();
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -179,7 +179,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     }
 
     public void makeTransaction(ActionEvent event) throws IOException { // makeTransactionButton
-        loader = new FXMLLoader(getClass().getResource("EmpMakeTransaction.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_controllers/EmpMakeTransaction.fxml"));
         root = loader.load();
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="baseAnchorPane" prefHeight="431.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.piggybank.app.ui.employee_controllers.manage_controllers.EmpManageFundsController">
+<AnchorPane fx:id="baseAnchorPane" prefHeight="431.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.piggybank.app.ui.employee_controllers.customer_operation.EmpAddAccountController">
     <children>
         <Separator fx:id="verticalSeparator" layoutX="173.0" layoutY="84.8" orientation="VERTICAL" prefHeight="310.0" prefWidth="11.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="173.0" AnchorPane.topAnchor="75.0" />
         <Separator fx:id="horisontalSeparator" layoutY="65.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0" />
@@ -18,12 +19,12 @@
             <children>
                 <ImageView fx:id="headerIconImageView" fitHeight="52.0" fitWidth="36.0" layoutX="306.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../../../../img/PB_icon.png" />
+                        <Image url="@../../../../../../img/PB_icon.png" />
                     </image>
                 </ImageView>
                 <ImageView fx:id="headerIconShadedImageView" fitHeight="52.0" fitWidth="36.0" layoutX="306.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" visible="false">
                     <image>
-                        <Image url="@../../../../img/PB_icon_shaded.png" />
+                        <Image url="@../../../../../../img/PB_icon_shaded.png" />
                     </image>
                 </ImageView>
                 <Label fx:id="headerBankNameLabel" layoutX="284.0" layoutY="39.0" text="Piggy Bank" textFill="#ab3e56">
@@ -31,26 +32,6 @@
                         <Font name="Kodchasan Regular" size="15.0" />
                     </font>
                 </Label>
-              <Label fx:id="headerIdLabel" text="ID" AnchorPane.leftAnchor="701.0" AnchorPane.topAnchor="10.0">
-                  <font>
-                      <Font name="Kodchasan Regular" size="11.0" />
-                  </font>
-              </Label>
-              <Label fx:id="empIdLabel" alignment="CENTER_RIGHT" contentDisplay="TOP" text="##########" AnchorPane.rightAnchor="12.5" AnchorPane.topAnchor="10.0">
-                  <font>
-                      <Font name="Kodchasan Regular" size="11.0" />
-                  </font>
-              </Label>
-              <Label fx:id="empInitialsLabel" text="Firstname Lastname" AnchorPane.leftAnchor="701.0" AnchorPane.rightAnchor="12.5" AnchorPane.topAnchor="25.0">
-                  <font>
-                      <Font name="Kodchasan Regular" size="11.0" />
-                  </font>
-              </Label>
-              <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="66.0" text="LOGOUT" AnchorPane.leftAnchor="701.0" AnchorPane.rightAnchor="12.5" AnchorPane.topAnchor="42.0">
-                  <font>
-                      <Font name="Kodchasan Regular" size="10.0" />
-                  </font>
-              </Button>
             </children>
         </AnchorPane>
         <AnchorPane fx:id="sideMenuAnchorPane" layoutY="75.0" prefHeight="313.0" prefWidth="173.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="75.0">
@@ -145,17 +126,64 @@
                 </AnchorPane>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="contentAnchorPane" layoutX="180.0" layoutY="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
-         <children>
-            <Label layoutX="14.0" layoutY="14.0" text="ACCOUNT:" AnchorPane.topAnchor="14.0" />
-            <Label layoutX="14.0" layoutY="39.0" text="BALANCE:" />
-            <TextField fx:id="amountTextField" layoutX="14.0" layoutY="165.0" />
-            <CheckBox fx:id="withdrawCheckBox" layoutX="14.0" layoutY="73.0" mnemonicParsing="false" onAction="#toggleWithdraw" text="WITHDRAW" />
-            <CheckBox fx:id="depositCheckBox" layoutX="14.0" layoutY="101.0" mnemonicParsing="false" onAction="#toggleDeposit" text="DEPOSIT" />
-            <Label layoutX="14.0" layoutY="144.0" text="AMOUNT" />
-            <Button fx:id="okButton" layoutX="14.0" layoutY="201.0" mnemonicParsing="false" onAction="#adjustFunds" text="OK" />
-            <Label fx:id="accountLabel" layoutX="94.0" layoutY="14.0" prefHeight="17.0" prefWidth="135.0" text="XXX" />
-            <Label fx:id="balanceLabel" layoutX="94.0" layoutY="39.0" prefHeight="17.0" prefWidth="135.0" text="£££" />
-         </children></AnchorPane>
+        <AnchorPane fx:id="addAccountAnchorPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
+            <children>
+                <CheckBox fx:id="standardCheckBox" layoutX="20.0" layoutY="129.0" mnemonicParsing="false" onAction="#toggleStandard" text="STANDARD" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="129.0" />
+                <CheckBox fx:id="creditCheckBox" layoutX="20.0" layoutY="160.0" mnemonicParsing="false" onAction="#toggleCredit" text="CREDIT" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="160.0" />
+                <CheckBox fx:id="loanCheckBox" layoutX="20.0" layoutY="192.0" mnemonicParsing="false" onAction="#toggleLoan" text="LOAN" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="192.0" />
+                <Label layoutX="20.0" layoutY="62.0" text="ACCOUNT NAME:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="62.0" />
+                <TextField fx:id="newAccountNameField" layoutX="17.0" layoutY="88.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="88.0" />
+                <Label fx:id="wrongDetailsLabel" layoutX="22.0" layoutY="291.0" prefHeight="35.0" prefWidth="212.0" text="ERROR: INCORRECTLY ENTERED CRITERIA FOR ACCOUNT CREATION" textFill="RED" visible="false" wrapText="true" />
+                <Button fx:id="saveNewAccountButton" layoutX="270.0" layoutY="286.0" mnemonicParsing="false" onAction="#saveNewAccount" prefHeight="45.0" prefWidth="90.0" text="SAVE" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="270.0">
+                    <font>
+                        <Font size="21.0" />
+                    </font></Button>
+                <Label layoutX="27.0" layoutY="14.0" text="ADD ACCOUNT" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0">
+                    <font>
+                        <Font size="25.0" />
+                    </font>
+                </Label>
+                <ChoiceBox fx:id="accountsChoiceBox" layoutX="210.0" layoutY="239.0" prefWidth="150.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="235.0" />
+                <Label fx:id="toAccountLabel" layoutX="210.0" layoutY="210.0" text="TO ACCOUNT:" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="210.0" />
+                <AnchorPane fx:id="creditAnchorPane" layoutX="209.0" layoutY="7.0" prefHeight="128.0" prefWidth="150.0" AnchorPane.bottomAnchor="165.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="65.0">
+                    <children>
+                        <CheckBox fx:id="fiftyKCheckBox" layoutX="122.0" layoutY="106.0" mnemonicParsing="false" onAction="#toggleFiftyKCredit" text="50.000 SEK" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="105.0" />
+                        <CheckBox fx:id="twentyFiveKCheckBox" layoutY="80.0" mnemonicParsing="false" onAction="#toggleTwentyFiveKCredit" text="25.000 SEK" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="80.0" />
+                        <CheckBox fx:id="tenKCheckBox" layoutX="123.0" layoutY="48.0" mnemonicParsing="false" onAction="#toggleTenKCredit" text="10.000 SEK" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="55.0" />
+                        <CheckBox fx:id="fiveKCheckBox" layoutX="122.0" layoutY="22.0" mnemonicParsing="false" onAction="#toggleFiveKCredit" text="5000 SEK" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0" />
+                        <Label fx:id="creditAmountLabel" text="CREDIT AMOUNT:" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane fx:id="loanAnchorPane" layoutX="210.0" layoutY="65.0" prefHeight="133.0" prefWidth="150.0" visible="false" AnchorPane.bottomAnchor="165.0" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="65.0">
+                    <children>
+                        <CheckBox fx:id="fiveMillionCheckBox" layoutX="122.0" layoutY="106.0" mnemonicParsing="false" onAction="#toggleFiveMillionLoan" text="5.000.000 SEK" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="105.0" />
+                        <CheckBox fx:id="twoHalfMillionCheckBox" layoutX="122.0" layoutY="80.0" mnemonicParsing="false" onAction="#toggleTwoHalfMillionLoan" text="2.500.000 SEK" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="80.0" />
+                        <CheckBox fx:id="oneMillionCheckBox" layoutX="123.0" layoutY="48.0" mnemonicParsing="false" onAction="#toggleOneMillionLoan" text="1.000.000 SEK" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="55.0" />
+                        <CheckBox fx:id="halfMillionCheckBox" layoutX="122.0" layoutY="22.0" mnemonicParsing="false" onAction="#toggleHalfMillionLoan" text="500.000 SEK" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0" />
+                        <Label fx:id="loanAmountLabel" layoutX="10.0" layoutY="23.0" text="LOAN AMOUNT" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+        <Label fx:id="headerIdLabel" layoutX="701.0" layoutY="10.0" text="ID">
+            <font>
+                <Font name="Kodchasan Regular" size="11.0" />
+            </font>
+        </Label>
+        <Label fx:id="empIdLabel" alignment="CENTER_RIGHT" contentDisplay="TOP" layoutX="716.0" layoutY="10.0" text="##########">
+            <font>
+                <Font name="Kodchasan Regular" size="11.0" />
+            </font>
+        </Label>
+        <Label fx:id="empInitialsLabel" layoutX="701.0" layoutY="25.0" text="Firstname Lastname">
+            <font>
+                <Font name="Kodchasan Regular" size="11.0" />
+            </font>
+        </Label>
+        <Button fx:id="logoutButton" layoutX="701.0" layoutY="42.0" mnemonicParsing="false" onAction="#logout" prefHeight="19.0" prefWidth="66.0" text="LOGOUT">
+            <font>
+                <Font name="Kodchasan Regular" size="10.0" />
+            </font>
+        </Button>
     </children>
 </AnchorPane>
