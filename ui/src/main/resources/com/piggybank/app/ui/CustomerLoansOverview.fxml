@@ -136,42 +136,38 @@
                     </font>
                 </Label>
                 <ListView fx:id="loansListView" layoutX="20.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="280.0" />
-                <Button fx:id="applyForNewLoanButton" layoutX="320.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="280.0" style="-fx-background-color: #ab3e56;" text="APPLY FOR A NEW LOAN HERE" textFill="#ffe7ed">
-               <font>
-                  <Font name="Kodchasan Regular" size="15.0" />
-               </font></Button>
-                <Label fx:id="detailsLabel" layoutX="320.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="TERMS &amp; CONDITIONS" textFill="#ab3e56">
+                <Label fx:id="detailsLabel" layoutX="315.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="TERMS &amp; CONDITIONS" textFill="#ab3e56">
                     <font>
                         <Font name="Kodchasan Bold" size="15.0" />
                     </font>
                 </Label>
                 <Label fx:id="detailsField" alignment="TOP_LEFT" layoutX="225.0" layoutY="67.0" prefHeight="186.0" prefWidth="228.0" text="details field" visible="false" wrapText="true" />
-            <Label fx:id="sectionHeadingLabel" layoutX="320.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="GENERAL INFORMATION ABOUT OUR INTEREST RATES" textFill="#ab3e56">
+            <Label fx:id="sectionHeadingLabel" layoutX="315.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="GENERAL INFORMATION ABOUT OUR INTEREST RATES" textFill="#ab3e56">
                <font>
                   <Font name="Kodchasan Bold" size="8.0" />
                </font>
             </Label>
-            <Label fx:id="informationSectionLabel" alignment="TOP_LEFT" layoutX="320.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="The interest rate can be fixed or variable. The fixed interest rate can be fixed below one fixed interest period or during the entire term. The fixed interest period that is agreed upon is an approximate time that is governed by the length on the lender's borrowing." textFill="#ab3e56" wrapText="true">
+            <Label fx:id="informationSectionLabel" alignment="TOP_LEFT" layoutX="315.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="The interest rate can be fixed or variable. The fixed interest rate can be fixed below one fixed interest period or during the entire term. The fixed interest period that is agreed upon is an approximate time that is governed by the length on the lender's borrowing." textFill="#ab3e56" wrapText="true">
                <font>
                   <Font name="Kodchasan Regular" size="8.0" />
                </font>
             </Label>
-            <Label fx:id="sectionHeadingLabel1" layoutX="320.0" layoutY="85.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="ABOUT AMORTIZATION" textFill="#ab3e56">
+            <Label fx:id="sectionHeadingLabel1" layoutX="315.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="ABOUT AMORTIZATION" textFill="#ab3e56">
                <font>
                   <Font name="Kodchasan Bold" size="8.0" />
                </font>
             </Label>
-            <Label fx:id="informationSectionLabel1" alignment="TOP_LEFT" layoutX="320.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="The loan must be amortized according to the lender's policy in force at any given time, in accordance with the amortization requirements that follow from law or regulations. The amortization terms for the loan are shown in force at the time terms and conditions annex." textFill="#ab3e56" wrapText="true">
+            <Label fx:id="informationSectionLabel1" alignment="TOP_LEFT" layoutX="315.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="The loan must be amortized according to the lender's policy in force at any given time, in accordance with the amortization requirements that follow from law or regulations. The amortization terms for the loan are shown in force at the time terms and conditions annex." textFill="#ab3e56" wrapText="true">
                <font>
                   <Font name="Kodchasan Regular" size="8.0" />
                </font>
             </Label>
-            <Label fx:id="sectionHeadingLabel2" layoutX="320.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="TOTAL AMOUNT" textFill="#ab3e56">
+            <Label fx:id="sectionHeadingLabel2" layoutX="315.0" layoutY="145.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="TOTAL AMOUNT" textFill="#ab3e56">
                <font>
                   <Font name="Kodchasan Bold" size="8.0" />
                </font>
             </Label>
-            <Label fx:id="informationSectionLabel2" alignment="TOP_LEFT" layoutX="320.0" layoutY="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="The total amount that the borrower must pay is the sum ofthe loan amount and the borrower's total credit costs. Theaggregate amounts set forth in the First Schedule of Terms are only one indication of the total amount." textFill="#ab3e56" wrapText="true">
+            <Label fx:id="informationSectionLabel2" alignment="TOP_LEFT" layoutX="315.0" layoutY="155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="The total amount that the borrower must pay is the sum ofthe loan amount and the borrower's total credit costs. Theaggregate amounts set forth in the First Schedule of Terms are only one indication of the total amount." textFill="#ab3e56" wrapText="true">
                <font>
                   <Font name="Kodchasan Regular" size="8.0" />
                </font>
