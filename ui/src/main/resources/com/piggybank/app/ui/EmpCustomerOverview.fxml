@@ -141,7 +141,7 @@
             <Button fx:id="makeTransactionButton" layoutX="594.0" layoutY="10.0" mnemonicParsing="false" onAction="#makeTransaction" text="+" AnchorPane.topAnchor="10.0" />
             <CheckBox fx:id="inTransactionCheckBox" layoutX="190.8" layoutY="250.4" mnemonicParsing="false" onAction="#toggleIncomingTransactions" text="INCOMING" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="255.0" />
             <CheckBox fx:id="outTransactionCheckBox" layoutX="190.0" layoutY="275.2" mnemonicParsing="false" onAction="#toggleOutgoingTransactions" text="OUTGOING" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="280.0" />
-            <TableView fx:id="transactionsTable" editable="true" layoutX="189.0" layoutY="41.0" prefHeight="202.0" prefWidth="428.0" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="40.0">
+            <TableView fx:id="transactionsTable" editable="true" layoutX="189.0" layoutY="41.0" prefHeight="202.0" prefWidth="428.0" stylesheets="@../../../../TableViewStylesheet.css" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="40.0">
               <columns>
                 <TableColumn fx:id="senderColumn" prefWidth="56.0" text="Sender" />
                 <TableColumn fx:id="receiverColumn" prefWidth="56.0" text="Receiver" />
