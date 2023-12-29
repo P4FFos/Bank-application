@@ -1,4 +1,4 @@
-package com.piggybank.app.ui;
+package com.piggybank.app.ui.customer_controllers;
 
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;

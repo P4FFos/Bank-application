@@ -1,7 +1,8 @@
-package com.piggybank.app.ui;
+package com.piggybank.app.ui.customer_controllers;
 
 import com.piggybank.app.backend.customers.*;
 
+import com.piggybank.app.backend.customers.money_operations.Transaction;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;

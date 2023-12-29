@@ -1,10 +1,11 @@
-package com.piggybank.app.ui;
+package com.piggybank.app.ui.employee_controllers;
 
 import com.piggybank.app.backend.Bank;
 import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.Customer;
 import com.piggybank.app.backend.employees.Employee;
 import com.piggybank.app.backend.utils.FileHandler;
+import com.piggybank.app.ui.UIMain;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

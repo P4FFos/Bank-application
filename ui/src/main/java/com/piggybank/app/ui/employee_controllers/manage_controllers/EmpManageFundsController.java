@@ -1,7 +1,8 @@
-package com.piggybank.app.ui;
+package com.piggybank.app.ui.employee_controllers.manage_controllers;
 
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
+import com.piggybank.app.ui.employee_controllers.EmpMainController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;

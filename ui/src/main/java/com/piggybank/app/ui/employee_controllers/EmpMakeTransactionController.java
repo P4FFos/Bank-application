@@ -1,10 +1,9 @@
-package com.piggybank.app.ui;
+package com.piggybank.app.ui.employee_controllers;
 
 import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
 import com.piggybank.app.backend.exceptions.InsufficientBalanceException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;

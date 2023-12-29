@@ -1,11 +1,14 @@
-package com.piggybank.app.ui;
+package com.piggybank.app.ui.customer_controllers;
 
 import com.piggybank.app.backend.Bank;
 import com.piggybank.app.backend.customers.*;
-import com.piggybank.app.backend.customers.debts.Credit;
-import com.piggybank.app.backend.customers.loans.Loan;
+import com.piggybank.app.backend.customers.money_operations.Credit;
+import com.piggybank.app.backend.customers.money_operations.Loan;
 import com.piggybank.app.backend.utils.FileHandler;
 
+import com.piggybank.app.ui.UIMain;
+import com.piggybank.app.ui.customer_controllers.credit_controllers.CustomerCreditsOverviewController;
+import com.piggybank.app.ui.customer_controllers.loan_controllers.CustomerLoansOverviewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

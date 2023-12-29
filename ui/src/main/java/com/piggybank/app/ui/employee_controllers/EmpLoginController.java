@@ -1,7 +1,8 @@
-package com.piggybank.app.ui;
+package com.piggybank.app.ui.employee_controllers;
 
 import com.piggybank.app.backend.Bank;
 import com.piggybank.app.backend.exceptions.PasswordException;
+import com.piggybank.app.ui.UIMain;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class CustomerLoginController {
+public class EmpLoginController {
     //.....................FXML ELEMENTS...........................
     @FXML
     private TextField usernameTextField;
@@ -39,11 +40,10 @@ public class CustomerLoginController {
             userId = usernameTextField.getText();
             password = passwordField.getText();
 
-            if (bank.verifyCustomer(userId, password)) { //using method from bank
-                CustomerStartController.currentCustomer = bank.getCustomer(userId);
-                CustomerStartController.currentCustomersAccounts = CustomerStartController.currentCustomer.getAccounts();
+            if (bank.verifyEmployee(userId, password)) { //using method from bank
+                EmpMainController.currentEmployee = bank.getEmployee(userId);
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("CustomerStart.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
                 root = loader.load();
 
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -52,11 +52,12 @@ public class CustomerLoginController {
                 stage.show();
             }
         } catch (Exception e) {
-            if(e instanceof PasswordException) {
-                incorrectDetailsLabel.setText(e.getMessage());
+			if(e instanceof PasswordException) {
+                incorrectDetailsLabel.setText(incorrectDetailsLabel.getText());
                 incorrectDetailsLabel.setVisible(true);
-            }
-            System.out.println(e.getMessage()); // remove at prod
+			}
+            System.out.println(incorrectDetailsLabel.getText());
         }
     }
 }
+

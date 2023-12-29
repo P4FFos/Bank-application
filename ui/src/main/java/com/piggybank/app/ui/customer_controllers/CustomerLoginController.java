@@ -1,7 +1,8 @@
-package com.piggybank.app.ui;
+package com.piggybank.app.ui.customer_controllers;
 
 import com.piggybank.app.backend.Bank;
 import com.piggybank.app.backend.exceptions.PasswordException;
+import com.piggybank.app.ui.UIMain;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class EmpLoginController {
+public class CustomerLoginController {
     //.....................FXML ELEMENTS...........................
     @FXML
     private TextField usernameTextField;
@@ -39,10 +40,11 @@ public class EmpLoginController {
             userId = usernameTextField.getText();
             password = passwordField.getText();
 
-            if (bank.verifyEmployee(userId, password)) { //using method from bank
-                EmpMainController.currentEmployee = bank.getEmployee(userId);
+            if (bank.verifyCustomer(userId, password)) { //using method from bank
+                CustomerStartController.currentCustomer = bank.getCustomer(userId);
+                CustomerStartController.currentCustomersAccounts = CustomerStartController.currentCustomer.getAccounts();
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpStart.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("CustomerStart.fxml"));
                 root = loader.load();
 
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -51,12 +53,11 @@ public class EmpLoginController {
                 stage.show();
             }
         } catch (Exception e) {
-			if(e instanceof PasswordException) {
+            if(e instanceof PasswordException) {
                 incorrectDetailsLabel.setText(incorrectDetailsLabel.getText());
                 incorrectDetailsLabel.setVisible(true);
-			}
+            }
             System.out.println(incorrectDetailsLabel.getText()); // remove at prod
         }
     }
 }
-

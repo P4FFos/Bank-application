@@ -1,4 +1,4 @@
-package com.piggybank.app.backend.customers;
+package com.piggybank.app.backend.customers.money_operations;
 
 import java.time.LocalDate;
 

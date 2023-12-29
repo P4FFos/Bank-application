@@ -1,4 +1,4 @@
-package com.piggybank.app.backend.customers.loans;
+package com.piggybank.app.backend.customers.money_operations;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeName;

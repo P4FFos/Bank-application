@@ -1,4 +1,4 @@
-package com.piggybank.app.backend.customers.debts;
+package com.piggybank.app.backend.customers.money_operations;
 
 import java.util.Calendar;
 

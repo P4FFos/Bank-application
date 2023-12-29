@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public class BackendMain {
     public static void main(String[] args) throws Exception {
 
-        String jsonFile = "ui/src/main/java/com/piggybank/app/backend/bankData.json";
+        String jsonFile = "ui/src/main/java/com/piggybank/app/backend/data_base/bankData.json";
         Bank bank = FileHandler.jsonDeserializer(jsonFile);
 
         // testing the bank
@@ -20,7 +20,7 @@ public class BackendMain {
         // will add transaction in json file
         bank.transfer("A00003", "A00001", 400,"Money from Jane", LocalDate.now());
 
-        String saveFile = "ui/src/main/java/com/piggybank/app/backend/bankDataBackendMain.json";
+        String saveFile = "ui/src/main/java/com/piggybank/app/backend/data_base/bankDataBackendMain.json";
 
         FileHandler.jsonSerializer(saveFile, bank);
 

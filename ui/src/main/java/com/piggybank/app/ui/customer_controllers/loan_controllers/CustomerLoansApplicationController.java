@@ -1,4 +1,4 @@
-package com.piggybank.app.ui;
+package com.piggybank.app.ui.customer_controllers.loan_controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
