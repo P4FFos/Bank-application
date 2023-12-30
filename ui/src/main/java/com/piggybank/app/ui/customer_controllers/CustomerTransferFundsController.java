@@ -81,7 +81,7 @@ public class CustomerTransferFundsController extends CustomerStartController imp
         transferCompleteTransferButton.setDisable(false);
     }
 
-    public void completeTransfer(ActionEvent event) throws Exception {
+    public void completeTransfer() throws Exception {
         // first remove any unwanted styling (if run before)
         resetStyles();
 
