@@ -183,7 +183,7 @@ public class EmpMainController implements Initializable {
         resetUIState();
 
         if(currentCustomer != null){
-            loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/manage_controllers/EmpManageLoans.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/customer_operation/EmpAddAccount.fxml"));
             root = loader.load();
 
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
