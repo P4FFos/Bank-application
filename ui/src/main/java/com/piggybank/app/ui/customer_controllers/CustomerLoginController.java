@@ -45,7 +45,7 @@ public class CustomerLoginController {
                 CustomerStartController.currentCustomer = bank.getCustomer(userId);
                 CustomerStartController.currentCustomersAccounts = CustomerStartController.currentCustomer.getAccounts();
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/customer_controllers/CustomerStart.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/customer_scenes/CustomerStart.fxml"));
                 root = loader.load();
 
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

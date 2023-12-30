@@ -15,16 +15,12 @@ import java.util.ResourceBundle;
 
 public class CustomerLoansOverviewController extends CustomerStartController implements Initializable {
 
-    @FXML
-    private Button applyForNewLoanButton;
-    @FXML
-    private Button selectLoanButton;
+    //@FXML
+    //private Button selectLoanButton;
     @FXML
     private Label infoActualUserIdLabel;
     @FXML
     private ListView<Account> loansListView;
-	@FXML
-	private Label detailsField;
 
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		showCurrentCustomer();
@@ -39,7 +35,7 @@ public class CustomerLoansOverviewController extends CustomerStartController imp
 		
 	}
 
-	public void selectLoan(){ // show details of selected loan on button click
+	/*public void selectLoan(){ // show details of selected loan on button click
 		Loan selectedLoan = (Loan) loansListView.getSelectionModel().getSelectedItem();
 		String details = "";
 		details += "Account ID: " + selectedLoan.getAccountId() + "\n";
@@ -50,7 +46,7 @@ public class CustomerLoansOverviewController extends CustomerStartController imp
 		details += "Min Payment Amount: " + selectedLoan.getMinPaymentAmount() + " SEK" + "\n";
 		detailsField.setText(details);
 		detailsField.setVisible(true);
-	}
+	}*/
 
     @Override
     public void showCurrentCustomer(){

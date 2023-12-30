@@ -1,9 +1,9 @@
-package com.piggybank.app.ui.employee_controllers.customer_operation;
+package com.piggybank.app.ui.employee_scenes.customer_operation;
 
 import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.money_operations.Credit;
 import com.piggybank.app.backend.customers.money_operations.Loan;
-import com.piggybank.app.ui.employee_controllers.EmpMainController;
+import com.piggybank.app.ui.employee_scenes.EmpMainController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -117,7 +117,7 @@ public class EmpAddAccountController extends EmpMainController implements Initia
     }
 
     public void backToOverview(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_controllers/customer_operation/EmpCustomerOverview.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/customer_operation/EmpCustomerOverview.fxml"));
         Parent root = loader.load();
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
