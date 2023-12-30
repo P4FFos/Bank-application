@@ -136,31 +136,27 @@
                     </font>
                 </Label>
                 <ListView fx:id="creditsListView" layoutX="20.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="280.0" />
-                <Button fx:id="applyForNewCreditButton" layoutX="320.0" layoutY="230.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#apply" prefWidth="280.0" style="-fx-background-color: #ab3e56;" text="APPLY FOR A NEW CREDIT" textFill="#ffe7ed">
-               <font>
-                  <Font name="Kodchasan Regular" size="15.0" />
-               </font></Button>
                 <Label fx:id="detailsLabel" layoutX="320.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="TERMS &amp; CONDITIONS" textFill="#ab3e56">
                     <font>
                         <Font name="Kodchasan Bold" size="15.0" />
                     </font>
                 </Label>
-            <Label fx:id="sectionHeadingLabel" layoutX="320.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="GENERAL CONDITIONS" textFill="#ab3e56">
+            <Label fx:id="sectionHeadingLabel" layoutX="320.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="GENERAL CONDITIONS" textFill="#ab3e56">
                <font>
                   <Font name="Kodchasan Bold" size="8.0" />
                </font>
             </Label>
-            <Label fx:id="informationSectionLabel" alignment="TOP_LEFT" layoutX="320.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="General conditions for being approved for a credit you need to be 18 years or older with a fixed income of at least SEK 15.000 per month." textFill="#ab3e56" wrapText="true">
+            <Label fx:id="informationSectionLabel" alignment="TOP_LEFT" layoutX="320.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="General conditions for being approved for a credit you need to be 18 years or older with a fixed income of at least SEK 15.000 per month." textFill="#ab3e56" wrapText="true">
                <font>
                   <Font name="Kodchasan Regular" size="8.0" />
                </font>
             </Label>
-            <Label fx:id="sectionHeadingLabel1" layoutX="320.0" layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="INTEREST AND FEES" textFill="#ab3e56">
+            <Label fx:id="sectionHeadingLabel1" layoutX="320.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="INTEREST AND FEES" textFill="#ab3e56">
                <font>
                   <Font name="Kodchasan Bold" size="8.0" />
                </font>
             </Label>
-            <Label fx:id="informationSectionLabel1" alignment="TOP_LEFT" layoutX="320.0" layoutY="75.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="When applicable, interest accrues daily and compounds daily on new transactions, and balances remaining from previous billing cycles. Interest will continue to accrue even though you have paid the full amount of any related balances because we include any accrued but unpaid interest in the calculation of each Balance Subject to Interest Rate.We will not charge you any interest on Purchases if you always pay your entire New Balance Total by the Payment Due Date." textFill="#ab3e56" wrapText="true">
+            <Label fx:id="informationSectionLabel1" alignment="TOP_LEFT" layoutX="320.0" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="When applicable, interest accrues daily and compounds daily on new transactions, and balances remaining from previous billing cycles. Interest will continue to accrue even though you have paid the full amount of any related balances because we include any accrued but unpaid interest in the calculation of each Balance Subject to Interest Rate.We will not charge you any interest on Purchases if you always pay your entire New Balance Total by the Payment Due Date." textFill="#ab3e56" wrapText="true">
                <font>
                   <Font name="Kodchasan Regular" size="8.0" />
                </font>
