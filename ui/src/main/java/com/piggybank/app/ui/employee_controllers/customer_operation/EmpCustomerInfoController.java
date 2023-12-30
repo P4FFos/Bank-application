@@ -14,11 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EmpCustomerInfoController extends EmpMainController implements Initializable {
-    @FXML
-    private AnchorPane privateCustomerInfoAnchorPane;
-    @FXML
-    private AnchorPane corporateCustomerInfoAnchorPane;
+public class EmpCustomerInfoController extends EmpCustomerOverviewController implements Initializable {
     @FXML
     private Button editStreetButton;
     @FXML
@@ -43,18 +39,8 @@ public class EmpCustomerInfoController extends EmpMainController implements Init
     private Button saveNewEmailButton;
     @FXML
     private Button saveNewPasswordButton;
-    @FXML
-    private Label customerNameLabel;
-    @FXML
-    private Label customerIdLabel;
-    @FXML
-    private Label customerSSNLabel;
-    @FXML
-    private Label companyNameLabel;
-    @FXML
-    private Label companyIdLabel;
-    @FXML
-    private Label companyOrgNrLabel;
+    //@FXML
+   // private Label customerIdLabel;
     @FXML
     private PasswordField passwordField;
     @FXML
@@ -72,6 +58,15 @@ public class EmpCustomerInfoController extends EmpMainController implements Init
         super.showCurrentEmployee();
         showCurrentCustomer();
         System.out.println("Employee Customer Info Page. Logged in as: " + currentEmployee.getInitials());
+    }
+
+    public void showCurrentCustomer(){
+        super.showCurrentCustomer();
+        streetField.setText(EmpMainController.currentCustomer.getStreet());
+        zipField.setText(EmpMainController.currentCustomer.getZipCode());
+        cityField.setText(EmpMainController.currentCustomer.getCity());
+        phoneField.setText(EmpMainController.currentCustomer.getPhoneNumber());
+        emailField.setText(EmpMainController.currentCustomer.getEmail());
     }
 
 
@@ -134,29 +129,6 @@ public class EmpCustomerInfoController extends EmpMainController implements Init
         }
     }
 
-    public void showCurrentCustomer(){
-        customerIdLabel.setText(EmpMainController.currentCustomer.getUserId());
-        streetField.setText(EmpMainController.currentCustomer.getStreet());
-        zipField.setText(EmpMainController.currentCustomer.getZipCode());
-        cityField.setText(EmpMainController.currentCustomer.getCity());
-        phoneField.setText(EmpMainController.currentCustomer.getPhoneNumber());
-        emailField.setText(EmpMainController.currentCustomer.getEmail());
-        if(EmpMainController.currentCustomer instanceof CustomerPrivate){
-            CustomerPrivate currentPrivate = (CustomerPrivate) EmpMainController.currentCustomer;
-            privateCustomerInfoAnchorPane.setVisible(true);
-            corporateCustomerInfoAnchorPane.setVisible(false);
-            customerSSNLabel.setText(currentPrivate.getSsn());
-            customerNameLabel.setText(currentPrivate.getFullName());
-            customerIdLabel.setText(currentPrivate.getUserId());
-        } else {
-            CustomerCorporate currentCorporate = (CustomerCorporate) EmpMainController.currentCustomer;
-            privateCustomerInfoAnchorPane.setVisible(false);
-            corporateCustomerInfoAnchorPane.setVisible(true);
-            companyNameLabel.setText(currentCorporate.getCompanyName());
-            companyIdLabel.setText(currentCorporate.getUserId());
-            companyOrgNrLabel.setText(currentCorporate.getOrgNumber());
-        }
 
-    }
 
 }

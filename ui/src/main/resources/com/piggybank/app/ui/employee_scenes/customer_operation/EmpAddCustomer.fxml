@@ -87,12 +87,6 @@
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Button>
-                <Button fx:id="searchButton" alignment="BOTTOM_RIGHT" defaultButton="true" layoutX="115.0" layoutY="120.0" mnemonicParsing="false" onAction="#searchCustomer" prefHeight="25.0" prefWidth="53.0" text="SEARCH" textAlignment="RIGHT">
-                    <font>
-                        <Font name="Kodchasan Regular" size="10.0" />
-                    </font>
-                </Button>
-                <TextField fx:id="searchCustomerTextField" layoutX="11.0" layoutY="85.0" promptText="Type SSN or userID" />
             <Label fx:id="noSelectedCustomerLabel" layoutX="14.0" layoutY="48.0" prefHeight="35.0" prefWidth="125.0" text="No selected customer. Do a search." textFill="RED" visible="false" wrapText="true" />
             </children>
         </AnchorPane>
