@@ -1,17 +1,14 @@
 package com.piggybank.app.backend;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.piggybank.app.backend.customers.*;
-import com.piggybank.app.backend.customers.debts.*;
-import com.piggybank.app.backend.customers.loans.Loan;
+import com.piggybank.app.backend.customers.money_operations.Credit;
+import com.piggybank.app.backend.customers.money_operations.Loan;
+import com.piggybank.app.backend.customers.money_operations.Transaction;
 import com.piggybank.app.backend.employees.*;
 import com.piggybank.app.backend.exceptions.*;
 import com.piggybank.app.backend.utils.*;
-import javafx.collections.ObservableList;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Calendar;
@@ -71,7 +68,7 @@ public class Bank {
         } else if (inputString.length() == 4) {
             return  customers.get(inputString);
         }
-        throw new Exception("Customer not found by ID or SSN.");
+        throw new UserNotFoundException("Customer not found by ID or SSN.");
     }
 
     // returns a string of all transactions in specified account

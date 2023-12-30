@@ -13,7 +13,19 @@ module com.piggybank.app.ui {
     exports com.piggybank.app.backend.customers to com.fasterxml.jackson.databind;
     exports com.piggybank.app.backend.employees to com.fasterxml.jackson.databind;
     exports com.piggybank.app.backend.utils to com.fasterxml.jackson.databind;
-    exports com.piggybank.app.backend.customers.debts to com.fasterxml.jackson.databind;
-    exports com.piggybank.app.backend.customers.loans to com.fasterxml.jackson.databind;
+    exports com.piggybank.app.backend.customers.money_operations to com.fasterxml.jackson.databind;
+    opens com.piggybank.app.backend.customers.money_operations to com.fasterxml.jackson.databind, javafx.base;
+    exports com.piggybank.app.ui.customer_controllers;
+    opens com.piggybank.app.ui.customer_controllers to javafx.fxml;
+    exports com.piggybank.app.ui.employee_controllers;
+    opens com.piggybank.app.ui.employee_controllers to javafx.fxml;
+    exports com.piggybank.app.ui.customer_controllers.credit_controllers;
+    opens com.piggybank.app.ui.customer_controllers.credit_controllers to javafx.fxml;
+    exports com.piggybank.app.ui.customer_controllers.loan_controllers;
+    opens com.piggybank.app.ui.customer_controllers.loan_controllers to javafx.fxml;
+    exports com.piggybank.app.ui.employee_controllers.manage_controllers;
+    opens com.piggybank.app.ui.employee_controllers.manage_controllers to javafx.fxml;
+    exports com.piggybank.app.ui.employee_controllers.customer_operation;
+    opens com.piggybank.app.ui.employee_controllers.customer_operation to javafx.fxml;
 
 }
