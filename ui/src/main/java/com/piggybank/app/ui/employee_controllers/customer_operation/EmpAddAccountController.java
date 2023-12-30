@@ -24,7 +24,7 @@ import java.net.URL;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
-public class EmpAddAccountController extends EmpMainController implements Initializable {
+public class EmpAddAccountController extends EmpCustomerOverviewController implements Initializable {
     @FXML
     private AnchorPane loanAnchorPane;
     @FXML
@@ -67,6 +67,13 @@ public class EmpAddAccountController extends EmpMainController implements Initia
 
     public void initialize(URL arg0, ResourceBundle arg1) {
         super.showCurrentEmployee();
+        super.showCurrentCustomer();
+        populateAccountsChoiceBox();
+
+        System.out.println("Employee Add Account Page. Logged in as: " + currentEmployee.getInitials());
+    }
+
+    public void populateAccountsChoiceBox(){
         String[] standardAccounts = new String[currentCustomersAccounts.size()]; //not pretty I know...
         int counter = 0;
         for (String key : currentCustomersAccounts.keySet()) {
@@ -81,14 +88,11 @@ public class EmpAddAccountController extends EmpMainController implements Initia
         accountsChoiceBox.getItems().addAll(standardAccounts);
         accountsChoiceBox.setOnAction(this::setAccountToIncrement);
         accountsChoiceBox.setOnAction(this::setAccountToIncrement);
-
-        System.out.println("Employee Add Account Page. Logged in as: " + currentEmployee.getInitials());
     }
 
     public void setAccountToIncrement(ActionEvent event) {
         accountToIncrement = currentCustomersAccounts.get(accountsChoiceBox.getValue());
     }
-
 
     public void adjustFunds(Account account, double amount) { // okButton
         double currentBalance = account.getBalance();

@@ -33,10 +33,6 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     @FXML
     private AnchorPane corporateCustomerInfoAnchorPane;
     @FXML
-    private Label empIdLabel;
-    @FXML
-    private Label empInitialsLabel;
-    @FXML
     private Label customerIdLabel;
     @FXML
     private Label customerSSNLabel;
@@ -96,8 +92,8 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     public void initialize(URL arg0, ResourceBundle arg1) {
         super.showCurrentEmployee();
         showCurrentCustomer();
+        displayAccounts();
 
-        accountsListView.getItems().addAll(currentCustomersAccounts.keySet());
         interestLabel.setVisible(false);
         interestRateLabel.setVisible(false);
         initialLabel.setVisible(false);
@@ -106,6 +102,29 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 		inTransactionCheckBox.setSelected(true);
 		outTransactionCheckBox.setSelected(true);
 
+        System.out.println("Employee Customer Accounts Overview Page. Logged in as: " + currentEmployee.getInitials());
+    }
+
+    public void showCurrentCustomer() {
+        if (currentCustomer instanceof CustomerPrivate) {
+            CustomerPrivate currentPrivate = (CustomerPrivate) currentCustomer;
+            privateCustomerInfoAnchorPane.setVisible(true);
+            corporateCustomerInfoAnchorPane.setVisible(false);
+            customerSSNLabel.setText(currentPrivate.getSsn());
+            customerNameLabel.setText(currentPrivate.getFullName());
+            customerIdLabel.setText(currentPrivate.getUserId());
+        } else {
+            CustomerCorporate currentCorporate = (CustomerCorporate) currentCustomer;
+            privateCustomerInfoAnchorPane.setVisible(false);
+            corporateCustomerInfoAnchorPane.setVisible(true);
+            companyNameLabel.setText(currentCorporate.getCompanyName());
+            companyIdLabel.setText(currentCorporate.getUserId());
+            companyOrgNrLabel.setText(currentCorporate.getOrgNumber());
+        }
+    }
+
+    public void displayAccounts(){
+        accountsListView.getItems().addAll(currentCustomersAccounts.keySet());
         accountsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
@@ -150,8 +169,6 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
                 transactionsTable.setItems(currentAccount.getTransactions());
             }
         });
-
-        System.out.println("Employee Customer Accounts Overview Page. Logged in as: " + currentEmployee.getInitials());
     }
 
     public void manageFunds(ActionEvent event) throws IOException {
@@ -219,25 +236,5 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 			transactionsTable.setItems(currentAccount.getTransactions());
 		}
 	}
-
-
-
-    public void showCurrentCustomer() {
-        if (currentCustomer instanceof CustomerPrivate) {
-            CustomerPrivate currentPrivate = (CustomerPrivate) currentCustomer;
-            privateCustomerInfoAnchorPane.setVisible(true);
-            corporateCustomerInfoAnchorPane.setVisible(false);
-            customerSSNLabel.setText(currentPrivate.getSsn());
-            customerNameLabel.setText(currentPrivate.getFullName());
-            customerIdLabel.setText(currentPrivate.getUserId());
-        } else {
-            CustomerCorporate currentCorporate = (CustomerCorporate) currentCustomer;
-            privateCustomerInfoAnchorPane.setVisible(false);
-            corporateCustomerInfoAnchorPane.setVisible(true);
-            companyNameLabel.setText(currentCorporate.getCompanyName());
-            companyIdLabel.setText(currentCorporate.getUserId());
-            companyOrgNrLabel.setText(currentCorporate.getOrgNumber());
-        }
-    }
 
 }

@@ -82,13 +82,14 @@
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Button>
-            <Label fx:id="noSelectedCustomerLabel" layoutX="14.0" layoutY="5.0" prefHeight="35.0" prefWidth="125.0" text="No selected customer. Do a search." textFill="RED" visible="false" wrapText="true" />
                 <TextField fx:id="searchCustomerTextField" layoutX="-18.0" layoutY="45.0" promptText="Type SSN or userID" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="7.0" />
                 <Button fx:id="searchButton" alignment="BOTTOM_RIGHT" defaultButton="true" layoutX="111.0" layoutY="73.0" mnemonicParsing="false" onAction="#searchCustomer" prefHeight="25.0" prefWidth="53.0" text="SEARCH" textAlignment="RIGHT" AnchorPane.rightAnchor="7.0">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Button>
+            <Label fx:id="noSelectedCustomerLabel" layoutX="14.0" layoutY="5.0" prefHeight="35.0" prefWidth="125.0" text="No selected customer. Do a search." textFill="RED" visible="false" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="5.0" />
+            <Label fx:id="noCustomerFoundLabel" layoutX="24.0" layoutY="15.0" prefHeight="35.0" prefWidth="125.0" text="No customer found. Search again." textFill="RED" visible="false" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="5.0" />
             </children>
         </AnchorPane>
         <AnchorPane fx:id="currentCustomerAnchorPane" layoutX="180.0" layoutY="75.0" prefHeight="75.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0" />
@@ -112,7 +113,7 @@
          </children></AnchorPane>
       <AnchorPane fx:id="customerInfoAnchorPane" layoutY="85.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="170.0" style="-fx-background-color: #ab3e56;">
          <children>
-            <Label fx:id="infoNameLabel1" alignment="CENTER" layoutX="10.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="Customer Name" textFill="#ffe7ed">
+            <Label fx:id="infoNameLabel" alignment="CENTER" layoutX="10.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="Customer Name" textFill="#ffe7ed">
                <font>
                   <Font name="Kodchasan Bold" size="13.0" />
                </font>
@@ -127,7 +128,7 @@
                   <Font name="Kodchasan Bold" size="8.0" />
                </font>
             </Label>
-            <Label fx:id="infoActualUserIdLabel1" layoutX="85.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="70.0" text="#####" textFill="#ffe7ed">
+            <Label fx:id="infoActualUserIdLabel" layoutX="85.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="70.0" text="#####" textFill="#ffe7ed">
                <font>
                   <Font name="Kodchasan Regular" size="8.0" />
                </font>

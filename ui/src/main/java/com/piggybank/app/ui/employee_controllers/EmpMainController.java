@@ -53,7 +53,6 @@ public class EmpMainController implements Initializable {
     private Label noSelectedCustomerLabel;
     @FXML
     private Label noCustomerFoundLabel;
-
     private Parent root;
     private Stage stage;
     private Scene scene;
@@ -66,20 +65,15 @@ public class EmpMainController implements Initializable {
     public static HashMap<String, Account> currentCustomersAccounts;
     public String saveFile = UIMain.savePath;
 
+    /*
     public void resetUIState() {
-        if(noSelectedCustomerLabel != null) {
-            noSelectedCustomerLabel.setVisible(false);
-        }
-        if(noCustomerFoundLabel != null) {
-            noCustomerFoundLabel.setVisible(false);
-        }
+        noSelectedCustomerLabel.setVisible(false);
+        noCustomerFoundLabel.setVisible(false);
     }
+    */
 
     public void initialize(URL arg0, ResourceBundle arg1) {
-        resetUIState();
-
         showCurrentEmployee();
-        System.out.println("Employee Start Page. Logged in as: " + currentEmployee.getInitials());
         nameLabel.setText(currentEmployee.getFullName());
         infoActualUserIdLabel.setText(currentEmployee.getUserId());
         System.out.println("Employee Start Page. Logged in as: " + currentEmployee.getInitials());
@@ -108,8 +102,6 @@ public class EmpMainController implements Initializable {
     }
 
     public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
-        resetUIState();
-
         currentCustomer = null;
         currentCustomersAccounts = null;
 
@@ -123,8 +115,7 @@ public class EmpMainController implements Initializable {
     }
 
     public void searchCustomer(ActionEvent event) throws IOException { //searchButton
-        resetUIState();
-
+        noSelectedCustomerLabel.setVisible(false);
         String searchPhrase = searchCustomerTextField.getText();
         try {
             currentCustomer = bank.getCustomerByIdOrSsn(searchPhrase);
@@ -138,7 +129,7 @@ public class EmpMainController implements Initializable {
             stage.setScene(scene);
             stage.show();
         }catch(UserNotFoundException e) {
-            if(noCustomerFoundLabel != null) {
+            if(noCustomerFoundLabel != null){
                 noCustomerFoundLabel.setVisible(true);
             }
         } catch (Exception e) {
@@ -147,8 +138,6 @@ public class EmpMainController implements Initializable {
     }
 
     public void goToCustomerAccounts(ActionEvent event) throws IOException { //viewCustomerButton
-        resetUIState();
-
         if(currentCustomer != null) {
             loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/customer_operation/EmpCustomerOverview.fxml"));
             root = loader.load();
@@ -158,14 +147,20 @@ public class EmpMainController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } else {
-            noSelectedCustomerLabel.setVisible(true);
+            if (noCustomerFoundLabel != null) {
+                noCustomerFoundLabel.setVisible(false);
+            }
+            if (noSelectedCustomerLabel != null) {
+                noSelectedCustomerLabel.setVisible(true);
+            }
         }
+
 
     }
 
-    public void goToCustomerInfo(ActionEvent event) throws IOException { //customerInfoButton
-        resetUIState();
 
+
+    public void goToCustomerInfo(ActionEvent event) throws IOException { //customerInfoButton
         if(currentCustomer != null){
             loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/customer_operation/EmpCustomerInfo.fxml"));
             root = loader.load();
@@ -175,13 +170,16 @@ public class EmpMainController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } else {
-            noSelectedCustomerLabel.setVisible(true);
+            if (noCustomerFoundLabel != null) {
+                noCustomerFoundLabel.setVisible(false);
+            }
+            if (noSelectedCustomerLabel != null) {
+                noSelectedCustomerLabel.setVisible(true);
+            }
         }
     }
 
     public void goToLoans(ActionEvent event) throws IOException { //manageLoansButton
-        resetUIState();
-
         if(currentCustomer != null){
             loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/customer_operation/EmpAddAccount.fxml"));
             root = loader.load();
@@ -191,16 +189,16 @@ public class EmpMainController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } else {
-            noSelectedCustomerLabel.setVisible(true);
+            if (noCustomerFoundLabel != null) {
+                noCustomerFoundLabel.setVisible(false);
+            }
+            if (noSelectedCustomerLabel != null) {
+                noSelectedCustomerLabel.setVisible(true);
+            }
         }
     }
 
     public void goToAddCustomer(ActionEvent event) throws IOException { //newCustomerButton
-        resetUIState();
-
-        currentCustomer = null;
-        currentCustomersAccounts = null;
-
         loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/customer_operation/EmpAddCustomer.fxml"));
         root = loader.load();
 

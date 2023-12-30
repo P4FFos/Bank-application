@@ -51,16 +51,17 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
     @FXML
     private PasswordField passwordField;
 
-    private Label noCustomerFoundLabel;
 
     public void initialize(URL arg0, ResourceBundle arg1) {
         super.showCurrentEmployee();
+        togglePrivate();
+        currentCustomer = null;
+        currentCustomersAccounts = null;
 
         onSavePane.setVisible(false);
         wrongPasswordPane.setVisible(false);
         privateCustomerCheckBox.setSelected(true);
 
-        togglePrivate();
         System.out.println("Employee Add Customer Page. Logged in as: " + currentEmployee.getInitials());
     }
 
@@ -94,7 +95,7 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
 			ContactCard newContactCard = new ContactCard(email, phone, street, zip, city);
 			try{
 				userId = UIMain.bank.createCustomerPrivate(ssn, firstName, lastName, password, newContactCard);
-                successFulSave(userId);
+                successfulSave(userId);
 			} catch (Exception e){
 				System.out.println(e.getMessage());
                 wrongPasswordPane.setVisible(true);
@@ -103,7 +104,7 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
 			ContactCard newContactCard = new ContactCard(email, phone, street, zip, city);
 			try{
 				userId = UIMain.bank.createCustomerCorporate(orgNumber, companyName, password, newContactCard);
-                successFulSave(userId);
+                successfulSave(userId);
 			} catch (Exception e){
 				System.out.println(e.getMessage());
                 wrongPasswordPane.setVisible(true);
@@ -111,7 +112,7 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
         }
     }
 
-    public void successFulSave(String userId){
+    public void successfulSave(String userId){
         newCustomerIdLabel.setText(userId);
         privateCustomerCheckBox.setVisible(false);
         corporateCustomerCheckBox.setVisible(false);
