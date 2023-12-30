@@ -190,9 +190,6 @@ public class CustomerStartController implements Initializable {
         loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/customer_scenes/loan_scenes/CustomerLoansOverview.fxml"));
         root = loader.load();
 
-        CustomerLoansOverviewController controller = loader.getController();
-        controller.showCurrentCustomer();
-
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -202,9 +199,6 @@ public class CustomerStartController implements Initializable {
     public void goToCredits(ActionEvent event) throws IOException { //sideMenuCreditsButton
         loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/customer_scenes/credit_scenes/CustomerCreditsOverview.fxml"));
         root = loader.load();
-
-        CustomerCreditsOverviewController controller = loader.getController();
-        controller.showCurrentCustomer();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -216,9 +210,6 @@ public class CustomerStartController implements Initializable {
         loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/customer_scenes/CustomerFaq.fxml"));
         root = loader.load();
 
-        CustomerFaqController controller = loader.getController();
-        controller.showCurrentCustomer();
-
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -228,9 +219,6 @@ public class CustomerStartController implements Initializable {
     public void goToSupport(ActionEvent event) throws IOException { //sideMenuSupportButton
         loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/customer_scenes/CustomerSupport.fxml"));
         root = loader.load();
-
-        CustomerSupportController controller = loader.getController();
-        controller.showCurrentCustomer();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

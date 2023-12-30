@@ -18,8 +18,6 @@ import java.util.ResourceBundle;
 
 public class CustomerSupportController extends CustomerStartController implements Initializable {
     @FXML
-    private Label infoActualUserIdLabel;
-    @FXML
     private TextArea textArea;
     @FXML
     private Button sendSupportRequestButton;
@@ -49,13 +47,12 @@ public class CustomerSupportController extends CustomerStartController implement
     }
 
     public void showCurrentCustomer(){
+        super.showCurrentCustomer();
         if (currentCustomer instanceof CustomerPrivate) {
             CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
-            infoActualUserIdLabel.setText(privateCustomer.getUserId());
             System.out.println("Customer Support Page. Logged in as: " + privateCustomer.getFullName());
         } else {
             CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
-            infoActualUserIdLabel.setText(corporateCustomer.getUserId());
             System.out.println("Customer Support Page. Logged in as: " + corporateCustomer.getCompanyName());
         }
     }
