@@ -64,4 +64,9 @@ public class Credit extends Account {
         }
         return TruncationUtil.truncate(totalCreditAmountWithInterest);
     }
+
+    @Override
+    public String toString() {
+        return this.getAccountName();
+    }
 }

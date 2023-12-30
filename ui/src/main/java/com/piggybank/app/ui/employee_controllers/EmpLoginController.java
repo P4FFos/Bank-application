@@ -1,4 +1,4 @@
-package com.piggybank.app.ui.employee_scenes;
+package com.piggybank.app.ui.employee_controllers;
 
 import com.piggybank.app.backend.Bank;
 import com.piggybank.app.backend.exceptions.PasswordException;
