@@ -23,11 +23,6 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 public class CustomerCreditsOverviewController extends CustomerStartController implements Initializable {
-
-    @FXML
-    private Button applyForNewCreditButton;
-    @FXML
-    private Button selectCreditButton;
     @FXML
     private Label infoActualUserIdLabel;
     @FXML
@@ -60,20 +55,6 @@ public class CustomerCreditsOverviewController extends CustomerStartController i
             }
         }
         creditsListView.getItems().addAll(currentCustomerCreditAccounts);
-    }
-
-    public void selectCredit(){ //selectCreditButton
-
-    }
-
-    public void apply(ActionEvent event) throws IOException { //applyForNewCreditButton
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/customer_controllers/credit_controllers/CustomerCreditApplication.fxml"));
-        Parent root = loader.load();
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 
 }

@@ -1,4 +1,4 @@
-package com.piggybank.app.ui.employee_controllers;
+package com.piggybank.app.ui.employee_scenes;
 
 import com.piggybank.app.backend.Bank;
 import com.piggybank.app.backend.exceptions.PasswordException;
@@ -43,7 +43,7 @@ public class EmpLoginController {
             if (bank.verifyEmployee(userId, password)) { //using method from bank
                 EmpMainController.currentEmployee = bank.getEmployee(userId);
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_controllers/EmpStart.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/EmpStart.fxml"));
                 root = loader.load();
 
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

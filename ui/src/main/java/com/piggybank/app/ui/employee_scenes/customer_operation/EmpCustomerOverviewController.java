@@ -1,11 +1,11 @@
-package com.piggybank.app.ui.employee_controllers.customer_operation;
+package com.piggybank.app.ui.employee_scenes.customer_operation;
 
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
 import com.piggybank.app.backend.customers.money_operations.Transaction;
 import com.piggybank.app.backend.customers.money_operations.Credit;
 import com.piggybank.app.backend.customers.money_operations.Loan;
-import com.piggybank.app.ui.employee_controllers.EmpMainController;
+import com.piggybank.app.ui.employee_scenes.EmpMainController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -158,7 +158,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         if(currentAccount == null){
             System.out.println("You must select an account.");
         } else {
-            loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_controllers/manage_controllers/EmpManageFunds.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/manage_controllers/EmpManageFunds.fxml"));
             root = loader.load();
 
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -169,7 +169,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     }
 
     public void addAccount(ActionEvent event) throws IOException { //addAccountButton
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_controllers/customer_operation/EmpAddAccount.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/customer_operation/EmpAddAccount.fxml"));
         root = loader.load();
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -179,7 +179,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     }
 
     public void makeTransaction(ActionEvent event) throws IOException { // makeTransactionButton
-        loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_controllers/EmpMakeTransaction.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/EmpMakeTransaction.fxml"));
         root = loader.load();
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

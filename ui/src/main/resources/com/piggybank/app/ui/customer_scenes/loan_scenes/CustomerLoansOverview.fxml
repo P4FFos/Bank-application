@@ -141,7 +141,6 @@
                         <Font name="Kodchasan Bold" size="15.0" />
                     </font>
                 </Label>
-                <Label fx:id="detailsField" alignment="TOP_LEFT" layoutX="225.0" layoutY="67.0" prefHeight="186.0" prefWidth="228.0" text="details field" visible="false" wrapText="true" />
             <Label fx:id="sectionHeadingLabel" layoutX="315.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="GENERAL INFORMATION ABOUT OUR INTEREST RATES" textFill="#ab3e56">
                <font>
                   <Font name="Kodchasan Bold" size="8.0" />

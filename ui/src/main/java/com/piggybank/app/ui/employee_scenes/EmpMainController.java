@@ -1,4 +1,4 @@
-package com.piggybank.app.ui.employee_controllers;
+package com.piggybank.app.ui.employee_scenes;
 
 import com.piggybank.app.backend.Bank;
 import com.piggybank.app.backend.customers.Account;
@@ -113,7 +113,7 @@ public class EmpMainController implements Initializable {
         currentCustomer = null;
         currentCustomersAccounts = null;
 
-        loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_controllers/EmpStart.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/EmpStart.fxml"));
         root = loader.load();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -130,7 +130,7 @@ public class EmpMainController implements Initializable {
             currentCustomer = bank.getCustomerByIdOrSsn(searchPhrase);
             currentCustomersAccounts = currentCustomer.getAccounts();
 
-            loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_controllers/customer_operation/EmpCustomerOverView.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/customer_operation/EmpCustomerOverView.fxml"));
             root = loader.load();
 
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -150,7 +150,7 @@ public class EmpMainController implements Initializable {
         resetUIState();
 
         if(currentCustomer != null) {
-            loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_controllers/customer_operation/EmpCustomerOverview.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/customer_operation/EmpCustomerOverview.fxml"));
             root = loader.load();
 
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -167,7 +167,7 @@ public class EmpMainController implements Initializable {
         resetUIState();
 
         if(currentCustomer != null){
-            loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_controllers/customer_operation/EmpCustomerInfo.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/customer_operation/EmpCustomerInfo.fxml"));
             root = loader.load();
 
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -183,7 +183,7 @@ public class EmpMainController implements Initializable {
         resetUIState();
 
         if(currentCustomer != null){
-            loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_controllers/manage_controllers/EmpManageLoans.fxml"));
+            loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/manage_controllers/EmpManageLoans.fxml"));
             root = loader.load();
 
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -201,7 +201,7 @@ public class EmpMainController implements Initializable {
         currentCustomer = null;
         currentCustomersAccounts = null;
 
-        loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_controllers/customer_operation/EmpAddCustomer.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/customer_operation/EmpAddCustomer.fxml"));
         root = loader.load();
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -1,9 +1,9 @@
-package com.piggybank.app.ui.employee_controllers.customer_operation;
+package com.piggybank.app.ui.employee_scenes.customer_operation;
 
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
 import com.piggybank.app.backend.exceptions.PasswordException;
-import com.piggybank.app.ui.employee_controllers.EmpMainController;
+import com.piggybank.app.ui.employee_scenes.EmpMainController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
