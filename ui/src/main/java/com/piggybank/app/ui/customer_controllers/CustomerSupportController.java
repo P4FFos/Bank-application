@@ -23,6 +23,10 @@ public class CustomerSupportController extends CustomerStartController implement
     private TextArea textArea;
     @FXML
     private Button sendSupportRequestButton;
+    @FXML
+    private Label emptyMessageLabel;
+    @FXML
+    private Label successfulMessageLabel;
 
 
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -31,12 +35,16 @@ public class CustomerSupportController extends CustomerStartController implement
 
     public void sendSupportRequest(ActionEvent event) {
         if (textArea.getText().isEmpty()) {
+            successfulMessageLabel.setVisible(false);
+            emptyMessageLabel.setVisible(true);
             System.out.println("Please explain your problem/question in the text area.");
         } else {
             String request = textArea.getText();
             System.out.println("Your request has been sent.");
             System.out.println(request);
             textArea.clear();
+            emptyMessageLabel.setVisible(false);
+            successfulMessageLabel.setVisible(true);
         }
     }
 
