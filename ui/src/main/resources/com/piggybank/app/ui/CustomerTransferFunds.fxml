@@ -57,7 +57,7 @@
       </AnchorPane>
       <AnchorPane fx:id="customerInfoAnchorPane" layoutY="85.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="170.0" style="-fx-background-color: #ab3e56;">
          <children>
-            <Label fx:id="infoNameLabel1" alignment="CENTER" layoutX="10.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="Customer Name" textFill="#ffe7ed">
+            <Label fx:id="infoNameLabel" alignment="CENTER" layoutX="10.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="Customer Name" textFill="#ffe7ed">
                <font>
                   <Font name="Kodchasan Bold" size="13.0" />
                </font>
