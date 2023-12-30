@@ -1,11 +1,11 @@
-package com.piggybank.app.ui.employee_scenes.customer_operation;
+package com.piggybank.app.ui.employee_controllers.customer_operation;
 
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
 import com.piggybank.app.backend.customers.money_operations.Transaction;
 import com.piggybank.app.backend.customers.money_operations.Credit;
 import com.piggybank.app.backend.customers.money_operations.Loan;
-import com.piggybank.app.ui.employee_scenes.EmpMainController;
+import com.piggybank.app.ui.employee_controllers.EmpMainController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;

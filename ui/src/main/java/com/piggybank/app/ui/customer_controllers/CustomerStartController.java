@@ -61,6 +61,8 @@ public class CustomerStartController implements Initializable {
     @FXML
     private Label infoNameLabel;
     @FXML
+    private Label infoActualUserIdLabel;
+    @FXML
     private TableView<Account> assetsTableView;
     @FXML
     private TableColumn<Account, String> assetsNameTableColumn;
@@ -94,6 +96,7 @@ public class CustomerStartController implements Initializable {
             CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
             headerCustomerNameLabel.setText(privateCustomer.getFullName());
             infoNameLabel.setText(privateCustomer.getFullName());
+            infoActualUserIdLabel.setText(privateCustomer.getUserId());
             headerActualIdLabel.setText(privateCustomer.getUserId());
 
             System.out.println("Customer Start Page. Logged in as: " + privateCustomer.getFullName());
@@ -101,6 +104,7 @@ public class CustomerStartController implements Initializable {
             CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
             headerCustomerNameLabel.setText(corporateCustomer.getCompanyName());
             infoNameLabel.setText(corporateCustomer.getCompanyName());
+            infoActualUserIdLabel.setText(corporateCustomer.getUserId());
             headerActualIdLabel.setText(corporateCustomer.getUserId());
 
             System.out.println("Customer Start Page. Logged in as: " + corporateCustomer.getCompanyName());

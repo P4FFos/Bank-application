@@ -25,8 +25,6 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
     @FXML
     private CheckBox accountsOutgoingCheckBox;
     @FXML
-    private Label infoActualUserIdLabel;
-    @FXML
     private TableView<Transaction> transactionsTable;
     @FXML
     private TableColumn<Transaction, String> senderColumn;
@@ -57,11 +55,9 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
         super.showCurrentCustomer();
         if (currentCustomer instanceof CustomerPrivate) {
             CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
-            infoActualUserIdLabel.setText(privateCustomer.getUserId());
             System.out.println("Customer Accounts Overview Page. Logged in as: " + privateCustomer.getFullName());
         } else {
             CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
-            infoActualUserIdLabel.setText(corporateCustomer.getUserId());
             System.out.println("Customer Accounts Overview Page. Logged in as: " + corporateCustomer.getCompanyName());
         }
     }
