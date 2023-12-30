@@ -5,10 +5,8 @@ import com.piggybank.app.backend.customers.*;
 import com.piggybank.app.backend.customers.money_operations.Credit;
 import com.piggybank.app.backend.customers.money_operations.Loan;
 import com.piggybank.app.backend.utils.FileHandler;
-
 import com.piggybank.app.ui.UIMain;
-import com.piggybank.app.ui.customer_controllers.credit_controllers.CustomerCreditsOverviewController;
-import com.piggybank.app.ui.customer_controllers.loan_controllers.CustomerLoansOverviewController;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -232,13 +230,15 @@ public class CustomerStartController implements Initializable {
         FileHandler.jsonSerializer(UIMain.savePath, bank);
 
         currentCustomer = null;
-        System.out.println("Logged out. Have a nice day.");
         loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/StartScene.fxml"));
         root = loader.load();
+
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+        System.out.println("Logged out. Have a nice day.");
     }
 
 }
