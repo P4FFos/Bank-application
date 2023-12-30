@@ -115,7 +115,7 @@ public class EmpMainController implements Initializable {
     }
 
     public void searchCustomer(ActionEvent event) throws IOException { //searchButton
-        //noSelectedCustomerLabel.setVisible(false);
+        noSelectedCustomerLabel.setVisible(false);
         String searchPhrase = searchCustomerTextField.getText();
         try {
             currentCustomer = bank.getCustomerByIdOrSsn(searchPhrase);
