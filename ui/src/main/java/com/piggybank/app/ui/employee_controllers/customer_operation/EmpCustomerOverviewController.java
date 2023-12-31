@@ -186,7 +186,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     }
 
     public void addAccount(ActionEvent event) throws IOException { //addAccountButton
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/customer_operation/EmpAddAccount.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/customer_operation/EmpAddAccount.fxml"));
         root = loader.load();
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

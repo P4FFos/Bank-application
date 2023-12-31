@@ -7,6 +7,7 @@ import com.piggybank.app.backend.employees.Employee;
 import com.piggybank.app.backend.exceptions.UserNotFoundException;
 import com.piggybank.app.backend.utils.FileHandler;
 import com.piggybank.app.ui.UIMain;
+import com.piggybank.app.ui.employee_controllers.customer_operation.EmpAddAccountController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -44,11 +46,9 @@ public class EmpMainController implements Initializable {
     @FXML
     private Label empInitialsLabel;
     @FXML
+    private Label companyNameLabel;
+    @FXML
     private TextField searchCustomerTextField;
-    @FXML
-    private Label nameLabel;
-    @FXML
-    private Label infoActualUserIdLabel;
     @FXML
     private Label noSelectedCustomerLabel;
     @FXML
@@ -67,8 +67,7 @@ public class EmpMainController implements Initializable {
 
     public void initialize(URL arg0, ResourceBundle arg1) {
         showCurrentEmployee();
-        nameLabel.setText(currentEmployee.getFullName());
-        infoActualUserIdLabel.setText(currentEmployee.getUserId());
+        companyNameLabel.setText("No active customer.");
         System.out.println("Employee Start Page. Logged in as: " + currentEmployee.getInitials());
     }
 
