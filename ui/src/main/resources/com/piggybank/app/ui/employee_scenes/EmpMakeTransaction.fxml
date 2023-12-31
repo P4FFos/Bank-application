@@ -13,68 +13,14 @@
 
 <AnchorPane fx:id="baseAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="825.0" style="-fx-background-color: #ffe7ed;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.piggybank.app.ui.employee_controllers.EmpMakeTransactionController">
     <children>
-      <AnchorPane fx:id="transferAnchorPane" layoutX="170.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="655.0">
+      <AnchorPane fx:id="infoAnchorPane" layoutX="170.0" layoutY="85.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="655.0" style="-fx-background-color: #ab3e56;">
          <children>
-            <AnchorPane fx:id="bodySeparatorsAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="655.0">
-               <children>
-                  <Label layoutX="20.0" layoutY="170.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="AMOUNT" textFill="#ab3e56">
-                     <font>
-                        <Font name="Kodchasan Bold" size="15.0" />
-                     </font></Label>
-                  <CheckBox fx:id="oneHundredCheckBox" layoutX="20.0" layoutY="190.0" mnemonicParsing="false" onAction="#toggleOneHundred" prefWidth="60.0" text="100">
-                     <font>
-                        <Font name="Kodchasan Regular" size="8.0" />
-                     </font>
-                  </CheckBox>
-                  <CheckBox fx:id="twoHundredCheckBox" layoutX="70.0" layoutY="190.0" mnemonicParsing="false" onAction="#toggleTwoHundred" prefWidth="60.0" text="200">
-                     <font>
-                        <Font name="Kodchasan Regular" size="8.0" />
-                     </font>
-                  </CheckBox>
-                  <CheckBox fx:id="fiveHundredCheckBox" layoutX="120.0" layoutY="190.0" mnemonicParsing="false" onAction="#toggleFiveHundred" prefWidth="60.0" text="500">
-                     <font>
-                        <Font name="Kodchasan Regular" size="8.0" />
-                     </font>
-                  </CheckBox>
-                  <CheckBox fx:id="oneThousandCheckBox" layoutX="170.0" layoutY="190.0" mnemonicParsing="false" onAction="#toggleOneThousand" prefWidth="60.0" text="1.000">
-                     <font>
-                        <Font name="Kodchasan Regular" size="8.0" />
-                     </font>
-                  </CheckBox>
-                  <TextField fx:id="amountTextField" alignment="BOTTOM_LEFT" layoutX="20.0" layoutY="210.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" promptText="SEK">
-                     <font>
-                        <Font name="Kodchasan Regular" size="8.0" />
-                     </font>
-                  </TextField>
-                  <Button fx:id="okButton" layoutX="20.0" layoutY="230.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#transferFunds" prefWidth="280.0" style="-fx-background-color: #ab3e56;" text="MAKE TRANSFER" textFill="#ffe7ed">
-                     <font>
-                        <Font name="Kodchasan Regular" size="10.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="selectSendingAccountButton" layoutX="20.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#selectSendingAccount" prefWidth="280.0" style="-fx-background-color: #ab3e56;" text="SELECT ACCOUNT" textFill="#ffe7ed">
-                     <font>
-                        <Font name="Kodchasan Regular" size="10.0" />
-                     </font>
-                  </Button>
-                  <Label fx:id="incorrectDetailsLabel" layoutX="9.0" layoutY="296.0" prefHeight="18.0" prefWidth="314.0" text="Something went wrong, please check values and try again." textFill="RED" visible="false" />
-                  <Label fx:id="transferDoneLabel" layoutX="72.0" layoutY="297.0" text="Transfer done!" textFill="#1f8600" visible="false" />
-                  <Label fx:id="insufficientBalanceLabel" layoutX="15.0" layoutY="296.0" prefHeight="18.0" prefWidth="376.0" text="Insufficient balance on account. Only xxxx.xx available." textFill="RED" visible="false" />
-               </children>
-            </AnchorPane>
-            <Label layoutX="20.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="FROM ACCOUNT" textFill="#ab3e56">
+            <Separator orientation="VERTICAL" prefHeight="365.0" prefWidth="5.0" style="-fx-background-color: #ab3e56;" />
+            <Label layoutX="20.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="630.0" text="MAKE TRANSACTION" textFill="#ffe7ed">
                <font>
-                  <Font name="Kodchasan Bold" size="15.0" />
-               </font></Label>
-            <ListView fx:id="accountsListView" layoutX="20.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="280.0" />
-            <Label layoutX="20.0" layoutY="125.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="TO ACCOUNT" textFill="#ab3e56">
-               <font>
-                  <Font name="Kodchasan Bold" size="15.0" />
-               </font></Label>
-            <TextField fx:id="recieverAccountTextField" alignment="BOTTOM_LEFT" layoutX="20.0" layoutY="145.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" promptText="Enter account id">
-               <font>
-                  <Font name="Kodchasan Regular" size="8.0" />
+                  <Font name="Kodchasan Bold" size="25.0" />
                </font>
-            </TextField>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="headerAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="825.0">
@@ -220,14 +166,68 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="infoAnchorPane" layoutX="170.0" layoutY="85.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="655.0" style="-fx-background-color: #ab3e56;">
+      <AnchorPane fx:id="transferAnchorPane" layoutX="170.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="655.0">
          <children>
-            <Separator orientation="VERTICAL" prefHeight="365.0" prefWidth="5.0" style="-fx-background-color: #ab3e56;" />
-            <Label layoutX="20.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="630.0" text="MAKE TRANSACTION" textFill="#ffe7ed">
+            <AnchorPane fx:id="bodySeparatorsAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="655.0">
+               <children>
+                  <Label layoutX="20.0" layoutY="170.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="AMOUNT" textFill="#ab3e56">
+                     <font>
+                        <Font name="Kodchasan Bold" size="15.0" />
+                     </font></Label>
+                  <CheckBox fx:id="oneHundredCheckBox" layoutX="20.0" layoutY="190.0" mnemonicParsing="false" onAction="#toggleOneHundred" prefWidth="60.0" text="100">
+                     <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="twoHundredCheckBox" layoutX="70.0" layoutY="190.0" mnemonicParsing="false" onAction="#toggleTwoHundred" prefWidth="60.0" text="200">
+                     <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="fiveHundredCheckBox" layoutX="120.0" layoutY="190.0" mnemonicParsing="false" onAction="#toggleFiveHundred" prefWidth="60.0" text="500">
+                     <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="oneThousandCheckBox" layoutX="170.0" layoutY="190.0" mnemonicParsing="false" onAction="#toggleOneThousand" prefWidth="60.0" text="1.000">
+                     <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                     </font>
+                  </CheckBox>
+                  <TextField fx:id="amountTextField" alignment="BOTTOM_LEFT" layoutX="20.0" layoutY="210.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" promptText="SEK">
+                     <font>
+                        <Font name="Kodchasan Regular" size="8.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="okButton" layoutX="20.0" layoutY="230.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#transferFunds" prefWidth="280.0" style="-fx-background-color: #ab3e56;" text="MAKE TRANSFER" textFill="#ffe7ed" AnchorPane.leftAnchor="20.0">
+                     <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="selectSendingAccountButton" layoutX="20.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#selectSendingAccount" prefWidth="280.0" style="-fx-background-color: #ab3e56;" text="SELECT ACCOUNT" textFill="#ffe7ed">
+                     <font>
+                        <Font name="Kodchasan Regular" size="10.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="incorrectDetailsLabel" layoutX="9.0" layoutY="296.0" prefHeight="18.0" prefWidth="280.0" text="Something went wrong, please check values and try again." textFill="RED" visible="false" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" />
+                  <Label fx:id="transferDoneLabel" layoutX="72.0" layoutY="297.0" prefHeight="17.0" prefWidth="280.0" text="Transfer done!" textFill="#1f8600" visible="false" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" />
+                  <Label fx:id="insufficientBalanceLabel" layoutX="15.0" layoutY="296.0" prefHeight="18.0" prefWidth="576.0" text="Insufficient balance on account. Only xxxx.xx available." textFill="RED" visible="false" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" />
+               </children>
+            </AnchorPane>
+            <Label layoutX="20.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="FROM ACCOUNT" textFill="#ab3e56">
                <font>
-                  <Font name="Kodchasan Bold" size="25.0" />
+                  <Font name="Kodchasan Bold" size="15.0" />
+               </font></Label>
+            <ListView fx:id="accountsListView" layoutX="20.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="280.0" />
+            <Label layoutX="20.0" layoutY="125.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="TO ACCOUNT" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Bold" size="15.0" />
+               </font></Label>
+            <TextField fx:id="recieverAccountTextField" alignment="BOTTOM_LEFT" layoutX="20.0" layoutY="145.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" promptText="Enter account id">
+               <font>
+                  <Font name="Kodchasan Regular" size="8.0" />
                </font>
-            </Label>
+            </TextField>
          </children>
       </AnchorPane>
     </children>

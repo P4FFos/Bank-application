@@ -14,73 +14,6 @@
 
 <AnchorPane fx:id="baseAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="825.0" style="-fx-background-color: #ffe7ed;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.piggybank.app.ui.employee_controllers.customer_operation.EmpCustomerOverviewController">
     <children>
-        <AnchorPane fx:id="contentAnchorPane" layoutX="170.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="655.0">
-         <children>
-            <ListView fx:id="accountsListView" layoutX="20.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="155.0" />
-            <Label layoutX="20.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="ACCOUNTS" textFill="#ab3e56">
-               <font>
-                  <Font name="Kodchasan Bold" size="15.0" />
-               </font></Label>
-            <Label layoutX="200.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="TRANSACTIONS" textFill="#ab3e56">
-               <font>
-                  <Font name="Kodchasan Bold" size="15.0" />
-               </font></Label>
-            <Button fx:id="addAccountButton" layoutX="118.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addAccount" style="-fx-background-color: #ab3e56;" text="NEW" textFill="#ffe7ed">
-               <font>
-                  <Font name="Kodchasan Regular" size="8.0" />
-               </font></Button>
-            <Label fx:id="accountTypeLabel" alignment="CENTER_RIGHT" layoutX="20.0" layoutY="220.0" prefWidth="60.0" text="ACCOUNT:" textAlignment="RIGHT" textFill="#ab3e56">
-               <font>
-                  <Font name="Kodchasan Bold" size="10.0" />
-               </font></Label>
-            <Label fx:id="accountNameLabel" layoutX="85.0" layoutY="220.0" prefWidth="90.0" text="####" textFill="#ab3e56">
-               <font>
-                  <Font name="Kodchasan Regular" size="10.0" />
-               </font></Label>
-            <Label fx:id="balanceDebtLabel" alignment="CENTER_RIGHT" layoutX="20.0" layoutY="235.0" prefWidth="60.0" text="BALANCE:" textAlignment="RIGHT" textFill="#ab3e56">
-               <font>
-                  <Font name="Kodchasan Bold" size="10.0" />
-               </font></Label>
-            <Label fx:id="accountBalanceLabel" layoutX="85.0" layoutY="235.0" prefWidth="90.0" text="€€€€" textFill="#ab3e56">
-               <font>
-                  <Font name="Kodchasan Regular" size="10.0" />
-               </font></Label>
-            <Button fx:id="makeTransactionButton" layoutX="610.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#makeTransaction" style="-fx-background-color: #ab3e56;" text="+" textFill="#ffe7ed">
-               <font>
-                  <Font name="Kodchasan Regular" size="8.0" />
-               </font></Button>
-            <CheckBox fx:id="inTransactionCheckBox" layoutX="200.0" layoutY="235.0" mnemonicParsing="false" onAction="#toggleIncomingTransactions" text="INCOMING" textFill="#ab3e56" />
-            <CheckBox fx:id="outTransactionCheckBox" layoutX="200.0" layoutY="255.0" mnemonicParsing="false" onAction="#toggleOutgoingTransactions" text="OUTGOING" textFill="#ab3e56" />
-            <TableView fx:id="transactionsTable" editable="true" layoutX="200.0" layoutY="30.0" prefHeight="202.0" prefWidth="428.0" stylesheets="@../../../../../TableViewStylesheet.css">
-              <columns>
-                <TableColumn fx:id="senderColumn" prefWidth="56.0" text="Sender" />
-                <TableColumn fx:id="receiverColumn" prefWidth="56.0" text="Receiver" />
-                  <TableColumn fx:id="amountColumn" prefWidth="59.19999694824219" text="Amount" />
-                  <TableColumn fx:id="messageColumn" prefWidth="174.40008544921875" text="Message" />
-                  <TableColumn fx:id="dateColumn" prefWidth="79.2000732421875" text="Date" />
-              </columns>
-            </TableView>
-            <Label fx:id="interestLabel" alignment="CENTER_RIGHT" layoutX="20.0" layoutY="250.0" prefWidth="60.0" text="INTEREST:" textAlignment="RIGHT" textFill="#ab3e56">
-               <font>
-                  <Font name="Kodchasan Bold" size="10.0" />
-               </font></Label>
-            <Label fx:id="initialLabel" alignment="CENTER_RIGHT" layoutX="20.0" layoutY="265.0" prefWidth="60.0" text="INITIAL:" textAlignment="RIGHT" textFill="#ab3e56">
-               <font>
-                  <Font name="Kodchasan Bold" size="10.0" />
-               </font></Label>
-            <Label fx:id="interestRateLabel" layoutX="85.0" layoutY="250.0" prefWidth="90.0" text="€€€€" textFill="#ab3e56">
-               <font>
-                  <Font name="Kodchasan Regular" size="10.0" />
-               </font></Label>
-            <Label fx:id="initialAmountLabel" layoutX="85.0" layoutY="265.0" prefWidth="90.0" text="€€€€" textFill="#ab3e56">
-               <font>
-                  <Font name="Kodchasan Regular" size="10.0" />
-               </font></Label>
-            <Button fx:id="manageFundsButton" layoutX="151.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#manageFunds" style="-fx-background-color: #ab3e56;" text="+/-" textFill="#ffe7ed">
-               <font>
-                  <Font name="Kodchasan Regular" size="8.0" />
-               </font></Button>
-         </children></AnchorPane>
       <AnchorPane fx:id="headerAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="825.0">
          <children>
             <ImageView fx:id="headerIconImageView1" fitHeight="44.0" fitWidth="44.0" layoutX="391.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
@@ -227,11 +160,92 @@
       <AnchorPane fx:id="infoAnchorPane" layoutX="170.0" layoutY="85.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="655.0" style="-fx-background-color: #ab3e56;">
          <children>
             <Separator orientation="VERTICAL" prefHeight="365.0" prefWidth="5.0" style="-fx-background-color: #ab3e56;" />
-            <Label layoutX="20.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="630.0" text="MAKE TRANSACTION" textFill="#ffe7ed">
+            <Label layoutX="20.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="630.0" text="OVERVIEW" textFill="#ffe7ed">
                <font>
                   <Font name="Kodchasan Bold" size="25.0" />
                </font>
             </Label>
+         </children>
+      </AnchorPane>
+        <AnchorPane fx:id="contentAnchorPane" layoutX="170.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="655.0">
+         <children>
+            <ListView fx:id="accountsListView" layoutX="20.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="155.0" />
+            <Label layoutX="20.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="ACCOUNTS" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="200.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="TRANSACTIONS" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Bold" size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="addAccountButton" layoutX="118.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addAccount" style="-fx-background-color: #ab3e56;" text="NEW" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Regular" size="8.0" />
+               </font>
+            </Button>
+            <Label fx:id="accountTypeLabel" alignment="CENTER_RIGHT" layoutX="20.0" layoutY="220.0" prefWidth="60.0" text="ACCOUNT:" textAlignment="RIGHT" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Bold" size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="accountNameLabel" layoutX="85.0" layoutY="220.0" prefWidth="90.0" text="####" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="balanceDebtLabel" alignment="CENTER_RIGHT" layoutX="20.0" layoutY="235.0" prefWidth="60.0" text="BALANCE:" textAlignment="RIGHT" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Bold" size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="accountBalanceLabel" layoutX="85.0" layoutY="235.0" prefWidth="90.0" text="€€€€" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Label>
+            <Button fx:id="makeTransactionButton" layoutX="566.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#makeTransaction" prefWidth="60.0" style="-fx-background-color: #ab3e56;" text="+" textFill="#ffe7ed" AnchorPane.bottomAnchor="263.0" AnchorPane.leftAnchor="610.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="12.0">
+               <font>
+                  <Font name="Kodchasan Regular" size="8.0" />
+               </font>
+            </Button>
+            <CheckBox fx:id="inTransactionCheckBox" layoutX="200.0" layoutY="235.0" mnemonicParsing="false" onAction="#toggleIncomingTransactions" text="INCOMING" textFill="#ab3e56" />
+            <CheckBox fx:id="outTransactionCheckBox" layoutX="200.0" layoutY="255.0" mnemonicParsing="false" onAction="#toggleOutgoingTransactions" text="OUTGOING" textFill="#ab3e56" />
+            <TableView fx:id="transactionsTable" editable="true" layoutX="200.0" layoutY="30.0" prefHeight="202.0" prefWidth="428.0" stylesheets="@../../../../../TableViewStylesheet.css">
+              <columns>
+                <TableColumn fx:id="senderColumn" prefWidth="56.0" text="Sender" />
+                <TableColumn fx:id="receiverColumn" prefWidth="56.0" text="Receiver" />
+                  <TableColumn fx:id="amountColumn" prefWidth="59.19999694824219" text="Amount" />
+                  <TableColumn fx:id="messageColumn" prefWidth="174.40008544921875" text="Message" />
+                  <TableColumn fx:id="dateColumn" prefWidth="79.2000732421875" text="Date" />
+              </columns>
+            </TableView>
+            <Label fx:id="interestLabel" alignment="CENTER_RIGHT" layoutX="20.0" layoutY="250.0" prefWidth="60.0" text="INTEREST:" textAlignment="RIGHT" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Bold" size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="initialLabel" alignment="CENTER_RIGHT" layoutX="20.0" layoutY="265.0" prefWidth="60.0" text="INITIAL:" textAlignment="RIGHT" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Bold" size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="interestRateLabel" layoutX="85.0" layoutY="250.0" prefWidth="90.0" text="€€€€" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="initialAmountLabel" layoutX="85.0" layoutY="265.0" prefWidth="90.0" text="€€€€" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Label>
+            <Button fx:id="manageFundsButton" layoutX="151.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#manageFunds" style="-fx-background-color: #ab3e56;" text="+/-" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Regular" size="8.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
     </children>
