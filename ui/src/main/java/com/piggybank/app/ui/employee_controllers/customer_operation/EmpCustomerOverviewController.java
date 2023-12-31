@@ -171,7 +171,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         });
     }
 
-    public void manageFunds(ActionEvent event) throws IOException {
+    public void manageFunds(ActionEvent event) throws IOException { //manageFundsButton
         if(currentAccount == null){
             System.out.println("You must select an account.");
         } else {

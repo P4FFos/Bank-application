@@ -1,16 +1,12 @@
 package com.piggybank.app.ui.employee_controllers.customer_operation;
 
-import com.piggybank.app.backend.customers.CustomerCorporate;
-import com.piggybank.app.backend.customers.CustomerPrivate;
 import com.piggybank.app.backend.exceptions.PasswordException;
 import com.piggybank.app.ui.employee_controllers.EmpMainController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -39,8 +35,6 @@ public class EmpCustomerInfoController extends EmpCustomerOverviewController imp
     private Button saveNewEmailButton;
     @FXML
     private Button saveNewPasswordButton;
-    //@FXML
-   // private Label customerIdLabel;
     @FXML
     private PasswordField passwordField;
     @FXML
@@ -59,7 +53,7 @@ public class EmpCustomerInfoController extends EmpCustomerOverviewController imp
         showCurrentCustomer();
         System.out.println("Employee Customer Info Page. Logged in as: " + currentEmployee.getInitials());
     }
-
+    @Override
     public void showCurrentCustomer(){
         super.showCurrentCustomer();
         streetField.setText(EmpMainController.currentCustomer.getStreet());

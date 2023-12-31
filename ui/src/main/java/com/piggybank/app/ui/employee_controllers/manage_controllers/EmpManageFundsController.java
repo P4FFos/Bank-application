@@ -1,24 +1,16 @@
 package com.piggybank.app.ui.employee_controllers.manage_controllers;
 
-import com.piggybank.app.backend.customers.CustomerCorporate;
-import com.piggybank.app.backend.customers.CustomerPrivate;
-import com.piggybank.app.ui.employee_controllers.EmpMainController;
+import com.piggybank.app.ui.employee_controllers.customer_operation.EmpCustomerOverviewController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EmpManageFundsController extends EmpMainController implements Initializable {
-    @FXML
-    private AnchorPane privateCustomerInfoAnchorPane;
-    @FXML
-    private AnchorPane corporateCustomerInfoAnchorPane;
+public class EmpManageFundsController extends EmpCustomerOverviewController implements Initializable {
     @FXML
     private Button okButton;
     @FXML
@@ -30,23 +22,11 @@ public class EmpManageFundsController extends EmpMainController implements Initi
     @FXML
     private Label balanceLabel;
     @FXML
-    private Label customerSSNLabel;
-    @FXML
-    private Label customerNameLabel;
-    @FXML
-    private Label customerIdLabel;
-    @FXML
-    private Label companyNameLabel;
-    @FXML
-    private Label companyIdLabel;
-    @FXML
-    private Label companyOrgNrLabel;
-    @FXML
     private TextField amountTextField;
 
     public void initialize(URL arg0, ResourceBundle arg1) {
         super.showCurrentEmployee();
-        showCurrentCustomer();
+        super.showCurrentCustomer();
 
         accountLabel.setText(currentAccount.getAccountName());
         balanceLabel.setText(Double.toString(currentAccount.getBalance()));
@@ -101,23 +81,5 @@ public class EmpManageFundsController extends EmpMainController implements Initi
 
     public void toggleDeposit(){
         withdrawCheckBox.setSelected(false);
-    }
-
-    public void showCurrentCustomer() {
-        if (currentCustomer instanceof CustomerPrivate) {
-            CustomerPrivate currentPrivate = (CustomerPrivate) currentCustomer;
-            privateCustomerInfoAnchorPane.setVisible(true);
-            corporateCustomerInfoAnchorPane.setVisible(false);
-            customerSSNLabel.setText(currentPrivate.getSsn());
-            customerNameLabel.setText(currentPrivate.getFullName());
-            customerIdLabel.setText(currentPrivate.getUserId());
-        } else {
-            CustomerCorporate currentCorporate = (CustomerCorporate) currentCustomer;
-            privateCustomerInfoAnchorPane.setVisible(false);
-            corporateCustomerInfoAnchorPane.setVisible(true);
-            companyNameLabel.setText(currentCorporate.getCompanyName());
-            companyIdLabel.setText(currentCorporate.getUserId());
-            companyOrgNrLabel.setText(currentCorporate.getOrgNumber());
-        }
     }
 }
