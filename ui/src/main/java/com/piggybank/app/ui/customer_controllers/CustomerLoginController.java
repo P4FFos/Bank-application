@@ -15,6 +15,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class CustomerLoginController {
     //.....................FXML ELEMENTS...........................
     @FXML
@@ -24,15 +26,20 @@ public class CustomerLoginController {
     @FXML
     private Button loginButton;
     @FXML
+    private Button backButton;
+    @FXML
     private Label incorrectDetailsLabel;
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+    private FXMLLoader loader;
 
 
     //..........................METHODS.............................
 
     public void login(ActionEvent event) throws Exception { //loginButton
-        Stage stage;
-        Scene scene;
-        Parent root;
+
         String password;
         String userId;
 
@@ -45,7 +52,7 @@ public class CustomerLoginController {
                 CustomerStartController.currentCustomer = bank.getCustomer(userId);
                 CustomerStartController.currentCustomersAccounts = CustomerStartController.currentCustomer.getAccounts();
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/customer_scenes/CustomerStart.fxml"));
+                loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/customer_scenes/CustomerStart.fxml"));
                 root = loader.load();
 
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -60,5 +67,15 @@ public class CustomerLoginController {
             //System.out.println(incorrectDetailsLabel.getText()); // remove at prod
             e.printStackTrace();
         }
+    }
+
+    public void goBackToStart(ActionEvent event) throws IOException {
+        loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/StartScene.fxml"));
+        root = loader.load();
+
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

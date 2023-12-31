@@ -27,7 +27,7 @@
          <font>
             <Font name="Kodchasan Regular" size="15.0" />
          </font></PasswordField>
-        <Button fx:id="loginButton" defaultButton="true" layoutX="262.5" layoutY="287.0" mnemonicParsing="false" onAction="#login" prefWidth="300.0" style="-fx-background-color: #ab3e56;" text="LOGIN" textFill="#ffe7ed">
+        <Button fx:id="loginButton" defaultButton="true" layoutX="262.5" layoutY="287.0" mnemonicParsing="false" onAction="#login" prefWidth="300.0" style="-fx-background-color: #ab3e56;" text="LOGIN" textFill="#ffe7ed" AnchorPane.leftAnchor="263.0">
          <font>
             <Font name="Kodchasan Regular" size="13.0" />
          </font></Button>
@@ -55,5 +55,10 @@
             </Label>
          </children>
       </AnchorPane>
+      <Button fx:id="backButton" layoutX="263.0" layoutY="322.0" mnemonicParsing="false" onAction="#goBackToStart" prefWidth="300.0" style="-fx-background-color: #ab3e56;" text="BACK" textFill="#ffe7ed" AnchorPane.leftAnchor="263.0" AnchorPane.topAnchor="322.0">
+         <font>
+            <Font name="Kodchasan Regular" size="13.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>
