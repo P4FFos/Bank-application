@@ -60,5 +60,10 @@
             </Label>
          </children>
       </AnchorPane>
+      <Button fx:id="backButton" layoutX="263.0" layoutY="328.0" mnemonicParsing="false" onAction="#goBackToStart" prefWidth="300.0" style="-fx-background-color: #ab3e56;" text="BACK" textFill="#ffe7ed" AnchorPane.leftAnchor="263.0" AnchorPane.topAnchor="323.0">
+         <font>
+            <Font name="Kodchasan Regular" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -65,13 +65,6 @@ public class EmpMainController implements Initializable {
     public static HashMap<String, Account> currentCustomersAccounts;
     public String saveFile = UIMain.savePath;
 
-    /*
-    public void resetUIState() {
-        noSelectedCustomerLabel.setVisible(false);
-        noCustomerFoundLabel.setVisible(false);
-    }
-    */
-
     public void initialize(URL arg0, ResourceBundle arg1) {
         showCurrentEmployee();
         nameLabel.setText(currentEmployee.getFullName());

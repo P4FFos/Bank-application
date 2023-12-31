@@ -15,6 +15,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class EmpLoginController {
     //.....................FXML ELEMENTS...........................
     @FXML
@@ -24,14 +26,19 @@ public class EmpLoginController {
     @FXML
     private Button loginButton;
     @FXML
+    private Button backButton;
+    @FXML
     private Label incorrectDetailsLabel;
+
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+    private FXMLLoader loader;
 
     //..........................METHODS.............................
 
     public void login(ActionEvent event) throws Exception {
-        Stage stage;
-        Scene scene;
-        Parent root;
+
         String password;
         String userId;
 
@@ -43,7 +50,7 @@ public class EmpLoginController {
             if (bank.verifyEmployee(userId, password)) { //using method from bank
                 EmpMainController.currentEmployee = bank.getEmployee(userId);
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/EmpStart.fxml"));
+                loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/EmpStart.fxml"));
                 root = loader.load();
 
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -58,6 +65,16 @@ public class EmpLoginController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void goBackToStart(ActionEvent event) throws IOException {
+        loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/StartScene.fxml"));
+        root = loader.load();
+
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
 
