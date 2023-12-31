@@ -1,23 +1,16 @@
 package com.piggybank.app.ui.employee_controllers;
 
 import com.piggybank.app.backend.customers.Account;
-import com.piggybank.app.backend.customers.CustomerCorporate;
-import com.piggybank.app.backend.customers.CustomerPrivate;
 import com.piggybank.app.backend.exceptions.InsufficientBalanceException;
+import com.piggybank.app.ui.employee_controllers.customer_operation.EmpCustomerOverviewController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
-
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class EmpMakeTransactionController extends EmpMainController implements Initializable{
-    @FXML
-    private AnchorPane privateCustomerInfoAnchorPane;
-    @FXML
-    private AnchorPane corporateCustomerInfoAnchorPane;
+public class EmpMakeTransactionController extends EmpCustomerOverviewController implements Initializable{
     @FXML
     private Button selectSendingAccountButton;
     @FXML
@@ -30,18 +23,6 @@ public class EmpMakeTransactionController extends EmpMainController implements I
     private CheckBox oneThousandCheckBox;
     @FXML
     private Button okButton;
-    @FXML
-    private Label customerSSNLabel;
-    @FXML
-    private Label customerNameLabel;
-    @FXML
-    private Label customerIdLabel;
-    @FXML
-    private Label companyNameLabel;
-    @FXML
-    private Label companyIdLabel;
-    @FXML
-    private Label companyOrgNrLabel;
     @FXML
     private ListView<String> accountsListView;
     @FXML
@@ -62,7 +43,7 @@ public class EmpMakeTransactionController extends EmpMainController implements I
         incorrectDetailsLabel.setVisible(false);
 
         super.showCurrentEmployee();
-        showCurrentCustomer();
+        super.showCurrentCustomer();
 
         //Populate accountsListView with accountIDs from currentCustomersAccounts
         accountsListView.getItems().addAll(currentCustomer.getAccounts().keySet());
@@ -70,7 +51,7 @@ public class EmpMakeTransactionController extends EmpMainController implements I
         System.out.println("Employee Make Transaction Page. Logged in as: " + currentEmployee.getInitials());
     }
 
-    public void selectSendingAccount(){
+    public void selectSendingAccount(){ //selectSendingAccountButton
         String accountId = accountsListView.getSelectionModel().getSelectedItem();
         if(accountId != null) {
             senderAccount = currentCustomer.getAccount(accountId);
@@ -140,26 +121,13 @@ public class EmpMakeTransactionController extends EmpMainController implements I
             insufficientBalanceLabel.setVisible(true);
             insufficientBalanceLabel.setText(String.format("Insufficient balance on account. Only %.2f available.", senderAccount.getBalance()));
         } catch (Exception e) {
-            incorrectDetailsLabel.setVisible(true);
+            if(senderAccount == null){
+                incorrectDetailsLabel.setVisible(true);
+                incorrectDetailsLabel.setText("You must select an account.");
+            } else {
+                incorrectDetailsLabel.setVisible(true);
+            }
+
         }
     }
-
-    public void showCurrentCustomer() {
-        if (currentCustomer instanceof CustomerPrivate) {
-            CustomerPrivate currentPrivate = (CustomerPrivate) currentCustomer;
-            privateCustomerInfoAnchorPane.setVisible(true);
-            corporateCustomerInfoAnchorPane.setVisible(false);
-            customerSSNLabel.setText(currentPrivate.getSsn());
-            customerNameLabel.setText(currentPrivate.getFullName());
-            customerIdLabel.setText(currentPrivate.getUserId());
-        } else {
-            CustomerCorporate currentCorporate = (CustomerCorporate) currentCustomer;
-            privateCustomerInfoAnchorPane.setVisible(false);
-            corporateCustomerInfoAnchorPane.setVisible(true);
-            companyNameLabel.setText(currentCorporate.getCompanyName());
-            companyIdLabel.setText(currentCorporate.getUserId());
-            companyOrgNrLabel.setText(currentCorporate.getOrgNumber());
-        }
-    }
-
 }
