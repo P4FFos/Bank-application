@@ -126,6 +126,7 @@ public class EmpMakeTransactionController extends EmpCustomerOverviewController 
                 incorrectDetailsLabel.setText("You must select an account.");
             } else {
                 incorrectDetailsLabel.setVisible(true);
+                incorrectDetailsLabel.setText("Something went wrong. Try again.");
             }
 
         }
