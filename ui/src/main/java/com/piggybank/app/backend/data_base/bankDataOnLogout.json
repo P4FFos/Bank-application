@@ -23,6 +23,23 @@
           "accountType" : "loan",
           "accountName" : "House loan account",
           "accountId" : "A00005",
+          "balance" : -999000.0,
+          "transactions" : [ {
+            "receiverAccountId" : "A00005",
+            "senderAccountId" : "A00004",
+            "amount" : 1000.0,
+            "message" : "",
+            "date" : [ 2024, 1, 1 ]
+          } ],
+          "initialAmount" : -1000000.0,
+          "interestRate" : 5.0,
+          "minPaymentPercent" : 1.0,
+          "minPaymentAmount" : -60000.0
+        },
+        "A00008" : {
+          "accountType" : "loan",
+          "accountName" : "Test loan",
+          "accountId" : "A00008",
           "balance" : -1000000.0,
           "transactions" : [ ],
           "initialAmount" : -1000000.0,
@@ -30,11 +47,20 @@
           "minPaymentPercent" : 1.0,
           "minPaymentAmount" : -60000.0
         },
+        "A00007" : {
+          "accountType" : "credit",
+          "accountName" : "Test credit acc",
+          "accountId" : "A00007",
+          "balance" : -10000.0,
+          "transactions" : [ ],
+          "initialCreditDate" : 1704148860634,
+          "interestRate" : 5.0
+        },
         "A00002" : {
           "accountType" : "account",
           "accountName" : "Savings account",
           "accountId" : "A00002",
-          "balance" : 1300.0,
+          "balance" : 11300.0,
           "transactions" : [ {
             "receiverAccountId" : "A00002",
             "senderAccountId" : "A00001",
@@ -65,8 +91,14 @@
           "accountType" : "account",
           "accountName" : "Test Acc",
           "accountId" : "A00004",
-          "balance" : 0.0,
-          "transactions" : [ ]
+          "balance" : 999000.0,
+          "transactions" : [ {
+            "receiverAccountId" : "A00005",
+            "senderAccountId" : "A00004",
+            "amount" : -1000.0,
+            "message" : "",
+            "date" : [ 2024, 1, 1 ]
+          } ]
         },
         "A00003" : {
           "accountType" : "account",

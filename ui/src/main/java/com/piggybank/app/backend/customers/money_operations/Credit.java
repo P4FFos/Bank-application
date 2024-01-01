@@ -2,6 +2,7 @@ package com.piggybank.app.backend.customers.money_operations;
 
 import java.util.Calendar;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.utils.TruncationUtil;
@@ -10,7 +11,7 @@ import com.piggybank.app.backend.utils.TruncationUtil;
 public class Credit extends Account {
 
     // attributes:
-    final double INTEREST_RATE = 5;
+    private double interestRate = 5;
     private Calendar initialCreditDate;
 
     // Constructor for Credit class
@@ -26,21 +27,17 @@ public class Credit extends Account {
         return this.initialCreditDate;
     }
 
-    public double getINTEREST_RATE() {
-        return INTEREST_RATE;
+    public double getInterestRate() {
+        return interestRate;
     }
 
     public void setInitialCreditDate(Calendar initialCreditDate) {
         this.initialCreditDate = initialCreditDate;
     }
 
-
+    @JsonIgnore
     public double getCreditAmount() {
         return super.getBalance();
-    }
-
-    public double getInterestRate() {
-        return this.INTEREST_RATE;
     }
 
     // getCreditAmountWithInterest method which:
@@ -48,6 +45,7 @@ public class Credit extends Account {
     // checks if currentMonth date smaller than initialMonth
     // counts totalCreditAmountWithInterest
     // returns truncated amount
+    @JsonIgnore
     public double getCreditAmountWithInterest() {
         Calendar currentMonth = Calendar.getInstance();
         Calendar initialMonth = getInitialCreditDate();
@@ -59,7 +57,7 @@ public class Credit extends Account {
 
         double totalCreditAmountWithInterest = getCreditAmount();
         for (long i = 1; i < monthDifference; i++) {
-            double interestCreditAmount = totalCreditAmountWithInterest * (getInterestRate() / 100);
+            double interestCreditAmount = totalCreditAmountWithInterest * (interestRate / 100);
             totalCreditAmountWithInterest += interestCreditAmount;
         }
         return TruncationUtil.truncate(totalCreditAmountWithInterest);

@@ -29,7 +29,6 @@ public class Loan extends Account {
         this.initialAmount = initialAmount;
     }
 
-    @JsonIgnore
     //calculating the minimum monthly payment:
     public void setPaymentAmount() {
         //minimum payment amount:
