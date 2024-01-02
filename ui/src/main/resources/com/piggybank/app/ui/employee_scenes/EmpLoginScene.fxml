@@ -36,7 +36,6 @@
             <Font name="Kodchasan Regular" size="13.0" />
          </font>
       </Button>
-      <Label fx:id="incorrectDetailsLabel" alignment="TOP_CENTER" layoutX="262.5" layoutY="320.0" prefHeight="68.0" prefWidth="300.0" text="Invalid user ID or password. Please try again." textFill="RED" visible="false" wrapText="true" />
       <AnchorPane fx:id="headerAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="825.0">
          <children>
             <ImageView fx:id="headerIconImageView" fitHeight="44.0" fitWidth="44.0" layoutX="391.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
@@ -65,5 +64,6 @@
             <Font name="Kodchasan Regular" size="13.0" />
          </font>
       </Button>
+      <Label fx:id="incorrectLoginLabel" layoutX="275.0" layoutY="354.0" prefHeight="31.0" prefWidth="278.0" text="Incorrect username or password. Try again." textAlignment="CENTER" textFill="RED" visible="false" />
    </children>
 </AnchorPane>
