@@ -12,10 +12,12 @@ public class IdGenerator {
 
         if (nextID > MAX_CUSTOMER_ID) {
             throw new Exception("Customer ID out of range");
-        } else {
-            int paddingSize = lastCustomerID.length() - Integer.toString(nextID).length();
-            return String.format("C%0" + paddingSize + "d", nextID);
         }
+        int paddingSize = lastCustomerID.length() - 1;
+
+        // E.g. C%05d would pad with zeros in front of nextId until total string length is 5
+        return String.format("C%0" + paddingSize + "d", nextID);
+
     }
 
     // generate employee ID method with length of 3 digits and starting with E
@@ -25,7 +27,9 @@ public class IdGenerator {
 
         if (nextID > MAX_EMPLOYEE_ID)
             throw new Exception("Employee ID out of range");
-        int paddingSize = lastEmployeeID.length() - Integer.toString(nextID).length();
+        int paddingSize = lastEmployeeID.length() - 1;
+
+        // E.g. E%05d would pad with zeros in front of nextId until total string length is 5
         return String.format("E%0" + paddingSize + "d", nextID);
     }
 
@@ -39,10 +43,10 @@ public class IdGenerator {
             throw new Exception("Account ID out of range");
         }
 
-        // Checks length of integer, used to pad with this amount of zeros
-        int paddingSize = lastAccountId.length() - Integer.toString(nextId).length();
+        // Checks length of ID, used to pad with this amount of zeros
+        int paddingSize = lastAccountId.length() - 1;
 
-        // E.g. A%04d would give "A0000" plus int of nextID
+        // E.g. A%05d would pad with zeros in front of nextId until total string length is 5
         return String.format("A%0" + paddingSize + "d", nextId);
 
     }
