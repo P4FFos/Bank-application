@@ -28,7 +28,7 @@ public class CustomerLoginController {
     @FXML
     private Button backButton;
     @FXML
-    private Label incorrectDetailsLabel;
+    private Label incorrectLoginLabel;
 
     private Stage stage;
     private Scene scene;
@@ -60,11 +60,9 @@ public class CustomerLoginController {
                 stage.setScene(scene);
                 stage.show();
             }
+        } catch (PasswordException e) {
+            incorrectLoginLabel.setVisible(true);
         } catch (Exception e) {
-            if(e instanceof PasswordException) {
-                incorrectDetailsLabel.setVisible(true);
-            }
-            //System.out.println(incorrectDetailsLabel.getText()); // remove at prod
             e.printStackTrace();
         }
     }
