@@ -53,8 +53,8 @@
           "accountId" : "A00007",
           "balance" : -10000.0,
           "transactions" : [ ],
-          "initialCreditDate" : 1704148860634,
-          "interestRate" : 5.0
+          "interestRate" : 5.0,
+          "initialCreditDate" : 1704148860634
         },
         "A00002" : {
           "accountType" : "account",
