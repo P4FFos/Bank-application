@@ -28,7 +28,7 @@ public class EmpLoginController {
     @FXML
     private Button backButton;
     @FXML
-    private Label incorrectDetailsLabel;
+    private Label incorrectLoginLabel;
 
     private Stage stage;
     private Scene scene;
@@ -59,8 +59,7 @@ public class EmpLoginController {
                 stage.show();
             }
         } catch(PasswordException e) {
-            incorrectDetailsLabel.setText(incorrectDetailsLabel.getText());
-            incorrectDetailsLabel.setVisible(true);
+            incorrectLoginLabel.setVisible(true);
 
         } catch (Exception e) {
             e.printStackTrace();
