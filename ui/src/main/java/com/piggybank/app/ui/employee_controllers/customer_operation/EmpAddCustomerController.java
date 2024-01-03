@@ -50,6 +50,8 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
     private TextField emailField;
     @FXML
     private PasswordField passwordField;
+	@FXML
+	private Label requiredLabel;
 
 
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -66,17 +68,6 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
     }
 
     public void addCustomer(){ // saveNewCustomerButton
-        companyNameField.setEditable(false);
-        firstNameField.setEditable(false);
-        lastNameField.setEditable(false);
-        ssnField.setEditable(false);
-        orgNumberField.setEditable(false);
-        streetField.setEditable(false);
-        zipField.setEditable(false);
-        cityField.setEditable(false);
-        phoneField.setEditable(false);
-        emailField.setEditable(false);
-
 		String companyName = companyNameField.getText();
 		String firstName = firstNameField.getText();
 		String lastName = lastNameField.getText();
@@ -90,6 +81,9 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
 		String password = passwordField.getText();
 
         String userId;
+
+		if(checkForEmptyFields()) return;
+
         if(privateCustomerCheckBox.isSelected()){
 
 			ContactCard newContactCard = new ContactCard(email, phone, street, zip, city);
@@ -119,6 +113,17 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
         onSavePane.setVisible(true);
         wrongPasswordPane.setVisible(false);
         saveNewCustomerButton.setVisible(false);
+		requiredLabel.setVisible(false);
+		companyNameField.setEditable(false);
+        firstNameField.setEditable(false);
+        lastNameField.setEditable(false);
+        ssnField.setEditable(false);
+        orgNumberField.setEditable(false);
+        streetField.setEditable(false);
+        zipField.setEditable(false);
+        cityField.setEditable(false);
+        phoneField.setEditable(false);
+        emailField.setEditable(false);
         passwordField.setEditable(false);
         currentCustomer = bank.getCustomer(userId);
         currentCustomersAccounts = currentCustomer.getAccounts();
@@ -135,6 +140,27 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
         privateCustomerAnchorPane.setVisible(false);
         privateCustomerCheckBox.setSelected(false);
     }
+
+	public boolean checkForEmptyFields(){
+		if(privateCustomerCheckBox.isSelected()){
+			if(firstNameField.getText().isEmpty() || lastNameField.getText().isEmpty() || ssnField.getText().isEmpty() || streetField.getText().isEmpty() || zipField.getText().isEmpty() || cityField.getText().isEmpty() || phoneField.getText().isEmpty() || emailField.getText().isEmpty() || passwordField.getText().isEmpty()){
+				requiredLabel.styleProperty().setValue("-fx-text-fill: red");
+				return true;
+			} else {
+				requiredLabel.styleProperty().setValue("-fx-text-fill: black");
+				return false;
+			}
+		} else if(corporateCustomerCheckBox.isSelected()){
+			if(companyNameField.getText().isEmpty() || orgNumberField.getText().isEmpty() || streetField.getText().isEmpty() || zipField.getText().isEmpty() || cityField.getText().isEmpty() || phoneField.getText().isEmpty() || emailField.getText().isEmpty() || passwordField.getText().isEmpty()){
+				requiredLabel.styleProperty().setValue("-fx-text-fill: red");
+				return true;
+			} else {
+				requiredLabel.styleProperty().setValue("-fx-text-fill: black");
+				return false;
+			}
+		}
+		return false;
+	}
 
 }
 
