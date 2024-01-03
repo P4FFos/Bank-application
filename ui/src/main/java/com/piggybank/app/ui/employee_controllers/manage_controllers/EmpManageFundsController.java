@@ -22,6 +22,8 @@ public class EmpManageFundsController extends EmpCustomerOverviewController impl
     @FXML
     private Label balanceLabel;
     @FXML
+    private Label errorMessageLabel;
+    @FXML
     private TextField amountTextField;
 
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -30,6 +32,7 @@ public class EmpManageFundsController extends EmpCustomerOverviewController impl
 
         accountLabel.setText(currentAccount.getAccountName());
         balanceLabel.setText(Double.toString(currentAccount.getBalance()));
+        errorMessageLabel.setVisible(false);
 
         System.out.println("Employee Manage Funds (deposit/withdraw) Page. Logged in as: " + currentEmployee.getInitials());
     }
@@ -40,16 +43,19 @@ public class EmpManageFundsController extends EmpCustomerOverviewController impl
         String enteredAmount = amountTextField.getText();
 
         if(!withdrawCheckBox.isSelected() && !depositCheckBox.isSelected()){
-            System.out.println("You must choose either withdraw or deposit.");
+            errorMessageLabel.setVisible(true);
+            errorMessageLabel.setText("You must choose either withdraw or deposit.");
         } else if (enteredAmount.isEmpty()){
-            System.out.println("You must enter an amount.");
+            errorMessageLabel.setVisible(true);
+            errorMessageLabel.setText("You must enter an amount.");
         } else {
             amount = extractAmount(enteredAmount);
         }
 
         if(withdrawCheckBox.isSelected()){
             if(currentBalance < amount){
-                System.out.println("You do not have that much funds to withdraw from this account.");
+                errorMessageLabel.setVisible(true);
+                errorMessageLabel.setText("You do not have that much funds to withdraw from this account.");
             } else {
                 currentAccount.setBalance(currentBalance - amount);
             }
@@ -61,17 +67,23 @@ public class EmpManageFundsController extends EmpCustomerOverviewController impl
 
     public double extractAmount(String input){
         String amountStr = "";
+        if(input.charAt(0) == '-'){
+            errorMessageLabel.setVisible(true);
+            errorMessageLabel.setText("You cannot deposit or withdraw a negative amount.");
+            return 0.0;
+        }
+
         for(int i = 0; i < input.length(); i++){
             if(!Character.isDigit(input.charAt(i))){
-                System.out.println("You must enter only digits.");
+                errorMessageLabel.setVisible(true);
+                errorMessageLabel.setText("You must enter only digits.");
                 return 0.0;
             } else {
                 amountStr += input.charAt(i);
-                System.out.println("AmountStr: " + amountStr); //delete this row later
+                errorMessageLabel.setVisible(false);
             }
         }
         double amount = Double.parseDouble(amountStr);
-        System.out.println(amount);
         return amount;
     }
 
