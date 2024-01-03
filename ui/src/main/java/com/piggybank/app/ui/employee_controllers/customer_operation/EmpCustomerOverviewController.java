@@ -61,6 +61,8 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     @FXML
     private Label accountTypeLabel;
     @FXML
+    private Label errorMessageLabel;
+    @FXML
     private Button addAccountButton;
     @FXML
     private Button makeTransactionButton;
@@ -93,11 +95,13 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         super.showCurrentEmployee();
         showCurrentCustomer();
         displayAccounts();
+        currentAccount = null;
 
         interestLabel.setVisible(false);
         interestRateLabel.setVisible(false);
         initialLabel.setVisible(false);
         initialAmountLabel.setVisible(false);
+        errorMessageLabel.setVisible(false);
 
 		inTransactionCheckBox.setSelected(true);
 		outTransactionCheckBox.setSelected(true);
@@ -171,9 +175,14 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         });
     }
 
+    public void showError(String message){
+        errorMessageLabel.setVisible(true);
+        errorMessageLabel.setText(message);
+    }
+
     public void manageFunds(ActionEvent event) throws IOException { //manageFundsButton
         if(currentAccount == null){
-            System.out.println("You must select an account.");
+            showError("You must select an account.");
         } else {
             loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/manage_controllers/EmpManageFunds.fxml"));
             root = loader.load();
