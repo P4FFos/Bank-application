@@ -102,7 +102,6 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
                 wrongPasswordPane.setVisible(true);
 			} catch (InvalidEmailException e) {
                 invalidEmailPane.setVisible(true);
-                e.printStackTrace();
             }
         } else if(corporateCustomerCheckBox.isSelected()){
 
@@ -113,7 +112,6 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
 			} catch (PasswordException e){
                 wrongPasswordPane.setVisible(true);
 			} catch (InvalidEmailException e) {
-                e.printStackTrace();
                 invalidEmailPane.setVisible(true);
             }
         }

@@ -36,8 +36,6 @@ public class EmpManageFundsController extends EmpCustomerOverviewController impl
         accountLabel.setText(currentAccount.getAccountName());
         balanceLabel.setText(Double.toString(currentAccount.getBalance()));
         errorMessageLabel.setVisible(false);
-
-        System.out.println("Employee Manage Funds (deposit/withdraw) Page. Logged in as: " + currentEmployee.getInitials());
     }
 
     public void showError(String msg){
