@@ -298,7 +298,7 @@ public class Bank {
         Account account = getAccountById(accountId);
         Account targetAccount = getAccountById(targetAccountId);
 
-        account.withdraw(targetAccountId, amount, date);
+        account.withdraw(targetAccountId, amount, message, date);
         targetAccount.deposit(accountId, amount, message, date);
     }
 

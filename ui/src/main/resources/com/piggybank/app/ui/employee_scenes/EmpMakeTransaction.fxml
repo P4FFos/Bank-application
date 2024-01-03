@@ -204,21 +204,26 @@
                         <Font name="Kodchasan Regular" size="10.0" />
                      </font>
                   </Button>
-                  <Button fx:id="selectSendingAccountButton" layoutX="20.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#selectSendingAccount" prefWidth="280.0" style="-fx-background-color: #ab3e56;" text="SELECT ACCOUNT" textFill="#ffe7ed">
-                     <font>
-                        <Font name="Kodchasan Regular" size="10.0" />
-                     </font>
-                  </Button>
                   <Label fx:id="incorrectDetailsLabel" layoutX="9.0" layoutY="296.0" prefHeight="18.0" prefWidth="280.0" text="Something went wrong, please check values and try again." textFill="RED" visible="false" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" />
                   <Label fx:id="transferDoneLabel" layoutX="72.0" layoutY="297.0" prefHeight="17.0" prefWidth="280.0" text="Transfer done!" textFill="#1f8600" visible="false" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" />
                   <Label fx:id="insufficientBalanceLabel" layoutX="15.0" layoutY="296.0" prefHeight="18.0" prefWidth="576.0" text="Insufficient balance on account. Only xxxx.xx available." textFill="RED" visible="false" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" />
+                  <Label layoutX="328.0" layoutY="32.0" text="Balance:" textFill="#ab3e56">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="accountBalanceLabel" layoutX="328.0" layoutY="54.0" prefHeight="19.0" prefWidth="140.0" text="0.0 SEK">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <Label layoutX="20.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="FROM ACCOUNT" textFill="#ab3e56">
                <font>
                   <Font name="Kodchasan Bold" size="15.0" />
                </font></Label>
-            <ListView fx:id="accountsListView" layoutX="20.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="280.0" stylesheets="@../../../../../ListViewSylesheet.css" />
+            <ListView fx:id="accountsListView" layoutX="20.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectSendingAccount" prefHeight="60.0" prefWidth="280.0" stylesheets="@../../../../../ListViewSylesheet.css" />
             <Label layoutX="20.0" layoutY="125.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="TO ACCOUNT" textFill="#ab3e56">
                <font>
                   <Font name="Kodchasan Bold" size="15.0" />

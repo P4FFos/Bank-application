@@ -3,11 +3,13 @@ package com.piggybank.app.ui.employee_controllers;
 import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.exceptions.InsufficientBalanceException;
 import com.piggybank.app.ui.employee_controllers.customer_operation.EmpCustomerOverviewController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EmpMakeTransactionController extends EmpCustomerOverviewController implements Initializable{
@@ -35,6 +37,8 @@ public class EmpMakeTransactionController extends EmpCustomerOverviewController 
     private Label incorrectDetailsLabel;
     @FXML
     private Label insufficientBalanceLabel;
+    @FXML
+    private Label accountBalanceLabel;
 
     private Account senderAccount;
 
@@ -47,15 +51,12 @@ public class EmpMakeTransactionController extends EmpCustomerOverviewController 
 
         //Populate accountsListView with accountIDs from currentCustomersAccounts
         accountsListView.getItems().addAll(currentCustomer.getAccounts().keySet());
-
-        System.out.println("Employee Make Transaction Page. Logged in as: " + currentEmployee.getInitials());
     }
 
-    public void selectSendingAccount(){ //selectSendingAccountButton
+    public void selectSendingAccount(){ //selectSendingAccount
         String accountId = accountsListView.getSelectionModel().getSelectedItem();
-        if(accountId != null) {
-            senderAccount = currentCustomer.getAccount(accountId);
-        }
+        senderAccount = currentCustomer.getAccount(accountId);
+        accountBalanceLabel.setText(String.format("%.2f SEK", senderAccount.getBalance()));
     }
     public void toggleOneHundred(){
         if(oneHundredCheckBox.isSelected()) {
@@ -108,15 +109,20 @@ public class EmpMakeTransactionController extends EmpCustomerOverviewController 
         insufficientBalanceLabel.setVisible(false);
 
         try {
-            // prepare parameters for transfer between accounts
-            String accountId = senderAccount.getAccountId();
-            String targetAccountId = recieverAccountTextField.getText();
-            double amount = Double.parseDouble(amountTextField.getText());
-            String message = String.format("Handled by employee: %s", currentEmployee.getUserId());
-            LocalDate date = LocalDate.now();
+            if(senderAccount.getAccountId().equals(recieverAccountTextField.getText())) {
+                incorrectDetailsLabel.setVisible(true);
+                incorrectDetailsLabel.setText("Sender account adn receiver accounts are the same. Try again.");
+            } else {
+                // prepare parameters for transfer between accounts
+                String accountId = senderAccount.getAccountId();
+                String targetAccountId = recieverAccountTextField.getText();
+                double amount = Double.parseDouble(amountTextField.getText());
+                String message = String.format("Handled by employee: %s", currentEmployee.getUserId());
+                LocalDate date = LocalDate.now();
 
-            bank.transfer(accountId, targetAccountId, amount, message, date);
-            transferDoneLabel.setVisible(true);
+                bank.transfer(accountId, targetAccountId, amount, message, date);
+                transferDoneLabel.setVisible(true);
+            }
         } catch(InsufficientBalanceException e) {
             insufficientBalanceLabel.setVisible(true);
             insufficientBalanceLabel.setText(String.format("Insufficient balance on account. Only %.2f available.", senderAccount.getBalance()));
