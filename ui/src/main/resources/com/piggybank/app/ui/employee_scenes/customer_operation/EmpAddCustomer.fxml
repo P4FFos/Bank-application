@@ -163,13 +163,13 @@
         </AnchorPane>
       <AnchorPane fx:id="corporateCustomerAnchorPane" layoutX="170.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="655.0" visible="false">
          <children>
-            <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="13.0" prefWidth="90.0" text="COMPANY:" textFill="#ab3e56" AnchorPane.topAnchor="15.0">
+            <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="13.0" prefWidth="90.0" text="COMPANY: *" textFill="#ab3e56" AnchorPane.topAnchor="15.0">
                <font>
                   <Font name="Kodchasan Bold" size="13.0" />
                </font></Label>
             <TextField fx:id="companyNameField" layoutX="121.0" layoutY="11.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="217.0" AnchorPane.topAnchor="11.0" />
             <TextField fx:id="orgNumberField" layoutX="91.0" layoutY="41.0" prefHeight="26.0" prefWidth="157.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="217.0" AnchorPane.topAnchor="41.0" />
-            <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="45.0" prefWidth="90.0" text="ORG. NO:" textFill="#ab3e56" AnchorPane.topAnchor="45.0">
+            <Label alignment="CENTER_RIGHT" layoutX="20.0" layoutY="45.0" prefWidth="90.0" text="ORG. NO: *" textFill="#ab3e56" AnchorPane.topAnchor="45.0">
                <font>
                   <Font name="Kodchasan Bold" size="13.0" />
                </font></Label>
