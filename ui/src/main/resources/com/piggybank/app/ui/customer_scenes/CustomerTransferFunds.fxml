@@ -144,16 +144,16 @@
                         <Font name="Kodchasan Regular" size="8.0" />
                     </font>
                 </Label>
-                <Label fx:id="transferToAccountLabel" layoutX="20.0" layoutY="155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="TO ACCOUNT" textFill="#ab3e56">
+                <Label fx:id="transferToAccountLabel" layoutX="20.0" layoutY="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="TO ACCOUNT" textFill="#ab3e56">
                <font>
                   <Font name="Kodchasan Bold" size="15.0" />
                </font></Label>
-                <Label fx:id="transferRecieverHintLabel" layoutX="20.0" layoutY="175.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="ENTER RECIEVER ACCOUNT" textFill="#ab3e56">
+                <Label fx:id="transferRecieverHintLabel" layoutX="20.0" layoutY="171.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="12.0" prefWidth="103.0" text="ENTER RECIEVER ACCOUNT" textFill="#ab3e56">
                     <font>
                         <Font name="Kodchasan Regular" size="8.0" />
                     </font>
                 </Label>
-                <TextField fx:id="transferEnterRecieverAccountTextField" layoutX="20.0" layoutY="185.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" promptText="e.g. A00001">
+                <TextField fx:id="transferEnterRecieverAccountTextField" layoutX="20.0" layoutY="185.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="140.0" promptText="e.g. A00001">
                     <font>
                         <Font name="Kodchasan Regular" size="13.0" />
                     </font>
@@ -187,12 +187,12 @@
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </CheckBox>
-                <TextField fx:id="transferEnterAmountTextField" alignment="CENTER_RIGHT" layoutX="320.0" layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" promptText="0.00">
+                <TextField fx:id="transferEnterAmountTextField" layoutX="320.0" layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="163.0" promptText="0.00">
                     <font>
                         <Font name="Kodchasan Regular" size="13.0" />
                     </font>
                 </TextField>
-                <Label fx:id="transferSekLabel" layoutX="325.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="SEK" textFill="#ab3e56">
+                <Label fx:id="transferSekLabel" layoutX="459.0" layoutY="69.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="SEK" textFill="#ab3e56">
                     <font>
                         <Font name="Kodchasan Regular" size="13.0" />
                     </font>
@@ -206,7 +206,7 @@
                         <Font name="Kodchasan Regular" size="8.0" />
                     </font>
                 </Label>
-                <PasswordField fx:id="transferPasswordField" layoutX="320.0" layoutY="180.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" promptText="********">
+                <PasswordField fx:id="transferPasswordField" layoutX="320.0" layoutY="180.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="163.0" promptText="********">
                     <font>
                         <Font name="Kodchasan Regular" size="13.0" />
                     </font>
@@ -228,12 +228,12 @@
                   <TableColumn fx:id="accountBalanceColumn" prefWidth="72.79998779296875" text="Balance" />
               </columns>
             </TableView>
-            <TextField fx:id="transferEnterMessageTextField" layoutX="20.0" layoutY="240.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" promptText="enter message">
+            <TextField fx:id="transferEnterMessageTextField" layoutX="20.0" layoutY="240.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" promptText="Enter message">
                <font>
                   <Font name="Kodchasan Regular" size="13.0" />
                </font>
             </TextField>
-            <DatePicker fx:id="transferEnterDatePicker" layoutX="320.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" />
+            <DatePicker fx:id="transferEnterDatePicker" layoutX="320.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="163.0" />
             <Label fx:id="transferMessageLabel" layoutX="20.0" layoutY="220.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="MESSAGE (OPTIONAL)" textFill="#ab3e56">
                <font>
                   <Font name="Kodchasan Bold" size="15.0" />
