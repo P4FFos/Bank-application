@@ -105,16 +105,27 @@ public class EmpAddAccountController extends EmpCustomerOverviewController imple
                 bank.createAccount(currentCustomer.getUserId(), newAccountNameField.getText());
                 backToOverview(event);
             } else if (creditCheckBox.isSelected()) {
-                bank.createCredit(currentCustomer.getUserId(), newAccountNameField.getText(), Calendar.getInstance(), amount);
-                adjustFunds(accountToIncrement, amount);
-                backToOverview(event);
+                if(accountToIncrement == null){
+                    wrongDetailsLabel.setText("Choose an account to send funds to.");
+                    wrongDetailsLabel.setVisible(true);
+                } else {
+                    bank.createCredit(currentCustomer.getUserId(), newAccountNameField.getText(), Calendar.getInstance(), amount);
+                    adjustFunds(accountToIncrement, amount);
+                    backToOverview(event);
+                }
+
             } else if (loanCheckBox.isSelected()) {
-                bank.createLoanAccount(currentCustomer.getUserId(), newAccountNameField.getText(), amount);
-                adjustFunds(accountToIncrement, amount);
-                backToOverview(event);
+                if(accountToIncrement == null){
+                    wrongDetailsLabel.setText("Choose an account to send funds to.");
+                    wrongDetailsLabel.setVisible(true);
+                } else {
+                    bank.createLoanAccount(currentCustomer.getUserId(), newAccountNameField.getText(), amount);
+                    adjustFunds(accountToIncrement, amount);
+                    backToOverview(event);
+                }
             }
         } catch (Exception e) {
-            wrongDetailsLabel.setText(wrongDetailsLabel.getText());
+            wrongDetailsLabel.setText("ERROR: INCORRECTLY ENTERED CRITERIA FOR ACCOUNT CREATION");
             wrongDetailsLabel.setVisible(true);
         }
     }
