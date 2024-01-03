@@ -153,22 +153,22 @@
 						<TableColumn fx:id="debtsBalanceTableColumn" text="Balance" />
 					</columns>
 				</TableView>
-                <Label fx:id="startTotalBalanceLabel" alignment="CENTER_RIGHT" layoutX="20.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="Total Balance:" textFill="#ab3e56">
+                <Label fx:id="startTotalBalanceLabel" layoutX="20.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="79.0" text="Total Balance:" textFill="#ab3e56">
                     <font>
                         <Font name="Kodchasan Bold" size="13.0" />
                     </font>
                 </Label>
-                <Label fx:id="startActualTotalBalanceLabel" alignment="CENTER_RIGHT" centerShape="false" layoutX="175.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="100.0" text="0.00" textFill="#ab3e56">
+                <Label fx:id="startActualTotalBalanceLabel" alignment="CENTER_RIGHT" centerShape="false" layoutX="105.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="170.0" text="0.00" textFill="#ab3e56">
                     <font>
                         <Font name="Kodchasan Regular" size="13.0" />
                     </font>
                 </Label>
-                <Label fx:id="startTotalDebtLabel" alignment="CENTER_RIGHT" layoutX="320.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="Total Debt:" textFill="#ab3e56">
+                <Label fx:id="startTotalDebtLabel" layoutX="320.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="70.0" text="Total Debt:" textFill="#ab3e56">
                     <font>
                         <Font name="Kodchasan Bold" size="13.0" />
                     </font>
                 </Label>
-                <Label fx:id="startActualTotalDebtLabel" alignment="CENTER_RIGHT" centerShape="false" layoutX="475.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="100.0" text="0.00" textFill="#ab3e56">
+                <Label fx:id="startActualTotalDebtLabel" alignment="CENTER_RIGHT" centerShape="false" layoutX="383.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="192.0" text="0.00" textFill="#ab3e56">
                     <font>
                         <Font name="Kodchasan Regular" size="13.0" />
                     </font>
