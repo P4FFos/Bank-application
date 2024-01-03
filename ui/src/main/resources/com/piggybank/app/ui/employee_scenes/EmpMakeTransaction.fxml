@@ -223,7 +223,7 @@
                <font>
                   <Font name="Kodchasan Bold" size="15.0" />
                </font></Label>
-            <ListView fx:id="accountsListView" layoutX="20.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectSendingAccount" prefHeight="60.0" prefWidth="280.0" stylesheets="@../../../../../ListViewSylesheet.css" />
+            <ListView fx:id="accountsListView" layoutX="20.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#selectSendingAccount" prefHeight="94.0" prefWidth="280.0" stylesheets="@../../../../../ListViewSylesheet.css" />
             <Label layoutX="20.0" layoutY="125.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="TO ACCOUNT" textFill="#ab3e56">
                <font>
                   <Font name="Kodchasan Bold" size="15.0" />
