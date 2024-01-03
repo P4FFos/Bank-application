@@ -135,7 +135,7 @@
                         <Font name="Kodchasan Bold" size="15.0" />
                     </font>
                 </Label>
-                <ListView fx:id="loansListView" layoutX="20.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="280.0" />
+                <ListView fx:id="loansListView" layoutX="20.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="280.0" stylesheets="@../../../../../../ListViewSylesheet.css" />
                 <Label fx:id="detailsLabel" layoutX="315.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="TERMS &amp; CONDITIONS" textFill="#ab3e56">
                     <font>
                         <Font name="Kodchasan Bold" size="15.0" />
