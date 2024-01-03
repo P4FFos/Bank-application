@@ -138,13 +138,13 @@
                         <Font name="Kodchasan Regular" size="8.0" />
                     </font>
                 </CheckBox>
-            <TableView fx:id="transactionsTable" layoutX="250.0" layoutY="45.0" prefHeight="200.0" prefWidth="380.0" stylesheets="@../../../../../TableViewStylesheet.css">
+            <TableView fx:id="transactionsTable" layoutX="250.0" layoutY="45.0" prefHeight="200.0" prefWidth="390.0" stylesheets="@../../../../../TableViewStylesheet.css">
               <columns>
-                <TableColumn fx:id="senderColumn" prefWidth="54.4000244140625" text="Sender" />
-                <TableColumn fx:id="receiverColumn" prefWidth="52.79998779296875" text="Receiver" />
-                  <TableColumn fx:id="amountColumn" prefWidth="52.79998779296875" text="Amount" />
-                  <TableColumn fx:id="messageColumn" prefWidth="120.79998779296875" text="Message" />
-                  <TableColumn fx:id="dateColumn" prefWidth="96.800048828125" text="Date" />
+                <TableColumn fx:id="senderColumn" prefWidth="58.78466796875" text="Sender" />
+                <TableColumn fx:id="receiverColumn" prefWidth="75.28469848632812" text="Receiver" />
+                  <TableColumn fx:id="amountColumn" prefWidth="69.21533203125" text="Amount" />
+                  <TableColumn fx:id="messageColumn" prefWidth="106.64453125" text="Message" />
+                  <TableColumn fx:id="dateColumn" prefWidth="79.64599609375" text="Date" />
               </columns>
             </TableView>
             <TableView fx:id="accountsTableView" layoutX="20.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="215.0" stylesheets="@../../../../../TableViewStylesheet.css">

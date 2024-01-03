@@ -75,7 +75,7 @@
                   <Font name="Kodchasan Regular" size="10.0" />
                </font>
             </Button>
-            <Button fx:id="manageLoansButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="130.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToLoans" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #ab3e56;" text="MANAGE LOANS" textFill="#ffe7ed">
+            <Button fx:id="manageLoansButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="130.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToLoans" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #ab3e56;" text="ADD NEW ACCOUNT" textFill="#ffe7ed">
                <font>
                   <Font name="Kodchasan Regular" size="10.0" />
                </font>
@@ -160,7 +160,7 @@
       <AnchorPane fx:id="infoAnchorPane" layoutX="170.0" layoutY="85.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="655.0" style="-fx-background-color: #ab3e56;">
          <children>
             <Separator orientation="VERTICAL" prefHeight="365.0" prefWidth="5.0" style="-fx-background-color: #ab3e56;" />
-            <Label layoutX="20.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="630.0" text="OVERVIEW" textFill="#ffe7ed">
+            <Label layoutX="20.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="630.0" text="ACCOUNTS OVERVIEW" textFill="#ffe7ed">
                <font>
                   <Font name="Kodchasan Bold" size="25.0" />
                </font>
@@ -212,12 +212,12 @@
             </Button>
             <CheckBox fx:id="inTransactionCheckBox" layoutX="200.0" layoutY="235.0" mnemonicParsing="false" onAction="#toggleIncomingTransactions" text="INCOMING" textFill="#ab3e56" />
             <CheckBox fx:id="outTransactionCheckBox" layoutX="200.0" layoutY="255.0" mnemonicParsing="false" onAction="#toggleOutgoingTransactions" text="OUTGOING" textFill="#ab3e56" />
-            <TableView fx:id="transactionsTable" editable="true" layoutX="200.0" layoutY="30.0" prefHeight="202.0" prefWidth="428.0" stylesheets="@../../../../../TableViewStylesheet.css">
+            <TableView fx:id="transactionsTable" editable="true" layoutX="200.0" layoutY="30.0" prefHeight="202.0" prefWidth="428.0" stylesheets="@../../../../../../TableViewStylesheet.css">
               <columns>
-                <TableColumn fx:id="senderColumn" prefWidth="56.0" text="Sender" />
-                <TableColumn fx:id="receiverColumn" prefWidth="56.0" text="Receiver" />
-                  <TableColumn fx:id="amountColumn" prefWidth="59.19999694824219" text="Amount" />
-                  <TableColumn fx:id="messageColumn" prefWidth="174.40008544921875" text="Message" />
+                <TableColumn fx:id="senderColumn" prefWidth="59.0" text="Sender" />
+                <TableColumn fx:id="receiverColumn" prefWidth="67.0" text="Receiver" />
+                  <TableColumn fx:id="amountColumn" prefWidth="87.5" text="Amount" />
+                  <TableColumn fx:id="messageColumn" prefWidth="132.5" text="Message" />
                   <TableColumn fx:id="dateColumn" prefWidth="79.2000732421875" text="Date" />
               </columns>
             </TableView>

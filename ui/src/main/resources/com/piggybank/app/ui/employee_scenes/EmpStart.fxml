@@ -72,7 +72,7 @@
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
                 </Button>
-                <Button fx:id="manageLoansButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="130.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToLoans" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #ab3e56;" text="MANAGE LOANS" textFill="#ffe7ed">
+                <Button fx:id="manageLoansButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="130.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToLoans" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #ab3e56;" text="ADD NEW ACCOUNT" textFill="#ffe7ed">
                     <font>
                         <Font name="Kodchasan Regular" size="10.0" />
                     </font>
@@ -162,30 +162,6 @@
                   <Font name="Kodchasan Bold" size="25.0" />
                </font>
             </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="customerSearchAnchorPane" layoutY="85.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="170.0" style="-fx-background-color: #ab3e56;" visible="false">
-         <children>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="FIND CUSTOMER" textFill="#ffe7ed">
-               <font>
-                  <Font name="Kodchasan Regular" size="13.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="SEARCH ACCOUNT BASE BY CUSTOMER ID OR SSN/ORG" textAlignment="CENTER" textFill="#ffe7ed" wrapText="true">
-               <font>
-                  <Font name="Kodchasan Bold" size="8.0" />
-               </font>
-            </Label>
-            <TextField fx:id="searchCustomerTextField" layoutX="10.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="110.0" promptText="search...">
-               <font>
-                  <Font name="Kodchasan Regular" size="10.0" />
-               </font>
-            </TextField>
-            <Button fx:id="searchButton" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" layoutX="125.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#searchCustomer" style="-fx-background-color: #ffe7ed;" text="FIND" textAlignment="RIGHT" textFill="#ab3e56">
-               <font>
-                  <Font name="Kodchasan Regular" size="10.0" />
-               </font>
-            </Button>
          </children>
       </AnchorPane>
         <AnchorPane fx:id="contentAnchorPane" layoutX="170.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="655.0">
