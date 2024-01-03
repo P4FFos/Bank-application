@@ -3,6 +3,9 @@ package com.piggybank.app.backend.customers.money_operations;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.piggybank.app.backend.customers.Account;
+import com.piggybank.app.backend.utils.TruncationUtil;
+
+import java.time.LocalDate;
 
 @JsonTypeName("loan")
 public class Loan extends Account {
@@ -87,6 +90,12 @@ public class Loan extends Account {
 
     public double getMinPaymentAmount() {
         return this.minPaymentAmount;
+    }
+
+    @Override
+    public void withdraw(String receiverAccountId, double amount, String message, LocalDate date) {
+        Transaction withdrawal = new Transaction(receiverAccountId, super.getAccountId(), 0 - amount, message, date);
+        addTransaction(withdrawal);
     }
 
 	@Override

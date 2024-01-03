@@ -10,6 +10,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class EmpManageFundsController extends EmpCustomerOverviewController implements Initializable {
@@ -44,10 +45,11 @@ public class EmpManageFundsController extends EmpCustomerOverviewController impl
         errorMessageLabel.setText(msg);
     }
 
-    public void adjustFunds(){ // okButton
+    public void adjustFunds() throws Exception { // okButton
         double currentBalance = currentAccount.getBalance();
         double amount = 0.0;
         String enteredAmount = amountTextField.getText();
+        String message = "Handled by: " + currentEmployee.getUserId();
 
         if(!withdrawCheckBox.isSelected() && !depositCheckBox.isSelected()){
             showError("You must choose either withdraw or deposit.");
@@ -63,10 +65,10 @@ public class EmpManageFundsController extends EmpCustomerOverviewController impl
             } else if (currentBalance < amount){
                 showError("You do not have enough funds in this account.");
             } else {
-                currentAccount.setBalance(currentBalance - amount);
+                currentAccount.withdraw(amount, message, LocalDate.now());
             }
         } else if (depositCheckBox.isSelected()){
-            currentAccount.setBalance(currentBalance + amount);
+            currentAccount.deposit("None", amount, message, LocalDate.now());
         }
         balanceLabel.setText(Double.toString(currentAccount.getBalance()));
     }

@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
@@ -28,8 +29,6 @@ public class EmpAddAccountController extends EmpCustomerOverviewController imple
     private AnchorPane loanAnchorPane;
     @FXML
     private AnchorPane creditAnchorPane;
-    @FXML
-    private Button saveNewAccountButton;
     @FXML
     private CheckBox creditCheckBox;
     @FXML
@@ -68,8 +67,6 @@ public class EmpAddAccountController extends EmpCustomerOverviewController imple
         super.showCurrentEmployee();
         super.showCurrentCustomer();
         populateAccountsChoiceBox();
-
-        System.out.println("Employee Add Account Page. Logged in as: " + currentEmployee.getInitials());
     }
 
     public void populateAccountsChoiceBox(){
@@ -93,13 +90,8 @@ public class EmpAddAccountController extends EmpCustomerOverviewController imple
         accountToIncrement = currentCustomersAccounts.get(accountsChoiceBox.getValue());
     }
 
-    public void adjustFunds(Account account, double amount) { // okButton
-        double currentBalance = account.getBalance();
-        account.setBalance(currentBalance + Math.abs(amount));
-        System.out.println("New balance: " + account.getBalance());
-    }
-
-    public void saveNewAccount(ActionEvent event) throws Exception {
+    public void saveNewAccount(ActionEvent event) {
+        String message = "Handled by: " + currentEmployee.getUserId();
         try {
             if (standardCheckBox.isSelected()) {
                 bank.createAccount(currentCustomer.getUserId(), newAccountNameField.getText());
@@ -109,8 +101,8 @@ public class EmpAddAccountController extends EmpCustomerOverviewController imple
                     wrongDetailsLabel.setText("Choose an account to send funds to.");
                     wrongDetailsLabel.setVisible(true);
                 } else {
-                    bank.createCredit(currentCustomer.getUserId(), newAccountNameField.getText(), Calendar.getInstance(), amount);
-                    adjustFunds(accountToIncrement, amount);
+                    Credit newCreditAccount = bank.createCredit(currentCustomer.getUserId(), newAccountNameField.getText(), Calendar.getInstance(), amount);
+                    bank.transferFomCreditAccount(newCreditAccount.getAccountId(), accountToIncrement.getAccountId(), 0 - amount, message, LocalDate.now());
                     backToOverview(event);
                 }
 
@@ -119,8 +111,8 @@ public class EmpAddAccountController extends EmpCustomerOverviewController imple
                     wrongDetailsLabel.setText("Choose an account to send funds to.");
                     wrongDetailsLabel.setVisible(true);
                 } else {
-                    bank.createLoanAccount(currentCustomer.getUserId(), newAccountNameField.getText(), amount);
-                    adjustFunds(accountToIncrement, amount);
+                    Loan newLoanAccount = bank.createLoanAccount(currentCustomer.getUserId(), newAccountNameField.getText(), amount);
+                    bank.transferFomLoanAccount(newLoanAccount.getAccountId(), accountToIncrement.getAccountId(), 0 - amount, message, LocalDate.now());
                     backToOverview(event);
                 }
             }
