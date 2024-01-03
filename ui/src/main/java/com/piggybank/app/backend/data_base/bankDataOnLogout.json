@@ -1,0 +1,303 @@
+{
+  "contactInfo" : {
+    "email" : "employee@piggybank.com",
+    "phoneNumber" : "0701234567",
+    "streetAddress" : "Oink Oink Alley",
+    "zipCode" : "35533",
+    "city" : "Trufflesville"
+  },
+  "customers" : {
+    "C002" : {
+      "customerType" : "customerPrivate",
+      "userId" : "C002",
+      "password" : "Password123!",
+      "contactInfo" : {
+        "email" : "jane.doe@student.gu.se",
+        "phoneNumber" : "0702345678",
+        "streetAddress" : "Lindholmsplatsen 1",
+        "zipCode" : "41756",
+        "city" : "Gothenburg"
+      },
+      "accounts" : {
+        "A00005" : {
+          "accountType" : "loan",
+          "accountName" : "House loan account",
+          "accountId" : "A00005",
+          "balance" : -999000.0,
+          "transactions" : [ {
+            "receiverAccountId" : "A00005",
+            "senderAccountId" : "A00004",
+            "amount" : 1000.0,
+            "message" : "",
+            "date" : [ 2024, 1, 1 ]
+          } ],
+          "initialAmount" : -1000000.0,
+          "interestRate" : 5.0,
+          "minPaymentPercent" : 1.0,
+          "minPaymentAmount" : -60000.0
+        },
+        "A00008" : {
+          "accountType" : "loan",
+          "accountName" : "Test loan",
+          "accountId" : "A00008",
+          "balance" : -1000000.0,
+          "transactions" : [ ],
+          "initialAmount" : -1000000.0,
+          "interestRate" : 5.0,
+          "minPaymentPercent" : 1.0,
+          "minPaymentAmount" : -60000.0
+        },
+        "A00007" : {
+          "accountType" : "credit",
+          "accountName" : "Test credit acc",
+          "accountId" : "A00007",
+          "balance" : -10000.0,
+          "transactions" : [ ],
+          "interestRate" : 5.0,
+          "initialCreditDate" : 1704148860634
+        },
+        "A00002" : {
+          "accountType" : "account",
+          "accountName" : "Savings account",
+          "accountId" : "A00002",
+          "balance" : 11300.0,
+          "transactions" : [ {
+            "receiverAccountId" : "A00002",
+            "senderAccountId" : "A00001",
+            "amount" : 200.0,
+            "message" : "Money from John",
+            "date" : [ 2023, 12, 14 ]
+          }, {
+            "receiverAccountId" : "A00003",
+            "senderAccountId" : "A00002",
+            "amount" : -100.0,
+            "message" : "",
+            "date" : [ 2023, 12, 13 ]
+          }, {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "A00002",
+            "amount" : -400.0,
+            "message" : "",
+            "date" : [ 2023, 12, 12 ]
+          }, {
+            "receiverAccountId" : "A00002",
+            "senderAccountId" : "A00003",
+            "amount" : 300.0,
+            "message" : "",
+            "date" : [ 2023, 12, 25 ]
+          } ]
+        },
+        "A00004" : {
+          "accountType" : "account",
+          "accountName" : "Test Acc",
+          "accountId" : "A00004",
+          "balance" : 999000.0,
+          "transactions" : [ {
+            "receiverAccountId" : "A00005",
+            "senderAccountId" : "A00004",
+            "amount" : -1000.0,
+            "message" : "",
+            "date" : [ 2024, 1, 1 ]
+          } ]
+        },
+        "A00003" : {
+          "accountType" : "account",
+          "accountName" : "Test account",
+          "accountId" : "A00003",
+          "balance" : 2200.0,
+          "transactions" : [ {
+            "receiverAccountId" : "A00003",
+            "senderAccountId" : "A00002",
+            "amount" : 100.0,
+            "message" : "Money from Jane",
+            "date" : [ 2023, 12, 12 ]
+          }, {
+            "receiverAccountId" : "A00003",
+            "senderAccountId" : "A00001",
+            "amount" : 300.0,
+            "message" : "Money from John",
+            "date" : [ 2023, 12, 11 ]
+          }, {
+            "receiverAccountId" : "A00002",
+            "senderAccountId" : "A00003",
+            "amount" : -300.0,
+            "message" : "",
+            "date" : [ 2023, 12, 25 ]
+          } ]
+        }
+      },
+      "ssn" : "0201010101",
+      "firstName" : "Jane",
+      "lastName" : "Doe",
+      "initials" : "JD"
+    },
+    "C001" : {
+      "customerType" : "customerPrivate",
+      "userId" : "C001",
+      "password" : "Password1",
+      "contactInfo" : {
+        "email" : "john.doe@student.gu.se",
+        "phoneNumber" : "0701234567",
+        "streetAddress" : "Lindholmsplatsen 1",
+        "zipCode" : "41756",
+        "city" : "Gothenburg"
+      },
+      "accounts" : {
+        "A00001" : {
+          "accountType" : "account",
+          "accountName" : "Daily account",
+          "accountId" : "A00001",
+          "balance" : 600.0,
+          "transactions" : [ {
+            "receiverAccountId" : "A00002",
+            "senderAccountId" : "A00001",
+            "amount" : -200.0,
+            "message" : "",
+            "date" : [ 2023, 12, 16 ]
+          }, {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "A00002",
+            "amount" : 400.0,
+            "message" : "Money from Jane",
+            "date" : [ 2023, 12, 15 ]
+          }, {
+            "receiverAccountId" : "A00003",
+            "senderAccountId" : "A00001",
+            "amount" : -300.0,
+            "message" : "",
+            "date" : [ 2023, 12, 14 ]
+          } ]
+        }
+      },
+      "ssn" : "0101010101",
+      "firstName" : "John",
+      "lastName" : "Doe",
+      "initials" : "JD"
+    },
+    "C007" : {
+      "customerType" : "customerPrivate",
+      "userId" : "C007",
+      "password" : "DaiShan1",
+      "contactInfo" : {
+        "email" : "lan.mandragoran@malkier.com",
+        "phoneNumber" : "0709012345",
+        "streetAddress" : "Malkier street 1",
+        "zipCode" : "11001",
+        "city" : "Seven Towers"
+      },
+      "accounts" : { },
+      "ssn" : "1001010101",
+      "firstName" : "Lan",
+      "lastName" : "Mandragoran",
+      "initials" : "LM"
+    },
+    "C006" : {
+      "customerType" : "customerCorporate",
+      "userId" : "C006",
+      "password" : "MrRobot1",
+      "contactInfo" : {
+        "email" : "info@evilcorp.com",
+        "phoneNumber" : "031000001",
+        "streetAddress" : "Ecorp Street 1",
+        "zipCode" : "11010",
+        "city" : "Gothenburg"
+      },
+      "accounts" : {
+        "A00006" : {
+          "accountType" : "account",
+          "accountName" : "Corporate account",
+          "accountId" : "A00006",
+          "balance" : 50000.0,
+          "transactions" : [ ]
+        }
+      },
+      "orgNumber" : "5566770001",
+      "companyName" : "E-Corp"
+    },
+    "C005" : {
+      "customerType" : "customerPrivate",
+      "userId" : "C005",
+      "password" : "passWord!123",
+      "contactInfo" : {
+        "email" : "rand.althor@dragon.com",
+        "phoneNumber" : "0705678900",
+        "streetAddress" : "Dragon Mount 1",
+        "zipCode" : "55555",
+        "city" : "Dragon Mount"
+      },
+      "accounts" : { },
+      "ssn" : "0101010101",
+      "firstName" : "Rand",
+      "lastName" : "Al'Thor",
+      "initials" : "RA"
+    },
+    "C004" : {
+      "customerType" : "customerPrivate",
+      "userId" : "C004",
+      "password" : "paSsword1!",
+      "contactInfo" : {
+        "email" : "raylan.givens@justified.com",
+        "phoneNumber" : "0704567890",
+        "streetAddress" : "Lexington 1",
+        "zipCode" : "55555",
+        "city" : "Lexington"
+      },
+      "accounts" : { },
+      "ssn" : "0401010101",
+      "firstName" : "Raylan",
+      "lastName" : "Givens",
+      "initials" : "RG"
+    },
+    "C003" : {
+      "customerType" : "customerPrivate",
+      "userId" : "C003",
+      "password" : "pAssword123",
+      "contactInfo" : {
+        "email" : "din.djarin@mandalorian.com",
+        "phoneNumber" : "0703456789",
+        "streetAddress" : "Concordia 1",
+        "zipCode" : "55555",
+        "city" : "Concordia"
+      },
+      "accounts" : { },
+      "ssn" : "0301010101",
+      "firstName" : "Din",
+      "lastName" : "Djaron",
+      "initials" : "DD"
+    }
+  },
+  "employees" : {
+    "E001" : {
+      "type" : "employee",
+      "userId" : "E001",
+      "password" : "11DRAGON",
+      "contactInfo" : {
+        "email" : "moiraine.damodred@whitetower.com",
+        "phoneNumber" : "0706789000",
+        "streetAddress" : "White Tower 126",
+        "zipCode" : "55555",
+        "city" : "White Tower"
+      },
+      "firstName" : "Moiraine",
+      "lastName" : "Sedai",
+      "currentCustomer" : null,
+      "initials" : "MS"
+    },
+    "E002" : {
+      "type" : "employee",
+      "userId" : "E002",
+      "password" : "Password1234!",
+      "contactInfo" : {
+        "email" : "joseph.dredd@judge.com",
+        "phoneNumber" : "0707890000",
+        "streetAddress" : "Mega City 111",
+        "zipCode" : "55555",
+        "city" : "Mega City One"
+      },
+      "firstName" : "Judge",
+      "lastName" : "Dredd",
+      "currentCustomer" : null,
+      "initials" : "JD"
+    }
+  }
+}
