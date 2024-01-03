@@ -7,7 +7,7 @@
 }
 .table-view .cell {
     -fx-text-fill: #1f2023;
-    -fx-font-size: 15;
+    -fx-font-size: 12;
     -fx-alignment: CENTER_LEFT;
 }
 .table-view .column-header .label{
