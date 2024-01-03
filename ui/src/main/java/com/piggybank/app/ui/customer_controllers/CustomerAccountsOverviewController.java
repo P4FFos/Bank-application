@@ -100,10 +100,14 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
             accountsAllCheckBox.setSelected(true);
             accountsIncomingCheckBox.setSelected(false);
             accountsOutgoingCheckBox.setSelected(false);
-
-            transactionsTable.setItems(currentAccount.getTransactions());
+            if(currentAccount != null) {
+                transactionsTable.setItems(currentAccount.getTransactions());
+            }
         } else {
-            transactionsTable.setItems(currentAccount.getTransactions());
+            accountsAllCheckBox.setSelected(true);
+            if(currentAccount != null) {
+                transactionsTable.setItems(currentAccount.getTransactions());
+            }
         }
     }
 
@@ -113,16 +117,20 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
             accountsIncomingCheckBox.setSelected(true);
             accountsAllCheckBox.setSelected(false);
             accountsOutgoingCheckBox.setSelected(false);
-
-            ObservableList<Transaction> incomingTransactions = FXCollections.observableArrayList();
-            for(Transaction transaction : currentAccount.getTransactions()) {
-                if (transaction.getAmount() > 0) {
-                    incomingTransactions.add(transaction);
+            if(currentAccount != null) {
+                ObservableList<Transaction> incomingTransactions = FXCollections.observableArrayList();
+                for (Transaction transaction : currentAccount.getTransactions()) {
+                    if (transaction.getAmount() > 0) {
+                        incomingTransactions.add(transaction);
+                    }
                 }
+                transactionsTable.setItems(incomingTransactions);
             }
-            transactionsTable.setItems(incomingTransactions);
         } else {
-            transactionsTable.setItems(currentAccount.getTransactions());
+            accountsAllCheckBox.setSelected(true);
+            if(currentAccount != null) {
+                transactionsTable.setItems(currentAccount.getTransactions());
+            }
         }
     }
 
@@ -132,16 +140,20 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
             accountsOutgoingCheckBox.setSelected(true);
             accountsAllCheckBox.setSelected(false);
             accountsIncomingCheckBox.setSelected(false);
-
-            ObservableList<Transaction> outgoingTransactions = FXCollections.observableArrayList();
-            for(Transaction transaction : currentAccount.getTransactions()) {
-                if (transaction.getAmount() < 0) {
-                    outgoingTransactions.add(transaction);
+            if(currentAccount != null) {
+                ObservableList<Transaction> outgoingTransactions = FXCollections.observableArrayList();
+                for (Transaction transaction : currentAccount.getTransactions()) {
+                    if (transaction.getAmount() < 0) {
+                        outgoingTransactions.add(transaction);
+                    }
                 }
+                transactionsTable.setItems(outgoingTransactions);
             }
-            transactionsTable.setItems(outgoingTransactions);
         } else {
-            transactionsTable.setItems(currentAccount.getTransactions());
+            if(currentAccount != null) {
+                transactionsTable.setItems(currentAccount.getTransactions());
+            }
+            accountsAllCheckBox.setSelected(true);
         }
     }
 }
