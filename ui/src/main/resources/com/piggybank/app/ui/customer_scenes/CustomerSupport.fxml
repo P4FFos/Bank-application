@@ -163,7 +163,7 @@
                   <Font name="Kodchasan Regular" size="10.0" />
                </font>
             </Label>
-            <Label fx:id="successfulMessageLabel" layoutX="21.0" layoutY="222.0" prefHeight="43.0" prefWidth="196.0" text="Your message has been successfully sent. Thank you for contacting us!" textFill="RED" visible="false" wrapText="true">
+            <Label fx:id="successfulMessageLabel" layoutX="21.0" layoutY="222.0" prefHeight="43.0" prefWidth="196.0" text="Your message has been successfully sent. Thank you for contacting us!" textFill="GREEN" visible="false" wrapText="true">
                <font>
                   <Font size="10.0" />
                </font>

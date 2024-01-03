@@ -30,10 +30,8 @@ public class CustomerSupportController extends CustomerStartController implement
         if (textArea.getText().isEmpty()) {
             successfulMessageLabel.setVisible(false);
             emptyMessageLabel.setVisible(true);
-            System.out.println("Please explain your problem/question in the text area.");
         } else {
             String request = textArea.getText();
-            System.out.println("Your request has been sent.");
             System.out.println(request);
             textArea.clear();
             emptyMessageLabel.setVisible(false);
