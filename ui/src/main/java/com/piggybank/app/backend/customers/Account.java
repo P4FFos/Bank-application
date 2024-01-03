@@ -81,7 +81,10 @@ public class Account {
 
     // deposit methods, checks is the message is blank:
     // fill in message field with empty string
-    public void deposit(String senderAccountId, double amount, String message, LocalDate date) {
+    public void deposit(String senderAccountId, double amount, String message, LocalDate date) throws Exception {
+        if(amount < 0) {
+            throw new InsufficientBalanceException("Amount specified cannot be less than 0.");
+        }
         balance += TruncationUtil.truncate(amount);
         if (message.isBlank()) {
             Transaction withdraw = new Transaction(accountId, senderAccountId, amount, "", date);
@@ -97,10 +100,10 @@ public class Account {
     // if lower -> throw exception
 
     //used in conjunction with transfer, when you want receiverAccountId to show
-    public void withdraw(String receiverAccountId, double amount, LocalDate date) throws Exception {
-        if (balance >= amount) {
+    public void withdraw(String receiverAccountId, double amount, String message, LocalDate date) throws Exception {
+        if (balance >= amount && amount > 0) {
             balance -= TruncationUtil.truncate(amount);
-            Transaction withdraw = new Transaction(receiverAccountId, accountId, 0-amount, "", date);
+            Transaction withdraw = new Transaction(receiverAccountId, accountId, 0 - amount, message, date);
             transactions.add(withdraw);
         } else {
             throw new InsufficientBalanceException("Not enough balance in account for this operation.");
@@ -108,7 +111,7 @@ public class Account {
     }
     // used for only withdrawing
     public void withdraw(double amount, LocalDate date) throws Exception {
-        if (balance >= amount) {
+        if (balance >= amount && amount > 0) {
             balance -= TruncationUtil.truncate(amount);
             Transaction withdraw = new Transaction("None", accountId, 0 - amount, "", date);
             transactions.add(withdraw);

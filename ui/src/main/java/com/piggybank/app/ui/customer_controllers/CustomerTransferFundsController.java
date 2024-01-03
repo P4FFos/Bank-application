@@ -3,6 +3,7 @@ package com.piggybank.app.ui.customer_controllers;
 import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
+import com.piggybank.app.backend.exceptions.AccountNotFoundException;
 import com.piggybank.app.backend.exceptions.InsufficientBalanceException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,18 +55,6 @@ public class CustomerTransferFundsController extends CustomerStartController imp
         initializeTables();
     }
 
-    @Override
-    public void showCurrentCustomer(){
-        super.showCurrentCustomer();
-        if (currentCustomer instanceof CustomerPrivate) {
-            CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
-            System.out.println("Customer Transfer Funds Page. Logged in as: " + privateCustomer.getFullName());
-        } else {
-            CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
-            System.out.println("Customer Transfer Funds Page. Logged in as: " + corporateCustomer.getCompanyName());
-        }
-    }
-
     public void initializeTables(){
         accountNameColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountName"));
         accountIdColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountId"));
@@ -82,7 +71,7 @@ public class CustomerTransferFundsController extends CustomerStartController imp
     }
 
     public void completeTransfer() throws Exception {
-        // first remove any unwanted styling (if run before)
+        // reset styling (needed when running several times)
         resetStyles();
 
         String receiverAccountId = transferEnterRecieverAccountTextField.getText();
@@ -113,6 +102,8 @@ public class CustomerTransferFundsController extends CustomerStartController imp
             transferPasswordField.clear();
         } catch(InsufficientBalanceException e) {
             transferEnterAmountTextField.getStyleClass().add("text-field-invalid");
+        } catch(AccountNotFoundException e) {
+            transferEnterRecieverAccountTextField.getStyleClass().add("text-field-invalid");
         }
     }
 
