@@ -249,6 +249,15 @@
                      </font></Label>
                </children>
             </Pane>
+            <Pane fx:id="invalidEmailPane" layoutX="320.0" layoutY="139.0" prefHeight="43.0" prefWidth="230.0">
+               <children>
+                  <Label fx:id="invalidEmailAddressLabel" layoutX="14.0" layoutY="12.0" text="Invalid email address." textFill="RED">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
             <Pane fx:id="onSavePane" layoutX="320.0" layoutY="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="57.0" prefWidth="280.0">
                <children>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="SAVED AS" textFill="#ab3e56">

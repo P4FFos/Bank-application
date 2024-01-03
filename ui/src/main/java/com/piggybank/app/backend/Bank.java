@@ -87,18 +87,6 @@ public class Bank {
     // below methods get information from user's ContactCard
     public ContactCard getContactInfo(User user) {return user.getContactInfo();}
 
-    // information is available in ContactCard, so let serializer ignore these below attributes with @JsonIgnore
-    @JsonIgnore
-    public String getEmail(User user) {return user.getEmail();}
-    @JsonIgnore
-    public String getPhoneNumber(User user) {return user.getPhoneNumber();}
-    @JsonIgnore
-    public String getStreetAddress(User user) {return user.getStreet();}
-    @JsonIgnore
-    public String getZipCode(User user) {return user.getZipCode();}
-    @JsonIgnore
-    public String getCity(User user) {return user.getCity();}
-
     //get employee
     public Employee getEmployee(String userId){
         return employees.get(userId);
@@ -117,25 +105,18 @@ public class Bank {
     }
 
     //-----------------------SETTERS-----------------------
-    @JsonIgnore
-    public void setStreetAddress(String newStreet, User user) {user.setStreet(newStreet);}
-    @JsonIgnore
-    public void setEmail(String newEmail, User user) {user.setStreet(newEmail);}
-    @JsonIgnore
-    public void setZipCode(String newZipCode, User user) {user.setZipCode(newZipCode);}
-    @JsonIgnore
-    public void setPhoneNumber(String newPhoneNr, User user) {user.setPhoneNumber(newPhoneNr);}
-    @JsonIgnore
-    public void setCity(String newCity, User user) {user.setCity(newCity);}
 
+    // Below method used by jackson library to serialize json files
     public void setCustomers(HashMap<String, Customer> customers) {
         this.customers = customers;
     }
 
+    // Below method used by jackson library to serialize json files
     public void setEmployees(HashMap<String, Employee> employees) {
         this.employees = employees;
     }
 
+    // Below method used by jackson library to serialize json files
     public void setContactInfo(ContactCard contactInfo) {
         this.contactInfo = contactInfo;
     }
