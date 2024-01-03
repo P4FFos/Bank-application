@@ -7,13 +7,13 @@
 }
 .table-view .cell {
     -fx-text-fill: #1f2023;
-    -fx-font-size: 8;
+    -fx-font-size: 12;
     -fx-alignment: CENTER_LEFT;
 }
 .table-view .column-header .label{
     /*-fx-background-color: ab3e56;
     -fx-border-color: ff7c9a;*/
     -fx-text-fill: #ffe7ed;
-    -fx-font-size: 10;
+    -fx-font-size: 13;
     -fx-alignment: CENTER_LEFT;
 }
