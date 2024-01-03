@@ -212,6 +212,7 @@
                   <Font name="Kodchasan Regular" size="13.0" />
                </font>
             </Label>
+            <Label fx:id="errorMessageLabel" layoutX="20.0" layoutY="240.0" prefHeight="17.0" prefWidth="587.0" text="Error message" textFill="RED" />
          </children>
       </AnchorPane>
    </children>
