@@ -1,5 +1,7 @@
 package com.piggybank.app.backend.utils;
 
+import com.piggybank.app.backend.exceptions.InvalidEmailException;
+
 public class ContactCard {
     private String email;
     private String phoneNumber;
@@ -11,8 +13,8 @@ public class ContactCard {
     public ContactCard() {
     }
 
-    public ContactCard(String email, String phoneNumber, String streetAddress, String zipCode, String city) {
-        this.email = email;
+    public ContactCard(String email, String phoneNumber, String streetAddress, String zipCode, String city) throws Exception {
+        this.email = validateEmail(email);
         this.phoneNumber = phoneNumber;
         this.streetAddress = streetAddress;
         this.zipCode = zipCode;
@@ -24,13 +26,15 @@ public class ContactCard {
     }
 
     public void setEmail(String email) throws Exception {
-        boolean isAddressValid = email.matches("^(.+)@(\\S+)$"); // regex to match email. Checks if @ is present
-        if(isAddressValid) {
-            this.email = email;
-        } else {
-            throw new Exception("Email address is not valid.");
-        }
+        this.email = validateEmail(email);
+    }
 
+    public String validateEmail(String emailAddress) throws Exception {
+        boolean isAddressValid = emailAddress.matches("^(.+)@(\\S+)$"); // regex to match email. Checks if @ is present
+        if(!isAddressValid) {
+            throw new InvalidEmailException("Email address is not valid.");
+        }
+        return emailAddress;
     }
 
     public String getPhoneNumber() {
