@@ -1,0 +1,18 @@
+
+/* applies style to TextField when error in CustomerTransferFundsController.
+Linked in CustomerTransferFunds.fxml*/
+.text-field-invalid {
+    /* sets border as red with added width */
+    -fx-border-color: darkred;
+    -fx-border-width: 2;
+
+    /* and for background colour change */
+    -fx-control-inner-background: #ffdddd;
+}
+.button-all-green {
+    /* sets button as green to show all OK */
+    -fx-border-color: darkgreen;
+    -fx-border-width: 3;
+
+    -fx-background-color: #c8f59a;
+}

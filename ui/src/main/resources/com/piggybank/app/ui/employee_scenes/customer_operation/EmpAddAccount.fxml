@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="baseAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="825.0" style="-fx-background-color: #FFE7ED;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.piggybank.app.ui.employee_controllers.customer_operation.EmpAddAccountController">
+    <children>
+      <AnchorPane fx:id="headerAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="825.0">
+         <children>
+            <ImageView fx:id="headerIconImageView1" fitHeight="44.0" fitWidth="44.0" layoutX="391.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../img/PB_icon.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="headerBankNameLabel" alignment="CENTER" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="825.0" text="Piggy Bank" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Regular" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="empIdLabel" alignment="CENTER_RIGHT" contentDisplay="TOP" layoutX="690.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="##########" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Regular" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="headerUserLabel" layoutX="670.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="45.0" text="USER:" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="empInitialsLabel" layoutX="715.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="EF" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Regular" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="headerIdLabel" layoutX="670.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="20.0" text="ID:" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Bold" size="13.0" />
+               </font>
+            </Label>
+            <Button fx:id="logoutButton" layoutX="670.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logout" prefWidth="140.0" style="-fx-background-color: #ab3e56;" text="LOGOUT" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="sideMenuAnchorPane" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="170.0">
+         <children>
+            <Label fx:id="sideMenuLabel" alignment="CENTER_RIGHT" layoutX="10.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="155.0" text="MENU" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Regular" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="empStartButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToEmpStart" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #ab3e56;" text="START" textAlignment="RIGHT" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Button>
+            <Button fx:id="viewCustomerButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToCustomerAccounts" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #ab3e56;" text="VIEW ACCOUNTS" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Button>
+            <Button fx:id="customerInfoButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToCustomerInfo" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #ab3e56;" text="CUSTOMER INFO" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Button>
+            <Button fx:id="manageLoansButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="130.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToLoans" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #ab3e56;" text="ADD NEW ACCOUNT" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Button>
+            <Button fx:id="newCustomerButton" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goToAddCustomer" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #ab3e56;" text="NEW CUSTOMER" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Button>
+            <Label fx:id="noSelectedCustomerLabel" alignment="CENTER" layoutX="10.0" layoutY="5.0" prefWidth="155.0" style="-fx-background-color: #ffe7ed;" text="No selected customer. &#10;Do a search." textAlignment="CENTER" textFill="RED" visible="false" wrapText="true" />
+            <Label fx:id="noCustomerFoundLabel" alignment="CENTER" layoutX="10.0" layoutY="5.0" prefWidth="155.0" style="-fx-background-color: #ffe7ed;" text="Customer not found. &#10;Search again." textAlignment="CENTER" textFill="RED" visible="false" wrapText="true" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="privateCustomerInfoAnchorPane" layoutY="85.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="170.0" style="-fx-background-color: #ab3e56;">
+         <children>
+            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="CURRENTLY VIEWING" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="customerNameLabel" alignment="CENTER" layoutX="10.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="Customer Name" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="70.0" text="USER ID:" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Bold" size="8.0" />
+               </font>
+            </Label>
+            <Label fx:id="customerIdLabel" layoutX="85.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="70.0" text="#####" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Regular" size="8.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="70.0" text="ORG:" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Bold" size="8.0" />
+               </font>
+            </Label>
+            <Label fx:id="customerSSNLabel" layoutX="85.0" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="70.0" text="##########" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Regular" size="8.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="corporateCustomerInfoAnchorPane" layoutY="85.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="170.0" style="-fx-background-color: #ab3e56;">
+         <children>
+            <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="CURRENTLY VIEWING" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Regular" size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="companyNameLabel" alignment="CENTER" layoutX="10.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="Company Name" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="70.0" text="USER ID:" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Bold" size="8.0" />
+               </font>
+            </Label>
+            <Label fx:id="companyIdLabel" layoutX="85.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="70.0" text="#####" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Regular" size="8.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="70.0" text="ORG. NR.:" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Bold" size="8.0" />
+               </font>
+            </Label>
+            <Label fx:id="companyOrgNrLabel" layoutX="85.0" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="70.0" text="##########" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Regular" size="8.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="infoAnchorPane" layoutX="170.0" layoutY="85.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="655.0" style="-fx-background-color: #ab3e56;">
+         <children>
+            <Separator orientation="VERTICAL" prefHeight="365.0" prefWidth="5.0" style="-fx-background-color: #ab3e56;" />
+            <Label layoutX="20.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="630.0" text="ADD NEW ACCOUNT" textFill="#ffe7ed">
+               <font>
+                  <Font name="Kodchasan Bold" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+        <AnchorPane fx:id="addAccountAnchorPane" layoutX="170.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="655.0">
+            <children>
+                <Label layoutX="20.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="ACCOUNT NAME:" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Bold" size="13.0" />
+               </font></Label>
+                <TextField fx:id="newAccountNameField" layoutX="20.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0">
+               <font>
+                  <Font name="Kodchasan Regular" size="13.0" />
+               </font></TextField>
+                <CheckBox fx:id="standardCheckBox" layoutX="20.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#toggleStandard" prefWidth="280.0" text="STANDARD" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Regular" size="13.0" />
+               </font></CheckBox>
+                <CheckBox fx:id="creditCheckBox" layoutX="20.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#toggleCredit" prefWidth="280.0" text="CREDIT" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Regular" size="13.0" />
+               </font></CheckBox>
+                <CheckBox fx:id="loanCheckBox" layoutX="20.0" layoutY="120.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#toggleLoan" prefWidth="280.0" text="LOAN" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Regular" size="13.0" />
+               </font></CheckBox>
+                <Label fx:id="wrongDetailsLabel" alignment="CENTER" layoutX="320.0" layoutY="230.0" prefWidth="280.0" text="ERROR: INCORRECTLY ENTERED CRITERIA FOR ACCOUNT CREATION" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true" />
+                <Button fx:id="saveNewAccountButton" layoutX="320.0" layoutY="200.0" mnemonicParsing="false" onAction="#saveNewAccount" prefWidth="280.0" style="-fx-background-color: #ab3e56;" text="CREATE ACCOUNT" textFill="#ffe7ed">
+                    <font>
+                        <Font name="Kodchasan Regular" size="13.0" />
+                    </font></Button>
+                <ChoiceBox fx:id="accountsChoiceBox" layoutX="20.0" layoutY="200.0" prefWidth="280.0" />
+                <Label fx:id="toAccountLabel" layoutX="20.0" layoutY="180.0" text="TO ACCOUNT:" textFill="#ab3e56">
+               <font>
+                  <Font name="Kodchasan Bold" size="13.0" />
+               </font></Label>
+                <AnchorPane fx:id="creditAnchorPane" layoutX="320.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="335.0" visible="false">
+                    <children>
+                        <Label fx:id="creditAmountLabel" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="CREDIT AMOUNT:" textFill="#ab3e56">
+                     <font>
+                        <Font name="Kodchasan Bold" size="13.0" />
+                     </font></Label>
+                        <CheckBox fx:id="fiveKCheckBox" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#toggleFiveKCredit" prefWidth="280.0" text="5000 SEK" textFill="#ab3e56">
+                     <font>
+                        <Font name="Kodchasan Regular" size="13.0" />
+                     </font></CheckBox>
+                        <CheckBox fx:id="tenKCheckBox" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#toggleTenKCredit" prefWidth="280.0" text="10.000 SEK" textFill="#ab3e56">
+                     <font>
+                        <Font name="Kodchasan Regular" size="13.0" />
+                     </font></CheckBox>
+                        <CheckBox fx:id="twentyFiveKCheckBox" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#toggleTwentyFiveKCredit" prefWidth="280.0" text="25.000 SEK" textFill="#ab3e56">
+                     <font>
+                        <Font name="Kodchasan Regular" size="13.0" />
+                     </font></CheckBox>
+                        <CheckBox fx:id="fiftyKCheckBox" layoutY="105.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#toggleFiftyKCredit" prefWidth="280.0" text="50.000 SEK" textFill="#ab3e56">
+                     <font>
+                        <Font name="Kodchasan Regular" size="13.0" />
+                     </font></CheckBox>
+                    </children>
+                </AnchorPane>
+                <AnchorPane fx:id="loanAnchorPane" layoutX="320.0" prefHeight="180.0" prefWidth="335.0" visible="false">
+                    <children>
+                        <CheckBox fx:id="halfMillionCheckBox" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#toggleHalfMillionLoan" prefWidth="280.0" text="500.000 SEK" textFill="#ab3e56">
+                     <font>
+                        <Font name="Kodchasan Regular" size="13.0" />
+                     </font></CheckBox>
+                        <CheckBox fx:id="oneMillionCheckBox" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#toggleOneMillionLoan" prefWidth="280.0" text="1.000.000 SEK" textFill="#ab3e56">
+                     <font>
+                        <Font name="Kodchasan Regular" size="13.0" />
+                     </font></CheckBox>
+                        <CheckBox fx:id="twoHalfMillionCheckBox" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#toggleTwoHalfMillionLoan" prefWidth="280.0" text="2.500.000 SEK" textFill="#ab3e56">
+                     <font>
+                        <Font name="Kodchasan Regular" size="13.0" />
+                     </font></CheckBox>
+                        <CheckBox fx:id="fiveMillionCheckBox" layoutY="105.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#toggleFiveMillionLoan" prefWidth="280.0" text="5.000.000 SEK" textFill="#ab3e56">
+                     <font>
+                        <Font name="Kodchasan Regular" size="13.0" />
+                     </font></CheckBox>
+                        <Label fx:id="loanAmountLabel" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="280.0" text="LOAN AMOUNT:" textFill="#ab3e56">
+                     <font>
+                        <Font name="Kodchasan Bold" size="13.0" />
+                     </font></Label>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
