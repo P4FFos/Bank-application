@@ -24,10 +24,6 @@ public class EmpLoginController {
     @FXML
     private PasswordField passwordField;
     @FXML
-    private Button loginButton;
-    @FXML
-    private Button backButton;
-    @FXML
     private Label incorrectLoginLabel;
 
     private Stage stage;

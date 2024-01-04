@@ -96,16 +96,12 @@ public class CustomerStartController implements Initializable {
             infoNameLabel.setText(privateCustomer.getFullName());
             infoActualUserIdLabel.setText(privateCustomer.getUserId());
             headerActualIdLabel.setText(privateCustomer.getUserId());
-
-            System.out.println("Customer Start Page. Logged in as: " + privateCustomer.getFullName());
         } else {
             CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
             headerCustomerNameLabel.setText(corporateCustomer.getCompanyName());
             infoNameLabel.setText(corporateCustomer.getCompanyName());
             infoActualUserIdLabel.setText(corporateCustomer.getUserId());
             headerActualIdLabel.setText(corporateCustomer.getUserId());
-
-            System.out.println("Customer Start Page. Logged in as: " + corporateCustomer.getCompanyName());
         }
     }
 
@@ -237,8 +233,6 @@ public class CustomerStartController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
-        System.out.println("Logged out. Have a nice day.");
     }
 
 }

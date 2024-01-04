@@ -27,20 +27,7 @@ import java.util.ResourceBundle;
 
 
 public class EmpMainController implements Initializable {
-    @FXML
-    private Button logoutButton;
-    @FXML
-    private Button searchButton;
-    @FXML
-    private Button empStartButton;
-    @FXML
-    private Button viewCustomerButton;
-    @FXML
-    private Button customerInfoButton;
-    @FXML
-    private Button manageLoansButton;
-    @FXML
-    private Button newCustomerButton;
+
     @FXML
     private Label empIdLabel;
     @FXML
@@ -68,7 +55,6 @@ public class EmpMainController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         showCurrentEmployee();
         companyNameLabel.setText("No active customer.");
-        System.out.println("Employee Start Page. Logged in as: " + currentEmployee.getInitials());
     }
 
     public void showCurrentEmployee(){
@@ -89,8 +75,6 @@ public class EmpMainController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
-        System.out.println("Logged out. Have a nice day.");
     }
 
     public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton

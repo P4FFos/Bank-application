@@ -105,8 +105,6 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 
 		inTransactionCheckBox.setSelected(true);
 		outTransactionCheckBox.setSelected(true);
-
-        System.out.println("Employee Customer Accounts Overview Page. Logged in as: " + currentEmployee.getInitials());
     }
 
     public void showCurrentCustomer() {

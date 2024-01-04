@@ -72,8 +72,6 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
         invalidEmailPane.setVisible(false);
         wrongPasswordPane.setVisible(false);
         privateCustomerCheckBox.setSelected(true);
-
-        System.out.println("Employee Add Customer Page. Logged in as: " + currentEmployee.getInitials());
     }
 
     public void addCustomer() throws Exception { // saveNewCustomerButton
@@ -120,7 +118,6 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
 			} catch (PasswordException e){
                 wrongPasswordPane.setVisible(true);
 			} catch (InvalidEmailException e) {
-                e.printStackTrace();
                 invalidEmailPane.setVisible(true);
             }
         }
