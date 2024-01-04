@@ -15,16 +15,18 @@ public class Credit extends Account {
     private double interestRate = 5;
     private Calendar initialCreditDate;
 
-    // Constructor for Credit class
+	// Bare constructor used by Jackson-Databind for Json deserializing
     public Credit() {}
+
+	// Main constructor
     public Credit(String accountId, String accountName, Calendar initialCreditDate, double creditAmount) {
         super(accountId, accountName);
         super.setBalance(creditAmount);
         this.initialCreditDate = initialCreditDate;
     }
 
-    // get methods to get initialCreditDate and creditAmount and interestRate
-    public Calendar getInitialCreditDate() {
+	//--------------------Getters--------------------
+	public Calendar getInitialCreditDate() {
         return this.initialCreditDate;
     }
 
@@ -32,20 +34,21 @@ public class Credit extends Account {
         return interestRate;
     }
 
-    public void setInitialCreditDate(Calendar initialCreditDate) {
-        this.initialCreditDate = initialCreditDate;
-    }
-
     @JsonIgnore
     public double getCreditAmount() {
         return super.getBalance();
     }
 
-    @Override
-    public void withdraw(String receiverAccountId, double amount, String message, LocalDate date) {
-        Transaction withdrawal = new Transaction(receiverAccountId, super.getAccountId(), 0 - amount, message, date);
-        addTransaction(withdrawal);
+    //--------------------Setters--------------------
+	public void setInterestRate(double interestRate) {
+		this.interestRate = interestRate;
+	}
+
+    public void setInitialCreditDate(Calendar initialCreditDate) {
+        this.initialCreditDate = initialCreditDate;
     }
+
+	//--------------------Methods--------------------
 
     // getCreditAmountWithInterest method which:
     // checks monthDifference between current and initial months
@@ -68,6 +71,12 @@ public class Credit extends Account {
             totalCreditAmountWithInterest += interestCreditAmount;
         }
         return TruncationUtil.truncate(totalCreditAmountWithInterest);
+    }
+
+	@Override
+    public void withdraw(String receiverAccountId, double amount, String message, LocalDate date) {
+        Transaction withdrawal = new Transaction(receiverAccountId, super.getAccountId(), 0 - amount, message, date);
+        addTransaction(withdrawal);
     }
 
     @Override
