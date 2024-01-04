@@ -3,12 +3,10 @@ package com.piggybank.app.backend;
 import com.piggybank.app.backend.customers.*;
 import com.piggybank.app.backend.customers.money_operations.Credit;
 import com.piggybank.app.backend.customers.money_operations.Loan;
-import com.piggybank.app.backend.customers.money_operations.Transaction;
 import com.piggybank.app.backend.employees.*;
 import com.piggybank.app.backend.exceptions.*;
 import com.piggybank.app.backend.utils.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Calendar;
 import java.time.LocalDate;
@@ -28,16 +26,63 @@ public class Bank {
     }
 
     //-----------------------GETTERS-----------------------
+	public ContactCard getContactInfo() {
+        return this.contactInfo;
+    }
 
-    //retrieve customer information:
+	public HashMap<String, Customer> getCustomers(){
+        return this.customers;
+    }
+
+	public HashMap<String, Employee> getEmployees() {
+        return this.employees;
+    }
+
+	//-----------------------SETTERS-----------------------
+	// The setter methods are used by jackson library to serialize json files
+
+    public void setCustomers(HashMap<String, Customer> customers) {
+        this.customers = customers;
+    }
+
+    public void setEmployees(HashMap<String, Employee> employees) {
+        this.employees = employees;
+    }
+
+    public void setContactInfo(ContactCard contactInfo) {
+        this.contactInfo = contactInfo;
+    }
+
+    //-----------------------GETTERS FOR SPECIFIC OBJECTS-----------------------
     public Customer getCustomer(String userId) {
         return this.customers.get(userId);
     }
 
-    /* iterates through HashMap of customers to find the owner of specified account,
-    so it can be used in other methods in the class */
+	public Employee getEmployee(String userId){
+        return employees.get(userId);
+    }
+
+    public Customer getCustomerByIdOrSsn(String inputString) throws Exception {
+        /* Checks for 10 characters, if it is then SSN,
+        otherwise if it is 6 characters then it is a userId
+        */
+
+        if(inputString.length() == 10) { // checks if input is SSN
+            for(Customer customer : customers.values()) { // loops over all customers
+                if(customer instanceof CustomerPrivate privateCustomer) {
+                    if(privateCustomer.getSsn().equals(inputString)) {
+                        return customer;
+                    }
+                }
+            }
+        } else if (inputString.length() == 4) { // checks if input is employeeId
+            return customers.get(inputString);
+        }
+        throw new UserNotFoundException("Customer not found by ID or SSN.");
+    }
+
     public Account getAccountById(String accountId) throws Exception {
-        for (Customer customer : customers.values()) {
+        for (Customer customer : customers.values()) { // loops over all customers
             boolean accountExists = customer.checkIfAccountExists(accountId);
             if (accountExists) {
                 return customer.getAccount(accountId);
@@ -46,84 +91,9 @@ public class Bank {
         throw new AccountNotFoundException("Account ID " + accountId + " was not found.");
     }
 
-    //
-    public Customer getCustomerByIdOrSsn(String inputString) throws Exception {
-        /* Checks for 10 characters, if it is then SSN,
-        otherwise if it is 6 characters then it is a userId
-        */
+	//-----------------------CREATOR METHODS-----------------------
 
-        /* Loops over the HashMap of customers if string is 10 characters,
-         return Customer if it is a match */
-        if(inputString.length() == 10) {
-            for(Customer customer : customers.values()) {
-                if(customer instanceof CustomerPrivate privateCustomer) {
-                    if(privateCustomer.getSsn().equals(inputString)) {
-                        return customer;
-                    }
-                }
-            }
-            // If a string has length 4 it is a userId, return Customer based on ID
-        } else if (inputString.length() == 4) {
-            return  customers.get(inputString);
-        }
-        throw new UserNotFoundException("Customer not found by ID or SSN.");
-    }
-
-    // returns a string of all transactions in specified account
-    //@JsonProperty("transactions")
-    public ArrayList<Transaction> getTransactionHistory(String accountId) throws Exception {
-        Account account = getAccountById(accountId);
-        return account.getTransactionHistory();
-    }
-
-    // returns the balance of the specified account
-    public double getBalance(String accountId) throws Exception {
-        Account account = getAccountById(accountId);
-        return account.getBalance();
-    }
-
-    // below methods get information from user's ContactCard
-    public ContactCard getContactInfo(User user) {
-		return user.getContactInfo();
-	}
-
-    //get employee
-    public Employee getEmployee(String userId){
-        return employees.get(userId);
-    }
-
-    public HashMap<String, Employee> getEmployees() {
-        return employees;
-    }
-
-    public HashMap<String, Customer> getCustomers(){
-        return customers;
-    }
-
-    public ContactCard getContactInfo() {
-        return contactInfo;
-    }
-
-    //-----------------------SETTERS-----------------------
-
-    // Below method used by jackson library to serialize json files
-    public void setCustomers(HashMap<String, Customer> customers) {
-        this.customers = customers;
-    }
-
-    // Below method used by jackson library to serialize json files
-    public void setEmployees(HashMap<String, Employee> employees) {
-        this.employees = employees;
-    }
-
-    // Below method used by jackson library to serialize json files
-    public void setContactInfo(ContactCard contactInfo) {
-        this.contactInfo = contactInfo;
-    }
-
-//-----------------------CREATOR METHODS-----------------------
-
-    // creates new private customer and add it to customers hashmap:
+    // creates a new private customer and add it to customers hashmap:
     public String createCustomerPrivate(String ssn, String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
         if (ssn.length() != 10) {
             throw new Exception();
@@ -139,7 +109,8 @@ public class Bank {
         this.customers.put(userId, newCustomer);
         return userId;
     }
-    // creates new corporate customer and add it to customers hashmap:
+
+    // creates a new corporate customer and add it to customers hashmap:
     public String createCustomerCorporate(String orgNumber, String companyName, String password, ContactCard contactCard) throws Exception {
         // finds the highest customerId in the HashMap customers
         String customerHighestId = findHighestCustomerId();
@@ -152,7 +123,7 @@ public class Bank {
         return userId;
     }
 
-    // creates new private employee and add it to employees hashmap:
+    // creates a new employee and add it to employees hashmap:
     public void createEmployee(String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
         // finds the highest employeeId in the HashMap employees
         String employeeHighestId = findHighestEmployeeId();
@@ -182,6 +153,7 @@ public class Bank {
         }
     }
 
+	// creates a new loan account for customer:
     public Loan createLoanAccount(String userId, String accountName, double loanAmount) throws Exception {
         if(userId.isBlank() || accountName.isBlank() || loanAmount == 0) {
             throw new Exception("ERROR: INCORRECTLY ENTERED CRITERIA FOR ACCOUNT CREATION");
@@ -200,7 +172,26 @@ public class Bank {
         return newLoan;
     }
 
+	// creates a new credit account for customer:
+	public Credit createCredit(String userId, String accountName, Calendar initialCreditDate, double amount) throws Exception{
+        if(userId.isBlank() || accountName.isBlank() || amount == 0) {
+            throw new Exception("ERROR: INCORRECTLY ENTERED CRITERIA FOR ACCOUNT CREATION");
+        }
+        Customer customer = customers.get(userId);
+
+        // finds the highest accountId in the HashMap customers
+        String accountHighestId = findHighestAccountId();
+
+        //Generates accountId
+        String accountId = IdGenerator.generateAccountId(accountHighestId);
+
+        Credit newAccount = new Credit(accountId, accountName, initialCreditDate, amount);
+        customer.addAccount(newAccount);
+        return newAccount;
+    }
+
     //-----------------------REMOVAL METHODS-----------------------
+
     // remove customer from bank:
     public void removeCustomer(String customerId) {
         this.customers.remove(customerId);
@@ -263,18 +254,6 @@ public class Bank {
         return highestAccountId;
     }
 
-    // deposits money into specified account
-    public void deposit(String senderId, String accountId, double amount, String message, LocalDate date) throws Exception {
-        Account account = getAccountById(accountId);
-        account.deposit(senderId, amount, message, date);
-    }
-
-    // withdraw money from specified account
-    public void withdraw(String accountId, double amount, String message, LocalDate date) throws Exception {
-        Account account = getAccountById(accountId);
-        account.withdraw(amount, message, date);
-    }
-
     // transfer money between accounts; the actual account and a target account
     public void transfer(String senderAccountId, String targetAccountId, double amount, String message, LocalDate date) throws Exception {
         Account senderAccount = getAccountById(senderAccountId);
@@ -334,24 +313,6 @@ public class Bank {
             }
         }
         return correctUserId && correctPassword;
-    }
-
-    // method to create credit in HashMap accounts in customer
-    public Credit createCredit(String userId, String accountName, Calendar initialCreditDate, double amount) throws Exception{
-        if(userId.isBlank() || accountName.isBlank() || amount == 0) {
-            throw new Exception("ERROR: INCORRECTLY ENTERED CRITERIA FOR ACCOUNT CREATION");
-        }
-        Customer customer = customers.get(userId);
-
-        // finds the highest accountId in the HashMap customers
-        String accountHighestId = findHighestAccountId();
-
-        //Generates accountId
-        String accountId = IdGenerator.generateAccountId(accountHighestId);
-
-        Credit newAccount = new Credit(accountId, accountName, initialCreditDate, amount);
-        customer.addAccount(newAccount);
-        return newAccount;
     }
 
     @Override
