@@ -16,7 +16,9 @@ public class Employee extends User {
 	public Employee() {
 	}
 
-	public Employee(String firstName, String lastName, String userId, String password, ContactCard contactCard) throws Exception{
+	// Initializes the employee constructor
+	public Employee(String firstName, String lastName, String userId, String password, ContactCard contactCard)
+			throws Exception {
 		super(userId, password, contactCard);
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -24,30 +26,17 @@ public class Employee extends User {
 		this.currentCustomer = null;
 
 	}
-
+ //"Setters" methods for the class
 	public void setInitials(String initials) {
 		this.initials = initials;
-	}
-
-	public void setInitials() {
-		initials = firstName.substring(0, 1).toUpperCase() + lastName.substring(0, 1).toUpperCase();
-	}
-
-	@JsonIgnore
-	public String getFullName() {
-		return getFirstName() + " " + getLastName();
-	}
-
-	public String getFirstName() {
-		return firstName;
 	}
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public void setInitials() {
+		initials = firstName.substring(0, 1).toUpperCase() + lastName.substring(0, 1).toUpperCase();
 	}
 
 	public void setLastName(String lastName) {
@@ -57,12 +46,25 @@ public class Employee extends User {
 	public void setCurrentCustomer(Customer customer) {
 		this.currentCustomer = customer;
 	}
+	//"Getters" methods for the class
+	@JsonIgnore
+	public String getFullName() {
+		return getFirstName() + " " + getLastName();
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
 
 	public Customer getCurrentCustomer() {
 		return this.currentCustomer;
 	}
 
-	public String getInitials(){
+	public String getInitials() {
 		return initials;
 	}
 }
