@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.piggybank.app.backend.utils.ContactCard;
 
 public class CustomerPrivate extends Customer {
+
+	// attributes:
     private String ssn;
     private String firstName;
     private String lastName;
@@ -12,55 +14,57 @@ public class CustomerPrivate extends Customer {
     // Bare constructor used by Jackson-Databind for Json deserializing
     public CustomerPrivate() {}
 
-    // Constructor for CustomerPrivate class
+    // Main constructor
     public CustomerPrivate(String ssn, String firstName, String lastName, String userId, String password, ContactCard contactCard) throws Exception {
         super(userId, password, contactCard);
+		this.ssn = ssn;
         this.firstName = firstName;
         this.lastName = lastName;
         setInitials();
-        this.ssn = ssn;
     }
 
+	//--------------------Getters--------------------
+	public String getSsn() {
+        return ssn;
+    }
+
+	public String getFirstName() {
+        return firstName;
+    }
+
+	public String getLastName() {
+        return lastName;
+    }
+
+	public String getInitials(){
+		return this.initials;
+	}
+
+	//--------------------Setters--------------------
     public void setSsn(String ssn) {
         this.ssn = ssn;
     }
 
-    public String getLastName() {
-        return lastName;
+	public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    // retrieve customer's full name
+	public void setInitials() {
+        initials = firstName.substring(0, 1).toUpperCase() + lastName.substring(0, 1).toUpperCase();
+    }
+
+	//--------------------Methods--------------------
+
     @JsonIgnore
     public String getFullName() {
         return firstName + " " + lastName;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setInitials() {
-        initials = firstName.substring(0, 1).toUpperCase() + lastName.substring(0, 1).toUpperCase();
-    }
-
-    public String getInitials() {return initials;}
-
-    // retrieve customer's SSN
-    public String getSsn() {
-        return ssn;
-    }
-
-    // equals method to check if two Private Customers
-    // are equal by same user ID
-    public boolean equals(CustomerPrivate anotherObject) {
+    public boolean equals(CustomerPrivate anotherObject) { // checks for equal userId
         boolean isEqual = false;
         if (anotherObject == this) {
             isEqual = true;
