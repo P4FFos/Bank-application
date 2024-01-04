@@ -20,6 +20,7 @@ public abstract class User {
     private String userId;
     private String password;
     private ContactCard contactInfo;
+	private final int MAX_PASSWORD_LENGTH = 8;
 
 	// Bare constructor used by Jackson-Databind for Json deserializing
     public User() {}
@@ -55,7 +56,7 @@ public abstract class User {
     // new password must be longer than 8 symbols,
     // new password must contain at least one capital letter and at least one digit
     public void setPassword(String newPassword) throws PasswordException {
-        if (newPassword.length() >= 8 && newPassword.matches(".*[A-Z].*") && newPassword.matches(".*\\d.*")) {
+        if (newPassword.length() >= MAX_PASSWORD_LENGTH && newPassword.matches(".*[A-Z].*") && newPassword.matches(".*\\d.*")) {
             this.password = newPassword;
         } else {
             throw new PasswordException("Password has invalid format");

@@ -12,6 +12,12 @@ import java.util.Calendar;
 import java.time.LocalDate;
 
 public class Bank {
+
+	// Constants
+	private final int MAX_CUSTOMER_ID_LENGTH = 4;
+	private final int SSN_LENGTH = 10;
+
+	// attributes:
     private ContactCard contactInfo;
     private HashMap<String, Customer> customers;
     private HashMap<String, Employee> employees;
@@ -67,7 +73,7 @@ public class Bank {
         otherwise if it is 6 characters then it is a userId
         */
 
-        if(inputString.length() == 10) { // checks if input is SSN
+        if(inputString.length() == SSN_LENGTH) { // checks if input is SSN
             for(Customer customer : customers.values()) { // loops over all customers
                 if(customer instanceof CustomerPrivate privateCustomer) {
                     if(privateCustomer.getSsn().equals(inputString)) {
@@ -75,7 +81,7 @@ public class Bank {
                     }
                 }
             }
-        } else if (inputString.length() == 4) { // checks if input is employeeId
+        } else if (inputString.length() == MAX_CUSTOMER_ID_LENGTH) { // checks if input is customerId
             return customers.get(inputString);
         }
         throw new UserNotFoundException("Customer not found by ID or SSN.");
@@ -95,7 +101,7 @@ public class Bank {
 
     // creates a new private customer and add it to customers hashmap:
     public String createCustomerPrivate(String ssn, String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
-        if (ssn.length() != 10) {
+        if (ssn.length() != SSN_LENGTH) {
             throw new Exception();
         }
 
