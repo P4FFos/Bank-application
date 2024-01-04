@@ -12,13 +12,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class StartController {
-
     private Parent root;
     private Stage stage;
     private Scene scene;
 
 
-    public void employeeLogin(ActionEvent event) throws IOException {
+    public void employeeLogin(ActionEvent event) throws IOException { //employeeLoginButton
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/EmpLoginScene.fxml"));
         root = loader.load();
 
@@ -28,7 +27,7 @@ public class StartController {
         stage.show();
     }
 
-    public void customerLogin(ActionEvent event) throws IOException {
+    public void customerLogin(ActionEvent event) throws IOException { //customerLoginButton
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/customer_scenes/CustomerLoginScene.fxml"));
         root = loader.load();
 
