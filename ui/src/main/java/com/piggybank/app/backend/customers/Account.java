@@ -73,6 +73,10 @@ public class Account {
         this.accountName = accountName;
     }
 
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
+	}
+
     public void setBalance(double balance) {
         this.balance = balance;
         setBalanceString();
