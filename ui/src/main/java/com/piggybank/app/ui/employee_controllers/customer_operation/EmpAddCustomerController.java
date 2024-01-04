@@ -58,6 +58,8 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
     private Label invalidEmailAddressLabel;
     @FXML
     private Pane invalidEmailPane;
+    @FXML
+    private Label invalidSsnLabel;
 
 
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -102,6 +104,10 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
                 wrongPasswordPane.setVisible(true);
 			} catch (InvalidEmailException e) {
                 invalidEmailPane.setVisible(true);
+                e.printStackTrace();
+            } catch (Exception e) {
+                invalidSsnLabel.setVisible(true);
+                e.printStackTrace();
             }
         } else if(corporateCustomerCheckBox.isSelected()){
 
