@@ -15,33 +15,35 @@ import com.piggybank.app.backend.utils.ContactCard;
         @JsonSubTypes.Type(value = Customer.class, name = "customer")
 })
 public abstract class User {
-    // user attributes:
+
+	// attributes:
     private String userId;
     private String password;
     private ContactCard contactInfo;
+	private final int MAX_PASSWORD_LENGTH = 8;
 
+	// Bare constructor used by Jackson-Databind for Json deserializing
+    public User() {}
 
-    public User() {
-    }
-
-    // user object constructor:
+    // Main constructor
     public User(String userId, String password, ContactCard contactInfo) throws PasswordException {
         this.userId = userId;
         this.contactInfo = contactInfo;
         setPassword(password);
     }
 
-    // getters for user information:
+    //--------------------Getters--------------------
     public String getUserId() {
-        return userId;
+        return this.userId;
     }
     public ContactCard getContactInfo() {
-        return contactInfo;
+        return this.contactInfo;
     }
     public String getPassword() {
         return this.password;
     }
 
+	//--------------------Setters--------------------
     public void setUserId(String userId) {
         this.userId = userId;
     }
@@ -50,7 +52,20 @@ public abstract class User {
         this.contactInfo = contactInfo;
     }
 
-    // getters for ContactCard information
+	// change password method which checks:
+    // new password must be longer than 8 symbols,
+    // new password must contain at least one capital letter and at least one digit
+    public void setPassword(String newPassword) throws PasswordException {
+        if (newPassword.length() >= MAX_PASSWORD_LENGTH && newPassword.matches(".*[A-Z].*") && newPassword.matches(".*\\d.*")) {
+            this.password = newPassword;
+        } else {
+            throw new PasswordException("Password has invalid format");
+        }
+    }
+
+    //--------------------Methods--------------------
+
+	// getters for ContactCard information
     @JsonIgnore
     public String getEmail() {return contactInfo.getEmail();}
     @JsonIgnore
@@ -62,34 +77,19 @@ public abstract class User {
     @JsonIgnore
     public String getCity() {return contactInfo.getCity();}
 
-    // change password method which checks:
-    // new password must be longer than 8 symbols,
-    // new password must contain at least one capital letter and at least one digit
-    public void setPassword(String newPassword) throws PasswordException {
-        if (newPassword.length() >= 8 && newPassword.matches(".*[A-Z].*") && newPassword.matches(".*\\d.*")) {
-            this.password = newPassword;
-        } else {
-            throw new PasswordException("Password has invalid format");
-        }
-    }
-
-    public boolean validatePassword(String inputString) {
-        return password.equals(inputString);
-    }
-
     // setters for ContactCard information
     @JsonIgnore
-    public void setEmail(String newEmail) throws Exception {
-        contactInfo.setEmail(newEmail);
-    }
+    public void setEmail(String newEmail) throws Exception {contactInfo.setEmail(newEmail);}
     @JsonIgnore
     public void setPhoneNumber(String newPhoneNr) {contactInfo.setPhoneNumber(newPhoneNr);}
     @JsonIgnore
-    public void setStreet(String newStreet) {
-        contactInfo.setStreetAddress(newStreet);
-    }
+    public void setStreet(String newStreet) {contactInfo.setStreetAddress(newStreet);}
     @JsonIgnore
     public void setZipCode(String newZip) {contactInfo.setZipCode(newZip);}
     @JsonIgnore
     public void setCity(String newCity) {contactInfo.setCity(newCity);}
+
+	public boolean validatePassword(String inputString) {
+        return password.equals(inputString);
+    }
 }
