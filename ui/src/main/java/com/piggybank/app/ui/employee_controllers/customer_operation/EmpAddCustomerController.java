@@ -107,7 +107,7 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
 			} catch (InvalidEmailException e) {
                 invalidEmailPane.setVisible(true);
                 e.printStackTrace();
-            } catch (IllegalArgumentException e) {
+            } catch (Exception e) {
                 invalidSsnLabel.setVisible(true);
                 e.printStackTrace();
             }
