@@ -106,7 +106,7 @@ public class EmpAddAccountController extends EmpCustomerOverviewController imple
         }
     }
 
-    public void saveNewAccount(ActionEvent event) {
+    public void saveNewAccount(ActionEvent event) throws Exception {
         String message = "Handled by: " + currentEmployee.getUserId();
         try {
             if (standardCheckBox.isSelected()) {
