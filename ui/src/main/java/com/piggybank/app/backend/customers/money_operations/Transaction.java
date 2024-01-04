@@ -3,7 +3,8 @@ package com.piggybank.app.backend.customers.money_operations;
 import java.time.LocalDate;
 
 public class Transaction {
-    // attributes for Transaction class
+
+    // attributes:
     private String receiverAccountId;
     private String senderAccountId;
     private double amount;
@@ -14,7 +15,7 @@ public class Transaction {
     // Bare constructor used by Jackson-Databind for Json deserializing
     public Transaction() {}
 
-    // Constructor for Transaction class
+    // Main constructor
     public Transaction(String receiverAccountId, String senderAccountId, double amount, String message, LocalDate date) {
         this.receiverAccountId = receiverAccountId;
         this.senderAccountId = senderAccountId;
@@ -24,23 +25,32 @@ public class Transaction {
         this.amountString = String.format("%.2f", amount);
     }
 
-    // getReceiverAccountId method
+	//--------------------Getters--------------------
     public String getReceiverAccountId() {
         return this.receiverAccountId;
     }
 
-    // getSenderAccountId method
     public String getSenderAccountId() {
         return this.senderAccountId;
     }
 
-    // getAmount method
     public double getAmount() {
         return this.amount;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public String getMessage() {
+        return this.message;
+    }
+
     public String getAmountString() {return this.amountString;}
+
+    //--------------------Setters--------------------
     public void setAmountString() {amountString = String.format("%.2f", this.amount);}
+
     public void setReceiverAccountId(String receiverAccountId) {
         this.receiverAccountId = receiverAccountId;
     }
@@ -57,20 +67,13 @@ public class Transaction {
         this.message = message;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
     public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    // getMessage method
-    public String getMessage() {
-        return this.message;
-    }
+	//--------------------Methods--------------------
 
-    // toString method, which checks and assign different formats:
+    // toString method, which checks and assigns different formats:
     // if receiverAccID and senderAccID fields are Blank
     // if message field is Blank
     // if receiverAccID and message fields are Blank

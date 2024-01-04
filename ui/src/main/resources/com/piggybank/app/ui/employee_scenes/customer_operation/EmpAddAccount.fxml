@@ -110,7 +110,7 @@
                   <Font name="Kodchasan Regular" size="8.0" />
                </font>
             </Label>
-            <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="70.0" text="ORG:" textFill="#ffe7ed">
+            <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="55.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="70.0" text="SSN:" textFill="#ffe7ed">
                <font>
                   <Font name="Kodchasan Bold" size="8.0" />
                </font>

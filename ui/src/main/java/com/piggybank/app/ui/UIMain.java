@@ -9,9 +9,9 @@ import javafx.stage.Stage;
 import com.piggybank.app.backend.Bank;
 
 public class UIMain extends Application {
-    public static Bank bank;
-    public static String loadPath;
-    public static String savePath;
+    public static Bank bank; //a single bank object used throughout the system
+    public static String loadPath; //reading mockdata in a json file on start
+    public static String savePath; //saving data to a json file on logout
 
     @Override
     public void start(Stage stage) throws Exception {

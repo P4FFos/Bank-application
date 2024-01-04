@@ -12,7 +12,7 @@ public class ContactCard {
     // Bare constructor used by Jackson-Databind for Json deserializing
     public ContactCard() {
     }
-
+    // Constructor for ContactCard
     public ContactCard(String email, String phoneNumber, String streetAddress, String zipCode, String city) throws Exception {
         this.email = validateEmail(email);
         this.phoneNumber = phoneNumber;
@@ -20,15 +20,27 @@ public class ContactCard {
         this.zipCode = zipCode;
         this.city = city;
     }
-
+    //"Getters" methods
     public String getEmail() {
-        return email;
+        return email;    
     }
-
+     public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    public String getStreetAddress() {
+        return streetAddress;
+    }
+     public String getZipCode() {
+        return zipCode;
+    }
+     public String getCity() {
+        return city;
+    }
+    //"Setters" methods
     public void setEmail(String email) throws Exception {
         this.email = validateEmail(email);
     }
-
+    
     public String validateEmail(String emailAddress) throws Exception {
         boolean isAddressValid = emailAddress.matches("^(.+)@(\\S+)$"); // regex to match email. Checks if @ is present
         if(!isAddressValid) {
@@ -36,39 +48,19 @@ public class ContactCard {
         }
         return emailAddress;
     }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
-    public String getStreetAddress() {
-        return streetAddress;
-    }
-
     public void setStreetAddress(String streetAddress) {
         this.streetAddress = streetAddress;
     }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
     public void setZipCode(String newZip) {
         this.zipCode = newZip;
     }
-
-    public String getCity() {
-        return city;
-    }
-
     public void setCity(String city) {
         this.city = city;
     }
-    
+    //ToString method for ContactCard
     public String toString() {
         return String.format("email: %s, phoneNumber: %s, streetAddress: %s, zipCode: %s, city: %s", email, phoneNumber, streetAddress, zipCode, city);
     }

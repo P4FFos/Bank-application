@@ -1,26 +1,23 @@
 package com.piggybank.app.backend.customers.money_operations;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.piggybank.app.backend.customers.Account;
-import com.piggybank.app.backend.utils.TruncationUtil;
 
 import java.time.LocalDate;
 
 @JsonTypeName("loan")
-public class Loan extends Account {
-    //loan type where we can give out larger amounts of money (such as mortgages)
+public class Loan extends Account { // loan type where we can give out larger amounts of money (such as mortgages)
 
     //attributes:
-    private double initialAmount;
-    private double interestRate = 5; //the interest rate per month
-    private double minPaymentPercent = 1; //the minimum loan percentage the customer must pay each month
-    private double minPaymentAmount; //the amount the customer must pay each month
+    private double initialAmount; // the initial amount of the loan
+    private double interestRate = 5; // the interest rate per month
+    private double minPaymentPercent = 1; // the minimum loan percentage the customer must pay each month
+    private double minPaymentAmount; // the amount the customer must pay each month
 
-    public Loan() {
-    }
+	// Bare constructor used by Jackson-Databind for Json deserializing
+    public Loan() {}
 
-    //constructor:
+    // Main constructor
     public Loan(String accountId, String accountName, double initialAmount) {
         super(accountId, accountName);
         this.initialAmount = initialAmount;
@@ -28,55 +25,8 @@ public class Loan extends Account {
         setPaymentAmount();
     }
 
-    public void setInitialAmount(double initialAmount) {
-        this.initialAmount = initialAmount;
-    }
-
-    //calculating the minimum monthly payment:
-    public void setPaymentAmount() {
-        //minimum payment amount:
-        double minPayment = (this.initialAmount / 100) * this.minPaymentPercent;
-
-        //interest rate:
-        final double interestAmount = (this.initialAmount / 100) * this.interestRate;
-
-        //total minimum monthly payment:
-        this.minPaymentAmount = minPayment + interestAmount;
-    }
-
-    public void setInterestRate(double interestRate) {
-        this.interestRate = interestRate;
-    }
-
-    public void setMinPaymentPercent(double minPaymentPercent) {
-        this.minPaymentPercent = minPaymentPercent;
-    }
-
-    public void setMinPaymentAmount(double minPaymentAmount) {
-        this.minPaymentAmount = minPaymentAmount;
-    }
-
-    //make a minimum payment:
-    public void makePayment() {
-        updateAmount(this.minPaymentAmount);
-    }
-
-    //make a custom payment:
-    public void makePayment(double amount) throws Exception {
-        if (amount < this.minPaymentAmount) {
-            throw new Exception ("Payment must not be less than minimum required amount.");
-        } else {
-            updateAmount(amount);
-        }
-    }
-
-    //updating the current amount of the loan based on payments made:
-    public void updateAmount(double paidAmount) {
-        setBalance(getBalance() - paidAmount);
-    }
-
-    //getters for attributes:
-    public double getInitialAmount() {
+	//--------------------Getters--------------------
+	public double getInitialAmount() {
         return this.initialAmount;
     }
 
@@ -92,6 +42,51 @@ public class Loan extends Account {
         return this.minPaymentAmount;
     }
 
+	//--------------------Setters--------------------
+    public void setInitialAmount(double initialAmount) {
+        this.initialAmount = initialAmount;
+    }
+
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
+    }
+
+    public void setMinPaymentPercent(double minPaymentPercent) {
+        this.minPaymentPercent = minPaymentPercent;
+    }
+
+    public void setMinPaymentAmount(double minPaymentAmount) {
+        this.minPaymentAmount = minPaymentAmount;
+    }
+
+    public void setPaymentAmount() { // calculating the minimum monthly payment
+        // minimum payment amount:
+        double minPayment = (this.initialAmount / 100) * this.minPaymentPercent;
+
+        // interest rate:
+        final double interestAmount = (this.initialAmount / 100) * this.interestRate;
+
+        // total minimum monthly payment:
+        this.minPaymentAmount = minPayment + interestAmount;
+    }
+
+	//--------------------Methods--------------------
+    public void makePayment() { // make a minimum payment
+        updateAmount(this.minPaymentAmount);
+    }
+
+    public void makePayment(double amount) throws Exception { // make a custom payment
+        if (amount < this.minPaymentAmount) {
+            throw new Exception ("Payment must not be less than minimum required amount.");
+        } else {
+            updateAmount(amount);
+        }
+    }
+
+    public void updateAmount(double paidAmount) { // updating the current amount of the loan based on payments made
+        setBalance(getBalance() - paidAmount);
+    }
+
     @Override
     public void withdraw(String receiverAccountId, double amount, String message, LocalDate date) {
         Transaction withdrawal = new Transaction(receiverAccountId, super.getAccountId(), 0 - amount, message, date);
@@ -103,5 +98,4 @@ public class Loan extends Account {
 	public String toString() {
 		return this.getAccountName();
 	}
-
 }
