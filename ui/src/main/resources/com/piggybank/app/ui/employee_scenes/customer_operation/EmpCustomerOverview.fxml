@@ -185,22 +185,22 @@
                   <Font name="Kodchasan Regular" size="8.0" />
                </font>
             </Button>
-            <Label fx:id="accountTypeLabel" alignment="CENTER_RIGHT" layoutX="20.0" layoutY="177.0" prefWidth="60.0" text="ACCOUNT:" textAlignment="RIGHT" textFill="#ab3e56">
+            <Label fx:id="accountTypeLabel" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="176.0" prefWidth="60.0" text="ACCOUNT:" textAlignment="RIGHT" textFill="#ab3e56">
                <font>
                   <Font name="Kodchasan Bold" size="10.0" />
                </font>
             </Label>
-            <Label fx:id="accountNameLabel" layoutX="85.0" layoutY="177.0" prefWidth="90.0" text="####" textFill="#ab3e56">
+            <Label fx:id="accountNameLabel" layoutX="72.0" layoutY="176.0" prefHeight="15.0" prefWidth="118.0" text="####" textFill="#ab3e56">
                <font>
                   <Font name="Kodchasan Regular" size="10.0" />
                </font>
             </Label>
-            <Label fx:id="balanceDebtLabel" alignment="CENTER_RIGHT" layoutX="20.0" layoutY="192.0" prefWidth="60.0" text="BALANCE:" textAlignment="RIGHT" textFill="#ab3e56">
+            <Label fx:id="balanceDebtLabel" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="191.0" prefWidth="60.0" text="BALANCE:" textAlignment="RIGHT" textFill="#ab3e56">
                <font>
                   <Font name="Kodchasan Bold" size="10.0" />
                </font>
             </Label>
-            <Label fx:id="accountBalanceLabel" layoutX="85.0" layoutY="192.0" prefWidth="90.0" text="€€€€" textFill="#ab3e56">
+            <Label fx:id="accountBalanceLabel" layoutX="72.0" layoutY="191.0" prefHeight="15.0" prefWidth="118.0" text="€€€€" textFill="#ab3e56">
                <font>
                   <Font name="Kodchasan Regular" size="10.0" />
                </font>
@@ -214,29 +214,29 @@
             <CheckBox fx:id="outTransactionCheckBox" layoutX="200.0" layoutY="255.0" mnemonicParsing="false" onAction="#toggleOutgoingTransactions" text="OUTGOING" textFill="#ab3e56" />
             <TableView fx:id="transactionsTable" editable="true" layoutX="200.0" layoutY="30.0" prefHeight="202.0" prefWidth="428.0" stylesheets="@../../../../../../TableViewStylesheet.css">
               <columns>
-                <TableColumn fx:id="senderColumn" prefWidth="59.0" text="Sender" />
-                <TableColumn fx:id="receiverColumn" prefWidth="67.0" text="Receiver" />
-                  <TableColumn fx:id="amountColumn" prefWidth="87.5" text="Amount" />
-                  <TableColumn fx:id="messageColumn" prefWidth="132.5" text="Message" />
-                  <TableColumn fx:id="dateColumn" prefWidth="79.2000732421875" text="Date" />
+                <TableColumn fx:id="senderColumn" prefWidth="52.0" text="Sender" />
+                <TableColumn fx:id="receiverColumn" prefWidth="56.79998779296875" text="Receiver" />
+                  <TableColumn fx:id="amountColumn" prefWidth="74.4000244140625" text="Amount" />
+                  <TableColumn fx:id="messageColumn" prefWidth="162.4000244140625" text="Message" />
+                  <TableColumn fx:id="dateColumn" prefWidth="74.4000244140625" text="Date" />
               </columns>
             </TableView>
-            <Label fx:id="interestLabel" alignment="CENTER_RIGHT" layoutX="20.0" layoutY="207.0" prefWidth="60.0" text="INTEREST:" textAlignment="RIGHT" textFill="#ab3e56">
+            <Label fx:id="interestLabel" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="206.0" prefWidth="60.0" text="INTEREST:" textAlignment="RIGHT" textFill="#ab3e56">
                <font>
                   <Font name="Kodchasan Bold" size="10.0" />
                </font>
             </Label>
-            <Label fx:id="initialLabel" alignment="CENTER_RIGHT" layoutX="20.0" layoutY="222.0" prefWidth="60.0" text="INITIAL:" textAlignment="RIGHT" textFill="#ab3e56">
+            <Label fx:id="initialLabel" alignment="CENTER_RIGHT" layoutX="7.0" layoutY="221.0" prefWidth="60.0" text="INITIAL:" textAlignment="RIGHT" textFill="#ab3e56">
                <font>
                   <Font name="Kodchasan Bold" size="10.0" />
                </font>
             </Label>
-            <Label fx:id="interestRateLabel" layoutX="85.0" layoutY="207.0" prefWidth="90.0" text="€€€€" textFill="#ab3e56">
+            <Label fx:id="interestRateLabel" layoutX="72.0" layoutY="206.0" prefHeight="15.0" prefWidth="118.0" text="€€€€" textFill="#ab3e56">
                <font>
                   <Font name="Kodchasan Regular" size="10.0" />
                </font>
             </Label>
-            <Label fx:id="initialAmountLabel" layoutX="85.0" layoutY="222.0" prefWidth="90.0" text="€€€€" textFill="#ab3e56">
+            <Label fx:id="initialAmountLabel" layoutX="72.0" layoutY="221.0" prefHeight="15.0" prefWidth="118.0" text="€€€€" textFill="#ab3e56">
                <font>
                   <Font name="Kodchasan Regular" size="10.0" />
                </font>

@@ -1,6 +1,5 @@
 package com.piggybank.app.backend;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.piggybank.app.backend.customers.*;
 import com.piggybank.app.backend.customers.money_operations.Credit;
 import com.piggybank.app.backend.customers.money_operations.Loan;
@@ -284,7 +283,7 @@ public class Bank {
         targetAccount.deposit(senderAccountId, amount, message, date);
     }
 
-    public void transferFomLoanAccount(String senderAccountId, String targetAccountId, double amount, String message, LocalDate date) throws Exception {
+    public void transferFromLoanAccount(String senderAccountId, String targetAccountId, double amount, String message, LocalDate date) throws Exception {
         Loan senderAccount = (Loan) getAccountById(senderAccountId);
         Account targetAccount = getAccountById(targetAccountId);
 
@@ -292,7 +291,7 @@ public class Bank {
         targetAccount.deposit(senderAccountId, amount, message, date);
     }
 
-    public void transferFomCreditAccount(String senderAccountId, String targetAccountId, double amount, String message, LocalDate date) throws Exception {
+    public void transferFromCreditAccount(String senderAccountId, String targetAccountId, double amount, String message, LocalDate date) throws Exception {
         Credit senderAccount = (Credit) getAccountById(senderAccountId);
         Account targetAccount = getAccountById(targetAccountId);
 

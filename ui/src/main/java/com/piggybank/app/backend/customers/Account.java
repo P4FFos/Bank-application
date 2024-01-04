@@ -25,6 +25,7 @@ public class Account {
     private String accountName;
     private String accountId;
     private double balance;
+    private String balanceString;
     private ArrayList<Transaction> transactions;
 
     public Account() {
@@ -35,6 +36,7 @@ public class Account {
         this.accountName = accountName;
         this.accountId = accountId;
         this.balance = 0.0;
+        this.balanceString = "0.00";
 		this.transactions = new ArrayList<>();
     }
 
@@ -46,13 +48,16 @@ public class Account {
     public String getAccountName() {
         return this.accountName;
     }
+    public String getBalanceString() {return this.balanceString;}
 
+    public void setBalanceString() {this.balanceString = String.format("%.2f", this.balance);}
     public void setAccountName(String accountName) {
         this.accountName = accountName;
     }
 
     public void setBalance(double balance) {
         this.balance = balance;
+        setBalanceString();
     }
 
     public ObservableList<Transaction> getTransactions() {
@@ -86,6 +91,7 @@ public class Account {
             throw new InsufficientBalanceException("Amount specified cannot be less than 0.");
         }
         balance += TruncationUtil.truncate(amount);
+        setBalanceString();
         if (message.isBlank()) {
             Transaction withdraw = new Transaction(accountId, senderAccountId, amount, "", date);
             transactions.add(withdraw);
@@ -105,6 +111,7 @@ public class Account {
             balance -= TruncationUtil.truncate(amount);
             Transaction withdraw = new Transaction(receiverAccountId, accountId, 0 - amount, message, date);
             transactions.add(withdraw);
+            setBalanceString();
         } else {
             throw new InsufficientBalanceException("Not enough balance in account for this operation.");
         }
@@ -115,6 +122,7 @@ public class Account {
             balance -= TruncationUtil.truncate(amount);
             Transaction withdraw = new Transaction("None", accountId, 0 - amount, message, date);
             transactions.add(withdraw);
+            setBalanceString();
         } else {
             throw new InsufficientBalanceException("Not enough balance in account for this operation.");
         }

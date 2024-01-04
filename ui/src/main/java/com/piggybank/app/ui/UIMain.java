@@ -15,11 +15,11 @@ public class UIMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        loadPath = "ui/src/main/java/com/piggybank/app/backend/data_base/bankDataOnLogout.json";
+        loadPath = "ui/src/main/java/com/piggybank/app/backend/data_base/bankData_final.json";
         bank = FileHandler.jsonDeserializer(loadPath);
 
         // used in EmpMainController:logout() and CustomerStartController:logout()
-        savePath = "ui/src/main/java/com/piggybank/app/backend/data_base/bankDataOnLogout.json";
+        savePath = "ui/src/main/java/com/piggybank/app/backend/data_base/bankData_final.json";
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/piggybank/app/ui/StartScene.fxml"));

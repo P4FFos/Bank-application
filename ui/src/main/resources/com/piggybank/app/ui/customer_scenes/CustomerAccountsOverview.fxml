@@ -138,20 +138,20 @@
                         <Font name="Kodchasan Regular" size="8.0" />
                     </font>
                 </CheckBox>
-            <TableView fx:id="transactionsTable" layoutX="250.0" layoutY="45.0" prefHeight="200.0" prefWidth="390.0" stylesheets="@../../../../../TableViewStylesheet.css">
+            <TableView fx:id="transactionsTable" layoutX="250.0" layoutY="45.0" prefHeight="200.0" prefWidth="398.0" stylesheets="@../../../../../TableViewStylesheet.css">
               <columns>
-                <TableColumn fx:id="senderColumn" prefWidth="58.78466796875" text="Sender" />
-                <TableColumn fx:id="receiverColumn" prefWidth="75.28469848632812" text="Receiver" />
-                  <TableColumn fx:id="amountColumn" prefWidth="69.21533203125" text="Amount" />
-                  <TableColumn fx:id="messageColumn" prefWidth="106.64453125" text="Message" />
-                  <TableColumn fx:id="dateColumn" prefWidth="79.64599609375" text="Date" />
+                <TableColumn fx:id="senderColumn" prefWidth="53.60003662109375" text="Sender" />
+                <TableColumn fx:id="receiverColumn" prefWidth="62.39996337890625" text="Receiver" />
+                  <TableColumn fx:id="amountColumn" prefWidth="64.0" text="Amount" />
+                  <TableColumn fx:id="messageColumn" prefWidth="132.79998779296875" text="Message" />
+                  <TableColumn fx:id="dateColumn" prefWidth="74.4000244140625" text="Date" />
               </columns>
             </TableView>
-            <TableView fx:id="accountsTableView" layoutX="20.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="215.0" stylesheets="@../../../../../TableViewStylesheet.css">
+            <TableView fx:id="accountsTableView" layoutX="20.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="221.0" stylesheets="@../../../../../TableViewStylesheet.css">
               <columns>
-                <TableColumn fx:id="accountNameColumn" prefWidth="96.79997253417969" text="Name" />
-                <TableColumn fx:id="accountIdColumn" minWidth="3.2000732421875" prefWidth="52.0" text="ID" />
-                  <TableColumn fx:id="accountBalanceColumn" prefWidth="63.199951171875" text="Balance" />
+                <TableColumn fx:id="accountNameColumn" prefWidth="89.60002136230469" text="Name" />
+                <TableColumn fx:id="accountIdColumn" minWidth="3.2000732421875" prefWidth="50.4000244140625" text="ID" />
+                  <TableColumn fx:id="accountBalanceColumn" prefWidth="75.199951171875" text="Balance" />
               </columns>
             </TableView>
             </children>

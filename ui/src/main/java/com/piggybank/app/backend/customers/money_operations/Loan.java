@@ -96,6 +96,7 @@ public class Loan extends Account {
     public void withdraw(String receiverAccountId, double amount, String message, LocalDate date) {
         Transaction withdrawal = new Transaction(receiverAccountId, super.getAccountId(), 0 - amount, message, date);
         addTransaction(withdrawal);
+        setBalanceString();
     }
 
 	@Override

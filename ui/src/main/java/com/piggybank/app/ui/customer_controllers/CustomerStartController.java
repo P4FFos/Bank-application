@@ -65,13 +65,13 @@ public class CustomerStartController implements Initializable {
     @FXML
     private TableColumn<Account, String> assetsNameTableColumn;
     @FXML
-    private TableColumn<Account, Double> assetsBalanceTableColumn;
+    private TableColumn<Account, String> assetsBalanceTableColumn;
 	@FXML
     private TableView<Account> debtsTableView;
     @FXML
     private TableColumn<Account, String> debtsNameTableColumn;
     @FXML
-    private TableColumn<Account, Double> debtsBalanceTableColumn;
+    private TableColumn<Account, String> debtsBalanceTableColumn;
 
     private FXMLLoader loader;
     private Parent root;
@@ -108,13 +108,13 @@ public class CustomerStartController implements Initializable {
 	public void showStartAccountOverviews() {
 		// set table columns and placeholder
 		assetsNameTableColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountName"));
-		assetsBalanceTableColumn.setCellValueFactory(new PropertyValueFactory<Account, Double>("balance"));
+		assetsBalanceTableColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("balanceString"));
 		assetsTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
 		assetsTableView.setPlaceholder(new Label("No assets"));
 		assetsTableView.setSelectionModel(null);
 
 		debtsNameTableColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountName"));
-		debtsBalanceTableColumn.setCellValueFactory(new PropertyValueFactory<Account, Double>("balance"));
+		debtsBalanceTableColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("balanceString"));
 		debtsTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
 		debtsTableView.setPlaceholder(new Label("No debts"));
 		debtsTableView.setSelectionModel(null);
@@ -133,6 +133,11 @@ public class CustomerStartController implements Initializable {
 
 		assetsTableView.setItems(assetsOL);
 		debtsTableView.setItems(debtsOL);
+        // Sort TableViews
+        assetsBalanceTableColumn.setSortType(TableColumn.SortType.ASCENDING);
+        assetsTableView.getSortOrder().add(assetsBalanceTableColumn);
+        debtsBalanceTableColumn.setSortType(TableColumn.SortType.DESCENDING);
+        debtsTableView.getSortOrder().add(debtsBalanceTableColumn);
 
 		// set total account balances (label below the tables)
 		double totalAssetsBalance = 0;
