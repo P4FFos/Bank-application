@@ -1,6 +1,5 @@
 package com.piggybank.app.backend;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.piggybank.app.backend.customers.*;
 import com.piggybank.app.backend.customers.money_operations.Credit;
 import com.piggybank.app.backend.customers.money_operations.Loan;

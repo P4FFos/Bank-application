@@ -1,9 +1,7 @@
 package com.piggybank.app.backend.customers.money_operations;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.piggybank.app.backend.customers.Account;
-import com.piggybank.app.backend.utils.TruncationUtil;
 
 import java.time.LocalDate;
 
