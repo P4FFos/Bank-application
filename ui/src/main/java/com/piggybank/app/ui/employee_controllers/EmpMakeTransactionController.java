@@ -50,6 +50,11 @@ public class EmpMakeTransactionController extends EmpCustomerOverviewController 
         accountsListView.getItems().addAll(currentCustomer.getAccounts().keySet());
     }
 
+    public void showErrorMessage(String message){
+        incorrectDetailsLabel.setVisible(true);
+        incorrectDetailsLabel.setText(message);
+    }
+
     public void selectSendingAccount(){ //selectSendingAccount
         String accountId = accountsListView.getSelectionModel().getSelectedItem();
         senderAccount = currentCustomer.getAccount(accountId);
@@ -100,15 +105,14 @@ public class EmpMakeTransactionController extends EmpCustomerOverviewController 
         }
 
     }
-    public void transferFunds() {
+    public void transferFunds() { //okButton
         transferDoneLabel.setVisible(false);
         incorrectDetailsLabel.setVisible(false);
         insufficientBalanceLabel.setVisible(false);
 
         try {
             if(senderAccount.getAccountId().equals(recieverAccountTextField.getText())) {
-                incorrectDetailsLabel.setVisible(true);
-                incorrectDetailsLabel.setText("Sender account adn receiver accounts are the same. Try again.");
+                showErrorMessage("Sender and receiver accounts are the same. Try again.");
             } else {
                 // prepare parameters for transfer between accounts
                 String accountId = senderAccount.getAccountId();
@@ -125,11 +129,9 @@ public class EmpMakeTransactionController extends EmpCustomerOverviewController 
             insufficientBalanceLabel.setText(String.format("Insufficient balance on account. Only %.2f available.", senderAccount.getBalance()));
         } catch (Exception e) {
             if(senderAccount == null){
-                incorrectDetailsLabel.setVisible(true);
-                incorrectDetailsLabel.setText("You must select an account.");
+                showErrorMessage("You must select an account.");
             } else {
-                incorrectDetailsLabel.setVisible(true);
-                incorrectDetailsLabel.setText("Something went wrong. Try again.");
+                showErrorMessage("Something went wrong. Try again.");
             }
 
         }

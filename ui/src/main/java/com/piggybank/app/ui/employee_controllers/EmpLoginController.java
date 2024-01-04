@@ -9,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -33,7 +32,7 @@ public class EmpLoginController {
 
     //..........................METHODS.............................
 
-    public void login(ActionEvent event) throws Exception {
+    public void login(ActionEvent event) throws Exception { //loginButton, if correct employee user id + password are entered -> switches to scene: EmpStart
 
         String password;
         String userId;
@@ -43,8 +42,8 @@ public class EmpLoginController {
             userId = usernameTextField.getText();
             password = passwordField.getText();
 
-            if (bank.verifyEmployee(userId, password)) { //using method from bank
-                EmpMainController.currentEmployee = bank.getEmployee(userId);
+            if (bank.verifyEmployee(userId, password)) {
+                EmpMainController.currentEmployee = bank.getEmployee(userId); //sets the current employee before loading EmpStart, which cannot be loaded if currentEmployee is null
 
                 loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/EmpStart.fxml"));
                 root = loader.load();
@@ -55,14 +54,14 @@ public class EmpLoginController {
                 stage.show();
             }
         } catch(PasswordException e) {
-            incorrectLoginLabel.setVisible(true);
+            incorrectLoginLabel.setVisible(true); //displays an error message if login credentials are invalid
 
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); //mainly to make debugging easier for us
         }
     }
 
-    public void goBackToStart(ActionEvent event) throws IOException {
+    public void goBackToStart(ActionEvent event) throws IOException { //backButton, switches to scene: StartScene
         loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/StartScene.fxml"));
         root = loader.load();
 
