@@ -3,6 +3,8 @@ package com.piggybank.app.ui.customer_controllers;
 import com.piggybank.app.backend.customers.Account;
 import com.piggybank.app.backend.customers.CustomerCorporate;
 import com.piggybank.app.backend.customers.CustomerPrivate;
+import com.piggybank.app.backend.customers.money_operations.Credit;
+import com.piggybank.app.backend.customers.money_operations.Loan;
 import com.piggybank.app.backend.exceptions.AccountNotFoundException;
 import com.piggybank.app.backend.exceptions.InsufficientBalanceException;
 import javafx.event.ActionEvent;
@@ -116,10 +118,12 @@ public class CustomerTransferFundsController extends CustomerStartController imp
         // since account is not selected automatically in TableView, then check with Optional that may be null or not
         Optional<Account> selectedAccount = Optional.ofNullable(accountsTableView.getSelectionModel().getSelectedItem());
         boolean isSelectedAccount = selectedAccount.isPresent();
+        boolean isBalanceAvailable = false;
 
         // if an account is selected in TableView, get the account ID
         if(selectedAccount.isPresent()) {
             currentAccount = currentCustomer.getAccount(selectedAccount.get().getAccountId());
+            isBalanceAvailable = currentAccount.getBalance() > 0;
         }
 
         boolean isNotSameAccount = true;
@@ -131,6 +135,7 @@ public class CustomerTransferFundsController extends CustomerStartController imp
         // to avoid further repetitive code, applying one method updateValidationStyle
         updateValidationStyle(isSelectedAccount, accountsTableView);
         updateValidationStyle(isReceiverAccount, transferEnterRecieverAccountTextField);
+        updateValidationStyle(isBalanceAvailable, accountsTableView);
         if (isReceiverAccount) {
             updateValidationStyle(isNotSameAccount, transferEnterRecieverAccountTextField);
         }
@@ -138,7 +143,7 @@ public class CustomerTransferFundsController extends CustomerStartController imp
         updateValidationStyle(isPasswordValid, transferPasswordField);
         updateValidationStyle(isAmountNotEmpty, transferEnterAmountTextField);
 
-        return isSelectedAccount && isReceiverAccount && isNotSameAccount && isTermsChecked && isPasswordValid && isAmountNotEmpty;
+        return isSelectedAccount && isReceiverAccount && isBalanceAvailable && isNotSameAccount && isTermsChecked && isPasswordValid && isAmountNotEmpty;
     }
 
     private void updateValidationStyle(boolean condition, Control control) {

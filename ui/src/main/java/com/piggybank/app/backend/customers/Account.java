@@ -110,13 +110,16 @@ public class Account {
         }
     }
     // used for only withdrawing
-    public void withdraw(double amount, LocalDate date) throws Exception {
+    public void withdraw(double amount, String message, LocalDate date) throws Exception {
         if (balance >= amount && amount > 0) {
             balance -= TruncationUtil.truncate(amount);
-            Transaction withdraw = new Transaction("None", accountId, 0 - amount, "", date);
+            Transaction withdraw = new Transaction("None", accountId, 0 - amount, message, date);
             transactions.add(withdraw);
         } else {
             throw new InsufficientBalanceException("Not enough balance in account for this operation.");
         }
+    }
+    public void addTransaction(Transaction transaction) {
+        transactions.add(transaction);
     }
 }

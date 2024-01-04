@@ -5,36 +5,14 @@ import com.piggybank.app.ui.employee_controllers.EmpMainController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class EmpCustomerInfoController extends EmpCustomerOverviewController implements Initializable {
-    @FXML
-    private Button editStreetButton;
-    @FXML
-    private Button editZipButton;
-    @FXML
-    private Button editCityButton;
-    @FXML
-    private Button editPhoneButton;
-    @FXML
-    private Button editEmailButton;
-    @FXML
-    private Button editPasswordButton;
-    @FXML
-    private Button saveNewStreetButton;
-    @FXML
-    private Button saveNewZipButton;
-    @FXML
-    private Button saveNewCityButton;
-    @FXML
-    private Button saveNewPhoneButton;
-    @FXML
-    private Button saveNewEmailButton;
-    @FXML
-    private Button saveNewPasswordButton;
+
     @FXML
     private PasswordField passwordField;
     @FXML
@@ -47,11 +25,13 @@ public class EmpCustomerInfoController extends EmpCustomerOverviewController imp
     private TextField phoneField;
     @FXML
     private TextField emailField;
+    @FXML
+    private Label invalidPasswordLabel;
 
     public void initialize(URL arg0, ResourceBundle arg1) {
         super.showCurrentEmployee();
         showCurrentCustomer();
-        System.out.println("Employee Customer Info Page. Logged in as: " + currentEmployee.getInitials());
+        invalidPasswordLabel.setVisible(false);
     }
     @Override
     public void showCurrentCustomer(){
@@ -113,13 +93,14 @@ public class EmpCustomerInfoController extends EmpCustomerOverviewController imp
         emailField.setEditable(false);
     }
     public void setNewPassword() { //saveNewPasswordButton
+        invalidPasswordLabel.setVisible(false);
         try {
             String newPassword = passwordField.getText();
             passwordField.setText(newPassword);
             EmpMainController.currentCustomer.setPassword(newPassword);
             passwordField.setEditable(false);
         } catch (PasswordException passwordException) {
-            System.out.println("Password must be at least 8 characters and include uppercase letters and numbers.");
+            invalidPasswordLabel.setVisible(true);
         }
     }
 

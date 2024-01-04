@@ -1,5 +1,7 @@
 package com.piggybank.app.ui.employee_controllers.customer_operation;
 
+import com.piggybank.app.backend.exceptions.InvalidEmailException;
+import com.piggybank.app.backend.exceptions.PasswordException;
 import com.piggybank.app.backend.utils.ContactCard;
 import com.piggybank.app.ui.UIMain;
 import com.piggybank.app.ui.employee_controllers.EmpMainController;
@@ -52,6 +54,12 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
     private PasswordField passwordField;
 	@FXML
 	private Label requiredLabel;
+    @FXML
+    private Label invalidEmailAddressLabel;
+    @FXML
+    private Pane invalidEmailPane;
+    @FXML
+    private Label invalidSsnLabel;
 
 
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -61,13 +69,15 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
         currentCustomersAccounts = null;
 
         onSavePane.setVisible(false);
+        invalidEmailPane.setVisible(false);
         wrongPasswordPane.setVisible(false);
         privateCustomerCheckBox.setSelected(true);
-
-        System.out.println("Employee Add Customer Page. Logged in as: " + currentEmployee.getInitials());
     }
 
-    public void addCustomer(){ // saveNewCustomerButton
+    public void addCustomer() throws Exception { // saveNewCustomerButton
+        invalidEmailPane.setVisible(false);
+        wrongPasswordPane.setVisible(false);
+
 		String companyName = companyNameField.getText();
 		String firstName = firstNameField.getText();
 		String lastName = lastNameField.getText();
@@ -86,23 +96,30 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
 
         if(privateCustomerCheckBox.isSelected()){
 
-			ContactCard newContactCard = new ContactCard(email, phone, street, zip, city);
 			try{
+                ContactCard newContactCard = new ContactCard(email, phone, street, zip, city);
 				userId = UIMain.bank.createCustomerPrivate(ssn, firstName, lastName, password, newContactCard);
                 successfulSave(userId);
-			} catch (Exception e){
-				System.out.println(e.getMessage());
+			} catch (PasswordException e){
                 wrongPasswordPane.setVisible(true);
-			}
+			} catch (InvalidEmailException e) {
+                invalidEmailPane.setVisible(true);
+                e.printStackTrace();
+            } catch (Exception e) {
+                invalidSsnLabel.setVisible(true);
+                e.printStackTrace();
+            }
         } else if(corporateCustomerCheckBox.isSelected()){
-			ContactCard newContactCard = new ContactCard(email, phone, street, zip, city);
+
 			try{
+                ContactCard newContactCard = new ContactCard(email, phone, street, zip, city);
 				userId = UIMain.bank.createCustomerCorporate(orgNumber, companyName, password, newContactCard);
                 successfulSave(userId);
-			} catch (Exception e){
-				System.out.println(e.getMessage());
+			} catch (PasswordException e){
                 wrongPasswordPane.setVisible(true);
-			}
+			} catch (InvalidEmailException e) {
+                invalidEmailPane.setVisible(true);
+            }
         }
     }
 
@@ -125,6 +142,7 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
         phoneField.setEditable(false);
         emailField.setEditable(false);
         passwordField.setEditable(false);
+        invalidEmailPane.setVisible(false);
         currentCustomer = bank.getCustomer(userId);
         currentCustomersAccounts = currentCustomer.getAccounts();
     }
