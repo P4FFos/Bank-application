@@ -141,16 +141,16 @@
                         <Font name="Kodchasan Bold" size="15.0" />
                     </font>
                 </Label>
-				<TableView fx:id="assetsTableView" layoutX="20.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="260.0" stylesheets="@../../../../../TableViewStylesheet.css">
+				<TableView fx:id="assetsTableView" layoutX="20.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="280.0" stylesheets="@../../../../../TableViewStylesheet.css">
 					<columns>
 						<TableColumn fx:id="assetsNameTableColumn" prefWidth="180.0" text="Account name" />
-						<TableColumn fx:id="assetsBalanceTableColumn" text="Balance" />
+						<TableColumn fx:id="assetsBalanceTableColumn" prefWidth="92.79998779296875" text="Balance" />
 					</columns>
 				</TableView>
-				<TableView fx:id="debtsTableView" layoutX="320.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="260.0" stylesheets="@../../../../../TableViewStylesheet.css">
+				<TableView fx:id="debtsTableView" layoutX="320.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="280.0" stylesheets="@../../../../../TableViewStylesheet.css">
 					<columns>
 						<TableColumn fx:id="debtsNameTableColumn" prefWidth="180.0" text="Account name" />
-						<TableColumn fx:id="debtsBalanceTableColumn" text="Balance" />
+						<TableColumn fx:id="debtsBalanceTableColumn" prefWidth="92.0" text="Balance" />
 					</columns>
 				</TableView>
                 <Label fx:id="startTotalBalanceLabel" layoutX="20.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="79.0" text="Total Balance:" textFill="#ab3e56">

@@ -26,6 +26,7 @@ public class Account {
     private String accountName;
     private String accountId;
     private double balance;
+    private String balanceString;
     private ArrayList<Transaction> transactions;
 
 	// Bare constructor used by Jackson-Databind for Json deserializing
@@ -36,6 +37,7 @@ public class Account {
         this.accountName = accountName;
         this.accountId = accountId;
         this.balance = 0.0;
+        this.balanceString = "0.00";
 		this.transactions = new ArrayList<>();
     }
 
@@ -43,35 +45,41 @@ public class Account {
     public String getAccountName() {
         return this.accountName;
     }
+    public String getBalanceString() {return this.balanceString;}
 
-	public String getAccountId() {
+    // get method to receive accountId
+    public String getAccountId() {
         return this.accountId;
     }
 
-	public double getBalance() {
+    // get method to receive balance
+    public double getBalance() {
         return TruncationUtil.truncate(this.balance);
     }
 
-	public ObservableList<Transaction> getTransactions() {
+    public ObservableList<Transaction> getTransactions() {
         return FXCollections.observableArrayList(transactions);
     }
 
     @JsonProperty("transactions")
     public ArrayList<Transaction> getTransactionHistory() {
-		return transactions;
+        return transactions;
     }
 
-	//--------------------Setters--------------------
+    //--------------------Setters--------------------
+    public void setBalanceString() {this.balanceString = String.format("%.2f", this.balance);}
+
     public void setAccountName(String accountName) {
         this.accountName = accountName;
     }
 
+    public void setTransactions(ArrayList<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
     public void setBalance(double balance) {
         this.balance = balance;
-    }
-	
-	public void setAccountId(String accountId) {
-        this.accountId = accountId;
+        setBalanceString();
     }
 
     //--------------------Methods--------------------
@@ -83,6 +91,7 @@ public class Account {
             throw new InsufficientBalanceException("Amount specified cannot be less than 0.");
         }
         balance += TruncationUtil.truncate(amount);
+        setBalanceString();
         if (message.isBlank()) {
             Transaction withdraw = new Transaction(accountId, senderAccountId, amount, "", date);
             transactions.add(withdraw);
@@ -99,22 +108,23 @@ public class Account {
             balance -= TruncationUtil.truncate(amount);
             Transaction withdraw = new Transaction(receiverAccountId, accountId, 0 - amount, message, date);
             transactions.add(withdraw);
+            setBalanceString();
         } else {
             throw new InsufficientBalanceException("Not enough balance in account for this operation.");
         }
     }
-    
+
 	// withdraw method without receiverAccountId
     public void withdraw(double amount, String message, LocalDate date) throws Exception {
         if (balance >= amount && amount > 0) { // checks if the balance is enough for the operation
             balance -= TruncationUtil.truncate(amount);
             Transaction withdraw = new Transaction("None", accountId, 0 - amount, message, date);
             transactions.add(withdraw);
+            setBalanceString();
         } else {
             throw new InsufficientBalanceException("Not enough balance in account for this operation.");
         }
     }
-
     public void addTransaction(Transaction transaction) {
         transactions.add(transaction);
     }

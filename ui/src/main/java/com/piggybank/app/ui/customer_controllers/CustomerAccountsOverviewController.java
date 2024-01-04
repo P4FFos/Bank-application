@@ -31,7 +31,7 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
     @FXML
     private TableColumn<Transaction, String> receiverColumn;
     @FXML
-    private TableColumn<Transaction, Double> amountColumn;
+    private TableColumn<Transaction, String> amountColumn;
     @FXML
     private TableColumn<Transaction, String> messageColumn;
     @FXML
@@ -43,7 +43,7 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
     @FXML
     private TableColumn<Account, String> accountNameColumn;
     @FXML
-    private TableColumn<Account, Double> accountBalanceColumn;
+    private TableColumn<Account, String> accountBalanceColumn;
 
     public void initialize(URL arg0, ResourceBundle arg1) { //Populates accountsListView with elements in accounts, selection "gets" an account
         showCurrentCustomer();
@@ -53,13 +53,13 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
     public void initializeTables(){
         accountNameColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountName"));
         accountIdColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountId"));
-        accountBalanceColumn.setCellValueFactory(new PropertyValueFactory<Account, Double>("balance"));
+        accountBalanceColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("balanceString"));
 
         accountsTableView.setItems(currentCustomer.getAccountsList());
 
         // sort tableView on balance with descending values
-        accountBalanceColumn.setSortType(TableColumn.SortType.DESCENDING);
-        accountsTableView.getSortOrder().add(accountBalanceColumn);
+        accountIdColumn.setSortType(TableColumn.SortType.ASCENDING);
+        accountsTableView.getSortOrder().add(accountIdColumn);
 
         // checkbox for all accounts should be automatically checked
         accountsAllCheckBox.setSelected(true);
@@ -73,13 +73,23 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
 
                 senderColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("senderAccountId"));
                 receiverColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("receiverAccountId"));
-                amountColumn.setCellValueFactory(new PropertyValueFactory<Transaction, Double>("amount"));
+                amountColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("amountString"));
                 messageColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("message"));
                 dateColumn.setCellValueFactory(new PropertyValueFactory<Transaction, LocalDate>("date"));
 
                 transactionsTable.setItems(currentAccount.getTransactions());
+
+                sortTransactionsTable();
+                // Stop from scrolling horizontally in TableView
+                transactionsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
             }
         });
+    }
+
+    public void sortTransactionsTable() {
+        // Sort dates from lowest to highest
+        dateColumn.setSortType(TableColumn.SortType.DESCENDING);
+        transactionsTable.getSortOrder().add(dateColumn);
     }
 
     // filter transactions to show all transactions
@@ -90,11 +100,13 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
             accountsOutgoingCheckBox.setSelected(false);
             if(currentAccount != null) {
                 transactionsTable.setItems(currentAccount.getTransactions());
+                sortTransactionsTable();
             }
         } else {
             accountsAllCheckBox.setSelected(true);
             if(currentAccount != null) {
                 transactionsTable.setItems(currentAccount.getTransactions());
+                sortTransactionsTable();
             }
         }
     }
@@ -113,11 +125,13 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
                     }
                 }
                 transactionsTable.setItems(incomingTransactions);
+                sortTransactionsTable();
             }
         } else {
             accountsAllCheckBox.setSelected(true);
             if(currentAccount != null) {
                 transactionsTable.setItems(currentAccount.getTransactions());
+                sortTransactionsTable();
             }
         }
     }
@@ -136,10 +150,12 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
                     }
                 }
                 transactionsTable.setItems(outgoingTransactions);
+                sortTransactionsTable();
             }
         } else {
             if(currentAccount != null) {
                 transactionsTable.setItems(currentAccount.getTransactions());
+                sortTransactionsTable();
             }
             accountsAllCheckBox.setSelected(true);
         }

@@ -1,0 +1,814 @@
+{
+  "contactInfo" : {
+    "email" : "employee@piggybank.com",
+    "phoneNumber" : "0701234567",
+    "streetAddress" : "Forskningsgången 6",
+    "zipCode" : "417 56",
+    "city" : "Gothenburg"
+  },
+  "customers" : {
+    "C002" : {
+      "customerType" : "customerPrivate",
+      "userId" : "C002",
+      "password" : "Vestigia7",
+      "contactInfo" : {
+        "email" : "peter.grant@riversoflondon.co.uk",
+        "phoneNumber" : "0702345678",
+        "streetAddress" : "The Folly",
+        "zipCode" : "WC1B 5EH",
+        "city" : "London"
+      },
+      "accounts" : {
+        "A00003" : {
+          "accountType" : "account",
+          "accountName" : "Main account",
+          "accountId" : "A00003",
+          "balance" : 642650.0,
+          "balanceString" : "642650,00",
+          "transactions" : [ {
+            "receiverAccountId" : "A00003",
+            "senderAccountId" : "A00001",
+            "amount" : 750.0,
+            "amountString" : "750.00",
+            "message" : "As per promise /Rand",
+            "date" : [ 2023, 12, 24 ]
+          }, {
+            "receiverAccountId" : "A00003",
+            "senderAccountId" : "A00014",
+            "amount" : 500000.0,
+            "amountString" : "500000.00",
+            "message" : "Handled by: E002",
+            "date" : [ 2024, 1, 4 ]
+          }, {
+            "receiverAccountId" : "A00007",
+            "senderAccountId" : "A00003",
+            "amount" : -17500.0,
+            "amountString" : "-17500,00",
+            "message" : "Stereo purchase",
+            "date" : [ 2023, 12, 19 ]
+          }, {
+            "receiverAccountId" : "A00007",
+            "senderAccountId" : "A00003",
+            "amount" : -9200.0,
+            "amountString" : "-9200,00",
+            "message" : "Cellphone",
+            "date" : [ 2023, 12, 6 ]
+          }, {
+            "receiverAccountId" : "A00005",
+            "senderAccountId" : "A00003",
+            "amount" : -1000.0,
+            "amountString" : "-1000,00",
+            "message" : "",
+            "date" : [ 2023, 12, 28 ]
+          }, {
+            "receiverAccountId" : "A00003",
+            "senderAccountId" : "A00004",
+            "amount" : 12100.0,
+            "amountString" : "12100,00",
+            "message" : "Car spareparts",
+            "date" : [ 2023, 12, 23 ]
+          }, {
+            "receiverAccountId" : "A00003",
+            "senderAccountId" : "A00010",
+            "amount" : 7500.0,
+            "amountString" : "7500,00",
+            "message" : "",
+            "date" : [ 2023, 12, 20 ]
+          } ]
+        },
+        "A00014" : {
+          "accountType" : "loan",
+          "accountName" : "Electronics",
+          "accountId" : "A00014",
+          "balance" : -500000.0,
+          "balanceString" : "-500000.00",
+          "transactions" : [ {
+            "receiverAccountId" : "A00003",
+            "senderAccountId" : "A00014",
+            "amount" : -500000.0,
+            "amountString" : "-500000.00",
+            "message" : "Handled by: E002",
+            "date" : [ 2024, 1, 4 ]
+          } ],
+          "initialAmount" : -500000.0,
+          "interestRate" : 5.0,
+          "minPaymentPercent" : 1.0,
+          "minPaymentAmount" : -30000.0
+        }
+      },
+      "ssn" : "8704192340",
+      "firstName" : "Peter",
+      "lastName" : "Grant",
+      "initials" : "PG"
+    },
+    "C001" : {
+      "customerType" : "customerPrivate",
+      "userId" : "C001",
+      "password" : "Callandor1",
+      "contactInfo" : {
+        "email" : "rand.althor@dragonmount.com",
+        "phoneNumber" : "0705678900",
+        "streetAddress" : "Dragon Mount 1",
+        "zipCode" : "55555",
+        "city" : "Dragon Mount"
+      },
+      "accounts" : {
+        "A00002" : {
+          "accountType" : "account",
+          "accountName" : "Buffer account",
+          "accountId" : "A00002",
+          "balance" : 45200.0,
+          "balanceString" : "45200.00",
+          "transactions" : [ {
+            "receiverAccountId" : "A00002",
+            "senderAccountId" : "A00012",
+            "amount" : 25000.0,
+            "amountString" : "25000.00",
+            "message" : "Handled by: E001",
+            "date" : [ 2024, 1, 4 ]
+          }, {
+            "receiverAccountId" : "A00002",
+            "senderAccountId" : "A00001",
+            "amount" : 12000.0,
+            "amountString" : "12000.00",
+            "message" : "For more buffer",
+            "date" : [ 2023, 12, 7 ]
+          }, {
+            "receiverAccountId" : "A00002",
+            "senderAccountId" : "A00001",
+            "amount" : 8000.0,
+            "amountString" : "8000.00",
+            "message" : "Clothes needed",
+            "date" : [ 2023, 12, 1 ]
+          } ]
+        },
+        "A00013" : {
+          "accountType" : "loan",
+          "accountName" : "Illian invasion dupe",
+          "accountId" : "A00013",
+          "balance" : -2500000.0,
+          "balanceString" : "-2500000.00",
+          "transactions" : [ {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "A00013",
+            "amount" : -2500000.0,
+            "amountString" : "-2500000.00",
+            "message" : "Handled by: E001",
+            "date" : [ 2024, 1, 4 ]
+          } ],
+          "initialAmount" : -2500000.0,
+          "interestRate" : 5.0,
+          "minPaymentPercent" : 1.0,
+          "minPaymentAmount" : -150000.0
+        },
+        "A00001" : {
+          "accountType" : "account",
+          "accountName" : "Crown account",
+          "accountId" : "A00001",
+          "balance" : 1.395352E7,
+          "balanceString" : "13953520,00",
+          "transactions" : [ {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "A00013",
+            "amount" : 2500000.0,
+            "amountString" : "2500000.00",
+            "message" : "Handled by: E001",
+            "date" : [ 2024, 1, 4 ]
+          }, {
+            "receiverAccountId" : "A00004",
+            "senderAccountId" : "A00001",
+            "amount" : -15000.0,
+            "amountString" : "-15000.00",
+            "message" : "Money from Rand",
+            "date" : [ 2023, 12, 5 ]
+          }, {
+            "receiverAccountId" : "A00005",
+            "senderAccountId" : "A00001",
+            "amount" : -1750.0,
+            "amountString" : "-1750.00",
+            "message" : "Horse saddles",
+            "date" : [ 2023, 12, 14 ]
+          }, {
+            "receiverAccountId" : "A00003",
+            "senderAccountId" : "A00001",
+            "amount" : -750.0,
+            "amountString" : "-750.00",
+            "message" : "As per promise /Rand",
+            "date" : [ 2023, 12, 24 ]
+          }, {
+            "receiverAccountId" : "A00006",
+            "senderAccountId" : "A00001",
+            "amount" : -1200.0,
+            "amountString" : "-1200.00",
+            "message" : "Happy birthday! /Rand",
+            "date" : [ 2023, 12, 19 ]
+          }, {
+            "receiverAccountId" : "A00002",
+            "senderAccountId" : "A00001",
+            "amount" : -12000.0,
+            "amountString" : "-12000.00",
+            "message" : "For more buffer",
+            "date" : [ 2023, 12, 7 ]
+          }, {
+            "receiverAccountId" : "A00002",
+            "senderAccountId" : "A00001",
+            "amount" : -8000.0,
+            "amountString" : "-8000.00",
+            "message" : "Clothes needed",
+            "date" : [ 2023, 12, 1 ]
+          }, {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "A00006",
+            "amount" : 500.0,
+            "amountString" : "500.00",
+            "message" : "For old time's sake",
+            "date" : [ 2023, 12, 14 ]
+          }, {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "A00004",
+            "amount" : 1700.0,
+            "amountString" : "1700,00",
+            "message" : "Spare parts",
+            "date" : [ 2024, 1, 3 ]
+          }, {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "A00009",
+            "amount" : 500.0,
+            "amountString" : "500,00",
+            "message" : "",
+            "date" : [ 2023, 12, 15 ]
+          }, {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "A00010",
+            "amount" : 25000.0,
+            "amountString" : "25000,00",
+            "message" : "Backup",
+            "date" : [ 2023, 12, 20 ]
+          }, {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "A00005",
+            "amount" : 15000.0,
+            "amountString" : "15000,00",
+            "message" : "N/A",
+            "date" : [ 2023, 12, 20 ]
+          }, {
+            "receiverAccountId" : "A00006",
+            "senderAccountId" : "A00001",
+            "amount" : -12000.0,
+            "amountString" : "-12000,00",
+            "message" : "Suppleants",
+            "date" : [ 2023, 12, 21 ]
+          }, {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "A00007",
+            "amount" : 21000.0,
+            "amountString" : "21000,00",
+            "message" : "N/A",
+            "date" : [ 2023, 12, 25 ]
+          }, {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "A00006",
+            "amount" : 5600.0,
+            "amountString" : "5600,00",
+            "message" : "Get some clothes, farmboy",
+            "date" : [ 2023, 12, 2 ]
+          } ]
+        },
+        "A00012" : {
+          "accountType" : "credit",
+          "accountName" : "New wardrobe",
+          "accountId" : "A00012",
+          "balance" : -25000.0,
+          "balanceString" : "-25000.00",
+          "transactions" : [ {
+            "receiverAccountId" : "A00002",
+            "senderAccountId" : "A00012",
+            "amount" : -25000.0,
+            "amountString" : "-25000.00",
+            "message" : "Handled by: E001",
+            "date" : [ 2024, 1, 4 ]
+          } ],
+          "interestRate" : 5.0,
+          "initialCreditDate" : 1704372467187
+        }
+      },
+      "ssn" : "8510012234",
+      "firstName" : "Rand",
+      "lastName" : "Al'Thor",
+      "initials" : "RA"
+    },
+    "C008" : {
+      "customerType" : "customerCorporate",
+      "userId" : "C008",
+      "password" : "iAte5Wolves",
+      "contactInfo" : {
+        "email" : "info@truffles.com",
+        "phoneNumber" : "031000001",
+        "streetAddress" : "Brick Building",
+        "zipCode" : "12345",
+        "city" : "Wolvesout"
+      },
+      "accounts" : {
+        "A00015" : {
+          "accountType" : "credit",
+          "accountName" : "Concrete purchase",
+          "accountId" : "A00015",
+          "balance" : -50000.0,
+          "balanceString" : "-50000,00",
+          "transactions" : [ {
+            "receiverAccountId" : "A00011",
+            "senderAccountId" : "A00015",
+            "amount" : -50000.0,
+            "amountString" : "-50000,00",
+            "message" : "Handled by: E002",
+            "date" : [ 2024, 1, 4 ]
+          } ],
+          "interestRate" : 5.0,
+          "initialCreditDate" : 1704398955349
+        },
+        "A00011" : {
+          "accountType" : "account",
+          "accountName" : "Temporary spendings",
+          "accountId" : "A00011",
+          "balance" : 50000.0,
+          "balanceString" : "50000,00",
+          "transactions" : [ {
+            "receiverAccountId" : "A00011",
+            "senderAccountId" : "A00015",
+            "amount" : 50000.0,
+            "amountString" : "50000,00",
+            "message" : "Handled by: E002",
+            "date" : [ 2024, 1, 4 ]
+          } ]
+        },
+        "A00010" : {
+          "accountType" : "account",
+          "accountName" : "Foundation acc",
+          "accountId" : "A00010",
+          "balance" : 1577700.0,
+          "balanceString" : "1577700,00",
+          "transactions" : [ {
+            "receiverAccountId" : "A00010",
+            "senderAccountId" : "A00009",
+            "amount" : 200.0,
+            "amountString" : "200,00",
+            "message" : "",
+            "date" : [ 2024, 1, 1 ]
+          }, {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "A00010",
+            "amount" : -25000.0,
+            "amountString" : "-25000,00",
+            "message" : "Backup",
+            "date" : [ 2023, 12, 20 ]
+          }, {
+            "receiverAccountId" : "A00003",
+            "senderAccountId" : "A00010",
+            "amount" : -7500.0,
+            "amountString" : "-7500,00",
+            "message" : "",
+            "date" : [ 2023, 12, 20 ]
+          }, {
+            "receiverAccountId" : "A00006",
+            "senderAccountId" : "A00010",
+            "amount" : -5500.0,
+            "amountString" : "-5500,00",
+            "message" : "",
+            "date" : [ 2024, 1, 2 ]
+          }, {
+            "receiverAccountId" : "A00005",
+            "senderAccountId" : "A00010",
+            "amount" : -2200.0,
+            "amountString" : "-2200,00",
+            "message" : "",
+            "date" : [ 2023, 12, 12 ]
+          }, {
+            "receiverAccountId" : "A00010",
+            "senderAccountId" : "A00007",
+            "amount" : 120000.0,
+            "amountString" : "120000,00",
+            "message" : "N/A",
+            "date" : [ 2023, 12, 27 ]
+          }, {
+            "receiverAccountId" : "A00009",
+            "senderAccountId" : "A00010",
+            "amount" : -1500.0,
+            "amountString" : "-1500,00",
+            "message" : "HAndout",
+            "date" : [ 2024, 1, 1 ]
+          }, {
+            "receiverAccountId" : "A00009",
+            "senderAccountId" : "A00010",
+            "amount" : -1200.0,
+            "amountString" : "-1200,00",
+            "message" : "Handout",
+            "date" : [ 2023, 12, 13 ]
+          } ]
+        }
+      },
+      "orgNumber" : "5566770001",
+      "companyName" : "E-Corp"
+    },
+    "C007" : {
+      "customerType" : "customerPrivate",
+      "userId" : "C007",
+      "password" : "Password1",
+      "contactInfo" : {
+        "email" : "john.doe@student.gu.se",
+        "phoneNumber" : "0701234567",
+        "streetAddress" : "Lindholmsplatsen 1",
+        "zipCode" : "41756",
+        "city" : "Gothenburg"
+      },
+      "accounts" : {
+        "A00009" : {
+          "accountType" : "account",
+          "accountName" : "Savings account",
+          "accountId" : "A00009",
+          "balance" : 27000.0,
+          "balanceString" : "27000,00",
+          "transactions" : [ {
+            "receiverAccountId" : "A00010",
+            "senderAccountId" : "A00009",
+            "amount" : -200.0,
+            "amountString" : "-200,00",
+            "message" : "",
+            "date" : [ 2024, 1, 1 ]
+          }, {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "A00009",
+            "amount" : -500.0,
+            "amountString" : "-500,00",
+            "message" : "",
+            "date" : [ 2023, 12, 15 ]
+          }, {
+            "receiverAccountId" : "A00009",
+            "senderAccountId" : "A00010",
+            "amount" : 1500.0,
+            "amountString" : "1500,00",
+            "message" : "HAndout",
+            "date" : [ 2024, 1, 1 ]
+          }, {
+            "receiverAccountId" : "A00009",
+            "senderAccountId" : "A00010",
+            "amount" : 1200.0,
+            "amountString" : "1200,00",
+            "message" : "Handout",
+            "date" : [ 2023, 12, 13 ]
+          } ]
+        }
+      },
+      "ssn" : "0101010101",
+      "firstName" : "John",
+      "lastName" : "Doe",
+      "initials" : "JD"
+    },
+    "C006" : {
+      "customerType" : "customerCorporate",
+      "userId" : "C006",
+      "password" : "MrRobot1",
+      "contactInfo" : {
+        "email" : "info@evilcorp.com",
+        "phoneNumber" : "031000001",
+        "streetAddress" : "Ecorp Street 1",
+        "zipCode" : "10001",
+        "city" : "New York"
+      },
+      "accounts" : {
+        "A00008" : {
+          "accountType" : "account",
+          "accountName" : "Crypto account",
+          "accountId" : "A00008",
+          "balance" : 1040900.0,
+          "balanceString" : "1040900.00",
+          "transactions" : [ ]
+        },
+        "A00007" : {
+          "accountType" : "account",
+          "accountName" : "Corporate savings",
+          "accountId" : "A00007",
+          "balance" : 1.47927E7,
+          "balanceString" : "14792700,00",
+          "transactions" : [ {
+            "receiverAccountId" : "A00007",
+            "senderAccountId" : "A00003",
+            "amount" : 17500.0,
+            "amountString" : "17500,00",
+            "message" : "Stereo purchase",
+            "date" : [ 2023, 12, 19 ]
+          }, {
+            "receiverAccountId" : "A00007",
+            "senderAccountId" : "A00003",
+            "amount" : 9200.0,
+            "amountString" : "9200,00",
+            "message" : "Cellphone",
+            "date" : [ 2023, 12, 6 ]
+          }, {
+            "receiverAccountId" : "A00004",
+            "senderAccountId" : "A00007",
+            "amount" : -55000.0,
+            "amountString" : "-55000,00",
+            "message" : "Payment",
+            "date" : [ 2023, 12, 5 ]
+          }, {
+            "receiverAccountId" : "A00006",
+            "senderAccountId" : "A00007",
+            "amount" : -22000.0,
+            "amountString" : "-22000,00",
+            "message" : "N/A",
+            "date" : [ 2023, 12, 26 ]
+          }, {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "A00007",
+            "amount" : -21000.0,
+            "amountString" : "-21000,00",
+            "message" : "N/A",
+            "date" : [ 2023, 12, 25 ]
+          }, {
+            "receiverAccountId" : "A00005",
+            "senderAccountId" : "A00007",
+            "amount" : -16000.0,
+            "amountString" : "-16000,00",
+            "message" : "N/A",
+            "date" : [ 2023, 12, 25 ]
+          }, {
+            "receiverAccountId" : "A00010",
+            "senderAccountId" : "A00007",
+            "amount" : -120000.0,
+            "amountString" : "-120000,00",
+            "message" : "N/A",
+            "date" : [ 2023, 12, 27 ]
+          } ]
+        }
+      },
+      "orgNumber" : "5566770001",
+      "companyName" : "E-Corp"
+    },
+    "C005" : {
+      "customerType" : "customerPrivate",
+      "userId" : "C005",
+      "password" : "DaiShan1",
+      "contactInfo" : {
+        "email" : "lan.mandragoran@malkier.com",
+        "phoneNumber" : "0709012345",
+        "streetAddress" : "Malkier street 1",
+        "zipCode" : "11001",
+        "city" : "Seven Towers"
+      },
+      "accounts" : {
+        "A00006" : {
+          "accountType" : "account",
+          "accountName" : "Golden Cranes",
+          "accountId" : "A00006",
+          "balance" : 293345.23,
+          "balanceString" : "293345,23",
+          "transactions" : [ {
+            "receiverAccountId" : "A00006",
+            "senderAccountId" : "None",
+            "amount" : 15700.0,
+            "amountString" : "15700.00",
+            "message" : "Handled by: E001",
+            "date" : [ 2024, 1, 4 ]
+          }, {
+            "receiverAccountId" : "A00006",
+            "senderAccountId" : "A00001",
+            "amount" : 1200.0,
+            "amountString" : "1200.00",
+            "message" : "Happy birthday! /Rand",
+            "date" : [ 2023, 12, 19 ]
+          }, {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "A00006",
+            "amount" : -500.0,
+            "amountString" : "-500.00",
+            "message" : "For old time's sake",
+            "date" : [ 2023, 12, 14 ]
+          }, {
+            "receiverAccountId" : "A00006",
+            "senderAccountId" : "A00010",
+            "amount" : 5500.0,
+            "amountString" : "5500,00",
+            "message" : "",
+            "date" : [ 2024, 1, 2 ]
+          }, {
+            "receiverAccountId" : "A00006",
+            "senderAccountId" : "A00001",
+            "amount" : 12000.0,
+            "amountString" : "12000,00",
+            "message" : "Suppleants",
+            "date" : [ 2023, 12, 21 ]
+          }, {
+            "receiverAccountId" : "A00006",
+            "senderAccountId" : "A00007",
+            "amount" : 22000.0,
+            "amountString" : "22000,00",
+            "message" : "N/A",
+            "date" : [ 2023, 12, 26 ]
+          }, {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "A00006",
+            "amount" : -5600.0,
+            "amountString" : "-5600,00",
+            "message" : "Get some clothes, farmboy",
+            "date" : [ 2023, 12, 2 ]
+          } ]
+        }
+      },
+      "ssn" : "1001010101",
+      "firstName" : "Lan",
+      "lastName" : "Mandragoran",
+      "initials" : "LM"
+    },
+    "C004" : {
+      "customerType" : "customerPrivate",
+      "userId" : "C004",
+      "password" : "Just1fy!",
+      "contactInfo" : {
+        "email" : "raylan.givens@justified.com",
+        "phoneNumber" : "0704567890",
+        "streetAddress" : "Lexington 1",
+        "zipCode" : "55555",
+        "city" : "Lexington"
+      },
+      "accounts" : {
+        "A00005" : {
+          "accountType" : "account",
+          "accountName" : "Savings account",
+          "accountId" : "A00005",
+          "balance" : 114982.15,
+          "balanceString" : "114982,15",
+          "transactions" : [ {
+            "receiverAccountId" : "A00005",
+            "senderAccountId" : "A00001",
+            "amount" : 1750.0,
+            "amountString" : "1750.00",
+            "message" : "Horse saddles",
+            "date" : [ 2023, 12, 14 ]
+          }, {
+            "receiverAccountId" : "A00005",
+            "senderAccountId" : "A00003",
+            "amount" : 1000.0,
+            "amountString" : "1000,00",
+            "message" : "",
+            "date" : [ 2023, 12, 28 ]
+          }, {
+            "receiverAccountId" : "A00005",
+            "senderAccountId" : "A00004",
+            "amount" : 500.0,
+            "amountString" : "500,00",
+            "message" : "",
+            "date" : [ 2023, 12, 12 ]
+          }, {
+            "receiverAccountId" : "A00005",
+            "senderAccountId" : "A00010",
+            "amount" : 2200.0,
+            "amountString" : "2200,00",
+            "message" : "",
+            "date" : [ 2023, 12, 12 ]
+          }, {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "A00005",
+            "amount" : -15000.0,
+            "amountString" : "-15000,00",
+            "message" : "N/A",
+            "date" : [ 2023, 12, 20 ]
+          }, {
+            "receiverAccountId" : "A00004",
+            "senderAccountId" : "A00005",
+            "amount" : -12000.0,
+            "amountString" : "-12000,00",
+            "message" : "N/A",
+            "date" : [ 2023, 12, 20 ]
+          }, {
+            "receiverAccountId" : "A00005",
+            "senderAccountId" : "A00007",
+            "amount" : 16000.0,
+            "amountString" : "16000,00",
+            "message" : "N/A",
+            "date" : [ 2023, 12, 25 ]
+          }, {
+            "receiverAccountId" : "A00005",
+            "senderAccountId" : "A00004",
+            "amount" : 5640.0,
+            "amountString" : "5640,00",
+            "message" : "Sidejob",
+            "date" : [ 2023, 12, 9 ]
+          } ]
+        }
+      },
+      "ssn" : "0401010101",
+      "firstName" : "Raylan",
+      "lastName" : "Givens",
+      "initials" : "RG"
+    },
+    "C003" : {
+      "customerType" : "customerPrivate",
+      "userId" : "C003",
+      "password" : "!Mudh0rn",
+      "contactInfo" : {
+        "email" : "din.djarin@mandalorian.com",
+        "phoneNumber" : "0703456789",
+        "streetAddress" : "Concordia 1",
+        "zipCode" : "55555",
+        "city" : "Concordia"
+      },
+      "accounts" : {
+        "A00004" : {
+          "accountType" : "account",
+          "accountName" : "Calamari Flan",
+          "accountId" : "A00004",
+          "balance" : 1056299.0,
+          "balanceString" : "1056299,00",
+          "transactions" : [ {
+            "receiverAccountId" : "A00004",
+            "senderAccountId" : "A00001",
+            "amount" : 15000.0,
+            "amountString" : "15000.00",
+            "message" : "Money from Rand",
+            "date" : [ 2023, 12, 5 ]
+          }, {
+            "receiverAccountId" : "A00003",
+            "senderAccountId" : "A00004",
+            "amount" : -12100.0,
+            "amountString" : "-12100,00",
+            "message" : "Car spareparts",
+            "date" : [ 2023, 12, 23 ]
+          }, {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "A00004",
+            "amount" : -1700.0,
+            "amountString" : "-1700,00",
+            "message" : "Spare parts",
+            "date" : [ 2024, 1, 3 ]
+          }, {
+            "receiverAccountId" : "A00005",
+            "senderAccountId" : "A00004",
+            "amount" : -500.0,
+            "amountString" : "-500,00",
+            "message" : "",
+            "date" : [ 2023, 12, 12 ]
+          }, {
+            "receiverAccountId" : "A00004",
+            "senderAccountId" : "A00005",
+            "amount" : 12000.0,
+            "amountString" : "12000,00",
+            "message" : "N/A",
+            "date" : [ 2023, 12, 20 ]
+          }, {
+            "receiverAccountId" : "A00004",
+            "senderAccountId" : "A00007",
+            "amount" : 55000.0,
+            "amountString" : "55000,00",
+            "message" : "Payment",
+            "date" : [ 2023, 12, 5 ]
+          }, {
+            "receiverAccountId" : "A00005",
+            "senderAccountId" : "A00004",
+            "amount" : -5640.0,
+            "amountString" : "-5640,00",
+            "message" : "Sidejob",
+            "date" : [ 2023, 12, 9 ]
+          } ]
+        }
+      },
+      "ssn" : "0301010101",
+      "firstName" : "Din",
+      "lastName" : "Djarin",
+      "initials" : "DD"
+    }
+  },
+  "employees" : {
+    "E001" : {
+      "type" : "employee",
+      "userId" : "E001",
+      "password" : "11DRAGON",
+      "contactInfo" : {
+        "email" : "moiraine.damodred@whitetower.com",
+        "phoneNumber" : "0706789000",
+        "streetAddress" : "White Tower 126",
+        "zipCode" : "55555",
+        "city" : "White Tower"
+      },
+      "firstName" : "Moiraine",
+      "lastName" : "Sedai",
+      "currentCustomer" : null,
+      "initials" : "MS"
+    },
+    "E002" : {
+      "type" : "employee",
+      "userId" : "E002",
+      "password" : "Dicipl1ne!",
+      "contactInfo" : {
+        "email" : "joseph.dredd@judge.com",
+        "phoneNumber" : "0707890000",
+        "streetAddress" : "Mega City 111",
+        "zipCode" : "55555",
+        "city" : "Mega City One"
+      },
+      "firstName" : "Judge",
+      "lastName" : "Dredd",
+      "currentCustomer" : null,
+      "initials" : "JD"
+    }
+  }
+}

@@ -40,10 +40,6 @@ public class Credit extends Account {
     }
 
     //--------------------Setters--------------------
-	public void setInterestRate(double interestRate) {
-		this.interestRate = interestRate;
-	}
-
     public void setInitialCreditDate(Calendar initialCreditDate) {
         this.initialCreditDate = initialCreditDate;
     }
@@ -73,10 +69,11 @@ public class Credit extends Account {
         return TruncationUtil.truncate(totalCreditAmountWithInterest);
     }
 
-	@Override
+    @Override
     public void withdraw(String receiverAccountId, double amount, String message, LocalDate date) {
         Transaction withdrawal = new Transaction(receiverAccountId, super.getAccountId(), 0 - amount, message, date);
         addTransaction(withdrawal);
+        setBalanceString();
     }
 
     @Override
