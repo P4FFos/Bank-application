@@ -48,7 +48,7 @@ public class EmpMainController implements Initializable {
     public static Employee currentEmployee; //refers to the employee account that is currently logged in
     public static Customer currentCustomer; //refers to the current customer that the employee is operating on if there is one
     public static Account currentAccount; //refers to the current account that the employee is operating on if there is one
-    public static HashMap<String, Account> currentCustomersAccounts;
+    public static HashMap<String, Account> currentCustomersAccounts; //refers to the current customer's (if there is one) list of accounts
     public String saveFile = UIMain.savePath;
 
     public void initialize(URL arg0, ResourceBundle arg1) { //setup for scene: EmpStart
@@ -96,7 +96,7 @@ public class EmpMainController implements Initializable {
         String searchPhrase = searchCustomerTextField.getText();
         try {
             currentCustomer = bank.getCustomerByIdOrSsn(searchPhrase);
-            currentCustomersAccounts = currentCustomer.getAccounts();
+            currentCustomersAccounts = currentCustomer.getAccounts(); //done before loading the loader, otherwise the accounts listview in EmpCustomerOverview would run into a null pointer exception
 
             loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/customer_operation/EmpCustomerOverView.fxml"));
             root = loader.load();
