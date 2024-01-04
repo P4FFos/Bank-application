@@ -30,6 +30,8 @@ public class EmpAddAccountController extends EmpCustomerOverviewController imple
     @FXML
     private AnchorPane creditAnchorPane;
     @FXML
+    private Button saveNewAccountButton;
+    @FXML
     private CheckBox creditCheckBox;
     @FXML
     private CheckBox fiftyKCheckBox;
@@ -67,10 +69,11 @@ public class EmpAddAccountController extends EmpCustomerOverviewController imple
         super.showCurrentEmployee();
         super.showCurrentCustomer();
         populateAccountsChoiceBox();
+        wrongDetailsLabel.setVisible(false);
     }
 
     public void populateAccountsChoiceBox(){
-        String[] standardAccounts = new String[currentCustomersAccounts.size()]; //not pretty I know...
+        String[] standardAccounts = new String[currentCustomersAccounts.size()]; //Tanya: not pretty I know...
         int counter = 0;
         for (String key : currentCustomersAccounts.keySet()) {
             if (currentCustomersAccounts.get(key) instanceof Credit || currentCustomersAccounts.get(key) instanceof Loan) {
@@ -88,6 +91,19 @@ public class EmpAddAccountController extends EmpCustomerOverviewController imple
 
     public void setAccountToIncrement(ActionEvent event) {
         accountToIncrement = currentCustomersAccounts.get(accountsChoiceBox.getValue());
+    }
+
+    public void showError(String message){
+        wrongDetailsLabel.setVisible(true);
+        wrongDetailsLabel.setText(message);
+    }
+
+    public void setAmount(CheckBox checkBox, double chosenAmount){
+        if(checkBox.isSelected()){
+            amount = chosenAmount;
+        } else {
+            amount = 0;
+        }
     }
 
     public void saveNewAccount(ActionEvent event) {
@@ -117,8 +133,7 @@ public class EmpAddAccountController extends EmpCustomerOverviewController imple
                 }
             }
         } catch (Exception e) {
-            wrongDetailsLabel.setText("ERROR: INCORRECTLY ENTERED CRITERIA FOR ACCOUNT CREATION");
-            wrongDetailsLabel.setVisible(true);
+            showError("Oops. Something went wrong...");
         }
     }
 
@@ -144,78 +159,92 @@ public class EmpAddAccountController extends EmpCustomerOverviewController imple
 
     //------------Loan Account--------------
     public void toggleLoan() {
-        loanAnchorPane.setVisible(true);
-        creditAnchorPane.setVisible(false);
         creditCheckBox.setSelected(false);
         standardCheckBox.setSelected(false);
-        toAccountLabel.setVisible(true);
-        accountsChoiceBox.setVisible(true);
+        if(loanCheckBox.isSelected()){
+            loanAnchorPane.setVisible(true);
+            creditAnchorPane.setVisible(false);
+            toAccountLabel.setVisible(true);
+            accountsChoiceBox.setVisible(true);
+        } else {
+            loanAnchorPane.setVisible(false);
+            toAccountLabel.setVisible(false);
+            accountsChoiceBox.setVisible(false);
+        }
     }
 
     public void toggleHalfMillionLoan() {
         oneMillionCheckBox.setSelected(false);
         twoHalfMillionCheckBox.setSelected(false);
         fiveMillionCheckBox.setSelected(false);
-        amount = -500000.0;
+        setAmount(halfMillionCheckBox, -500000.0);
     }
 
     public void toggleOneMillionLoan() {
         halfMillionCheckBox.setSelected(false);
         twoHalfMillionCheckBox.setSelected(false);
         fiveMillionCheckBox.setSelected(false);
-        amount = -1000000.0;
+        setAmount(oneMillionCheckBox, -1000000.0);
+
     }
 
     public void toggleTwoHalfMillionLoan() {
         halfMillionCheckBox.setSelected(false);
         oneMillionCheckBox.setSelected(false);
         fiveMillionCheckBox.setSelected(false);
-        amount = -2500000.0;
+        setAmount(twoHalfMillionCheckBox, -2500000.0);
     }
 
     public void toggleFiveMillionLoan() {
         halfMillionCheckBox.setSelected(false);
         oneMillionCheckBox.setSelected(false);
         twoHalfMillionCheckBox.setSelected(false);
-        amount = -5000000.0;
+        setAmount(fiveMillionCheckBox, -5000000.0);
     }
 
     //------------Credit Account--------------
     public void toggleCredit() {
-        loanAnchorPane.setVisible(false);
-        creditAnchorPane.setVisible(true);
         standardCheckBox.setSelected(false);
         loanCheckBox.setSelected(false);
-        toAccountLabel.setVisible(true);
-        accountsChoiceBox.setVisible(true);
+        if(creditCheckBox.isSelected()){
+            loanAnchorPane.setVisible(false);
+            creditAnchorPane.setVisible(true);
+            toAccountLabel.setVisible(true);
+            accountsChoiceBox.setVisible(true);
+        } else {
+            creditAnchorPane.setVisible(false);
+            toAccountLabel.setVisible(false);
+            accountsChoiceBox.setVisible(false);
+        }
+
     }
 
     public void toggleFiveKCredit() {
         tenKCheckBox.setSelected(false);
         twentyFiveKCheckBox.setSelected(false);
         fiftyKCheckBox.setSelected(false);
-        amount = -5000.0;
+        setAmount(fiveKCheckBox, -5000.0);
     }
 
     public void toggleTenKCredit() {
         fiveKCheckBox.setSelected(false);
         twentyFiveKCheckBox.setSelected(false);
         fiftyKCheckBox.setSelected(false);
-        amount = -10000.0;
+        setAmount(tenKCheckBox, -10000.0);
     }
 
     public void toggleTwentyFiveKCredit() {
         fiveKCheckBox.setSelected(false);
         tenKCheckBox.setSelected(false);
         fiftyKCheckBox.setSelected(false);
-        amount = -25000.0;
+        setAmount(twentyFiveKCheckBox, -25000.0);
     }
 
     public void toggleFiftyKCredit() {
         fiveKCheckBox.setSelected(false);
         tenKCheckBox.setSelected(false);
         twentyFiveKCheckBox.setSelected(false);
-        amount = -50000.0;
+        setAmount(fiftyKCheckBox, -50000.0);
     }
 
 }

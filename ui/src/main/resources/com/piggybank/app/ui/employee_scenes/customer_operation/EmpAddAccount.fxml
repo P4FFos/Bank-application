@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="baseAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="825.0" style="-fx-background-color: #FFE7ED;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.piggybank.app.ui.employee_controllers.customer_operation.EmpAddAccountController">
+<AnchorPane fx:id="baseAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="825.0" style="-fx-background-color: #FFE7ED;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.piggybank.app.ui.employee_controllers.customer_operation.EmpAddAccountController">
     <children>
       <AnchorPane fx:id="headerAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="825.0">
          <children>
@@ -182,7 +188,7 @@
                <font>
                   <Font name="Kodchasan Regular" size="13.0" />
                </font></CheckBox>
-                <Label fx:id="wrongDetailsLabel" alignment="CENTER" layoutX="320.0" layoutY="230.0" prefWidth="280.0" text="ERROR: INCORRECTLY ENTERED CRITERIA FOR ACCOUNT CREATION" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true" />
+                <Label fx:id="wrongDetailsLabel" alignment="CENTER" layoutX="320.0" layoutY="230.0" prefHeight="34.0" prefWidth="280.0" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true" />
                 <Button fx:id="saveNewAccountButton" layoutX="320.0" layoutY="200.0" mnemonicParsing="false" onAction="#saveNewAccount" prefWidth="280.0" style="-fx-background-color: #ab3e56;" text="CREATE ACCOUNT" textFill="#ffe7ed">
                     <font>
                         <Font name="Kodchasan Regular" size="13.0" />
