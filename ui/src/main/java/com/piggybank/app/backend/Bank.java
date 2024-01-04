@@ -125,6 +125,10 @@ public class Bank {
 
     // creates new private customer and add it to customers hashmap:
     public String createCustomerPrivate(String ssn, String firstName, String lastName, String password, ContactCard contactCard) throws Exception {
+        if (ssn.length() != 10) {
+            throw new IllegalArgumentException();
+        }
+
         // finds the highest customerId in the HashMap customers
         String customerHighestId = findHighestCustomerId();
 
