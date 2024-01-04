@@ -36,10 +36,6 @@ public abstract class Customer extends User {
         return accounts.get(accountId);
     }
 
-    public void setAccounts(HashMap<String, Account> accounts) {
-        this.accounts = accounts;
-    }
-
     public HashMap<String, Account> getAccounts(){
         return accounts;
     }
@@ -49,11 +45,6 @@ public abstract class Customer extends User {
     public ObservableList<Account> getAccountsList() {
         return FXCollections.observableArrayList(accounts.values());
     }
-
-	@JsonIgnore
-	public ObservableList<Account> getAccountsOL() {
-		return FXCollections.observableArrayList(accounts.values());
-	}
 
     // checks if account exist in HashMap and returns boolean value
     public boolean checkIfAccountExists(String accountId) {
