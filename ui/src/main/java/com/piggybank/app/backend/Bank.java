@@ -272,7 +272,7 @@ public class Bank {
         targetAccount.deposit(senderAccountId, amount, message, date);
     }
 
-    public void transferFomLoanAccount(String senderAccountId, String targetAccountId, double amount, String message, LocalDate date) throws Exception {
+    public void transferFromLoanAccount(String senderAccountId, String targetAccountId, double amount, String message, LocalDate date) throws Exception {
         Loan senderAccount = (Loan) getAccountById(senderAccountId);
         Account targetAccount = getAccountById(targetAccountId);
 
@@ -280,7 +280,7 @@ public class Bank {
         targetAccount.deposit(senderAccountId, amount, message, date);
     }
 
-    public void transferFomCreditAccount(String senderAccountId, String targetAccountId, double amount, String message, LocalDate date) throws Exception {
+    public void transferFromCreditAccount(String senderAccountId, String targetAccountId, double amount, String message, LocalDate date) throws Exception {
         Credit senderAccount = (Credit) getAccountById(senderAccountId);
         Account targetAccount = getAccountById(targetAccountId);
 

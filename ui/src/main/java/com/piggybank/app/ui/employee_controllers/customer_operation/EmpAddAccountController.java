@@ -118,7 +118,7 @@ public class EmpAddAccountController extends EmpCustomerOverviewController imple
                     wrongDetailsLabel.setVisible(true);
                 } else {
                     Credit newCreditAccount = bank.createCredit(currentCustomer.getUserId(), newAccountNameField.getText(), Calendar.getInstance(), amount);
-                    bank.transferFomCreditAccount(newCreditAccount.getAccountId(), accountToIncrement.getAccountId(), 0 - amount, message, LocalDate.now());
+                    bank.transferFromCreditAccount(newCreditAccount.getAccountId(), accountToIncrement.getAccountId(), 0 - amount, message, LocalDate.now());
                     backToOverview(event);
                 }
 
@@ -128,7 +128,7 @@ public class EmpAddAccountController extends EmpCustomerOverviewController imple
                     wrongDetailsLabel.setVisible(true);
                 } else {
                     Loan newLoanAccount = bank.createLoanAccount(currentCustomer.getUserId(), newAccountNameField.getText(), amount);
-                    bank.transferFomLoanAccount(newLoanAccount.getAccountId(), accountToIncrement.getAccountId(), 0 - amount, message, LocalDate.now());
+                    bank.transferFromLoanAccount(newLoanAccount.getAccountId(), accountToIncrement.getAccountId(), 0 - amount, message, LocalDate.now());
                     backToOverview(event);
                 }
             }

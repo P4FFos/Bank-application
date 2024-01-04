@@ -8,6 +8,7 @@ public class Transaction {
     private String receiverAccountId;
     private String senderAccountId;
     private double amount;
+    private String amountString;
     private String message;
     private LocalDate date;
 
@@ -21,6 +22,7 @@ public class Transaction {
         this.amount = amount;
         this.message = message;
         this.date = date;
+        this.amountString = String.format("%.2f", amount);
     }
 
 	//--------------------Getters--------------------
@@ -36,15 +38,19 @@ public class Transaction {
         return this.amount;
     }
 
-	public String getMessage() {
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public String getMessage() {
         return this.message;
     }
 
-	public LocalDate getDate() {
-        return this.date;
-    }
+    public String getAmountString() {return this.amountString;}
 
-	//--------------------Setters--------------------
+    //--------------------Setters--------------------
+    public void setAmountString() {amountString = String.format("%.2f", this.amount);}
+
     public void setReceiverAccountId(String receiverAccountId) {
         this.receiverAccountId = receiverAccountId;
     }

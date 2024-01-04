@@ -34,7 +34,7 @@ public class EmpManageFundsController extends EmpCustomerOverviewController impl
         super.showCurrentCustomer();
 
         accountLabel.setText(currentAccount.getAccountName());
-        balanceLabel.setText(Double.toString(currentAccount.getBalance()));
+        balanceLabel.setText(currentAccount.getBalanceString());
         errorMessageLabel.setVisible(false);
     }
 
@@ -68,7 +68,7 @@ public class EmpManageFundsController extends EmpCustomerOverviewController impl
         } else if (depositCheckBox.isSelected()){
             currentAccount.deposit("None", amount, message, LocalDate.now());
         }
-        balanceLabel.setText(Double.toString(currentAccount.getBalance()));
+        balanceLabel.setText(currentAccount.getBalanceString());
     }
 
     public double extractAmount(String input){

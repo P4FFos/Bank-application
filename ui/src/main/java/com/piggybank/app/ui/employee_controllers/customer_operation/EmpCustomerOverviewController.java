@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class EmpCustomerOverviewController extends EmpMainController implements Initializable {
     @FXML
@@ -81,7 +83,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     @FXML
     private TableColumn<Transaction, String> receiverColumn;
     @FXML
-    private TableColumn<Transaction, Double> amountColumn;
+    private TableColumn<Transaction, String> amountColumn;
     @FXML
     private TableColumn<Transaction, String> messageColumn;
     @FXML
@@ -126,14 +128,15 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     }
 
     public void displayAccounts(){
-        accountsListView.getItems().addAll(currentCustomersAccounts.keySet());
+        SortedSet<String> accountKeys = new TreeSet<>(currentCustomersAccounts.keySet());
+        accountsListView.getItems().addAll(accountKeys);
         accountsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
                 String currentAccountId = accountsListView.getSelectionModel().getSelectedItem();
                 currentAccount = currentCustomersAccounts.get(currentAccountId);
                 accountNameLabel.setText(currentAccount.getAccountName());
-                accountBalanceLabel.setText(currentAccount.getBalance() + " SEK");
+                accountBalanceLabel.setText(currentAccount.getBalanceString() + " SEK");
 
                 if(currentAccount instanceof Credit){
                     Credit currentCredit = (Credit) currentAccount;
@@ -164,7 +167,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
                 // creates factory method used when populating transactionsTable
                 senderColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("senderAccountId"));
                 receiverColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("receiverAccountId"));
-                amountColumn.setCellValueFactory(new PropertyValueFactory<Transaction, Double>("amount"));
+                amountColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("amountString"));
                 messageColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("message"));
                 dateColumn.setCellValueFactory(new PropertyValueFactory<Transaction, LocalDate>("date"));
 

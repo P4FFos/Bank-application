@@ -43,7 +43,7 @@ public class CustomerTransferFundsController extends CustomerStartController imp
     @FXML
     private TableColumn<Account, String> accountNameColumn;
     @FXML
-    private TableColumn<Account, Double> accountBalanceColumn;
+    private TableColumn<Account, String> accountBalanceColumn;
     @FXML
     private TextField transferEnterAmountTextField;
     @FXML
@@ -60,13 +60,13 @@ public class CustomerTransferFundsController extends CustomerStartController imp
     public void initializeTables(){
         accountNameColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountName"));
         accountIdColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountId"));
-        accountBalanceColumn.setCellValueFactory(new PropertyValueFactory<Account, Double>("balance"));
+        accountBalanceColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("balanceString"));
 
         accountsTableView.setItems(currentCustomer.getAccountsList());
 
-        // filter on balance column in descending order
-        accountBalanceColumn.setSortType(TableColumn.SortType.DESCENDING);
-        accountsTableView.getSortOrder().add(accountBalanceColumn);
+        // sort on id column in ascending order
+        accountIdColumn.setSortType(TableColumn.SortType.ASCENDING);
+        accountsTableView.getSortOrder().add(accountIdColumn);
 
         transferEnterDatePicker.setValue(LocalDate.now());
         transferCompleteTransferButton.setDisable(false);
@@ -114,6 +114,7 @@ public class CustomerTransferFundsController extends CustomerStartController imp
         boolean isPasswordValid = currentCustomer.validatePassword(transferPasswordField.getText());
         boolean isAmountNotEmpty = !transferEnterAmountTextField.getText().isEmpty();
         boolean isReceiverAccount = !transferEnterRecieverAccountTextField.getText().isEmpty(); // if receiver account has an input
+        boolean isDateValid = !transferEnterDatePicker.getValue().isBefore(LocalDate.now());
 
         // since account is not selected automatically in TableView, then check with Optional that may be null or not
         Optional<Account> selectedAccount = Optional.ofNullable(accountsTableView.getSelectionModel().getSelectedItem());
@@ -133,6 +134,7 @@ public class CustomerTransferFundsController extends CustomerStartController imp
         }
 
         // to avoid further repetitive code, applying one method updateValidationStyle
+        updateValidationStyle(isDateValid, transferEnterDatePicker);
         updateValidationStyle(isSelectedAccount, accountsTableView);
         updateValidationStyle(isReceiverAccount, transferEnterRecieverAccountTextField);
         updateValidationStyle(isBalanceAvailable, accountsTableView);
@@ -143,7 +145,7 @@ public class CustomerTransferFundsController extends CustomerStartController imp
         updateValidationStyle(isPasswordValid, transferPasswordField);
         updateValidationStyle(isAmountNotEmpty, transferEnterAmountTextField);
 
-        return isSelectedAccount && isReceiverAccount && isBalanceAvailable && isNotSameAccount && isTermsChecked && isPasswordValid && isAmountNotEmpty;
+        return isDateValid && isSelectedAccount && isReceiverAccount && isBalanceAvailable && isNotSameAccount && isTermsChecked && isPasswordValid && isAmountNotEmpty;
     }
 
     private void updateValidationStyle(boolean condition, Control control) {
