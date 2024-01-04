@@ -104,10 +104,8 @@ public class EmpAddCustomerController extends EmpMainController implements Initi
                 wrongPasswordPane.setVisible(true);
 			} catch (InvalidEmailException e) {
                 invalidEmailPane.setVisible(true);
-                e.printStackTrace();
             } catch (Exception e) {
                 invalidSsnLabel.setVisible(true);
-                e.printStackTrace();
             }
         } else if(corporateCustomerCheckBox.isSelected()){
 

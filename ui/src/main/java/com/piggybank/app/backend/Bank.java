@@ -82,6 +82,9 @@ public class Bank {
                 }
             }
         } else if (inputString.length() == MAX_CUSTOMER_ID_LENGTH) { // checks if input is customerId
+            if (!customers.containsKey(inputString)) {
+                throw new UserNotFoundException("Customer not found by ID or SSN.");
+            }
             return customers.get(inputString);
         }
         throw new UserNotFoundException("Customer not found by ID or SSN.");
