@@ -19,53 +19,42 @@ import java.util.HashMap;
 })
 
 public abstract class Customer extends User {
-    // HashMap to store accounts
+
+    // attributes:
     private HashMap<String, Account> accounts;
 
     // Bare constructor used by Jackson-Databind for Json deserializing
     public Customer() {}
 
-    // constructor for Customer class
+    // Main constructor
     public Customer(String userId, String password, ContactCard contactCard) throws Exception {
         super(userId, password, contactCard);
         this.accounts = new HashMap<>();
     }
 
-    // getAccount method to receive account by ID
+	//--------------------Getters--------------------
     public Account getAccount(String accountId) {
         return accounts.get(accountId);
-    }
-
-    public void setAccounts(HashMap<String, Account> accounts) {
-        this.accounts = accounts;
     }
 
     public HashMap<String, Account> getAccounts(){
         return accounts;
     }
 
-    // Used for displaying changes in customer accounts layout
-    @JsonIgnore
-    public ObservableList<Account> getAccountsList() {
+	@JsonIgnore
+    public ObservableList<Account> getAccountsList() { // Used for displaying changes in customer accounts layout
         return FXCollections.observableArrayList(accounts.values());
     }
 
-	@JsonIgnore
-	public ObservableList<Account> getAccountsOL() {
-		return FXCollections.observableArrayList(accounts.values());
-	}
-
-    // checks if account exist in HashMap and returns boolean value
+	//--------------------Methods--------------------
     public boolean checkIfAccountExists(String accountId) {
         return accounts.containsKey(accountId);
     }
 
-    // addCustomer method
     public void addAccount(Account account) {
         this.accounts.put(account.getAccountId(), account);
     }
 
-    // removeCustomer method
     public void removeAccount(String accountId) {
         this.accounts.remove(accountId);
     }
