@@ -13,8 +13,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EmpMakeTransactionController extends EmpCustomerOverviewController implements Initializable{
-    @FXML
-    private Button selectSendingAccountButton;
+
     @FXML
     private CheckBox oneHundredCheckBox;
     @FXML
@@ -23,8 +22,6 @@ public class EmpMakeTransactionController extends EmpCustomerOverviewController 
     private CheckBox fiveHundredCheckBox;
     @FXML
     private CheckBox oneThousandCheckBox;
-    @FXML
-    private Button okButton;
     @FXML
     private ListView<String> accountsListView;
     @FXML

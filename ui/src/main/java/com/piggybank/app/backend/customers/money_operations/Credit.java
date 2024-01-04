@@ -1,5 +1,6 @@
 package com.piggybank.app.backend.customers.money_operations;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -38,6 +39,12 @@ public class Credit extends Account {
     @JsonIgnore
     public double getCreditAmount() {
         return super.getBalance();
+    }
+
+    @Override
+    public void withdraw(String receiverAccountId, double amount, String message, LocalDate date) {
+        Transaction withdrawal = new Transaction(receiverAccountId, super.getAccountId(), 0 - amount, message, date);
+        addTransaction(withdrawal);
     }
 
     // getCreditAmountWithInterest method which:

@@ -31,22 +31,9 @@ public class CustomerSupportController extends CustomerStartController implement
             successfulMessageLabel.setVisible(false);
             emptyMessageLabel.setVisible(true);
         } else {
-            String request = textArea.getText();
-            System.out.println(request);
             textArea.clear();
             emptyMessageLabel.setVisible(false);
             successfulMessageLabel.setVisible(true);
-        }
-    }
-
-    public void showCurrentCustomer(){
-        super.showCurrentCustomer();
-        if (currentCustomer instanceof CustomerPrivate) {
-            CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
-            System.out.println("Customer Support Page. Logged in as: " + privateCustomer.getFullName());
-        } else {
-            CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
-            System.out.println("Customer Support Page. Logged in as: " + corporateCustomer.getCompanyName());
         }
     }
 }

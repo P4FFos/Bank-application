@@ -182,21 +182,22 @@ public class Bank {
         }
     }
 
-    public void createLoanAccount(String userId, String accountName, double loanAmount) throws Exception {
+    public Loan createLoanAccount(String userId, String accountName, double loanAmount) throws Exception {
         if(userId.isBlank() || accountName.isBlank() || loanAmount == 0) {
             throw new Exception("ERROR: INCORRECTLY ENTERED CRITERIA FOR ACCOUNT CREATION");
-        } else if (!userId.isBlank() && !accountName.isBlank() && loanAmount != 0) {
-            Customer customer = customers.get(userId);
-
-            // finds the highest accountId in the HashMap customers
-            String accountHighestId = findHighestAccountId();
-
-            //Generates accountId
-            String accountId = IdGenerator.generateAccountId(accountHighestId);
-
-            Loan newLoan = new Loan(accountId, accountName, loanAmount);
-            customer.addAccount(newLoan);
         }
+        Customer customer = customers.get(userId);
+
+        // finds the highest accountId in the HashMap customers
+        String accountHighestId = findHighestAccountId();
+
+        //Generates accountId
+        String accountId = IdGenerator.generateAccountId(accountHighestId);
+
+        Loan newLoan = new Loan(accountId, accountName, loanAmount);
+        customer.addAccount(newLoan);
+
+        return newLoan;
     }
 
     //-----------------------REMOVAL METHODS-----------------------
@@ -271,16 +272,32 @@ public class Bank {
     // withdraw money from specified account
     public void withdraw(String accountId, double amount, String message, LocalDate date) throws Exception {
         Account account = getAccountById(accountId);
-        account.withdraw(amount, date);
+        account.withdraw(amount, message, date);
     }
 
     // transfer money between accounts; the actual account and a target account
-    public void transfer(String accountId, String targetAccountId, double amount, String message, LocalDate date) throws Exception {
-        Account account = getAccountById(accountId);
+    public void transfer(String senderAccountId, String targetAccountId, double amount, String message, LocalDate date) throws Exception {
+        Account senderAccount = getAccountById(senderAccountId);
         Account targetAccount = getAccountById(targetAccountId);
 
-        account.withdraw(targetAccountId, amount, message, date);
-        targetAccount.deposit(accountId, amount, message, date);
+        senderAccount.withdraw(targetAccountId, amount, message, date);
+        targetAccount.deposit(senderAccountId, amount, message, date);
+    }
+
+    public void transferFomLoanAccount(String senderAccountId, String targetAccountId, double amount, String message, LocalDate date) throws Exception {
+        Loan senderAccount = (Loan) getAccountById(senderAccountId);
+        Account targetAccount = getAccountById(targetAccountId);
+
+        senderAccount.withdraw(targetAccountId, amount, message, date);
+        targetAccount.deposit(senderAccountId, amount, message, date);
+    }
+
+    public void transferFomCreditAccount(String senderAccountId, String targetAccountId, double amount, String message, LocalDate date) throws Exception {
+        Credit senderAccount = (Credit) getAccountById(senderAccountId);
+        Account targetAccount = getAccountById(targetAccountId);
+
+        senderAccount.withdraw(targetAccountId, amount, message, date);
+        targetAccount.deposit(senderAccountId, amount, message, date);
     }
 
     //verify customer login information:
@@ -330,23 +347,21 @@ public class Bank {
     }
 
     // method to create credit in HashMap accounts in customer
-    public void createCredit(String userId, String accountName, Calendar initialCreditDate, double amount) throws Exception{
+    public Credit createCredit(String userId, String accountName, Calendar initialCreditDate, double amount) throws Exception{
         if(userId.isBlank() || accountName.isBlank() || amount == 0) {
             throw new Exception("ERROR: INCORRECTLY ENTERED CRITERIA FOR ACCOUNT CREATION");
-
-        } else if (!userId.isBlank() && !accountName.isBlank() && amount != 0){
-            Customer customer = customers.get(userId);
-
-            // finds the highest accountId in the HashMap customers
-            String accountHighestId = findHighestAccountId();
-
-            //Generates accountId
-            String accountId = IdGenerator.generateAccountId(accountHighestId);
-
-            Credit newAccount = new Credit(accountId, accountName, initialCreditDate, amount);
-            customer.addAccount(newAccount);
-            System.out.println("New credit account: " + accountId + " " + accountName);
         }
+        Customer customer = customers.get(userId);
+
+        // finds the highest accountId in the HashMap customers
+        String accountHighestId = findHighestAccountId();
+
+        //Generates accountId
+        String accountId = IdGenerator.generateAccountId(accountHighestId);
+
+        Credit newAccount = new Credit(accountId, accountName, initialCreditDate, amount);
+        customer.addAccount(newAccount);
+        return newAccount;
     }
 
     // removeCredit method

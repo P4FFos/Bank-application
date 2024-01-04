@@ -20,18 +20,6 @@ public class CustomerCreditsOverviewController extends CustomerStartController i
         initializeListView();
     }
 
-    @Override
-    public void showCurrentCustomer(){
-        super.showCurrentCustomer();
-        if (currentCustomer instanceof CustomerPrivate) {
-            CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
-            System.out.println("Customer Credits Overview Page. Logged in as: " + privateCustomer.getFullName());
-        } else {
-            CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
-            System.out.println("Customer Credits Overview Page. Logged in as: " + corporateCustomer.getCompanyName());
-        }
-    }
-
     public void initializeListView(){
         for(Account account : currentCustomer.getAccountsList()){
             if(account instanceof Credit){

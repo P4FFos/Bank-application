@@ -22,18 +22,6 @@ public class CustomerLoansOverviewController extends CustomerStartController imp
         initializeListView();
 	}
 
-    @Override
-    public void showCurrentCustomer(){
-        super.showCurrentCustomer();
-        if (currentCustomer instanceof CustomerPrivate) {
-            CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
-            System.out.println("Customer Loans Overview Page. Logged in as: " + privateCustomer.getFullName());
-        } else {
-            CustomerCorporate corporateCustomer = (CustomerCorporate) currentCustomer;
-            System.out.println("Customer Loans Overview Page. Logged in as: " + corporateCustomer.getCompanyName());
-        }
-    }
-
     public void initializeListView(){
         // fill loansListView with current customer's loans
         for(Account account : currentCustomer.getAccountsList()){

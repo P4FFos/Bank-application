@@ -13,11 +13,6 @@ import java.io.IOException;
 
 public class StartController {
 
-    @FXML
-    private Button employeeLoginButton;
-    @FXML
-    private Button customerLoginButton;
-
     private Parent root;
     private Stage stage;
     private Scene scene;
