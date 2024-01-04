@@ -27,7 +27,6 @@ import java.util.ResourceBundle;
 
 
 public class EmpMainController implements Initializable {
-
     @FXML
     private Label empIdLabel;
     @FXML
@@ -45,24 +44,26 @@ public class EmpMainController implements Initializable {
     private Scene scene;
     private FXMLLoader loader;
 
-    public static Bank bank = UIMain.bank;
-    public static Employee currentEmployee;
-    public static Customer currentCustomer;
-    public static Account currentAccount;
+    public static Bank bank = UIMain.bank; //refers to the bank object created in UIMain
+    public static Employee currentEmployee; //refers to the employee account that is currently logged in
+    public static Customer currentCustomer; //refers to the current customer that the employee is operating on if there is one
+    public static Account currentAccount; //refers to the current account that the employee is operating on if there is one
     public static HashMap<String, Account> currentCustomersAccounts;
     public String saveFile = UIMain.savePath;
 
-    public void initialize(URL arg0, ResourceBundle arg1) {
+    public void initialize(URL arg0, ResourceBundle arg1) { //setup for scene: EmpStart
         showCurrentEmployee();
         companyNameLabel.setText("No active customer.");
     }
 
-    public void showCurrentEmployee(){
+    public void showCurrentEmployee(){ //displays the current employee user id and initials in the upper right corner
         empIdLabel.setText(currentEmployee.getUserId());
         empInitialsLabel.setText(currentEmployee.getInitials());
     }
 
-    public void logout(ActionEvent event) throws IOException { //logoutButton
+    //--------------------------------MAIN NAVIGATION--------------------------------
+    //................Inherited by subclasses of EmpMainController...................
+    public void logout(ActionEvent event) throws IOException { //logoutButton, switches to scene: StartScene
         FileHandler.jsonSerializer(saveFile, bank);
 
         currentEmployee = null;
@@ -77,7 +78,7 @@ public class EmpMainController implements Initializable {
         stage.show();
     }
 
-    public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton
+    public void goToEmpStart(ActionEvent event) throws IOException { //empStartButton, switches to scene: EmpStart
         currentCustomer = null;
         currentCustomersAccounts = null;
 
@@ -90,7 +91,7 @@ public class EmpMainController implements Initializable {
         stage.show();
     }
 
-    public void searchCustomer(ActionEvent event) throws IOException { //searchButton
+    public void searchCustomer(ActionEvent event) throws IOException { //searchButton, on finding a customer switches to scene: EmpCustomerOverview
         noSelectedCustomerLabel.setVisible(false);
         String searchPhrase = searchCustomerTextField.getText();
         try {
@@ -106,14 +107,14 @@ public class EmpMainController implements Initializable {
             stage.show();
         }catch(UserNotFoundException e) {
             if(noCustomerFoundLabel != null){
-                noCustomerFoundLabel.setVisible(true);
+                noCustomerFoundLabel.setVisible(true); //displays an error message if no customer was found
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); //mostly for the sake of easier debugging
         }
     }
 
-    public void goToCustomerAccounts(ActionEvent event) throws IOException { //viewCustomerButton
+    public void goToCustomerAccounts(ActionEvent event) throws IOException { //viewCustomerButton, if there is a current customer -> switches to scene: EmpCustomerOverview
         if(currentCustomer != null) {
             loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/customer_operation/EmpCustomerOverview.fxml"));
             root = loader.load();
@@ -127,16 +128,12 @@ public class EmpMainController implements Initializable {
                 noCustomerFoundLabel.setVisible(false);
             }
             if (noSelectedCustomerLabel != null) {
-                noSelectedCustomerLabel.setVisible(true);
+                noSelectedCustomerLabel.setVisible(true); //displays an error message if there is no current customer
             }
         }
-
-
     }
 
-
-
-    public void goToCustomerInfo(ActionEvent event) throws IOException { //customerInfoButton
+    public void goToCustomerInfo(ActionEvent event) throws IOException { //customerInfoButton, if there is a current customer -> switches to scene: EmpCustomerInfo
         if(currentCustomer != null){
             loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/customer_operation/EmpCustomerInfo.fxml"));
             root = loader.load();
@@ -150,12 +147,13 @@ public class EmpMainController implements Initializable {
                 noCustomerFoundLabel.setVisible(false);
             }
             if (noSelectedCustomerLabel != null) {
-                noSelectedCustomerLabel.setVisible(true);
+                noSelectedCustomerLabel.setVisible(true); //displays an error message if there is no current customer
             }
         }
     }
 
-    public void goToLoans(ActionEvent event) throws IOException { //manageLoansButton
+    public void goToLoans(ActionEvent event) throws IOException { //manageLoansButton, if there is a current customer -> switches to scene: EmpAddAccount
+        //Leftover after reducing our scope. Directed to EmpAddAccount instead of a page for handling loan applications as we had planned.
         if(currentCustomer != null){
             loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/customer_operation/EmpAddAccount.fxml"));
             root = loader.load();
@@ -169,12 +167,12 @@ public class EmpMainController implements Initializable {
                 noCustomerFoundLabel.setVisible(false);
             }
             if (noSelectedCustomerLabel != null) {
-                noSelectedCustomerLabel.setVisible(true);
+                noSelectedCustomerLabel.setVisible(true); //displays an error message if there is no current customer
             }
         }
     }
 
-    public void goToAddCustomer(ActionEvent event) throws IOException { //newCustomerButton
+    public void goToAddCustomer(ActionEvent event) throws IOException { //newCustomerButton, switches to scene: EmpAddCustomer
         loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/customer_operation/EmpAddCustomer.fxml"));
         root = loader.load();
 
@@ -183,5 +181,4 @@ public class EmpMainController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
 }
