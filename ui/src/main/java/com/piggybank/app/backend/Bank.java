@@ -70,7 +70,7 @@ public class Bank {
 
     public Customer getCustomerByIdOrSsn(String inputString) throws Exception {
         /* Checks for 10 characters, if it is then SSN,
-        otherwise if it is 6 characters then it is a userId
+        otherwise if it is 4 characters then it is a userId
         */
 
         if(inputString.length() == SSN_LENGTH) { // checks if input is SSN
