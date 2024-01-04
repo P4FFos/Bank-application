@@ -19,8 +19,7 @@ public class Bank {
     private HashMap<String, Employee> employees;
 
     // Bare constructor used by Jackson-Databind for Json deserializing
-    public Bank() {
-    }
+    public Bank() {}
 
     public Bank(ContactCard contactInfo) {
         this.contactInfo = contactInfo;
@@ -84,7 +83,9 @@ public class Bank {
     }
 
     // below methods get information from user's ContactCard
-    public ContactCard getContactInfo(User user) {return user.getContactInfo();}
+    public ContactCard getContactInfo(User user) {
+		return user.getContactInfo();
+	}
 
     //get employee
     public Employee getEmployee(String userId){
@@ -339,16 +340,6 @@ public class Bank {
         return correctUserId && correctPassword;
     }
 
-    // getCredit method
-    public Credit getCredit(String userId, String accountId) throws Exception {
-        Customer customer = customers.get(userId);
-        Account account = customer.getAccount(accountId);
-        if(account instanceof Credit credit) {
-            return credit;
-        }
-        throw new Exception("No credit account " + accountId + " found for userID: " + userId);
-    }
-
     // method to create credit in HashMap accounts in customer
     public Credit createCredit(String userId, String accountName, Calendar initialCreditDate, double amount) throws Exception{
         if(userId.isBlank() || accountName.isBlank() || amount == 0) {
@@ -365,13 +356,6 @@ public class Bank {
         Credit newAccount = new Credit(accountId, accountName, initialCreditDate, amount);
         customer.addAccount(newAccount);
         return newAccount;
-    }
-
-    // removeCredit method
-    public void removeCredit(String userId, String accountId) throws Exception{
-        Customer customer = customers.get(userId);
-        customer.removeAccount(accountId);
-        System.out.println("Account " + accountId + " removed for customer " + userId + ".");
     }
 
     @Override

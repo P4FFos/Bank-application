@@ -59,10 +59,6 @@ public class Account {
         return FXCollections.observableArrayList(transactions);
     }
 
-    public void setTransactions(ArrayList<Transaction> transactions) {
-        this.transactions = transactions;
-    }
-
     // get method to receive accountId
     public String getAccountId() {
         return this.accountId;
