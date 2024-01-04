@@ -73,10 +73,6 @@ public class Account {
         this.accountName = accountName;
     }
 
-    public void setTransactions(ArrayList<Transaction> transactions) {
-        this.transactions = transactions;
-    }
-
     public void setBalance(double balance) {
         this.balance = balance;
         setBalanceString();
