@@ -21,7 +21,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -65,12 +64,6 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
     @FXML
     private Label errorMessageLabel;
     @FXML
-    private Button addAccountButton;
-    @FXML
-    private Button makeTransactionButton;
-    @FXML
-    private Button manageFundsButton;
-    @FXML
     private CheckBox inTransactionCheckBox;
     @FXML
     private CheckBox outTransactionCheckBox;
@@ -97,7 +90,8 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         super.showCurrentEmployee();
         showCurrentCustomer();
         displayAccounts();
-        currentAccount = null;
+
+        currentAccount = null; //to avoid another customer's bank account still being active
 
         interestLabel.setVisible(false);
         interestRateLabel.setVisible(false);
@@ -109,7 +103,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 		outTransactionCheckBox.setSelected(true);
     }
 
-    public void showCurrentCustomer() {
+    public void showCurrentCustomer() { //display customer info above the side menu to the left
         if (currentCustomer instanceof CustomerPrivate) {
             CustomerPrivate currentPrivate = (CustomerPrivate) currentCustomer;
             privateCustomerInfoAnchorPane.setVisible(true);
@@ -127,7 +121,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         }
     }
 
-    public void displayAccounts(){
+    public void displayAccounts(){ //display the account IDs of the customer's accounts in a listview
         SortedSet<String> accountKeys = new TreeSet<>(currentCustomersAccounts.keySet());
         accountsListView.getItems().addAll(accountKeys);
         accountsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -138,6 +132,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
                 accountNameLabel.setText(currentAccount.getAccountName());
                 accountBalanceLabel.setText(currentAccount.getBalanceString() + " SEK");
 
+                //display account info beneath the listview
                 if(currentAccount instanceof Credit){
                     Credit currentCredit = (Credit) currentAccount;
                     accountTypeLabel.setText("CREDIT:");
@@ -164,7 +159,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
                     initialAmountLabel.setVisible(false);
                 }
 
-                // creates factory method used when populating transactionsTable
+                //factory method used when populating transactionsTable
                 senderColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("senderAccountId"));
                 receiverColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("receiverAccountId"));
                 amountColumn.setCellValueFactory(new PropertyValueFactory<Transaction, String>("amountString"));
@@ -181,7 +176,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         errorMessageLabel.setText(message);
     }
 
-    public void manageFunds(ActionEvent event) throws IOException { //manageFundsButton
+    public void manageFunds(ActionEvent event) throws IOException { //manageFundsButton, if an account is selected -> switches to scene: EmpManageFunds
         if(currentAccount == null){
             showError("You must select an account.");
         } else {
@@ -195,7 +190,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         }
     }
 
-    public void addAccount(ActionEvent event) throws IOException { //addAccountButton
+    public void addAccount(ActionEvent event) throws IOException { //addAccountButton, switches to scene: EmpAddAccount
         loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/customer_operation/EmpAddAccount.fxml"));
         root = loader.load();
 
@@ -205,7 +200,7 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
         stage.show();
     }
 
-    public void makeTransaction(ActionEvent event) throws IOException { // makeTransactionButton
+    public void makeTransaction(ActionEvent event) throws IOException { // makeTransactionButton, switches to scene: EmpMakeTransaction
         loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/employee_scenes/EmpMakeTransaction.fxml"));
         root = loader.load();
 

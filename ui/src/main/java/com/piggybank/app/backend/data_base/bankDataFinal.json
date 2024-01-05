@@ -272,6 +272,34 @@
             "amountString" : "21000,00",
             "message" : "N/A",
             "date" : [ 2023, 12, 25 ]
+          }, {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "A00006",
+            "amount" : 5600.0,
+            "amountString" : "5600,00",
+            "message" : "Get some clothes, farmboy",
+            "date" : [ 2023, 12, 2 ]
+          }, {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "None",
+            "amount" : 0.0,
+            "amountString" : "0,00",
+            "message" : "Handled by: E001",
+            "date" : [ 2024, 1, 5 ]
+          }, {
+            "receiverAccountId" : "None",
+            "senderAccountId" : "A00001",
+            "amount" : -20.0,
+            "amountString" : "-20,00",
+            "message" : "Handled by: E001",
+            "date" : [ 2024, 1, 5 ]
+          }, {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "None",
+            "amount" : 20.0,
+            "amountString" : "20,00",
+            "message" : "Handled by: E001",
+            "date" : [ 2024, 1, 5 ]
           } ]
         },
         "A00012" : {
@@ -308,7 +336,47 @@
         "zipCode" : "111 72",
         "city" : "Saldaea"
       },
-      "accounts" : { },
+      "accounts" : {
+        "A00017" : {
+          "accountType" : "credit",
+          "accountName" : "For fur cloak",
+          "accountId" : "A00017",
+          "balance" : -25000.0,
+          "balanceString" : "-25000,00",
+          "transactions" : [ {
+            "receiverAccountId" : "A00016",
+            "senderAccountId" : "A00017",
+            "amount" : -25000.0,
+            "amountString" : "-25000,00",
+            "message" : "Handled by: E001",
+            "date" : [ 2024, 1, 5 ]
+          } ],
+          "interestRate" : 5.0,
+          "initialCreditDate" : 1704445536634
+        },
+        "A00016" : {
+          "accountType" : "account",
+          "accountName" : "Facade",
+          "accountId" : "A00016",
+          "balance" : 35000.0,
+          "balanceString" : "35000,00",
+          "transactions" : [ {
+            "receiverAccountId" : "A00016",
+            "senderAccountId" : "None",
+            "amount" : 10000.0,
+            "amountString" : "10000,00",
+            "message" : "Handled by: E001",
+            "date" : [ 2024, 1, 5 ]
+          }, {
+            "receiverAccountId" : "A00016",
+            "senderAccountId" : "A00017",
+            "amount" : 25000.0,
+            "amountString" : "25000,00",
+            "message" : "Handled by: E001",
+            "date" : [ 2024, 1, 5 ]
+          } ]
+        }
+      },
       "orgNumber" : "111-1234",
       "companyName" : "Ice Peppers For Amathera"
     },
@@ -323,7 +391,30 @@
         "zipCode" : "555 NN",
         "city" : "Pale Pink Pastures"
       },
-      "accounts" : { },
+      "accounts" : {
+        "A00018" : {
+          "accountType" : "account",
+          "accountName" : "PiggyBank",
+          "accountId" : "A00018",
+          "balance" : 100.0,
+          "balanceString" : "100,00",
+          "transactions" : [ {
+            "receiverAccountId" : "A00018",
+            "senderAccountId" : "None",
+            "amount" : 100.0,
+            "amountString" : "100,00",
+            "message" : "Handled by: E001",
+            "date" : [ 2024, 1, 5 ]
+          }, {
+            "receiverAccountId" : "A00018",
+            "senderAccountId" : "None",
+            "amount" : 0.0,
+            "amountString" : "0,00",
+            "message" : "Handled by: E001",
+            "date" : [ 2024, 1, 5 ]
+          } ]
+        }
+      },
       "ssn" : "0505055123",
       "firstName" : "Piglet",
       "lastName" : "Snoutypuff",
