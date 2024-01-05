@@ -49,7 +49,7 @@ public class EmpMainController implements Initializable {
     public static Customer currentCustomer; //refers to the current customer that the employee is operating on if there is one
     public static Account currentAccount; //refers to the current account that the employee is operating on if there is one
     public static HashMap<String, Account> currentCustomersAccounts; //refers to the current customer's (if there is one) list of accounts
-    public String saveFile = UIMain.savePath;
+    public String saveFile = UIMain.jsonPath;
 
     public void initialize(URL arg0, ResourceBundle arg1) { //setup for scene: EmpStart
         showCurrentEmployee();
