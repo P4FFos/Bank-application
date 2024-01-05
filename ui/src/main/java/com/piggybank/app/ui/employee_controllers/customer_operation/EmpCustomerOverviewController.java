@@ -167,9 +167,20 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
                 dateColumn.setCellValueFactory(new PropertyValueFactory<Transaction, LocalDate>("date"));
 
                 transactionsTable.setItems(currentAccount.getTransactions());
+
+                sortTransactionsTable();
+                // Stop from scrolling horizontally in TableView
+                transactionsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
             }
         });
     }
+
+    public void sortTransactionsTable() {
+        // Sort dates from lowest to highest
+        dateColumn.setSortType(TableColumn.SortType.DESCENDING);
+        transactionsTable.getSortOrder().add(dateColumn);
+    }
+
 
     public void showError(String message){
         errorMessageLabel.setVisible(true);
@@ -219,10 +230,12 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 				}
 			}
 			transactionsTable.setItems(outgoingTransactions);
+            sortTransactionsTable();
 		}else if(!inTransactionCheckBox.isSelected() && !outTransactionCheckBox.isSelected()){
 			inTransactionCheckBox.setSelected(true);
 		}else{
 			transactionsTable.setItems(currentAccount.getTransactions());
+            sortTransactionsTable();
 		}
 	}
 
@@ -235,10 +248,12 @@ public class EmpCustomerOverviewController extends EmpMainController implements 
 				}
 			}
 			transactionsTable.setItems(incomingTransactions);
+            sortTransactionsTable();
 		} else if(!outTransactionCheckBox.isSelected() && !inTransactionCheckBox.isSelected()){
 			outTransactionCheckBox.setSelected(true);
 		}else{
 			transactionsTable.setItems(currentAccount.getTransactions());
+            sortTransactionsTable();
 		}
 	}
 

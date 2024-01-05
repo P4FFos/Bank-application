@@ -272,34 +272,6 @@
             "amountString" : "21000,00",
             "message" : "N/A",
             "date" : [ 2023, 12, 25 ]
-          }, {
-            "receiverAccountId" : "A00001",
-            "senderAccountId" : "A00006",
-            "amount" : 5600.0,
-            "amountString" : "5600,00",
-            "message" : "Get some clothes, farmboy",
-            "date" : [ 2023, 12, 2 ]
-          }, {
-            "receiverAccountId" : "A00001",
-            "senderAccountId" : "None",
-            "amount" : 0.0,
-            "amountString" : "0,00",
-            "message" : "Handled by: E001",
-            "date" : [ 2024, 1, 5 ]
-          }, {
-            "receiverAccountId" : "None",
-            "senderAccountId" : "A00001",
-            "amount" : -20.0,
-            "amountString" : "-20,00",
-            "message" : "Handled by: E001",
-            "date" : [ 2024, 1, 5 ]
-          }, {
-            "receiverAccountId" : "A00001",
-            "senderAccountId" : "None",
-            "amount" : 20.0,
-            "amountString" : "20,00",
-            "message" : "Handled by: E001",
-            "date" : [ 2024, 1, 5 ]
           } ]
         },
         "A00012" : {
@@ -403,13 +375,6 @@
             "senderAccountId" : "None",
             "amount" : 100.0,
             "amountString" : "100,00",
-            "message" : "Handled by: E001",
-            "date" : [ 2024, 1, 5 ]
-          }, {
-            "receiverAccountId" : "A00018",
-            "senderAccountId" : "None",
-            "amount" : 0.0,
-            "amountString" : "0,00",
             "message" : "Handled by: E001",
             "date" : [ 2024, 1, 5 ]
           } ]
