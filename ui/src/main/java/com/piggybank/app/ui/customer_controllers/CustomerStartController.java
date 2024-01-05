@@ -16,7 +16,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
@@ -32,22 +31,6 @@ import java.util.ResourceBundle;
 
 public class CustomerStartController implements Initializable {
 
-    @FXML
-    private Button headerLogoutButton;
-    @FXML
-    private Button sideMenuAccountsOverviewButton;
-    @FXML
-    private Button sideMenuCreditsButton;
-    @FXML
-    private Button sideMenuFaqButton;
-    @FXML
-    private Button sideMenuLoansButton;
-    @FXML
-    private Button sideMenuStartButton; //keep
-    @FXML
-    private Button sideMenuSupportButton;
-    @FXML
-    private Button sideMenuTransferFundsButton;
     @FXML
     private Label headerActualIdLabel;
     @FXML
@@ -78,10 +61,10 @@ public class CustomerStartController implements Initializable {
     private Stage stage;
     private Scene scene;
 
-    public static Bank bank = UIMain.bank;
-    public static Customer currentCustomer;
-    public static Account currentAccount;
-    public static HashMap<String, Account> currentCustomersAccounts;
+    public static Bank bank = UIMain.bank; // refer to bank object created in UIMain
+    public static Customer currentCustomer; // refers to the customer object that is logged in
+    public static Account currentAccount; // refers to current account that is operated on, if there is one
+    public static HashMap<String, Account> currentCustomersAccounts; // refers to the hashmaps of accounts connected to the customer
 
 	@Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -89,7 +72,8 @@ public class CustomerStartController implements Initializable {
         showStartAccountOverviews();
     }
 
-    public void showCurrentCustomer(){
+    public void showCurrentCustomer(){ // displays the current customer information to the left
+        // different view depending on if current customer is corporate or private
         if (currentCustomer instanceof CustomerPrivate) {
             CustomerPrivate privateCustomer = (CustomerPrivate) currentCustomer;
             headerCustomerNameLabel.setText(privateCustomer.getFullName());
@@ -119,10 +103,11 @@ public class CustomerStartController implements Initializable {
 		debtsTableView.setPlaceholder(new Label("No debts"));
 		debtsTableView.setSelectionModel(null);
 
-		// fill the tables with data
+		// observable lists needed to track changes
 		ObservableList<Account> assetsOL = FXCollections.observableArrayList();
 		ObservableList<Account> debtsOL = FXCollections.observableArrayList();
 
+        // split the hashmap of accounts into two separate ArrayLists
 		for(Account account : currentCustomersAccounts.values()){
 			if(account instanceof Credit || account instanceof Loan){
 				debtsOL.add(account);
@@ -131,6 +116,7 @@ public class CustomerStartController implements Initializable {
 			}
 		}
 
+        // populates the two different table views with data
 		assetsTableView.setItems(assetsOL);
 		debtsTableView.setItems(debtsOL);
         // Sort TableViews
@@ -150,6 +136,7 @@ public class CustomerStartController implements Initializable {
 			}
 		}
 
+        // display total balance & use string format to avoid scientific numbers if large balance
 		startActualTotalBalanceLabel.setText(String.format("%.2f SEK", totalAssetsBalance));
 		startActualTotalDebtLabel.setText(String.format("%.2f SEK", totalDebtsBalance));
 	}

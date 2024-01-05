@@ -140,6 +140,13 @@
             "amountString" : "8000.00",
             "message" : "Clothes needed",
             "date" : [ 2023, 12, 1 ]
+          }, {
+            "receiverAccountId" : "A00001",
+            "senderAccountId" : "A00006",
+            "amount" : 5600.0,
+            "amountString" : "5600,00",
+            "message" : "Get some clothes, farmboy",
+            "date" : [ 2023, 12, 2 ]
           } ]
         },
         "A00013" : {
@@ -265,13 +272,6 @@
             "amountString" : "21000,00",
             "message" : "N/A",
             "date" : [ 2023, 12, 25 ]
-          }, {
-            "receiverAccountId" : "A00001",
-            "senderAccountId" : "A00006",
-            "amount" : 5600.0,
-            "amountString" : "5600,00",
-            "message" : "Get some clothes, farmboy",
-            "date" : [ 2023, 12, 2 ]
           } ]
         },
         "A00012" : {

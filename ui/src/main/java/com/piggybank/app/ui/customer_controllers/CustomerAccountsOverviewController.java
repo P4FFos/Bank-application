@@ -1,8 +1,8 @@
 package com.piggybank.app.ui.customer_controllers;
 
 import com.piggybank.app.backend.customers.*;
-
 import com.piggybank.app.backend.customers.money_operations.Transaction;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -51,6 +51,7 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
     }
 
     public void initializeTables(){
+        // Setting up columns in the accountsTableView to be populated
         accountNameColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountName"));
         accountIdColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountId"));
         accountBalanceColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("balanceString"));
@@ -67,6 +68,7 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
         /* gets the selected row (account) in the TableView of accounts. Based on what is selected
          * updates the transactions TableView */
         accountsTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Account>() {
+            // when account is changed it will update the transactionsTable
             @Override
             public void changed(ObservableValue<? extends Account> observableValue, Account account, Account t1) {
                 currentAccount = accountsTableView.getSelectionModel().selectedItemProperty().getValue();
@@ -91,19 +93,22 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
         dateColumn.setSortType(TableColumn.SortType.DESCENDING);
         transactionsTable.getSortOrder().add(dateColumn);
     }
+    //..........................TOGGLES.............................
 
-    // filter transactions to show all transactions
+    // filter transactions to show all transactions, not possible to deselect it
     public void toggleAllTransactions() {
         if(accountsAllCheckBox.isSelected()) {
             accountsAllCheckBox.setSelected(true);
             accountsIncomingCheckBox.setSelected(false);
             accountsOutgoingCheckBox.setSelected(false);
+            // if you try to use a toggle without selecting an account first
             if(currentAccount != null) {
                 transactionsTable.setItems(currentAccount.getTransactions());
                 sortTransactionsTable();
             }
         } else {
-            accountsAllCheckBox.setSelected(true);
+            accountsAllCheckBox.setSelected(true); // always true when clicking the toggle
+            // if you try to use a toggle without selecting an account first
             if(currentAccount != null) {
                 transactionsTable.setItems(currentAccount.getTransactions());
                 sortTransactionsTable();
@@ -117,6 +122,7 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
             accountsIncomingCheckBox.setSelected(true);
             accountsAllCheckBox.setSelected(false);
             accountsOutgoingCheckBox.setSelected(false);
+            // if you try to use a toggle without selecting an account first, then show only incoming transaction with aid of for loop
             if(currentAccount != null) {
                 ObservableList<Transaction> incomingTransactions = FXCollections.observableArrayList();
                 for (Transaction transaction : currentAccount.getTransactions()) {
@@ -129,6 +135,7 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
             }
         } else {
             accountsAllCheckBox.setSelected(true);
+            // if you try to use a toggle without selecting an account first, then show only outgoing transaction with aid of for loop
             if(currentAccount != null) {
                 transactionsTable.setItems(currentAccount.getTransactions());
                 sortTransactionsTable();
@@ -142,6 +149,7 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
             accountsOutgoingCheckBox.setSelected(true);
             accountsAllCheckBox.setSelected(false);
             accountsIncomingCheckBox.setSelected(false);
+            // if you try to use a toggle without selecting an account first, then show only outgoing transaction with aid of for loop
             if(currentAccount != null) {
                 ObservableList<Transaction> outgoingTransactions = FXCollections.observableArrayList();
                 for (Transaction transaction : currentAccount.getTransactions()) {
@@ -153,6 +161,7 @@ public class CustomerAccountsOverviewController extends CustomerStartController 
                 sortTransactionsTable();
             }
         } else {
+            // if you try to use a toggle without selecting an account first
             if(currentAccount != null) {
                 transactionsTable.setItems(currentAccount.getTransactions());
                 sortTransactionsTable();

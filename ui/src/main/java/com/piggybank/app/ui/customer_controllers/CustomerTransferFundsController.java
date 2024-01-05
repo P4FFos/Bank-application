@@ -1,13 +1,9 @@
 package com.piggybank.app.ui.customer_controllers;
 
 import com.piggybank.app.backend.customers.Account;
-import com.piggybank.app.backend.customers.CustomerCorporate;
-import com.piggybank.app.backend.customers.CustomerPrivate;
-import com.piggybank.app.backend.customers.money_operations.Credit;
-import com.piggybank.app.backend.customers.money_operations.Loan;
 import com.piggybank.app.backend.exceptions.AccountNotFoundException;
 import com.piggybank.app.backend.exceptions.InsufficientBalanceException;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -58,6 +54,7 @@ public class CustomerTransferFundsController extends CustomerStartController imp
     }
 
     public void initializeTables(){
+        // set table columns and prepare factory method
         accountNameColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountName"));
         accountIdColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("accountId"));
         accountBalanceColumn.setCellValueFactory(new PropertyValueFactory<Account, String>("balanceString"));
@@ -68,7 +65,9 @@ public class CustomerTransferFundsController extends CustomerStartController imp
         accountIdColumn.setSortType(TableColumn.SortType.ASCENDING);
         accountsTableView.getSortOrder().add(accountIdColumn);
 
+        // set today's value
         transferEnterDatePicker.setValue(LocalDate.now());
+
         transferCompleteTransferButton.setDisable(false);
     }
 
@@ -87,9 +86,11 @@ public class CustomerTransferFundsController extends CustomerStartController imp
         LocalDate date = transferEnterDatePicker.getValue();
         String message = transferEnterMessageTextField.getText();
 
+        // when error occur in try-catch it will format text fields, tables and buttons according to what is wrong/missing
         try {
+            // will update balance and transactions on both accounts
             bank.transfer(currentAccount.getAccountId(), receiverAccountId, amount, message, date);
-            accountsTableView.refresh();
+            accountsTableView.refresh(); // show the changes made directly
             transferCompleteTransferButton.getStyleClass().add("button-all-green");
 
             // reset all buttons once transfer is completed so customer can make a new transfer
@@ -109,6 +110,7 @@ public class CustomerTransferFundsController extends CustomerStartController imp
         }
     }
 
+    //..........................VERIFICATION & HELPER METHODS.............................
     private boolean validateInputs(String receiverAccountId) {
         boolean isTermsChecked = transferUnderstandCheckBox.isSelected();
         boolean isPasswordValid = currentCustomer.validatePassword(transferPasswordField.getText());
@@ -133,7 +135,7 @@ public class CustomerTransferFundsController extends CustomerStartController imp
             isNotSameAccount = !selectedAccount.get().getAccountId().equals(receiverAccountId);
         }
 
-        // to avoid further repetitive code, applying one method updateValidationStyle
+        // to avoid even more repetitive code, applying one method updateValidationStyle
         updateValidationStyle(isDateValid, transferEnterDatePicker);
         updateValidationStyle(isSelectedAccount, accountsTableView);
         updateValidationStyle(isReceiverAccount, transferEnterRecieverAccountTextField);
@@ -168,6 +170,8 @@ public class CustomerTransferFundsController extends CustomerStartController imp
         transferCompleteTransferButton.getStyleClass().remove("button-all-green");
 
     }
+
+    //..........................TOGGLES.............................
 
     // toggle button in CustomerTransferFunds.fxml file
     public void toggleAmountOneHundred() {
