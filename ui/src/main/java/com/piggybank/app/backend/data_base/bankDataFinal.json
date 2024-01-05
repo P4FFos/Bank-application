@@ -297,6 +297,38 @@
       "lastName" : "Al'Thor",
       "initials" : "RA"
     },
+    "C010" : {
+      "customerType" : "customerCorporate",
+      "userId" : "C010",
+      "password" : "notNice123",
+      "contactInfo" : {
+        "email" : "temaile@sisters.com",
+        "phoneNumber" : "0101234567",
+        "streetAddress" : "Banikhan Mountains",
+        "zipCode" : "111 72",
+        "city" : "Saldaea"
+      },
+      "accounts" : { },
+      "orgNumber" : "111-1234",
+      "companyName" : "Ice Peppers For Amathera"
+    },
+    "C009" : {
+      "customerType" : "customerPrivate",
+      "userId" : "C009",
+      "password" : "mudPie555",
+      "contactInfo" : {
+        "email" : "glitteringmud@piggies.com",
+        "phoneNumber" : "0735157535",
+        "streetAddress" : "Straw Hut",
+        "zipCode" : "555 NN",
+        "city" : "Pale Pink Pastures"
+      },
+      "accounts" : { },
+      "ssn" : "0505055123",
+      "firstName" : "Piglet",
+      "lastName" : "Snoutypuff",
+      "initials" : "PS"
+    },
     "C008" : {
       "customerType" : "customerCorporate",
       "userId" : "C008",
