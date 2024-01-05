@@ -27,9 +27,11 @@ public class CustomerSupportController extends CustomerStartController implement
             successfulMessageLabel.setVisible(false);
             emptyMessageLabel.setVisible(true);
         } else {
+            System.out.println("Your message has been sent\n" + textArea.getText()); //Save this print, this is our confirmation
             textArea.clear();
             emptyMessageLabel.setVisible(false);
             successfulMessageLabel.setVisible(true);
+
         }
     }
 }
