@@ -8,6 +8,8 @@
 | C006	     | MrRobot1	   | Corporate |
 | C007	     | Password1   | Private   |
 | C008	     | iAte5Wolves | Corporate |
+| C009	     | mudPie555   | Private   |
+| C010	     | notNice123  | Corporate |
 
 | Employees | Password   |
 |-----------|------------|
