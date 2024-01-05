@@ -215,7 +215,7 @@ public class CustomerStartController implements Initializable {
 //-----------------HEADER MENU NAVIGATION----------------
 
     public void logout(ActionEvent event) throws IOException { //headerLogoutButton
-        FileHandler.jsonSerializer(UIMain.savePath, bank);
+        FileHandler.jsonSerializer(UIMain.jsonPath, bank);
 
         currentCustomer = null;
         loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/StartScene.fxml"));

@@ -10,16 +10,14 @@ import com.piggybank.app.backend.Bank;
 
 public class UIMain extends Application {
     public static Bank bank; //a single bank object used throughout the system
-    public static String loadPath; //reading mockdata in a json file on start
+    public static String jsonPath; //reading mockdata in a json file on start
     public static String savePath; //saving data to a json file on logout
 
     @Override
     public void start(Stage stage) throws Exception {
-        loadPath = "ui/src/main/java/com/piggybank/app/backend/data_base/bankDataFinal.json";
-        bank = FileHandler.jsonDeserializer(loadPath);
-
-        // used in EmpMainController:logout() and CustomerStartController:logout()
-        savePath = "ui/src/main/java/com/piggybank/app/backend/data_base/bankDataFinal.json";
+        // also used in EmpMainController:logout() and CustomerStartController:logout()
+        jsonPath = "ui/src/main/java/com/piggybank/app/backend/data_base/bankDataFinal.json";
+        bank = FileHandler.jsonDeserializer(jsonPath);
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/piggybank/app/ui/StartScene.fxml"));
