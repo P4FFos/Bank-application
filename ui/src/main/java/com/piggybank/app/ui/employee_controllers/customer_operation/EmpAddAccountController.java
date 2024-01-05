@@ -67,8 +67,12 @@ public class EmpAddAccountController extends EmpCustomerOverviewController imple
         super.showCurrentEmployee();
         super.showCurrentCustomer();
         populateAccountsChoiceBox();
+
         amount = 0.0;
+
         wrongDetailsLabel.setVisible(false);
+        accountsChoiceBox.setVisible(false);
+        toAccountLabel.setVisible(false);
     }
 
     public void populateAccountsChoiceBox(){ //list of standard accounts (their keys) to send funds to when creating a credit or a loan

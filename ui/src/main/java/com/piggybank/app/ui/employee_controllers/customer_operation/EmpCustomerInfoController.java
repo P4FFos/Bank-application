@@ -25,11 +25,14 @@ public class EmpCustomerInfoController extends EmpCustomerOverviewController imp
     private TextField emailField;
     @FXML
     private Label invalidPasswordLabel;
+    @FXML
+    private Label wrongEmailFormatLabel;
 
     public void initialize(URL arg0, ResourceBundle arg1) {
         super.showCurrentEmployee();
         showCurrentCustomer();
         invalidPasswordLabel.setVisible(false);
+        wrongEmailFormatLabel.setVisible(false);
     }
     @Override
     public void showCurrentCustomer(){
@@ -88,9 +91,13 @@ public class EmpCustomerInfoController extends EmpCustomerOverviewController imp
     }
     public void setNewEmail() throws Exception { //saveNewEmailButton
         String newEmail = emailField.getText();
+        if(!newEmail.contains("@")){
+            wrongEmailFormatLabel.setVisible(true);
+        }
         emailField.setText(newEmail);
         EmpMainController.currentCustomer.setEmail(newEmail);
         emailField.setEditable(false);
+        wrongEmailFormatLabel.setVisible(false);
     }
     public void setNewPassword() { //saveNewPasswordButton
         invalidPasswordLabel.setVisible(false);

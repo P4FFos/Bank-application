@@ -287,7 +287,8 @@
                   <Font name="Kodchasan Regular" size="13.0" />
                </font>
             </PasswordField>
-            <Label fx:id="invalidPasswordLabel" layoutX="130.0" layoutY="207.0" prefHeight="62.0" prefWidth="200.0" text="Password must be at least 8 characters and include uppercase letters and numbers." textFill="RED" wrapText="true" />
+            <Label fx:id="invalidPasswordLabel" layoutX="441.0" layoutY="177.0" prefHeight="62.0" prefWidth="200.0" text="Password must be at least 8 characters and include uppercase letters and numbers." textFill="RED" wrapText="true" AnchorPane.leftAnchor="440.0" />
+            <Label fx:id="wrongEmailFormatLabel" layoutX="439.0" layoutY="152.0" prefHeight="17.0" prefWidth="216.0" text="Wrong e-mail format. Must include '@'." textFill="RED" AnchorPane.leftAnchor="440.0" />
          </children>
       </AnchorPane>
     </children>

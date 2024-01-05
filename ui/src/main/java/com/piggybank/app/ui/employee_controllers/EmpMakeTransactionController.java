@@ -111,13 +111,15 @@ public class EmpMakeTransactionController extends EmpCustomerOverviewController 
         insufficientBalanceLabel.setVisible(false);
 
         try {
+            double amount = Double.parseDouble(amountTextField.getText());
             if(senderAccount.getAccountId().equals(recieverAccountTextField.getText())) {
                 showErrorMessage("Sender and receiver accounts are the same. Try again.");
+            } else if(amount < 0.0){
+                showErrorMessage("You must enter a positive amount.");
             } else {
                 // prepare parameters for transfer between accounts
                 String accountId = senderAccount.getAccountId();
                 String targetAccountId = recieverAccountTextField.getText();
-                double amount = Double.parseDouble(amountTextField.getText());
                 String message = String.format("Handled by employee: %s", currentEmployee.getUserId());
                 LocalDate date = LocalDate.now();
 
