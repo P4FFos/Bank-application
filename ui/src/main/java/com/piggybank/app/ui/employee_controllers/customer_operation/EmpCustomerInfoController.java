@@ -4,7 +4,6 @@ import com.piggybank.app.backend.exceptions.PasswordException;
 import com.piggybank.app.ui.employee_controllers.EmpMainController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -12,7 +11,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class EmpCustomerInfoController extends EmpCustomerOverviewController implements Initializable {
-
     @FXML
     private PasswordField passwordField;
     @FXML
@@ -36,6 +34,7 @@ public class EmpCustomerInfoController extends EmpCustomerOverviewController imp
     @Override
     public void showCurrentCustomer(){
         super.showCurrentCustomer();
+        //display additional customer info (from contactCard)
         streetField.setText(EmpMainController.currentCustomer.getStreet());
         zipField.setText(EmpMainController.currentCustomer.getZipCode());
         cityField.setText(EmpMainController.currentCustomer.getCity());
@@ -62,6 +61,7 @@ public class EmpCustomerInfoController extends EmpCustomerOverviewController imp
     public void passwordEditable(){ //editPasswordButton
         passwordField.setEditable(true);
     }
+
     public void setNewStreet(){ //saveNewStreetButton
         String newStreet = streetField.getText();
         streetField.setText(newStreet);
