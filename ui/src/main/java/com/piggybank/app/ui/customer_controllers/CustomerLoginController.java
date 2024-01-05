@@ -3,13 +3,13 @@ package com.piggybank.app.ui.customer_controllers;
 import com.piggybank.app.backend.Bank;
 import com.piggybank.app.backend.exceptions.PasswordException;
 import com.piggybank.app.ui.UIMain;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -34,7 +34,7 @@ public class CustomerLoginController {
 
     //..........................METHODS.............................
 
-    public void login(ActionEvent event) throws Exception { //loginButton
+    public void login(ActionEvent event) throws Exception { //loginButton --> if correct login details the next screen is CustomerStart
 
         String password;
         String userId;
@@ -46,7 +46,7 @@ public class CustomerLoginController {
 
             if (bank.verifyCustomer(userId, password)) {
                 CustomerStartController.currentCustomer = bank.getCustomer(userId);
-                CustomerStartController.currentCustomersAccounts = CustomerStartController.currentCustomer.getAccounts();
+                CustomerStartController.currentCustomersAccounts = CustomerStartController.currentCustomer.getAccounts(); // sets current customer if details are correct, before loading CustomerStart
 
                 loader = new FXMLLoader(getClass().getResource("/com/piggybank/app/ui/customer_scenes/CustomerStart.fxml"));
                 root = loader.load();
@@ -57,9 +57,9 @@ public class CustomerLoginController {
                 stage.show();
             }
         } catch (PasswordException e) {
-            incorrectLoginLabel.setVisible(true);
+            incorrectLoginLabel.setVisible(true); // displayed if wrong details are shown
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); // used only for debugging
         }
     }
 
